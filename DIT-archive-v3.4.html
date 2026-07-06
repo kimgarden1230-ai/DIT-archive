@@ -610,49 +610,41 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 .wiz-inp:focus{border-color:var(--mint-base)}
 .wiz-textarea{width:100%;padding:.56rem .78rem;border:1.5px solid var(--border);border-radius:var(--r-md);font-size:var(--fs-md);outline:none;color:var(--ink);background:#fff;resize:vertical;min-height:88px;line-height:1.6;transition:border-color .15s;margin-bottom:1.25rem}
 .wiz-textarea:focus{border-color:var(--mint-base)}
-/* ── Day entries ── */
-/* day strip — form input carousel */
-.day-strip{display:flex;gap:.6rem;overflow-x:auto;padding:.2rem .05rem .7rem;margin-bottom:.25rem;scrollbar-width:none}
-.day-strip::-webkit-scrollbar{display:none}
-.day-scard{flex:0 0 126px;height:158px;border-radius:var(--r-lg);position:relative;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .18s,transform .12s;background:var(--surface-dark)}
-.day-scard:active{transform:scale(.97)}
-.day-scard.active{border-color:var(--primary)}
-.day-scard-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.day-scard-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(0,0,0,.65) 55%)}
-.day-scard-badge{position:absolute;top:.48rem;left:.5rem;font-size:var(--fs-xs);font-weight:700;padding:.16rem .48rem;border-radius:var(--r-pill);background:rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;letter-spacing:.01em}
-.day-scard-del{position:absolute;top:.38rem;right:.38rem;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.5);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2}
-.day-scard-del svg{width:10px;height:10px;fill:currentColor}
-.day-scard-body{position:absolute;bottom:0;left:0;right:0;padding:.5rem .6rem .56rem}
-.day-scard-city{font-size:var(--fs-md);font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:.1rem}
-.day-scard-city.empty{opacity:.35;font-weight:400;font-size:var(--fs-sm)}
-.day-scard-date{font-size:var(--fs-xs);color:rgba(255,255,255,.55)}
-.day-scard-add{flex:0 0 78px;height:158px;border-radius:var(--r-lg);border:1.5px dashed var(--hairline);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;cursor:pointer;color:var(--ink-muted);font-size:var(--fs-xs);font-weight:600;transition:all .15s;padding:0}
-.day-scard-add:hover{border-color:var(--primary);color:var(--primary);background:var(--mint-light)}
-.day-scard-add svg{width:20px;height:20px;fill:currentColor}
-/* day edit panel (below strip) */
-.day-edit-panel{border:1px solid var(--hairline);border-radius:var(--r-md);padding:.88rem;margin-bottom:1.25rem;background:var(--canvas-soft)}
-.day-edit-label{font-size:var(--fs-xs);font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.62rem}
-.day-inp{width:100%;padding:.42rem .62rem;border:1.5px solid var(--hairline);border-radius:var(--r-sm);font-size:var(--fs-md);outline:none;color:var(--ink);background:#fff;transition:border-color .15s;margin-bottom:.5rem;box-sizing:border-box}
-.day-inp:focus{border-color:var(--primary)}
-.day-inp.city{font-size:var(--fs-lg);font-weight:600}
+/* ── 타임라인 폼 (step 2) ── */
+.tl-form-list{display:flex;flex-direction:column;gap:0;margin-bottom:1rem}
+.tl-day-row{display:flex;gap:10px;padding:.4rem 0;cursor:pointer;position:relative}
+.tl-day-row:not(:last-child)::before{content:'';position:absolute;left:13px;top:36px;bottom:0;width:1.5px;background:var(--hairline)}
+.tl-day-left{width:28px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding-top:2px}
+.tl-day-num{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--hairline);background:var(--canvas);display:flex;align-items:center;justify-content:center;font-size:var(--fs-xs);font-weight:600;color:var(--ink-muted);flex-shrink:0}
+.tl-day-num.filled{background:var(--mint-light);border-color:var(--primary);color:var(--primary)}
+.tl-day-num.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.tl-day-date{font-size:9px;color:var(--ink-muted);white-space:nowrap}
+.tl-day-card{flex:1;border:1px solid var(--hairline);border-radius:var(--r-md);padding:.6rem .75rem;background:var(--canvas);transition:border-color .15s;min-height:40px;margin-bottom:8px}
+.tl-day-card.active{border-color:var(--primary);background:#00C89604}
+.tl-day-card.empty{background:var(--canvas-soft)}
+.tl-day-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.tl-day-loc{font-size:var(--fs-md);font-weight:600;color:var(--ink)}
+.tl-day-loc.empty{color:var(--ink-muted);font-weight:400;font-size:var(--fs-sm)}
+.tl-day-memo{font-size:var(--fs-sm);color:var(--ink-muted);margin-top:.3rem;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.tl-day-photos{display:flex;gap:.3rem;margin-top:.4rem}
+.tl-day-thumb{width:40px;height:40px;border-radius:var(--r-sm);object-fit:cover}
+.tl-edit-panel{border-top:1px solid var(--hairline);margin-top:.6rem;padding-top:.6rem}
 .day-textarea{width:100%;padding:.42rem .62rem;border:1.5px solid var(--hairline);border-radius:var(--r-sm);font-size:var(--fs-md);outline:none;color:var(--ink);background:#fff;resize:vertical;min-height:68px;line-height:1.6;transition:border-color .15s;font-family:var(--font);box-sizing:border-box}
 .day-textarea:focus{border-color:var(--primary)}
-.day-photos{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
-.day-photo-thumb{width:54px;height:54px;border-radius:var(--r-sm);object-fit:cover;cursor:pointer}
-.day-photo-add{width:54px;height:54px;border-radius:var(--r-sm);border:1.5px dashed var(--hairline);background:var(--canvas);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:border-color .15s}
-.day-photo-add:hover{border-color:var(--primary)}
-.day-photo-add svg{width:16px;height:16px;fill:var(--ink-muted)}
-/* modal day strip */
-.day-list{display:flex;overflow-x:auto;gap:.55rem;padding:.15rem .05rem .55rem;margin-bottom:.75rem;scrollbar-width:none}
-.day-list::-webkit-scrollbar{display:none}
-.day-item{flex:0 0 110px;height:134px;border-radius:var(--r-md);position:relative;overflow:hidden;background:var(--surface-dark)}
-.day-item-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.day-item-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.08) 0%,rgba(0,0,0,.68) 60%)}
-.day-item-num{position:absolute;top:.4rem;left:.48rem;font-size:var(--fs-xs);font-weight:700;color:#fff;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:.1rem .4rem;border-radius:var(--r-pill)}
-.day-item-body{position:absolute;bottom:0;left:0;right:0;padding:.42rem .52rem .48rem}
-.day-item-city{font-size:var(--fs-sm);font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.day-item-date{font-size:var(--fs-xs);color:rgba(255,255,255,.5);margin-top:.08rem}
-.day-item-memo{font-size:var(--fs-xs);color:rgba(255,255,255,.65);margin-top:.18rem;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.45}
+.loc-suggest{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.5rem}
+.loc-chip{background:var(--canvas-soft);border:1px solid var(--hairline);border-radius:var(--r-pill);padding:.2rem .65rem;font-size:var(--fs-xs);color:var(--ink-muted);cursor:pointer}
+.loc-chip.used{background:var(--mint-light);border-color:var(--primary);color:var(--primary)}
+/* 모달 타임라인 */
+.tl-modal-row{display:flex;gap:10px;padding:.5rem 0;border-bottom:1px solid var(--hairline)}
+.tl-modal-row.dim .tl-modal-card{opacity:.45}
+.tl-modal-left{width:36px;flex-shrink:0;text-align:center;padding-top:2px}
+.tl-modal-num{font-size:var(--fs-xs);font-weight:700;color:var(--primary);background:var(--mint-light);border-radius:var(--r-pill);padding:.1rem .4rem;display:inline-block;margin-bottom:.15rem}
+.tl-modal-date{font-size:9px;color:var(--ink-muted);white-space:nowrap}
+.tl-modal-card{flex:1}
+.tl-modal-loc{font-size:var(--fs-md);font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.tl-modal-memo{font-size:var(--fs-sm);color:var(--ink-muted);line-height:1.6;white-space:pre-wrap}
+.tl-modal-photos{display:flex;gap:.3rem;margin-top:.4rem;flex-wrap:wrap}
+.tl-modal-thumb{width:52px;height:52px;border-radius:var(--r-sm);object-fit:cover;cursor:pointer}
 .country-chip-lg{display:inline-flex;align-items:center;gap:.35rem;padding:.32rem .8rem;border-radius:var(--r-pill);font-size:var(--fs-md);font-weight:600;background:var(--mint-light);color:var(--primary);margin:.2rem .2rem .2rem 0}
 .country-chip-rm{opacity:.5;cursor:pointer;display:inline-flex;align-items:center;width:13px;height:13px;margin-left:.1rem}
 .country-chip-rm svg{width:100%;height:100%;fill:currentColor}
@@ -918,6 +910,23 @@ const CITIES=[
   {code:'MX_MEX',name:'멕시코시티',emoji:'📍',parentCode:'MX',parentEmoji:'🇲🇽',parentName:'멕시코',type:'city',continent:'americas'},
   {code:'MX_CUN',name:'칸쿤',emoji:'📍',parentCode:'MX',parentEmoji:'🇲🇽',parentName:'멕시코',type:'city',continent:'americas'},
 ];
+function migrateTrip(trip){
+  if(trip.tripDays)return trip;
+  const days=[];
+  (trip.countries||[]).forEach(c=>{
+    const cDays=c.days||[];
+    if(cDays.length){
+      cDays.forEach(d=>{
+        days.push({dayNum:d.day,date:d.date||'',locationCode:c.code,locationName:d.city||c.name,locationEmoji:c.emoji,locationType:c.type||'country',parentCode:c.parentCode||null,parentName:c.parentName||null,parentEmoji:c.parentEmoji||null,memo:d.memo||'',moods:[],score:null,photos:d.photos||[]});
+      });
+    } else {
+      days.push({dayNum:days.length+1,date:'',locationCode:c.code,locationName:c.name,locationEmoji:c.emoji,locationType:c.type||'country',parentCode:c.parentCode||null,parentName:c.parentName||null,parentEmoji:c.parentEmoji||null,memo:c.memo||'',moods:[...(c.moods||[])],score:c.score||null,photos:[...(c.photos||[])]});
+    }
+  });
+  days.sort((a,b)=>{if(!a.date&&!b.date)return a.dayNum-b.dayNum;if(!a.date)return 1;if(!b.date)return -1;return a.date.localeCompare(b.date);});
+  days.forEach((d,i)=>d.dayNum=i+1);
+  return{...trip,tripDays:days};
+}
 const COUNTRY_TAGS={
   JP:["🌸 벚꽃","🍜 라멘","⛩️ 사찰","♨️ 온천","🎎 전통문화","🌃 야경","🎌 축제","🍣 스시"],
   KR:["🍚 한식","🏯 고궁","🌃 야경","🛍️ 쇼핑","🎵 케이팝","☕ 카페","🌊 바다"],
@@ -1007,11 +1016,11 @@ const SAMPLE_TRIPS=[];
 // ── STATE ──
 let auth=null,db=null,currentUser=null,isDemo=false,isAuth=false;
 let trips=[],_map=null,_markers={},_routes=[],currentView="main",cfFilter="all";
-let formData={status:"planning",title:"",coverEmoji:"✈️",startDate:"",endDate:"",totalDays:0,countries:[],entries:{}};
-let editingId=null,isEditMode=false,accOpenSections=new Set(["status","basic","countries"]);
-let formStep=1,wizActiveC=null,photoIdx=0,dayFocus={},step3Expanded={};
-let curModalId=null,curModalTab="overview",curModalCI=0;
-let aiResults={},aiLoading={},qrData={},shareGenerating=false;
+let formData={status:"completed",title:"",coverEmoji:"✈️",startDate:"",endDate:"",totalDays:0,tripDays:[]};
+let editingId=null;
+let formStep=1,activeDayIdx=0,photoIdx=0;
+let curModalId=null,curModalTab="timeline",curModalCI=0;
+let aiResults={},aiLoading={},shareGenerating=false;
 
 // ── AUTH ──
 function initFirebase(){
@@ -1079,7 +1088,10 @@ function setUserUI(){
 }
 function enterDemo(){
   isDemo=true;
-  trips=SAMPLE_TRIPS.map(t=>({...t,countries:t.countries.map(c=>({...c,photos:[...(c.photos||[])]}))}));
+  trips=SAMPLE_TRIPS.map(t=>{
+    const mt=migrateTrip(t);
+    return {...mt,tripDays:(mt.tripDays||[]).map(d=>({...d,photos:[...(d.photos||[])],moods:[...(d.moods||[])]}))};
+  });
   document.getElementById("tb-avatar").innerHTML=ICON_EYE;
   document.getElementById("pv-avatar").innerHTML=ICON_EYE;
   document.getElementById("pv-name").textContent="둘러보기";
@@ -1115,19 +1127,26 @@ function renderAll(){updateStats();renderCountryCards();renderTimeline();renderS
 function updateStats(){}
 
 // ── COUNTRY CARDS ──
-function getCountryRecs(){
-  const recs=[];
-  [...trips].sort((a,b)=>new Date(b.startDate||b.createdAt)-new Date(a.startDate||a.createdAt))
-    .forEach(t=>t.countries.forEach(c=>recs.push({tripId:t.id,tripTitle:t.title,tripEmoji:t.coverEmoji,tripStatus:t.status,startDate:t.startDate,endDate:t.endDate,...c})));
-  return recs;
+function getTripRecs(){
+  return [...trips].sort((a,b)=>new Date(b.startDate||b.createdAt)-new Date(a.startDate||a.createdAt)).map(t=>{
+    const mt=migrateTrip(t);
+    const days=mt.tripDays||[];
+    const uniqLocs=[...new Map(days.filter(d=>d.locationCode).map(d=>[d.locationCode,d])).values()];
+    const allPhotos=days.flatMap(d=>d.photos||[]);
+    const allMoods=[...new Set(days.flatMap(d=>d.moods||[]))];
+    const firstLoc=uniqLocs[0];
+    const locCountryCode=firstLoc?firstLoc.locationCode.split('_')[0]:null;
+    const continent=(COUNTRIES.find(c=>c.code===locCountryCode)||{}).continent||'';
+    return{tripId:t.id,tripTitle:t.title,tripEmoji:t.coverEmoji,tripStatus:t.status,startDate:t.startDate,endDate:t.endDate,totalDays:t.totalDays,uniqLocs,allPhotos,allMoods,continent,firstLoc};
+  });
 }
 function setCF(cont,btn){cfFilter=cont;document.querySelectorAll(".cf-btn").forEach(b=>b.classList.remove("on"));btn.classList.add("on");renderCountryCards();}
 function renderCountryCards(){
   const grid=document.getElementById("country-cards-grid");
-  let recs=getCountryRecs();
+  let recs=getTripRecs();
   if(cfFilter==="planning")recs=recs.filter(r=>r.tripStatus==="planning");
   else if(cfFilter!=="all")recs=recs.filter(r=>r.continent===cfFilter);
-  document.getElementById("cards-count").textContent=`나라별 기록 ${recs.length}건`;
+  document.getElementById("cards-count").textContent=`여행 기록 ${recs.length}건`;
   if(!recs.length){
     const msg=cfFilter!=="all"?"이 필터에 해당하는 기록이 없어요":"아직 여행 기록이 없어요";
     const sub=cfFilter!=="all"?"다른 필터를 선택하거나 새 기록을 추가해보세요":"+ 버튼을 눌러 첫 여행을 기록해보세요";
@@ -1135,13 +1154,13 @@ function renderCountryCards(){
     return;
   }
   grid.innerHTML=recs.map(r=>{
-    const col=CC[r.continent]||DS.gray;const isPlan=r.tripStatus==="planning";
-    const pill=isPlan?`<div class="status-pill sp-plan">계획 중</div>`:(r.score?`<div style="margin-bottom:.32rem">${starDisp(r.score,'.8rem')}</div>`:"");
-    const preview=isPlan?r.expect:r.reality||r.expect;
-    const thumbInner=r.photos?.length?`<img class="rc-thumb" src="${r.photos[0]}" alt="">`:`<div class="rc-thumb-placeholder" style="background:${isPlan?DS.coral:col}18">${r.tripEmoji||"✈️"}</div>`;
+    const isPlan=r.tripStatus==="planning";
+    const col=isPlan?DS.coral:(CC[r.continent]||DS.gray);
+    const pill=isPlan?`<div class="status-pill sp-plan">계획 중</div>`:"";
+    const thumbInner=r.allPhotos.length?`<img class="rc-thumb" src="${r.allPhotos[0]}" alt="">`:`<div class="rc-thumb-placeholder" style="background:${col}18">${r.tripEmoji||"✈️"}</div>`;
     const thumb=`<div class="rc-thumb-wrap">${thumbInner}</div>`;
-    const addBtn=isPlan&&isAuth?`<button class="rc-add-btn" onclick="event.stopPropagation();openModal('${r.tripId}',true)">귀국 후 현실 기록하기</button>`:"";
-    return `<div class="rec-card${isPlan?" is-planning":""}" onclick="openModal('${r.tripId}')"><div class="rc-accent" style="background:${isPlan?DS.coral:col}"></div>${thumb}<div class="rc-body"><div class="rc-top"><div class="rc-flag">${r.emoji}</div><div class="rc-info"><div class="rc-trip">${r.tripTitle}</div></div></div>${pill}${r.startDate?`<div class="rc-date">${r.startDate.replace(/-/g,".")}${r.endDate?" - "+r.endDate.replace(/-/g,"."):""}</div>`:""}${r.cities?`<div class="rc-cities">📍 ${r.cities}</div>`:""}${preview?`<div class="rc-preview">${preview}</div>`:""}${!isPlan&&r.moods?.length?`<div class="rc-moods">${r.moods.slice(0,3).map(m=>`<span class="rc-mood">${m}</span>`).join("")}</div>`:""}${addBtn}</div></div>`;
+    const locChips=r.uniqLocs.slice(0,3).map(l=>`<span class="rc-mood">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</span>`).join('');
+    return `<div class="rec-card${isPlan?" is-planning":""}" onclick="openModal('${r.tripId}')"><div class="rc-accent" style="background:${col}"></div>${thumb}<div class="rc-body"><div class="rc-top"><div class="rc-flag">${r.tripEmoji||"✈️"}</div><div class="rc-info"><div class="rc-trip">${r.tripTitle}</div></div></div>${pill}${r.startDate?`<div class="rc-date">${r.startDate.replace(/-/g,".")}${r.endDate?" - "+r.endDate.replace(/-/g,"."):""} · ${r.totalDays||0}일</div>`:""}${locChips?`<div class="rc-moods" style="margin-top:.3rem">${locChips}</div>`:""}${r.allMoods.length?`<div class="rc-moods">${r.allMoods.slice(0,3).map(m=>`<span class="rc-mood">${m}</span>`).join("")}</div>`:""}</div></div>`;
   }).join("");
 }
 
@@ -1163,12 +1182,22 @@ function updateMapMarkers(){
   Object.values(_markers).forEach(m=>m.remove());_markers={};
   _routes.forEach(r=>r.remove());_routes=[];
   trips.filter(t=>t.status==="planning").forEach(t=>{
-    const coords=t.countries.map(c=>COUNTRY_COORDS[c.code]).filter(Boolean);
+    const mt=migrateTrip(t);
+    const codes=[...new Set((mt.tripDays||[]).map(d=>d.locationCode.split('_')[0]).filter(Boolean))];
+    const coords=codes.map(c=>COUNTRY_COORDS[c]).filter(Boolean);
     if(coords.length<2)return;
     _routes.push(L.polyline(coords,{color:"#ABABAB",weight:2,opacity:.5,dashArray:"6 5"}).addTo(_map));
   });
   const byCode={};
-  trips.forEach(t=>t.countries.forEach(c=>{if(!byCode[c.code])byCode[c.code]={country:c,trips:[]};byCode[c.code].trips.push(t);}));
+  trips.forEach(t=>{
+    const mt=migrateTrip(t);
+    const uniq=[...new Map((mt.tripDays||[]).filter(d=>d.locationCode).map(d=>[d.locationCode.split('_')[0],d])).values()];
+    uniq.forEach(d=>{
+      const code=d.locationCode.split('_')[0];
+      const country={code,name:d.locationName,emoji:d.locationEmoji,continent:(COUNTRIES.find(c=>c.code===code)||{}).continent||''};
+      if(!byCode[code])byCode[code]={country,trips:[]};byCode[code].trips.push(t);
+    });
+  });
   Object.entries(byCode).forEach(([code,{country,trips:ct}])=>{
     const coords=COUNTRY_COORDS[code];if(!coords)return;
     const hasDone=ct.some(t=>t.status!=="planning");
@@ -1190,7 +1219,7 @@ function updateMapMarkers(){
 function flyToTrips(){
   if(!_map)return;
   const done=trips.filter(t=>t.status!=="planning");
-  const coords=done.flatMap(t=>t.countries.map(c=>COUNTRY_COORDS[c.code]).filter(Boolean));
+  const coords=done.flatMap(t=>{const mt=migrateTrip(t);return[...new Set((mt.tripDays||[]).map(d=>d.locationCode.split('_')[0]).filter(Boolean))].map(c=>COUNTRY_COORDS[c]).filter(Boolean);});
   if(!coords.length)return;
   if(coords.length===1){_map.flyTo(coords[0],5,{duration:0.6});}
   else{_map.flyToBounds(L.latLngBounds(coords),{padding:[40,40],maxZoom:6,duration:0.6});}
@@ -1200,7 +1229,9 @@ function flyToNearest(){
   const done=trips.filter(t=>t.status!=="planning"&&(t.startDate||t.endDate));
   if(!done.length)return;
   done.sort((a,b)=>(b.endDate||b.startDate||"").localeCompare(a.endDate||a.startDate||""));
-  const coords=done[0].countries.map(c=>COUNTRY_COORDS[c.code]).filter(Boolean);
+  const mt0=migrateTrip(done[0]);
+  const codes=[...new Set((mt0.tripDays||[]).map(d=>d.locationCode.split('_')[0]).filter(Boolean))];
+  const coords=codes.map(c=>COUNTRY_COORDS[c]).filter(Boolean);
   if(!coords.length)return;
   if(coords.length===1){_map.flyTo(coords[0],5,{duration:0.6});}
   else{_map.flyToBounds(L.latLngBounds(coords),{padding:[40,40],maxZoom:5,duration:0.6});}
@@ -1292,40 +1323,52 @@ function getCountryImgUrl(countryName,emoji){
 }
 
 function tlCard(t,isPlan){
-  const col=isPlan?DS.coral:(CC[t.countries[0]?.continent]||DS.gray);
-  const avg=!isPlan&&t.countries.length?Math.round(t.countries.reduce((s,c)=>s+(c.score||0),0)/t.countries.length*10)/10:0;
-  const moods=[...new Set(t.countries.flatMap(c=>c.moods||[]))].slice(0,3);
-  const allPhotos=t.countries.flatMap(c=>c.photos||[]);
-  // 커버: 업로드 사진 > Unsplash Source > 없음
+  const mt=migrateTrip(t);
+  const days=mt.tripDays||[];
+  const uniqLocs=[...new Map(days.filter(d=>d.locationCode).map(d=>[d.locationCode.split('_')[0],d])).values()];
+  const firstLoc=uniqLocs[0];
+  const firstCode=firstLoc?firstLoc.locationCode.split('_')[0]:null;
+  const continent=(COUNTRIES.find(c=>c.code===firstCode)||{}).continent||'';
+  const col=isPlan?DS.coral:(CC[continent]||DS.gray);
+  const moods=[...new Set(days.flatMap(d=>d.moods||[]))].slice(0,3);
+  const allPhotos=days.flatMap(d=>d.photos||[]);
   let coverEl;
   if(allPhotos[0]){
     coverEl=`<img class="tl-cover" src="${allPhotos[0]}" alt="">`;
   } else {
-    const firstCountry=t.countries[0];
-    const imgUrl=getCountryImgUrl(firstCountry?.name||"",firstCountry?.emoji||"");
-    const imgId=`cimg-${t.id}`;
-    const fbId=`cfb-${t.id}`;
-    coverEl=`<div class="tl-cover-placeholder" id="${fbId}" style="display:flex;background:${col}18">${t.coverEmoji||"✈️"}</div>
-      <img class="tl-cover" id="${imgId}" src="${imgUrl}" alt="${firstCountry?.name||""}" style="display:none"
-      onload="var i=document.getElementById('${imgId}');var f=document.getElementById('${fbId}');if(i)i.style.display='block';if(f)f.style.display='none';"
-      onerror="var i=document.getElementById('${imgId}');if(i)i.style.display='none';">`;
+    const imgUrl=getCountryImgUrl(firstLoc?.locationName||"",firstLoc?.locationEmoji||"");
+    const imgId=`cimg-${t.id}`;const fbId=`cfb-${t.id}`;
+    coverEl=`<div class="tl-cover-placeholder" id="${fbId}" style="display:flex;background:${col}18">${t.coverEmoji||"✈️"}</div><img class="tl-cover" id="${imgId}" src="${imgUrl}" alt="${firstLoc?.locationName||""}" style="display:none" onload="var i=document.getElementById('${imgId}');var f=document.getElementById('${fbId}');if(i)i.style.display='block';if(f)f.style.display='none';" onerror="var i=document.getElementById('${imgId}');if(i)i.style.display='none';">`;
   }
-  const addBtn=isPlan&&isAuth?`<button class="tl-add-btn" onclick="event.stopPropagation();openModal('${t.id}',true)">귀국 후 현실 기록하기</button>`:"";
-  return `<div class="tl-card${isPlan?" is-planning":""}" onclick="openModal('${t.id}')"><div class="tl-accent" style="background:${col}"></div>${coverEl}<div class="tl-body"><div class="tl-top"><span class="tl-emoji">${t.coverEmoji||"✈️"}</span><div class="tl-title">${t.title}</div>${isPlan?`<span class="status-pill sp-plan" style="font-size:var(--fs-xs);padding:2px 6px;flex-shrink:0">계획</span>`:""}</div><div class="tl-meta">${t.startDate||""} ${t.endDate?"– "+t.endDate:""} · ${t.totalDays||0}일</div><div class="tl-ctags">${t.countries.map(c=>`<span class="tl-ctag">${c.emoji} ${c.name}</span>`).join("")}</div>${!isPlan&&moods.length?`<div class="tl-moods">${moods.map(m=>`<span class="tl-mood">${m}</span>`).join("")}</div>`:""}${addBtn}<div class="tl-bottom">${avg?`<span class="tl-score">${avg}/10</span>`:"<span></span>"}${allPhotos.length?`<span class="tl-photo-count">📷 ${allPhotos.length}</span>`:""}</div></div></div>`;
+  return `<div class="tl-card${isPlan?" is-planning":""}" onclick="openModal('${t.id}')"><div class="tl-accent" style="background:${col}"></div>${coverEl}<div class="tl-body"><div class="tl-top"><span class="tl-emoji">${t.coverEmoji||"✈️"}</span><div class="tl-title">${t.title}</div>${isPlan?`<span class="status-pill sp-plan" style="font-size:var(--fs-xs);padding:2px 6px;flex-shrink:0">계획</span>`:""}</div><div class="tl-meta">${t.startDate||""} ${t.endDate?"– "+t.endDate:""} · ${t.totalDays||0}일</div><div class="tl-ctags">${uniqLocs.slice(0,4).map(l=>`<span class="tl-ctag">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</span>`).join("")}</div>${!isPlan&&moods.length?`<div class="tl-moods">${moods.map(m=>`<span class="tl-mood">${m}</span>`).join("")}</div>`:""}<div class="tl-bottom"><span></span>${allPhotos.length?`<span class="tl-photo-count">📷 ${allPhotos.length}</span>`:""}</div></div></div>`;
 }
 
 // ── STATS ──
 function renderStats(){
   const el=document.getElementById("stats-view");
   const done=trips.filter(t=>t.status!=="planning");
-  const ac=done.flatMap(t=>t.countries);
+  // tripDays 기반 통계 — 나라 단위 집계를 위해 unique locationCode per trip
+  const allDays=done.flatMap(t=>(migrateTrip(t).tripDays||[]));
+  // ac: 나라/도시 단위 대표 day 배열 (code/name/continent/score/moods/photos 포함)
+  const codeMap={};
+  allDays.forEach(d=>{
+    const code=d.locationCode;if(!code)return;
+    const baseCode=code.split('_')[0];
+    const cInfo=COUNTRIES.find(c=>c.code===baseCode)||{};
+    if(!codeMap[code])codeMap[code]={code:baseCode,name:d.locationName||baseCode,continent:cInfo.continent||'',scores:[],moods:[],photos:[],memoCount:0};
+    if(d.score)codeMap[code].scores.push(d.score);
+    (d.moods||[]).forEach(m=>{codeMap[code].moods.push(m);});
+    (d.photos||[]).forEach(p=>{codeMap[code].photos.push(p);});
+    if(d.memo&&d.memo.trim())codeMap[code].memoCount++;
+  });
+  const ac=Object.values(codeMap).map(c=>({...c,score:c.scores.length?(c.scores.reduce((a,b)=>a+b,0)/c.scores.length):0}));
   if(!ac.length){el.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;min-height:60vh"><div class="empty-state-wrap"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="40" cy="40" r="36" fill="rgba(0,200,150,.1)"/><g transform="translate(20,20) scale(1.67)"><path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75z" fill="#00C896"/><path d="M9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625z" fill="#00C896"/><path d="M3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z" fill="#00C896"/></g></svg><div class="es-title">아직 통계가 없어요</div><div class="es-sub">완료된 여행이 생기면 통계가 나타나요</div><button class="es-cta" onclick="fabClick()">+ 여행 기록하기</button></div></div>`;return;}
   const totalC=new Set(ac.map(c=>c.code)).size;
   const totalD=done.reduce((s,t)=>s+(t.totalDays||0),0);
   const scores=ac.map(c=>c.score).filter(Boolean);
   const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):"-";
   const planning=trips.filter(t=>t.status==="planning").length;
-  const insight=ac.filter(c=>c.insight&&c.insight.trim()).length;
+  const insight=ac.reduce((s,c)=>s+c.memoCount,0);
   const allPhotos=ac.flatMap(c=>c.photos||[]);
   const grad=(i,d="90deg")=>`linear-gradient(${d},${P[i%P.length].a},${P[i%P.length].b})`;
   const heroData=[
@@ -1456,93 +1499,70 @@ function switchView(v){
 
 // ── MODAL ──
 function openModal(id,goToReality){
-  const t=trips.find(x=>x.id===id);if(!t)return;
+  const raw=trips.find(x=>x.id===id);if(!raw)return;
+  const t=migrateTrip(raw);
   curModalId=id;curModalCI=0;photoIdx=0;
-  curModalTab=(goToReality&&t.status==="planning")?"compare":"overview";
-  if(!qrData[id])qrData[id]={};
-  t.countries.forEach(c=>{if(!qrData[id][c.code])qrData[id][c.code]={reality:c.reality||"",insight:c.insight||"",memo:c.memo||"",moods:[...(c.moods||[])],score:c.score||7};});
+  curModalTab=(goToReality&&t.status==="planning")?"ai":"timeline";
   document.getElementById("modal-inner").innerHTML=buildModal(t);
   document.getElementById("modal-bg").classList.add("open");
   document.body.style.overflow="hidden";
 }
 function buildModal(t){
-  const isPlan=t.status==="planning";
-  const col=isPlan?DS.coral:(CC[t.countries[0]?.continent]||DS.gray);
+  const trip=migrateTrip(t);
+  const isPlan=trip.status==="planning";
+  const days=trip.tripDays||[];
+  const uniqCodes=[...new Set(days.map(d=>d.locationCode).filter(Boolean))];
+  const firstLoc=days.find(d=>d.locationCode);
+  const firstContinent=firstLoc?(COUNTRIES.find(c=>c.code===firstLoc.locationCode)||{}).continent:'';
+  const col=isPlan?DS.coral:(CC[firstContinent]||DS.gray);
   const statusHtml=isPlan?`<span class="mh-status" style="background:#F5F5F5;color:#8E8E8E;border:1px solid #E5E5E5">계획 중</span>`:`<span class="mh-status" style="background:rgba(0,200,150,.1);color:${DS.mintHover};border:1px solid rgba(0,200,150,.2)">완료</span>`;
-  const shareBtn=(!isPlan&&isAuth)?`<button class="mh-share-btn" onclick="openSharePanel('${t.id}')">↗ 공유</button>`:"";
-  const head=`<div class="modal-accent" style="background:${col}"></div><div class="modal-head"><div class="mh-emoji">${t.coverEmoji||"✈️"}</div><div class="mh-info"><div class="mh-title">${t.title}</div><div class="mh-meta">${t.startDate||""} – ${t.endDate||""} · ${t.totalDays||0}일 · ${t.countries.length}개국 ${statusHtml}</div></div><div class="mh-actions">${shareBtn}<button class="mh-close" onclick="closeModal()">${IC.xMark}</button></div></div>`;
-  const aiClick=isPlan?`showToast('여행 완료 후 AI 회고를 사용할 수 있어요')`:`switchMT('${t.id}','ai')`;
-  const tabs=`<div class="modal-tabs"><button class="mt-btn${curModalTab==="overview"?" active":""}" onclick="switchMT('${t.id}','overview')">기록</button><button class="mt-btn${curModalTab==="photo"?" active":""}" onclick="switchToPhoto('${t.id}')">사진</button><button class="mt-btn${curModalTab==="compare"?" active":""}" onclick="switchMT('${t.id}','compare')">기대↔현실</button><button class="mt-btn${curModalTab==="ai"?" active":""}${isPlan?" style='opacity:.4'":""}" onclick="${aiClick}">AI 회고</button>${curModalTab==="share"?`<button class="mt-btn active">공유</button>`:""}</div>`;
+  const shareBtn=(!isPlan&&isAuth)?`<button class="mh-share-btn" onclick="openSharePanel('${trip.id}')">↗ 공유</button>`:"";
+  const head=`<div class="modal-accent" style="background:${col}"></div><div class="modal-head"><div class="mh-emoji">${trip.coverEmoji||"✈️"}</div><div class="mh-info"><div class="mh-title">${trip.title}</div><div class="mh-meta">${trip.startDate||""} – ${trip.endDate||""} · ${trip.totalDays||0}일 · ${uniqCodes.length}개국 ${statusHtml}</div></div><div class="mh-actions">${shareBtn}<button class="mh-close" onclick="closeModal()">${IC.xMark}</button></div></div>`;
+  const aiClick=isPlan?`showToast('여행 완료 후 AI 회고를 사용할 수 있어요')`:`switchMT('${trip.id}','ai')`;
+  const tabs=`<div class="modal-tabs"><button class="mt-btn${curModalTab==="timeline"?" active":""}" onclick="switchMT('${trip.id}','timeline')">타임라인</button><button class="mt-btn${curModalTab==="photo"?" active":""}" onclick="switchToPhoto('${trip.id}')">사진</button><button class="mt-btn${curModalTab==="ai"?" active":""}${isPlan?" style='opacity:.4'":""}" onclick="${aiClick}">AI 회고</button>${curModalTab==="share"?`<button class="mt-btn active">공유</button>`:""}</div>`;
   let content="";
-  if(curModalTab==="overview")content=buildOverviewTab(t);
-  else if(curModalTab==="photo")content=buildPhotoTab(t);
-  else if(curModalTab==="compare")content=buildCompareTab(t);
-  else if(curModalTab==="share")content=buildShareTab(t);
-  else content=buildAITab(t);
+  if(curModalTab==="timeline")content=buildTimelineTab(trip);
+  else if(curModalTab==="photo")content=buildPhotoTab(trip);
+  else if(curModalTab==="share")content=buildShareTab(trip);
+  else content=buildAITab(trip);
   return head+tabs+content;
 }
-function switchMT(id,tab){curModalTab=tab;const t=trips.find(x=>x.id===id);if(t)document.getElementById("modal-inner").innerHTML=buildModal(t);}
-function switchMCI(id,idx){curModalCI=idx;const t=trips.find(x=>x.id===id);if(t)document.getElementById("modal-inner").innerHTML=buildModal(t);}
-function buildOverviewTab(t){
-  const c=t.countries[curModalCI]||t.countries[0];
-  const col=CC[c.continent]||DS.gray;const isPlan=t.status==="planning";
-  const tabs=t.countries.length>1?`<div class="country-tabs">${t.countries.map((ct,i)=>`<button class="ct-btn${i===curModalCI?" active":""}" onclick="switchMCI('${t.id}',${i})">${ct.type==='city'?(ct.parentEmoji||'📍'):ct.emoji} ${ct.name}</button>`).join("")}</div>`:"";
-  const editBtn=isAuth?`<button class="ma-btn ma-edit" onclick="openForm('${t.id}');closeModal()">편집</button>`:"";
-  const realityBtn=isPlan&&isAuth?`<button class="ma-btn ma-reality" onclick="switchMT('${t.id}','compare')">현실 기록하기</button>`:"";
-  const photos=c.photos||[];
-  const addPhotoBtn=isAuth?`<button class="pg-add-btn" onclick="document.getElementById('ovw-photo-${c.code}').click()">+</button><input type="file" id="ovw-photo-${c.code}" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload('${t.id}','${c.code}',this.files)">`:"";
-  const photoHead=`<div class="photo-section-head"><span class="sec-lbl" style="margin-bottom:0">사진 <span style="font-weight:400;color:var(--ink-muted)">${photos.length}/20</span></span>${addPhotoBtn}</div>`;
-  const photoGrid=photos.length?`<div class="photo-gallery" style="grid-template-columns:1fr">${`<img src="${photos[0]}" alt="" onclick="openLightbox('${photos[0]}')" style="width:100%;aspect-ratio:16/9;object-fit:cover">`}</div>`:`<div class="photo-gallery-empty">사진을 추가해보세요</div>`;
-  const photoRow=`${photoHead}${photoGrid}`;
-  const days=c.days?.length?`<span class="sec-lbl">일차별 기록</span><div class="day-list">${c.days.map(d=>{const bgStyle=d.photos?.[0]?`background-image:url('${d.photos[0]}')`:'';const onclk=d.photos?.[0]?`onclick="openLightbox('${d.photos[0]}')" style="cursor:pointer"`:'';return`<div class="day-item" ${onclk}><div class="day-item-bg" style="${bgStyle}"></div><div class="day-item-grad"></div><div class="day-item-num">${d.day}일차</div><div class="day-item-body">${d.city?`<div class="day-item-city">${esc(d.city)}</div>`:'<div class="day-item-city" style="opacity:.4">장소 없음</div>'}${d.date?`<div class="day-item-date">${d.date}</div>`:''}${d.memo?`<div class="day-item-memo">${esc(d.memo)}</div>`:''}</div></div>`;}).join('')}</div>`:'';
-  return `<div class="modal-body">${tabs}${photoRow}${c.cities?`<span class="sec-lbl">방문 도시</span><div class="sec-box">${c.cities}</div>`:""}${days}${c.expect?`<span class="sec-lbl">기대</span><div class="sec-box expect-box">${c.expect}</div>`:""}${c.reality?`<span class="sec-lbl">현실</span><div class="sec-box reality-box">${c.reality}</div>`:""}${c.insight?`<span class="sec-lbl">디자인 영감</span><div class="sec-box" style="border-left:3px solid ${DS.mint}">${c.insight}</div>`:""}${c.memo?`<span class="sec-lbl">메모</span><div class="sec-box">${c.memo}</div>`:""}${c.moods?.length?`<span class="sec-lbl">감정</span><div class="mood-chips">${c.moods.map(m=>`<span class="mc">${m}</span>`).join("")}</div>`:""}${c.score?`<span class="sec-lbl">기대 충족도</span><div class="score-display">${c.score}<span style="font-size:var(--fs-md);color:var(--gray);font-weight:400">/10</span></div>`:""}</div><div class="modal-actions">${editBtn}${realityBtn}</div>`;
-}
-function buildPhotosTab(t){
-  const c=t.countries[curModalCI]||t.countries[0];
-  const tabs=t.countries.length>1?`<div class="country-tabs" style="padding:.9rem 1.2rem 0">${t.countries.map((ct,i)=>`<button class="ct-btn${i===curModalCI?" active":""}" onclick="switchMCI('${t.id}',${i})">${ct.type==='city'?(ct.parentEmoji||'📍'):ct.emoji} ${ct.name}</button>`).join("")}</div>`:"";
-  const photos=c.photos||[];
-  const gallery=photos.length?`<div class="photo-gallery">${photos.map(p=>`<img src="${p}" alt="" onclick="openLightbox('${p}')">`).join("")}</div>`:`<div class="photo-gallery-empty">아직 사진이 없어요</div>`;
-  const uploadBtn=isAuth?`<div class="photo-upload-area" onclick="document.getElementById('photo-file-${c.code}').click()"><input type="file" id="photo-file-${c.code}" accept="image/*" multiple onchange="handlePhotoUpload('${t.id}','${c.code}',this.files)"><div class="pua-icon">${IC.camera}</div><div class="pua-text"><strong>사진 추가</strong> · 최대 20장</div></div>`:"";
-  return `${tabs}<div class="modal-body">${gallery}${uploadBtn}</div>`;
-}
-function buildCompareTab(t){
-  const isPlan=t.status==="planning";const qr=qrData[t.id]||{};
-  const sections=t.countries.map(c=>{
-    const d=qr[c.code]||{reality:"",insight:"",memo:"",moods:[],score:7};
-    const hasR=c.reality||d.reality;
-    const realityContent=hasR?`<div class="cmp-txt">${c.reality||d.reality}</div>`:(isPlan?buildInlineRealityForm(t.id,c.code,d):`<div class="cmp-empty">아직 기록이 없어요</div>`);
-    const score=c.score||(d.score&&d.reality?d.score:0);
-    const moods=c.moods?.length?c.moods:(d.reality?d.moods:[]);
-    const insight=c.insight||d.insight;
-    return `<div class="cmp-country"><div class="cmp-header"><div class="cch-flag">${c.type==='city'?(c.parentEmoji||'📍'):c.emoji}</div><div class="cch-name">${c.type==='city'?`${c.parentName||''} · ${c.name}`:c.name}</div>${c.cities?`<div class="cch-cities">${c.cities}</div>`:""}</div><div class="cmp-grid"><div class="cmp-col expect-col"><span class="cmp-lbl e">기대</span>${c.expect?`<div class="cmp-txt">${c.expect}</div>`:`<div class="cmp-empty">기대를 아직 남기지 않았어요</div>`}</div><div class="cmp-col"><span class="cmp-lbl r">현실</span>${realityContent}</div></div>${score||moods?.length||insight?`<div class="cmp-bottom">${score?`<div class="score-bar-wrap"><span class="sbl">별점</span>${starDisp(score,'.95rem')}</div>`:""}${moods?.length?`<div class="cmp-moods">${moods.map(m=>`<span class="cmp-mood">${m}</span>`).join("")}</div>`:""}${insight?`<div class="insight-row"><div class="ins-lbl">디자인 영감</div><div class="ins-txt">${insight}</div></div>`:""}</div>`:""}</div>`;
-  }).join("");
-  const editBtn=isAuth?`<button class="ma-btn ma-edit" onclick="openForm('${t.id}');closeModal()">전체 편집</button>`:"";
-  return `<div class="modal-body">${sections}</div><div class="modal-actions">${editBtn}</div>`;
-}
-function buildInlineRealityForm(tid,code,d){
-  const moodBtns=ALL_MOODS.map(m=>`<button class="ms-btn${(d.moods||[]).includes(m)?" on":""}" onclick="qrToggleMood('${tid}','${code}','${m}')">${m}</button>`).join("");
-  return `<div><div class="qr-fi"><label>현실 기록</label><textarea rows="3" placeholder="귀국 후 실제 경험..." oninput="qrUpd('${tid}','${code}','reality',this.value)">${esc(d.reality||"")}</textarea></div><div class="qr-fi"><label>디자인 영감</label><textarea rows="2" placeholder="얻은 영감..." oninput="qrUpd('${tid}','${code}','insight',this.value)">${esc(d.insight||"")}</textarea></div><div class="qr-fi"><label>감정 태그</label><div class="qr-mood-sel">${moodBtns}</div></div><div class="qr-fi"><label>별점</label><div class="star-row">${Array.from({length:5},(_,i)=>`<button class="star-btn${i<Math.round((d.score||6)/2)?' filled':''}" onclick="qrUpd('${tid}','${code}','score',${(i+1)*2});document.querySelectorAll('#qr-stars-${code} .star-btn').forEach((b,j)=>b.classList.toggle('filled',j<=this.dataset.i))" data-i="${i}" id="qr-stars-${code}">★</button>`).join('')}</div></div><button class="qr-save" onclick="saveQR('${tid}','${code}')">저장</button></div>`;
-}
-function qrUpd(tid,code,field,val){if(!qrData[tid])qrData[tid]={};if(!qrData[tid][code])qrData[tid][code]={reality:"",insight:"",memo:"",moods:[],score:7};qrData[tid][code][field]=val;}
-function qrToggleMood(tid,code,m){if(!qrData[tid]||!qrData[tid][code])return;const ms=qrData[tid][code].moods||[];qrData[tid][code].moods=ms.includes(m)?ms.filter(x=>x!==m):[...ms,m];const t=trips.find(x=>x.id===tid);if(t)document.getElementById("modal-inner").innerHTML=buildModal(t);}
-async function saveQR(tid,code){
-  if(isDemo){showToast("예시 모드에서는 저장이 안 돼요");return;}
-  const t=trips.find(x=>x.id===tid);if(!t)return;
-  const d=qrData[tid]?.[code];if(!d||!d.reality){showToast("현실 기록을 먼저 적어요");return;}
-  t.countries=t.countries.map(c=>c.code!==code?c:{...c,reality:d.reality,insight:d.insight,memo:d.memo,moods:d.moods,score:d.score});
-  if(t.countries.every(c=>c.reality))t.status="completed";
-  await saveToFirestore(t);renderAll();showToast("저장됐어요!");document.getElementById("modal-inner").innerHTML=buildModal(t);
+function switchMT(id,tab){curModalTab=tab;const raw=trips.find(x=>x.id===id);if(raw)document.getElementById("modal-inner").innerHTML=buildModal(migrateTrip(raw));}
+function buildTimelineTab(t){
+  const trip=migrateTrip(t);
+  const days=trip.tripDays||[];
+  if(!days.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">기록이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">편집해서 날짜별 기억을 남겨봐요</span></div>`;
+  const rows=days.map(d=>{
+    const locLabel=d.locationCode?(d.locationType==='city'&&d.parentEmoji?`${d.parentEmoji} ${d.locationName}`:`${d.locationEmoji||'📍'} ${d.locationName}`):'위치 없음';
+    const moodBadges=(d.moods||[]).slice(0,3).map(m=>`<span class="mood-chip on" style="font-size:var(--fs-xs);padding:.15rem .5rem">${m}</span>`).join('');
+    const thumbs=(d.photos||[]).slice(0,3).map(p=>`<img class="tl-modal-thumb" src="${p}" alt="" onclick="openLightbox('${p}')">`).join('');
+    const hasContent=d.memo||d.moods?.length||d.photos?.length;
+    return `<div class="tl-modal-row${!hasContent?' dim':''}">
+      <div class="tl-modal-left">
+        <div class="tl-modal-num">${d.dayNum}</div>
+        <div class="tl-modal-date">${d.date?d.date.slice(5).replace('-','.'):'--'}</div>
+      </div>
+      <div class="tl-modal-card">
+        <div class="tl-modal-loc">${locLabel}</div>
+        ${d.memo?`<div class="tl-modal-memo">${esc(d.memo)}</div>`:''}
+        ${moodBadges?`<div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:.35rem">${moodBadges}</div>`:''}
+        ${thumbs?`<div class="tl-modal-photos">${thumbs}</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+  const editBtn=isAuth?`<button class="ma-btn ma-edit" onclick="openForm('${trip.id}');closeModal()">편집</button>`:"";
+  return `<div style="padding:.75rem 1rem 2rem">${rows}</div><div class="modal-actions">${editBtn}</div>`;
 }
 function switchToPhoto(id){photoIdx=0;switchMT(id,'photo');}
 function buildPhotoTab(t){
-  const photos=t.countries.flatMap(c=>{const flag=c.type==='city'?(c.parentEmoji||'📍'):c.emoji;const lbl=c.type==='city'?`${c.parentName||''} · ${c.name}`:c.name;return[...(c.photos||[]).map(p=>({src:p,label:`${flag} ${lbl}`,code:c.code})),...(c.days||[]).flatMap(d=>(d.photos||[]).map(p=>({src:p,label:`${flag} ${lbl} ${d.day}일차`,code:c.code})))]});
+  const trip=migrateTrip(t);
+  const photos=(trip.tripDays||[]).flatMap(d=>(d.photos||[]).map(p=>({src:p,label:`Day ${d.dayNum}${d.locationName?' · '+d.locationName:''}`,code:'day_'+d.dayNum})));
   if(!photos.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">사진이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">기록 탭에서 사진을 추가해봐요</span></div>`;
   const n=photos.length;
   photoIdx=Math.max(0,Math.min(photoIdx,n-1));
   const cur=photos[photoIdx];
   const bars=photos.map((_,i)=>`<div class="ph-bar${i<photoIdx?' ph-done':i===photoIdx?' ph-on':''}"></div>`).join('');
   const thumbs=photos.map((p,i)=>`<img class="ph-thumb${i===photoIdx?' ph-on':''}" src="${p.src}" alt="" onclick="phGoto(${i})">`).join('');
-  const addBtn=isAuth?`<input type="file" id="ph-add-file" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload('${t.id}','${cur.code}',this.files)"><button class="ph-add-btn" onclick="document.getElementById('ph-add-file').click()" aria-label="사진 추가">${IC.camera}</button>`:'';
   return `<div class="ph-scene">
     <div class="ph-bars">${bars}</div>
     <div class="ph-label">${cur.label}</div>
@@ -1551,12 +1571,13 @@ function buildPhotoTab(t){
       <div class="ph-tap-l" onclick="phGoto(${photoIdx-1})"></div>
       <div class="ph-tap-r" onclick="phGoto(${photoIdx+1})"></div>
     </div>
-    <div class="ph-thumbs" id="ph-thumbs">${thumbs}${addBtn}</div>
+    <div class="ph-thumbs" id="ph-thumbs">${thumbs}</div>
   </div>`;
 }
 function phGoto(i){
-  const t=trips.find(x=>x.id===curModalId);if(!t)return;
-  const n=t.countries.flatMap(c=>c.photos||[]).length;
+  const raw=trips.find(x=>x.id===curModalId);if(!raw)return;
+  const t=migrateTrip(raw);
+  const n=(t.tripDays||[]).flatMap(d=>d.photos||[]).length;
   photoIdx=Math.max(0,Math.min(i,n-1));
   curModalTab='photo';
   document.getElementById('modal-inner').innerHTML=buildModal(t);
@@ -1578,7 +1599,8 @@ async function genAIMode(tid,mode){
   const t=trips.find(x=>x.id===tid);if(!t)return;
   if(!aiLoading[tid])aiLoading[tid]={};if(!aiResults[tid])aiResults[tid]={};
   aiLoading[tid][mode]=true;curModalTab="ai";document.getElementById("modal-inner").innerHTML=buildModal(t);
-  const body=t.countries.map(c=>`[${c.name}] 기대:"${c.expect||""}" / 현실:"${c.reality||""}" / 영감:"${c.insight||""}" / 감정:${(c.moods||[]).join(",")} / 충족도:${c.score||"없음"}`).join("\n");
+  const trip=migrateTrip(t);
+  const body=(trip.tripDays||[]).filter(d=>d.memo||d.moods?.length).map(d=>`[Day ${d.dayNum}${d.locationName?' '+d.locationName:''}] 메모:"${d.memo||""}" / 감정:${(d.moods||[]).join(",")}`).join("\n")||`여행: ${t.title}`;
   const prompts={summary:`다음 DIT(Design Inspiration Tour) 여행 기록을 60자 이내 한 문장으로 감성적으로 요약해줘. 마침표 없이:\n${body}`,memoir:`다음 DIT(Design Inspiration Tour) 여행 기록을 바탕으로 200자 내외 아름다운 회고록을 써줘. 1인칭, 디자인 영감과 감정을 담아서:\n${body}`,tips:`다음 DIT(Design Inspiration Tour) 여행 경험을 바탕으로 같은 나라를 여행할 팀원들을 위한 실용적 팁 3가지를 써줘. 각 팁은 한 문장:\n${body}`};
   try{
     const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompts[mode]}]})});
@@ -1593,10 +1615,14 @@ function buildShareTab(t){
 async function exportTripImage(tid){
   const t=trips.find(x=>x.id===tid);if(!t||shareGenerating)return;
   shareGenerating=true;showToast("카드 생성 중...");
-  const avg=t.countries.length?Math.round(t.countries.reduce((s,c)=>s+(c.score||0),0)/t.countries.length*10)/10:0;
-  const moods=[...new Set(t.countries.flatMap(c=>c.moods||[]))].slice(0,5);
+  const mt=migrateTrip(t);
+  const days=mt.tripDays||[];
+  const sc=days.map(d=>d.score).filter(Boolean);
+  const avg=sc.length?Math.round(sc.reduce((a,b)=>a+b,0)/sc.length*10)/10:0;
+  const moods=[...new Set(days.flatMap(d=>d.moods||[]))].slice(0,5);
+  const uniqLocs=[...new Map(days.filter(d=>d.locationCode).map(d=>[d.locationCode.split('_')[0],d])).values()];
   const card=document.getElementById("share-card");
-  card.innerHTML=`<div class="sc-header"><span class="sc-emoji">${t.coverEmoji||"✈️"}</span><div class="sc-title">${esc(t.title)}</div><div class="sc-dates">${t.startDate||""} – ${t.endDate||""} · ${t.totalDays||0}일</div></div><div class="sc-body"><div class="sc-countries-row">${t.countries.map(c=>`<span class="sc-ctag">${c.emoji} ${c.name}</span>`).join("")}</div><div class="sc-grid"><div class="sc-item"><div class="sc-item-label">방문 나라</div><div class="sc-item-val">${t.countries.length}개국</div></div><div class="sc-item"><div class="sc-item-label">충족도</div><div class="sc-item-val">${avg?avg+"/10":"미기록"}</div></div></div>${moods.length?`<div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.8rem">${moods.map(m=>`<span style="font-size:var(--fs-xs);padding:.25rem .6rem;border-radius:999px;background:#F5F5F5;color:#555">${m}</span>`).join("")}</div>`:""} ${avg?`<div class="sc-score-row"><span class="sc-score-label">기대 충족도</span><div class="sc-score-bar"><div class="sc-score-fill" style="width:${avg*10}%"></div></div><span class="sc-score-val">${avg}</span></div>`:""}</div><div class="sc-footer"><div class="sc-footer-logo">DIT Archive</div><div class="sc-footer-sub">Design Inspiration Tour</div></div>`;
+  card.innerHTML=`<div class="sc-header"><span class="sc-emoji">${t.coverEmoji||"✈️"}</span><div class="sc-title">${esc(t.title)}</div><div class="sc-dates">${t.startDate||""} – ${t.endDate||""} · ${t.totalDays||0}일</div></div><div class="sc-body"><div class="sc-countries-row">${uniqLocs.map(d=>`<span class="sc-ctag">${d.locationEmoji||""} ${d.locationName}</span>`).join("")}</div><div class="sc-grid"><div class="sc-item"><div class="sc-item-label">방문 나라</div><div class="sc-item-val">${uniqLocs.length}개국</div></div><div class="sc-item"><div class="sc-item-label">충족도</div><div class="sc-item-val">${avg?avg+"/10":"미기록"}</div></div></div>${moods.length?`<div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.8rem">${moods.map(m=>`<span style="font-size:var(--fs-xs);padding:.25rem .6rem;border-radius:999px;background:#F5F5F5;color:#555">${m}</span>`).join("")}</div>`:""} ${avg?`<div class="sc-score-row"><span class="sc-score-label">기대 충족도</span><div class="sc-score-bar"><div class="sc-score-fill" style="width:${avg*10}%"></div></div><span class="sc-score-val">${avg}</span></div>`:""}</div><div class="sc-footer"><div class="sc-footer-logo">DIT Archive</div><div class="sc-footer-sub">Design Inspiration Tour</div></div>`;
   try{
     if(!window.html2canvas){await new Promise((res,rej)=>{const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
     const canvas=await html2canvas(card,{scale:2,useCORS:true,backgroundColor:"#ffffff"});
@@ -1607,22 +1633,29 @@ async function exportTripImage(tid){
 }
 function copyTripText(tid){
   const t=trips.find(x=>x.id===tid);if(!t)return;
-  const avg=t.countries.length?Math.round(t.countries.reduce((s,c)=>s+(c.score||0),0)/t.countries.length*10)/10:0;
-  const lines=["DIT Archive — "+t.title,`${t.startDate||""} – ${t.endDate||""} (${t.totalDays||0}일)`,t.countries.map(c=>c.emoji+" "+c.name).join(" · "),"", ...t.countries.flatMap(c=>{const o=[];if(c.expect)o.push(`[${c.name}] 기대: ${c.expect}`);if(c.reality)o.push(`[${c.name}] 현실: ${c.reality}`);if(c.insight)o.push(`[${c.name}] 영감: ${c.insight}`);return o;}),"",avg?`평균 충족도 ${avg}/10`:""].filter(Boolean);
+  const mt2=migrateTrip(t);
+  const days2=mt2.tripDays||[];
+  const sc2=days2.map(d=>d.score).filter(Boolean);
+  const avg=sc2.length?Math.round(sc2.reduce((a,b)=>a+b,0)/sc2.length*10)/10:0;
+  const uniqLocs2=[...new Map(days2.filter(d=>d.locationCode).map(d=>[d.locationCode.split('_')[0],d])).values()];
+  const lines=["DIT Archive — "+t.title,`${t.startDate||""} – ${t.endDate||""} (${t.totalDays||0}일)`,uniqLocs2.map(d=>(d.locationEmoji||"")+" "+d.locationName).join(" · "),"", ...days2.filter(d=>d.memo&&d.memo.trim()).map(d=>`[Day ${d.dayNum}${d.locationName?" · "+d.locationName:""}] ${d.memo}`),"",avg?`평균 충족도 ${avg}/10`:""].filter(Boolean);
   navigator.clipboard.writeText(lines.join("\n")).then(()=>showToast("클립보드에 복사됐어요!")).catch(()=>showToast("복사에 실패했어요"));
 }
 function closeModal(){document.getElementById("modal-bg").classList.remove("open");document.body.style.overflow="";}
 document.getElementById("modal-bg").addEventListener("click",e=>{if(e.target===document.getElementById("modal-bg"))closeModal();});
 
 // ── PHOTO ──
-async function handlePhotoUpload(tid,code,files){
+async function handlePhotoUpload(tid,dayNum,files){
   if(isDemo){showToast("예시 모드에서는 저장이 안 돼요");return;}
   const t=trips.find(x=>x.id===tid);if(!t)return;
-  const c=t.countries.find(x=>x.code===code);if(!c)return;
-  if(!c.photos)c.photos=[];
-  const rem=20-c.photos.length;if(rem<=0){showToast("최대 20장까지 가능해요");return;}
+  const mt=migrateTrip(t);
+  const day=mt.tripDays.find(d=>d.dayNum===dayNum);if(!day)return;
+  if(!day.photos)day.photos=[];
+  const rem=20-day.photos.length;if(rem<=0){showToast("최대 20장까지 가능해요");return;}
   showToast("사진 압축 중...");
-  for(const file of [...files].slice(0,rem))c.photos.push(await compressImage(file,800,.75));
+  for(const file of [...files].slice(0,rem))day.photos.push(await compressImage(file,800,.75));
+  // 원본 trip 객체에 tripDays 반영
+  t.tripDays=mt.tripDays;
   await saveToFirestore(t);renderAll();showToast("사진 추가됐어요!");
   document.getElementById("modal-inner").innerHTML=buildModal(t);
 }
@@ -1636,267 +1669,180 @@ function fabClick(){if(isDemo){showToast("기록을 남기려면 로그인이 �
 function openForm(id){
   if(isDemo){showToast("기록을 남기려면 로그인이 필요해요");return;}
   editingId=id;
-  isEditMode=!!id;
-  formStep=1;
-  wizActiveC=null;
   ["main-view","timeline-view","stats-view","profile-view"].forEach(v=>document.getElementById(v).style.display="none");
   document.getElementById("bottom-nav").style.display="none";
   const fv=document.getElementById("form-view");fv.style.display="flex";fv.style.flexDirection="column";
   if(id){
-    const t=trips.find(x=>x.id===id);
-    formData={status:t.status||"planning",title:t.title||"",coverEmoji:t.coverEmoji||"✈️",startDate:t.startDate||"",endDate:t.endDate||"",totalDays:t.totalDays||0,countries:[...t.countries.map(c=>({...c}))],entries:{}};
-    t.countries.forEach(c=>{formData.entries[c.code]={cities:c.cities||"",expect:c.expect||"",reality:c.reality||"",insight:c.insight||"",memo:c.memo||"",moods:[...(c.moods||[])],score:c.score||7,photos:[...(c.photos||[])],days:(c.days||[]).map(d=>({...d,photos:[...(d.photos||[])]}))};});
-    formStep=1;
+    const raw=trips.find(x=>x.id===id);
+    const t=migrateTrip(raw);
+    formData={status:t.status||'planning',title:t.title||'',coverEmoji:t.coverEmoji||'✈️',startDate:t.startDate||'',endDate:t.endDate||'',totalDays:t.totalDays||0,tripDays:t.tripDays?t.tripDays.map(d=>({...d,photos:[...(d.photos||[])],moods:[...(d.moods||[])]})):[]};
+    formStep=2;activeDayIdx=0;
   }else{
-    formData={status:"completed",title:"",coverEmoji:"✈️",startDate:"",endDate:"",totalDays:0,countries:[],entries:{}};
+    formData={status:'completed',title:'',coverEmoji:'✈️',startDate:'',endDate:'',totalDays:0,tripDays:[]};
     const today=new Date().toISOString().slice(0,10);
     formData.startDate=today;formData.endDate=today;
+    formStep=1;
   }
   renderForm();
 }
 function closeForm(){document.getElementById("form-view").style.display="none";switchView(currentView);}
-function wizBack(){if(formStep===1){closeForm();}else{formStep--;renderForm();}}
-function wizNext(){
-  if(formStep===1){
-    if(!formData.countries.length){showToast("나라를 1개 이상 추가해요.");return;}
-    if(!wizActiveC)wizActiveC=formData.countries[0].code;
-    formStep=2;
-  }else if(formStep===2){
-    if(!formData.startDate||!formData.endDate){showToast("날짜를 골라요.");return;}
-    if(!wizActiveC&&formData.countries.length)wizActiveC=formData.countries[0].code;
-    formStep=3;
-  }
-  renderForm();
-}
 function renderForm(){
   updateWizDots();
-  const fb=document.getElementById("form-body");
-  if(isEditMode){fb.innerHTML=renderEditForm();return;}
-  if(formStep===1) fb.innerHTML=renderStep1();
-  else if(formStep===2) fb.innerHTML=renderStep2();
-  else fb.innerHTML=renderStep3();
+  const fv=document.getElementById("form-body");
+  if(!fv)return;
+  if(formStep===1)fv.innerHTML=renderStep1();
+  else fv.innerHTML=renderStep2();
 }
 function updateWizDots(){
   const prog=document.querySelector(".wiz-progress");
-  if(prog)prog.style.visibility=isEditMode?"hidden":"visible";
+  if(prog)prog.style.visibility="visible";
   const backBtn=document.getElementById("ftb-back-btn");
   const saveBtn=document.getElementById("ftb-save-btn");
-  if(isEditMode){
-    if(backBtn){backBtn.textContent="← 취소";backBtn.onclick=closeForm;}
-    if(saveBtn)saveBtn.style.visibility="visible";
-    return;
-  }
-  const states=["done","done","done"];
+  const states=["done","done"];
   states[formStep-1]="active";
-  for(let i=formStep;i<3;i++)states[i]="idle";
-  [1,2,3].forEach(i=>{const el=document.getElementById("wd"+i);if(el){el.className="wiz-dot "+states[i-1];}});
-  if(backBtn){backBtn.textContent=formStep===1?"← 취소":"←";backBtn.onclick=wizBack;}
-  if(saveBtn)saveBtn.style.visibility=formStep===3?"visible":"hidden";
+  for(let i=formStep;i<2;i++)states[i]="idle";
+  [1,2].forEach(i=>{const el=document.getElementById("wd"+i);if(el){el.className="wiz-dot "+states[i-1];}});
+  const wd3=document.getElementById("wd3");if(wd3)wd3.style.display="none";
+  if(backBtn){backBtn.textContent=formStep===1?"← 취소":"←";backBtn.onclick=formStep===1?closeForm:()=>{formStep=1;renderForm();};}
+  if(saveBtn)saveBtn.style.visibility=formStep===2?"visible":"hidden";
 }
 function renderStep1(){
-  const chips=formData.countries.map(c=>`<span class="country-chip-lg">${c.emoji} ${c.name}<span class="country-chip-rm" onclick="removeC('${c.code}')">${IC.xMark}</span></span>`).join("");
+  calcDays();
+  const daysBadge=formData.totalDays?`<div class="days-badge">총 ${formData.totalDays}일</div>`:'';
+  const emojiGrid=COVER_EMOJIS.map(e=>`<button class="eg-btn${formData.coverEmoji===e?' on':''}" onclick="formData.coverEmoji='${e}';document.querySelectorAll('.eg-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${e}</button>`).join('');
   return `<div class="wiz-wrap">
     <div class="wiz-headline">어디 다녀왔어요?</div>
-    <div class="wiz-sub">나라 또는 도시를 검색해서 추가해요. 여러 곳도 OK예요.</div>
-    <div class="cs-wrap"><input class="cs-inp" id="cs-inp" placeholder="나라 또는 도시 (예: 일본, 도쿄, 파리...)" oninput="showAC(this.value)" autocomplete="off"><div class="cs-dd" id="cs-dd"></div></div>
-    ${chips?`<div style="margin-bottom:1rem">${chips}</div>`:""}
-    <div class="wiz-footer">
-      <button class="wiz-next" onclick="wizNext()" ${formData.countries.length===0?"disabled":""}>다음 →</button>
-    </div>
-  </div>`;
-}
-function renderStep2(){
-  calcDays();
-  const daysBadge=formData.totalDays?`<div class="days-badge">총 ${formData.totalDays}일</div>`:"";
-  const emojiGrid=COVER_EMOJIS.map(e=>`<button class="eg-btn${formData.coverEmoji===e?" on":""}" onclick="formData.coverEmoji='${e}';document.querySelectorAll('.eg-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${e}</button>`).join("");
-  return `<div class="wiz-wrap">
-    <div class="wiz-headline">언제 다녀왔어요?</div>
-    <div class="wiz-sub">날짜를 골라봐요.</div>
+    <div class="wiz-sub">여행 기간을 설정하면 날짜별 기록이 만들어져요.</div>
     <span class="wiz-label">여행 기간</span>
     <div class="date-row">
-      <input type="date" value="${formData.startDate}" onchange="formData.startDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d){calcDays();d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';}">
-      <input type="date" value="${formData.endDate}" onchange="formData.endDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d){calcDays();d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';}">
+      <input type="date" value="${formData.startDate}" onchange="formData.startDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
+      <input type="date" value="${formData.endDate}" onchange="formData.endDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
     </div>
     ${daysBadge}
     <span class="wiz-label">여행 이름 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
-    <input class="wiz-inp" value="${esc(formData.title)}" placeholder="예: 봄의 교토" oninput="formData.title=this.value">
+    <input class="wiz-inp" value="${esc(formData.title)}" placeholder="예: 남미 21일 여행" oninput="formData.title=this.value">
     <span class="wiz-label">커버 이모지</span>
     <div class="emoji-grid" style="margin-bottom:1rem">${emojiGrid}</div>
     <div class="wiz-footer">
-      <button class="wiz-prev" onclick="wizBack()">←</button>
-      <button class="wiz-next" onclick="wizNext()">다음 →</button>
+      <button class="wiz-prev" onclick="closeForm()">취소</button>
+      <button class="wiz-next" onclick="goToTimeline()">날짜별 기록 →</button>
     </div>
   </div>`;
 }
-function renderStep3(){
-  if(!wizActiveC&&formData.countries.length)wizActiveC=formData.countries[0].code;
-  const code=wizActiveC;
-  const c=formData.countries.find(x=>x.code===code)||formData.countries[0];
-  if(!c)return`<div class="wiz-wrap"><div class="wiz-headline">어땠어요?</div><div class="wiz-sub">나라 정보가 없어요.</div></div>`;
-  const ent=formData.entries[c.code]||{cities:"",expect:"",reality:"",memo:"",moods:[],score:7,photos:[],days:[]};
-  const tabs=formData.countries.length>1?`<div class="ctab-row">${formData.countries.map(x=>`<button class="ctab-btn${x.code===code?" active":""}" onclick="wizActiveC='${x.code}';renderForm()">${x.emoji} ${x.name}</button>`).join("")}</div>`:"";
-  const moodChips=ALL_MOODS.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("");
-  const sugTags=COUNTRY_TAGS[c.code]||[];
-  const sugSection=sugTags.length?`<span class="wiz-label">✨ ${c.name} 추천 태그</span><div class="mood-grid">${sugTags.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("")}</div>`:"";
-  const photoGrid=ent.photos?.length?`<div class="photo-preview-grid" style="margin-bottom:.75rem">${ent.photos.map((p,i)=>`<div class="photo-preview-item"><img src="${p}" alt=""><button class="photo-del-btn" onclick="removeFormPhoto('${c.code}',${i})">${IC.xMark}</button></div>`).join("")}</div>`:"";
-  const dayStripHtml=buildDayStrip(c.code,ent);
-  const hasMore=!!(ent.memo||(ent.days||[]).length||(ent.photos||[]).length);
-  const expanded=step3Expanded[c.code]??hasMore;
-  const chevronDown=`<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>`;
-  const moreSection=expanded?`<div class="more-section">
-    <span class="wiz-label">메모 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
-    <textarea class="wiz-textarea" placeholder="느낀 것, 기억하고 싶은 것..." oninput="updE('${c.code}','memo',this.value)">${esc(ent.memo||"")}</textarea>
-    <span class="wiz-label">일차별 기록 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
-    ${dayStripHtml}
-    <span class="wiz-label">사진 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">${(ent.photos||[]).length}/20장</span></span>
-    ${photoGrid}
-    <div class="photo-zone" onclick="document.getElementById('wfp-${c.code}').click()">
-      <input type="file" id="wfp-${c.code}" accept="image/*" multiple style="display:none" onchange="addFormPhotos('${c.code}',this.files)">
-      <div class="pz-icon">${IC.camera}</div>
-      <div class="pz-text"><strong>사진 추가</strong><br>탭해서 추가해요</div>
-    </div>
-  </div>`:``;
+function goToTimeline(){
+  if(!formData.startDate||!formData.endDate){showToast("날짜를 설정해요.");return;}
+  calcDays();
+  if(!formData.tripDays||!formData.tripDays.length){
+    formData.tripDays=[];
+    const start=new Date(formData.startDate);
+    for(let i=0;i<formData.totalDays;i++){
+      const d=new Date(start);d.setDate(start.getDate()+i);
+      formData.tripDays.push({dayNum:i+1,date:d.toISOString().slice(0,10),locationCode:'',locationName:'',locationEmoji:'',locationType:'country',parentCode:null,parentName:null,parentEmoji:null,memo:'',moods:[],score:null,photos:[]});
+    }
+  }
+  formStep=2;activeDayIdx=0;renderForm();
+}
+function renderStep2(){
+  const days=formData.tripDays||[];
+  const usedLocs=[...new Map(days.filter(d=>d.locationCode).map(d=>[d.locationCode,d])).values()].slice(0,5);
+  const dayRows=days.map((d,i)=>{
+    const isActive=i===activeDayIdx;
+    const locLabel=d.locationCode?(d.locationType==='city'&&d.parentEmoji?`${d.parentEmoji} ${d.locationName}`:`${d.locationEmoji} ${d.locationName}`):'위치 추가';
+    const locClass=d.locationCode?'':'empty';
+    const moodChips=ALL_MOODS.map(m=>`<button class="mood-chip${(d.moods||[]).includes(m)?' on':''}" onclick="event.stopPropagation();toggleDayMood(${i},'${m}')">${m}</button>`).join('');
+    const photoGrid=(d.photos||[]).length?`<div class="photo-preview-grid" style="margin-bottom:.5rem">${d.photos.map((p,pi)=>`<div class="photo-preview-item"><img src="${p}" alt=""><button class="photo-del-btn" onclick="event.stopPropagation();removeDayPhoto(${i},${pi})">${IC.xMark}</button></div>`).join('')}</div>`:'';
+    const usedChips=usedLocs.filter(l=>l.locationCode!==d.locationCode).map(l=>`<div class="loc-chip used" onclick="setDayLoc(${i},${JSON.stringify({code:l.locationCode,name:l.locationName,emoji:l.locationEmoji,type:l.locationType,parentCode:l.parentCode,parentName:l.parentName,parentEmoji:l.parentEmoji}).replace(/"/g,'&quot;')})">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</div>`).join('');
+    const editPanel=isActive?`
+      <div class="tl-edit-panel">
+        <div class="cs-wrap" style="margin-bottom:.5rem"><input class="cs-inp" placeholder="나라 또는 도시 검색..." oninput="showDayLocAC(this.value,${i})" autocomplete="off" value="${d.locationCode?esc(locLabel):''}"><div class="cs-dd" id="day-dd-${i}"></div></div>
+        ${usedChips?`<div class="loc-suggest">${usedChips}</div>`:''}
+        <span class="wiz-label" style="margin-top:.75rem">기분</span>
+        <div class="mood-grid" style="margin-bottom:.75rem">${moodChips}</div>
+        <span class="wiz-label">메모</span>
+        <textarea class="day-textarea" placeholder="그날의 기억..." oninput="formData.tripDays[${i}].memo=this.value" style="margin-bottom:.75rem">${esc(d.memo||'')}</textarea>
+        <span class="wiz-label">사진 <span style="font-weight:400;color:var(--ink-muted)">${(d.photos||[]).length}/10장</span></span>
+        ${photoGrid}
+        <div class="photo-zone" style="margin-bottom:0" onclick="document.getElementById('tdp-${i}').click()">
+          <input type="file" id="tdp-${i}" accept="image/*" multiple style="display:none" onchange="addDayPhotos(${i},this.files)">
+          <div class="pz-icon">${IC.camera}</div>
+          <div class="pz-text"><strong>사진 추가</strong></div>
+        </div>
+      </div>`:'';
+    return `<div class="tl-day-row" onclick="activeDayIdx=${i};renderForm()">
+      <div class="tl-day-left">
+        <div class="tl-day-num${d.locationCode?' filled':''}${isActive?' active':''}">${d.dayNum}</div>
+        <div class="tl-day-date">${d.date?d.date.slice(5).replace('-','.'):'--.-'}</div>
+      </div>
+      <div class="tl-day-card${isActive?' active':''}${!d.locationCode?' empty':''}">
+        <div class="tl-day-top">
+          <span class="tl-day-loc ${locClass}">${locLabel}</span>
+          ${d.moods?.length?`<span style="font-size:var(--fs-xs);color:var(--ink-muted)">${d.moods.slice(0,2).join(' ')}</span>`:''}
+        </div>
+        ${d.memo&&!isActive?`<div class="tl-day-memo">${esc(d.memo)}</div>`:''}
+        ${(d.photos||[]).length&&!isActive?`<div class="tl-day-photos">${d.photos.slice(0,3).map(p=>`<img class="tl-day-thumb" src="${p}" alt="">`).join('')}</div>`:''}
+        ${editPanel}
+      </div>
+    </div>`;
+  }).join('');
+  const delBtn=editingId?`<button onclick="deleteTrip('${editingId}')" style="width:100%;padding:.65rem;background:transparent;border:1.5px solid var(--error);border-radius:var(--r-sm);color:var(--error);font-size:var(--fs-sm);font-weight:600;cursor:pointer;margin-top:.5rem">이 여행 기록 삭제</button>`:'';
   return `<div class="wiz-wrap">
-    <div class="wiz-headline">어땠어요?</div>
-    <div class="wiz-sub">기억을 남겨봐요. 모두 선택 사항이에요.</div>
-    ${tabs}
-    <span class="wiz-label">별점</span>
-    ${starRating(c.code,ent)}
-    ${sugSection}
-    <span class="wiz-label">기분</span>
-    <div class="mood-grid" style="margin-bottom:1.25rem">${moodChips}</div>
-    <button class="more-toggle${expanded?' open':''}" onclick="toggleStep3More('${c.code}')">
-      ${expanded?'접기':'더 기록하기 (메모·일차·사진)'}${chevronDown}
-    </button>
-    ${moreSection}
+    <div class="wiz-headline" style="font-size:var(--fs-xl)">날짜별 기록</div>
+    <div class="wiz-sub" style="margin-bottom:1rem">${formData.tripDays.length}일 · 각 날짜를 탭해서 기록해요</div>
+    <div class="tl-form-list">${dayRows}</div>
+    ${delBtn}
     <div class="wiz-footer">
-      <button class="wiz-prev" onclick="wizBack()">←</button>
+      <button class="wiz-prev" onclick="formStep=1;renderForm()">←</button>
       <button class="wiz-next" onclick="saveTrip()">저장</button>
     </div>
   </div>`;
 }
-function renderEditForm(){
-  calcDays();
-  const daysBadge=formData.totalDays?`<div class="days-badge">총 ${formData.totalDays}일</div>`:"";
-  const emojiGrid=COVER_EMOJIS.map(e=>`<button class="eg-btn${formData.coverEmoji===e?" on":""}" onclick="formData.coverEmoji='${e}';document.querySelectorAll('.eg-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${e}</button>`).join("");
-  const chips=formData.countries.map(c=>`<span class="country-chip-lg">${c.emoji} ${c.name}<span class="country-chip-rm" onclick="removeC('${c.code}')">${IC.xMark}</span></span>`).join("");
-  const countrySections=formData.countries.map(c=>{
-    const ent=formData.entries[c.code]||{cities:"",expect:"",reality:"",memo:"",moods:[],score:7,photos:[],days:[]};
-    const moodChips=ALL_MOODS.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("");
-    const sugTags=COUNTRY_TAGS[c.code]||[];
-    const sugSection=sugTags.length?`<span class="wiz-label">✨ ${c.name} 추천 태그</span><div class="mood-grid">${sugTags.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("")}</div>`:"";
-    const photoGrid=ent.photos?.length?`<div class="photo-preview-grid" style="margin-bottom:.75rem">${ent.photos.map((p,i)=>`<div class="photo-preview-item"><img src="${p}" alt=""><button class="photo-del-btn" onclick="removeFormPhoto('${c.code}',${i})">${IC.xMark}</button></div>`).join("")}</div>`:"";
-    const dayStripHtml=buildDayStrip(c.code,ent);
-    return `<div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--hairline)">
-      <div style="font-size:var(--fs-lg);font-weight:700;margin-bottom:1rem">${c.emoji} ${c.name}</div>
-      <span class="wiz-label">별점</span>
-      ${starRating(c.code,ent)}
-      ${sugSection}
-      <span class="wiz-label">기분</span>
-      <div class="mood-grid">${moodChips}</div>
-      <span class="wiz-label">메모 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
-      <textarea class="wiz-textarea" placeholder="느낀 것, 기억하고 싶은 것..." oninput="updE('${c.code}','memo',this.value)">${esc(ent.memo||"")}</textarea>
-      <span class="wiz-label">일차별 기록 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
-      ${dayStripHtml}
-      <span class="wiz-label">사진 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">${(ent.photos||[]).length}/20장</span></span>
-      ${photoGrid}
-      <div class="photo-zone" onclick="document.getElementById('wfp-${c.code}').click()">
-        <input type="file" id="wfp-${c.code}" accept="image/*" multiple style="display:none" onchange="addFormPhotos('${c.code}',this.files)">
-        <div class="pz-icon">${IC.camera}</div>
-        <div class="pz-text"><strong>사진 추가</strong><br>탭해서 추가해요</div>
-      </div>
-    </div>`;
-  }).join("");
-  return `<div class="wiz-wrap">
-    <div class="wiz-headline" style="font-size:var(--fs-xl)">여행 편집</div>
-    <span class="wiz-label">나라</span>
-    <div class="cs-wrap"><input class="cs-inp" id="cs-inp" placeholder="나라 또는 도시 추가..." oninput="showAC(this.value)" autocomplete="off"><div class="cs-dd" id="cs-dd"></div></div>
-    ${chips?`<div style="margin-bottom:1rem">${chips}</div>`:""}
-    <span class="wiz-label">여행 기간</span>
-    <div class="date-row">
-      <input type="date" value="${formData.startDate}" onchange="formData.startDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d){d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';}">
-      <input type="date" value="${formData.endDate}" onchange="formData.endDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d){d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';}">
-    </div>
-    ${daysBadge}
-    <span class="wiz-label">여행 이름 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
-    <input class="wiz-inp" value="${esc(formData.title)}" placeholder="예: 봄의 교토" oninput="formData.title=this.value">
-    <span class="wiz-label">커버 이모지</span>
-    <div class="emoji-grid" style="margin-bottom:1rem">${emojiGrid}</div>
-    ${countrySections}
-    <div style="margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--hairline)">
-      <button onclick="deleteTrip('${editingId}')" style="width:100%;padding:.65rem;background:transparent;border:1.5px solid var(--error);border-radius:var(--r-sm);color:var(--error);font-size:var(--fs-sm);font-weight:600;cursor:pointer;letter-spacing:-.01em">이 여행 기록 삭제</button>
-    </div>
-    <div style="height:2rem"></div>
-  </div>`;
-}
-function setStatus(s){formData.status=s;renderForm();}
-function toggleAcc(key){if(accOpenSections.has(key))accOpenSections.delete(key);else accOpenSections.add(key);renderForm();}
-function toggleCountryAcc(code){const k="c_"+code;if(accOpenSections.has(k))accOpenSections.delete(k);else accOpenSections.add(k);renderForm();}
 function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function calcDays(){if(formData.startDate&&formData.endDate)formData.totalDays=Math.max(1,Math.ceil((new Date(formData.endDate)-new Date(formData.startDate))/86400000)+1);}
-function showAC(q){
-  const dd=document.getElementById("cs-dd");
-  if(!q){dd.style.display="none";return;}
-  const existing=new Set(formData.countries.map(c=>c.code));
-  const cRes=COUNTRIES.filter(c=>c.name.includes(q)||c.code.toLowerCase()===q.toLowerCase()).filter(c=>!existing.has(c.code)).slice(0,4);
-  const cityRes=CITIES.filter(c=>c.name.includes(q)).filter(c=>!existing.has(c.code)).slice(0,5);
+function showDayLocAC(q,idx){
+  const dd=document.getElementById('day-dd-'+idx);if(!dd)return;
+  if(!q){dd.style.display='none';return;}
+  const cRes=COUNTRIES.filter(c=>c.name.includes(q)||c.code.toLowerCase()===q.toLowerCase()).slice(0,4);
+  const cityRes=CITIES.filter(c=>c.name.includes(q)).slice(0,4);
   let html='';
-  html+=cRes.map(c=>`<div class="cs-item" onclick='addC(${JSON.stringify(c)})'>${c.emoji} <span>${c.name}</span></div>`).join('');
-  html+=cityRes.map(c=>`<div class="cs-item" onclick='addC(${JSON.stringify(c)})'><span>${c.parentEmoji}</span> <span>${c.name} <span style="color:var(--ink-muted);font-weight:400;font-size:var(--fs-sm)">· ${c.parentName}</span></span></div>`).join('');
-  if(!html)html=`<div class="cs-item" onclick="addC({code:'LOC_${Date.now()}',name:'${q.replace(/'/g,'')}',emoji:'📍',type:'city',continent:'unknown'})">📍 <span>"${q}" 직접 추가</span></div>`;
-  dd.innerHTML=html;dd.style.display="block";
+  html+=cRes.map(c=>`<div class="cs-item" onclick="setDayLoc(${idx},${JSON.stringify(c).replace(/"/g,'&quot;')})">${c.emoji} <span>${c.name}</span></div>`).join('');
+  html+=cityRes.map(c=>`<div class="cs-item" onclick="setDayLoc(${idx},${JSON.stringify(c).replace(/"/g,'&quot;')})">${c.parentEmoji} <span>${c.name} <span style="color:var(--ink-muted);font-size:var(--fs-sm)">· ${c.parentName}</span></span></div>`).join('');
+  if(!html)html=`<div class="cs-item" onclick="setDayLoc(${idx},{code:'LOC_'+Date.now(),name:'${q.replace(/'/g,'')}',emoji:'📍',type:'city'})">📍 <span>"${q}" 직접 추가</span></div>`;
+  dd.innerHTML=html;dd.style.display='block';
 }
-function addC(c){if(formData.countries.find(x=>x.code===c.code))return;formData.countries.push(c);if(!formData.entries[c.code])formData.entries[c.code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};accOpenSections.add("c_"+c.code);document.getElementById("cs-inp").value="";document.getElementById("cs-dd").style.display="none";renderForm();}
-function removeC(code){formData.countries=formData.countries.filter(c=>c.code!==code);accOpenSections.delete("c_"+code);renderForm();}
-function updE(code,f,val){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};formData.entries[code][f]=val;}
-async function handleDayPhotoUpload(code,idx,files){
-  if(!formData.entries[code]?.days?.[idx])return;
-  const day=formData.entries[code].days[idx];
-  if(!day.photos)day.photos=[];
-  const rem=10-day.photos.length;if(rem<=0){showToast("일차당 최대 10장까지 가능해요");return;}
+function setDayLoc(idx,loc){
+  const d=formData.tripDays[idx];if(!d)return;
+  d.locationCode=loc.code;d.locationName=loc.name;d.locationEmoji=loc.emoji||'📍';
+  d.locationType=loc.type||'country';d.parentCode=loc.parentCode||null;
+  d.parentName=loc.parentName||null;d.parentEmoji=loc.parentEmoji||null;
+  const dd=document.getElementById('day-dd-'+idx);if(dd)dd.style.display='none';
+  renderForm();
+}
+function toggleDayMood(idx,m){
+  const d=formData.tripDays[idx];if(!d)return;
+  if(!d.moods)d.moods=[];
+  const i=d.moods.indexOf(m);
+  if(i>=0)d.moods.splice(i,1);else d.moods.push(m);
+  renderForm();
+}
+async function addDayPhotos(idx,files){
+  const d=formData.tripDays[idx];if(!d)return;
+  if(!d.photos)d.photos=[];
+  const rem=10-d.photos.length;if(rem<=0){showToast("하루에 최대 10장까지 가능해요");return;}
   showToast("사진 압축 중...");
-  for(const file of [...files].slice(0,rem))day.photos.push(await compressImage(file,800,.75));
+  for(const file of [...files].slice(0,rem))d.photos.push(await compressImage(file,800,.75));
   renderForm();showToast("사진 추가됐어요!");
 }
-function addDay(code){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};const days=formData.entries[code].days||[];const num=days.length+1;days.push({day:num,date:"",city:"",memo:"",photos:[]});formData.entries[code].days=days;dayFocus[code]=days.length-1;renderForm();}
-function removeDay(code,idx){if(!formData.entries[code])return;formData.entries[code].days.splice(idx,1);formData.entries[code].days.forEach((d,i)=>d.day=i+1);if(dayFocus[code]>=formData.entries[code].days.length)dayFocus[code]=formData.entries[code].days.length-1;renderForm();}
-function updDay(code,idx,f,val){if(!formData.entries[code]?.days)return;formData.entries[code].days[idx][f]=val;}
-function toggleStep3More(code){step3Expanded[code]=!step3Expanded[code];renderForm();}
-function selectDay(code,idx){dayFocus[code]=dayFocus[code]===idx?-1:idx;renderForm();}
-function buildDayStrip(code,ent){
-  const days=ent.days||[];
-  const fi=dayFocus[code]??-1;
-  const scards=days.map((d,i)=>{
-    const bgStyle=d.photos?.[0]?`background-image:url('${d.photos[0]}')`:'';
-    const cityLabel=d.city?esc(d.city):'장소 추가';
-    const cityClass=d.city?'':'empty';
-    const isActive=i===fi?' active':'';
-    return `<div class="day-scard${isActive}" onclick="selectDay('${code}',${i})"><div class="day-scard-bg" style="${bgStyle}"></div><div class="day-scard-grad"></div><div class="day-scard-badge">${d.day}일차</div><button class="day-scard-del" onclick="event.stopPropagation();removeDay('${code}',${i})">${IC.xMark}</button><div class="day-scard-body"><div class="day-scard-city ${cityClass}">${cityLabel}</div>${d.date?`<div class="day-scard-date">${d.date}</div>`:''}</div></div>`;
-  }).join('');
-  const addCard=`<button class="day-scard-add" onclick="addDay('${code}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>${days.length+1}일차</button>`;
-  let editPanel='';
-  if(fi>=0&&days[fi]){
-    const d=days[fi];
-    const dThumbs=(d.photos||[]).map(src=>`<img class="day-photo-thumb" src="${src}" alt="" onclick="openLightbox('${src}')">`).join('');
-    const dAddBtn=`<label class="day-photo-add" title="사진 추가"><input type="file" accept="image/*" multiple style="display:none" onchange="handleDayPhotoUpload('${code}',${fi},this.files)">${IC.camera}</label>`;
-    editPanel=`<div class="day-edit-panel"><div class="day-edit-label">${d.day}일차</div><input class="day-inp city" type="text" value="${esc(d.city||'')}" placeholder="장소 (예: 도쿄 시부야)" oninput="updDay('${code}',${fi},'city',this.value)"><input class="day-inp" type="date" value="${d.date||''}" oninput="updDay('${code}',${fi},'date',this.value)"><textarea class="day-textarea" placeholder="그날의 기억..." oninput="updDay('${code}',${fi},'memo',this.value)">${esc(d.memo||'')}</textarea><div class="day-photos">${dThumbs}${dAddBtn}</div></div>`;
-  }
-  return `<div class="day-strip">${scards}${addCard}</div>${editPanel}`;
-}
-function toggleMood(code,m){if(!formData.entries[code])return;const ms=formData.entries[code].moods||[];formData.entries[code].moods=ms.includes(m)?ms.filter(x=>x!==m):[...ms,m];renderForm();}
-async function addFormPhotos(code,files){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[]};const photos=formData.entries[code].photos||[];const rem=20-photos.length;if(rem<=0){showToast("최대 20장까지 가능해요");return;}for(const f of [...files].slice(0,rem))photos.push(await compressImage(f,800,.75));formData.entries[code].photos=photos;renderForm();}
-function removeFormPhoto(code,idx){if(!formData.entries[code])return;formData.entries[code].photos.splice(idx,1);renderForm();}
+function removeDayPhoto(idx,pi){formData.tripDays[idx]?.photos?.splice(pi,1);renderForm();}
 async function saveTrip(){
-  if(!formData.countries.length){showToast("나라를 추가해요.");return;}
-  if(!formData.startDate||!formData.endDate){showToast("날짜를 골라요.");return;}
+  if(!formData.tripDays||!formData.tripDays.length){showToast("날짜별 기록을 추가해요.");return;}
+  if(!formData.startDate||!formData.endDate){showToast("날짜를 설정해요.");return;}
   if(!formData.title.trim()){
-    formData.title=formData.countries.map(c=>c.name).join(", ")+" "+formData.startDate.slice(0,4);
+    const locs=[...new Set(formData.tripDays.filter(d=>d.locationCode).map(d=>d.locationName))];
+    formData.title=(locs.slice(0,2).join('·')||'여행')+' '+formData.startDate.slice(0,4);
   }
   calcDays();
-  const id=editingId||Date.now()+"_"+Math.random().toString(36).slice(2,5);
-  const countries=formData.countries.map(c=>({...c,...(formData.entries[c.code]||{})}));
-  const trip={id,status:formData.status,title:formData.title.trim(),coverEmoji:formData.coverEmoji,startDate:formData.startDate,endDate:formData.endDate,
-    totalDays:formData.totalDays||0,countries,
+  const id=editingId||Date.now()+'_'+Math.random().toString(36).slice(2,5);
+  const trip={id,status:formData.status,title:formData.title.trim(),coverEmoji:formData.coverEmoji,startDate:formData.startDate,endDate:formData.endDate,totalDays:formData.totalDays||0,tripDays:formData.tripDays,
     createdAt:editingId?(trips.find(t=>t.id===id)?.createdAt||new Date().toISOString()):new Date().toISOString(),
     updatedAt:new Date().toISOString()};
   trips=editingId?trips.map(t=>t.id===id?trip:t):[trip,...trips];
