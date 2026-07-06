@@ -387,6 +387,10 @@ input,textarea,select{font-family:var(--font)}
 .ph-main img{width:100%;height:100%;object-fit:cover;display:block}
 .ph-tap-l,.ph-tap-r{position:absolute;top:0;bottom:0;width:50%;z-index:2}
 .ph-tap-l{left:0}.ph-tap-r{right:0}
+.ph-thumb-wrap{position:relative;flex-shrink:0}
+.ph-star-btn{position:absolute;top:10px;right:12px;padding:0;background:none;border:none;color:rgba(255,255,255,.4);font-size:var(--fs-xl);line-height:1;cursor:pointer;transition:color .15s;z-index:3;-webkit-text-stroke:.6px rgba(0,0,0,.35);paint-order:stroke fill}
+.ph-star-btn.on{color:#FFD700;-webkit-text-stroke:.6px rgba(0,0,0,.25)}
+.ph-thumb-cover{position:absolute;top:4px;right:4px;font-size:9px;line-height:1;color:#FFD700;-webkit-text-stroke:.4px rgba(0,0,0,.4);paint-order:stroke fill;pointer-events:none}
 .ph-thumbs{display:flex;gap:5px;padding:10px 12px 12px;overflow-x:auto;flex-shrink:0;-webkit-overflow-scrolling:touch;scrollbar-width:none;justify-content:center}
 .ph-thumbs::-webkit-scrollbar{display:none}
 .ph-thumb{width:54px;height:54px;object-fit:cover;border-radius:var(--r-sm);opacity:.45;cursor:pointer;flex-shrink:0;transition:opacity .15s,outline .15s}
@@ -1137,7 +1141,7 @@ function getTripRecs(){
     const firstLoc=uniqLocs[0];
     const locCountryCode=firstLoc?firstLoc.locationCode.split('_')[0]:null;
     const continent=(COUNTRIES.find(c=>c.code===locCountryCode)||{}).continent||'';
-    return{tripId:t.id,tripTitle:t.title,tripEmoji:t.coverEmoji,tripStatus:t.status,startDate:t.startDate,endDate:t.endDate,totalDays:t.totalDays,uniqLocs,allPhotos,allMoods,continent,firstLoc};
+    return{tripId:t.id,tripTitle:t.title,tripEmoji:t.coverEmoji,tripStatus:t.status,startDate:t.startDate,endDate:t.endDate,totalDays:t.totalDays,uniqLocs,allPhotos,allMoods,continent,firstLoc,coverPhoto:t.coverPhoto||null};
   });
 }
 function setCF(cont,btn){cfFilter=cont;document.querySelectorAll(".cf-btn").forEach(b=>b.classList.remove("on"));btn.classList.add("on");renderCountryCards();}
@@ -1157,10 +1161,9 @@ function renderCountryCards(){
     const isPlan=r.tripStatus==="planning";
     const col=isPlan?DS.coral:(CC[r.continent]||DS.gray);
     const pill=isPlan?`<div class="status-pill sp-plan">계획 중</div>`:"";
-    const thumbInner=r.allPhotos.length?`<img class="rc-thumb" src="${r.allPhotos[0]}" alt="">`:`<div class="rc-thumb-placeholder" style="background:${col}18">${r.tripEmoji||"✈️"}</div>`;
+    const thumbInner=(r.coverPhoto||r.allPhotos[0])?`<img class="rc-thumb" src="${r.coverPhoto||r.allPhotos[0]}" alt="">`:`<div class="rc-thumb-placeholder" style="background:${col}18">${r.tripEmoji||"✈️"}</div>`;
     const thumb=`<div class="rc-thumb-wrap">${thumbInner}</div>`;
-    const locChips=r.uniqLocs.slice(0,3).map(l=>`<span class="rc-mood">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</span>`).join('');
-    return `<div class="rec-card${isPlan?" is-planning":""}" onclick="openModal('${r.tripId}')"><div class="rc-accent" style="background:${col}"></div>${thumb}<div class="rc-body"><div class="rc-top"><div class="rc-flag">${r.tripEmoji||"✈️"}</div><div class="rc-info"><div class="rc-trip">${r.tripTitle}</div></div></div>${pill}${r.startDate?`<div class="rc-date">${r.startDate.replace(/-/g,".")}${r.endDate?" - "+r.endDate.replace(/-/g,"."):""} · ${r.totalDays||0}일</div>`:""}${locChips?`<div class="rc-moods" style="margin-top:.3rem">${locChips}</div>`:""}${r.allMoods.length?`<div class="rc-moods">${r.allMoods.slice(0,3).map(m=>`<span class="rc-mood">${m}</span>`).join("")}</div>`:""}</div></div>`;
+    return `<div class="rec-card${isPlan?" is-planning":""}" onclick="openModal('${r.tripId}')"><div class="rc-accent" style="background:${col}"></div>${thumb}<div class="rc-body"><div class="rc-top"><div class="rc-flag">${r.tripEmoji||"✈️"}</div><div class="rc-info"><div class="rc-trip">${r.tripTitle}</div></div></div>${pill}${r.startDate?`<div class="rc-date">${r.startDate.replace(/-/g,".")}${r.endDate?" - "+r.endDate.replace(/-/g,"."):""} · ${r.totalDays||0}일</div>`:""}${r.allMoods.length?`<div class="rc-moods">${r.allMoods.slice(0,3).map(m=>`<span class="rc-mood">${m}</span>`).join("")}</div>`:""}</div></div>`;
   }).join("");
 }
 
@@ -1561,8 +1564,10 @@ function buildPhotoTab(t){
   const n=photos.length;
   photoIdx=Math.max(0,Math.min(photoIdx,n-1));
   const cur=photos[photoIdx];
+  const isCover=t.coverPhoto===cur.src||((!t.coverPhoto)&&photoIdx===0);
   const bars=photos.map((_,i)=>`<div class="ph-bar${i<photoIdx?' ph-done':i===photoIdx?' ph-on':''}"></div>`).join('');
-  const thumbs=photos.map((p,i)=>`<img class="ph-thumb${i===photoIdx?' ph-on':''}" src="${p.src}" alt="" onclick="phGoto(${i})">`).join('');
+  const coverSrc=t.coverPhoto||(photos[0]?.src);
+  const thumbs=photos.map((p,i)=>`<div class="ph-thumb-wrap"><img class="ph-thumb${i===photoIdx?' ph-on':''}" src="${p.src}" alt="" onclick="phGoto(${i})">${p.src===coverSrc?'<span class="ph-thumb-cover">★</span>':''}</div>`).join('');
   return `<div class="ph-scene">
     <div class="ph-bars">${bars}</div>
     <div class="ph-label">${cur.label}</div>
@@ -1570,9 +1575,18 @@ function buildPhotoTab(t){
       <img src="${cur.src}" alt="" onclick="openLightbox('${cur.src}')">
       <div class="ph-tap-l" onclick="phGoto(${photoIdx-1})"></div>
       <div class="ph-tap-r" onclick="phGoto(${photoIdx+1})"></div>
+      <button class="ph-star-btn${isCover?' on':''}" onclick="event.stopPropagation();setCoverPhoto('${t.id}','${cur.src}')" title="대표 사진으로 설정">★</button>
     </div>
     <div class="ph-thumbs" id="ph-thumbs">${thumbs}</div>
   </div>`;
+}
+function setCoverPhoto(tripId,src){
+  trips=trips.map(t=>{if(t.id!==tripId)return t;return{...t,coverPhoto:src};});
+  saveLocal(trips.find(t=>t.id===tripId));
+  saveToFirestore(trips.find(t=>t.id===tripId));
+  renderAll();
+  switchMT(tripId,'photo');
+  showToast('대표 사진이 설정됐어요');
 }
 function phGoto(i){
   const raw=trips.find(x=>x.id===curModalId);if(!raw)return;
@@ -1711,15 +1725,15 @@ function renderStep1(){
   const daysBadge=formData.totalDays?`<div class="days-badge">총 ${formData.totalDays}일</div>`:'';
   const emojiGrid=COVER_EMOJIS.map(e=>`<button class="eg-btn${formData.coverEmoji===e?' on':''}" onclick="formData.coverEmoji='${e}';document.querySelectorAll('.eg-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${e}</button>`).join('');
   return `<div class="wiz-wrap">
-    <div class="wiz-headline">어디 다녀왔어요?</div>
-    <div class="wiz-sub">여행 기간을 설정하면 날짜별 기록이 만들어져요.</div>
+    <div class="wiz-headline">언제 다녀왔어요?</div>
+    <div class="wiz-sub">기간과 이름을 입력하면 날짜별 기록을 만들어드려요.</div>
     <span class="wiz-label">여행 기간</span>
     <div class="date-row">
       <input type="date" value="${formData.startDate}" onchange="formData.startDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
       <input type="date" value="${formData.endDate}" onchange="formData.endDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
     </div>
     ${daysBadge}
-    <span class="wiz-label">여행 이름 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
+    <span class="wiz-label">여행 이름</span>
     <input class="wiz-inp" value="${esc(formData.title)}" placeholder="예: 남미 21일 여행" oninput="formData.title=this.value">
     <span class="wiz-label">커버 이모지</span>
     <div class="emoji-grid" style="margin-bottom:1rem">${emojiGrid}</div>
@@ -1731,6 +1745,7 @@ function renderStep1(){
 }
 function goToTimeline(){
   if(!formData.startDate||!formData.endDate){showToast("날짜를 설정해요.");return;}
+  if(!formData.title.trim()){showToast("여행 이름을 입력해요.");return;}
   calcDays();
   if(!formData.tripDays||!formData.tripDays.length){
     formData.tripDays=[];
@@ -1753,7 +1768,7 @@ function renderStep2(){
     const photoGrid=(d.photos||[]).length?`<div class="photo-preview-grid" style="margin-bottom:.5rem">${d.photos.map((p,pi)=>`<div class="photo-preview-item"><img src="${p}" alt=""><button class="photo-del-btn" onclick="event.stopPropagation();removeDayPhoto(${i},${pi})">${IC.xMark}</button></div>`).join('')}</div>`:'';
     const usedChips=usedLocs.filter(l=>l.locationCode!==d.locationCode).map(l=>`<div class="loc-chip used" onclick="setDayLoc(${i},${JSON.stringify({code:l.locationCode,name:l.locationName,emoji:l.locationEmoji,type:l.locationType,parentCode:l.parentCode,parentName:l.parentName,parentEmoji:l.parentEmoji}).replace(/"/g,'&quot;')})">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</div>`).join('');
     const editPanel=isActive?`
-      <div class="tl-edit-panel">
+      <div class="tl-edit-panel" onclick="event.stopPropagation()">
         <div class="cs-wrap" style="margin-bottom:.5rem"><input class="cs-inp" placeholder="나라 또는 도시 검색..." oninput="showDayLocAC(this.value,${i})" autocomplete="off" value="${d.locationCode?esc(locLabel):''}"><div class="cs-dd" id="day-dd-${i}"></div></div>
         ${usedChips?`<div class="loc-suggest">${usedChips}</div>`:''}
         <span class="wiz-label" style="margin-top:.75rem">기분</span>
