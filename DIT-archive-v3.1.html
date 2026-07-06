@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Journal Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:transparent}.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer,.leaflet-container .leaflet-tile{max-width:none!important;max-height:none!important;width:auto;padding:0}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}.leaflet-container{-webkit-tap-highlight-color:transparent}.leaflet-container a{-webkit-tap-highlight-color:rgba(51,181,229,.4)}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}.leaflet-overlay-pane svg{-moz-user-select:none}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;-webkit-transition:opacity .2s linear;-moz-transition:opacity .2s linear;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0}.leaflet-zoom-anim .leaflet-zoom-animated{will-change:transform}.leaflet-zoom-anim .leaflet-zoom-animated{-webkit-transition:-webkit-transform .25s cubic-bezier(0,0,.25,1);-moz-transition:-moz-transform .25s cubic-bezier(0,0,.25,1);transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-pan-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-tile{-webkit-transition:none;-moz-transition:none;transition:none}.leaflet-zoom-anim .leaflet-zoom-animated.leaflet-zoom-hide{visibility:hidden}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:-moz-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-popup-pane,.leaflet-control{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:move;cursor:-webkit-grabbing;cursor:-moz-grabbing;cursor:grabbing}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-image-layer,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-marker-icon.leaflet-interactive,.leaflet-image-layer.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:visiblePainted;pointer-events:auto}.leaflet-container{background:#ddd;outline-offset:1px}.leaflet-container a.leaflet-active{outline:2px solid orange}.leaflet-zoom-box{border:2px dotted #38f;background:rgba(255,255,255,.5)}.leaflet-container{font-family:Helvetica Neue,Arial,Helvetica,sans-serif;font-size:.75rem;font-size:12px;line-height:1.5}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:black}.leaflet-bar a,.leaflet-control-layers-toggle{background-position:50% 50%;background-repeat:no-repeat;display:block}.leaflet-bar a:hover,.leaflet-bar a:focus{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-touch .leaflet-bar a:first-child{border-top-left-radius:2px;border-top-right-radius:2px}.leaflet-touch .leaflet-bar a:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font:bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-touch .leaflet-control-zoom-in{font-size:22px}.leaflet-touch .leaflet-control-zoom-out{font-size:20px}.leaflet-control-layers{box-shadow:0 1px 5px rgba(0,0,0,.4);background:#fff;border-radius:5px}.leaflet-control-layers-toggle{background-image:url(https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/layers.png);width:36px;height:36px}.leaflet-retina .leaflet-control-layers-toggle{background-image:url(https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/layers-2x.png);background-size:26px 26px}.leaflet-touch .leaflet-control-layers-toggle{width:44px;height:44px}.leaflet-control-layers .leaflet-control-layers-list,.leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}.leaflet-control-layers-expanded .leaflet-control-layers-list{display:block;position:relative}.leaflet-control-layers-expanded{padding:6px 10px 6px 6px;color:#333;background:#fff}.leaflet-control-layers-scrollbar{overflow-y:scroll;overflow-x:hidden;padding-right:5px}.leaflet-control-layers-selector{margin-top:2px;position:relative;top:1px}.leaflet-control-layers label{display:block;font-size:13px;font-size:1.08333em}.leaflet-control-layers-separator{height:0;border-top:1px solid #ddd;margin:5px -10px 5px -6px}.leaflet-default-icon-path{background-image:url(https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png)}.leaflet-container .leaflet-control-attribution{background:#fff;background:rgba(255,255,255,.8);margin:0}.leaflet-control-attribution,.leaflet-control-scale-line{padding:0 5px;color:#333;line-height:1.4}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:hover,.leaflet-control-attribution a:focus{text-decoration:underline}.leaflet-attribution-flag{display:inline!important;vertical-align:baseline!important;width:1em;height:.6667em}.leaflet-left .leaflet-control-scale{margin-left:5px}.leaflet-bottom .leaflet-control-scale{margin-bottom:5px}.leaflet-control-scale-line{border:2px solid #777;border-top:none;line-height:1.1;padding:2px 5px 1px;font-size:11px;white-space:nowrap;overflow:hidden;-moz-box-sizing:border-box;box-sizing:border-box;background:#fff}.leaflet-control-scale-line:not(:first-child){border-top:2px solid #777;border-bottom:none;margin-top:-2px}.leaflet-control-scale-line:not(:first-child):not(:last-child){border-bottom:2px solid #777}.leaflet-touch .leaflet-control-attribution,.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{box-shadow:none}.leaflet-touch .leaflet-control-layers,.leaflet-touch .leaflet-bar{border:2px solid rgba(0,0,0,.2);background-clip:padding-box}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:transparent}.leaflet-container a.leaflet-popup-close-button:hover,.leaflet-container a.leaflet-popup-close-button:focus{color:#585858}.leaflet-popup-scrolled{overflow:auto}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;-ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)}.leaflet-oldie .leaflet-popup-tip-container{margin-top:-1px}.leaflet-oldie .leaflet-control-zoom,.leaflet-oldie .leaflet-control-layers,.leaflet-oldie .leaflet-popup-content-wrapper,.leaflet-oldie .leaflet-popup-tip{border:1px solid #999}.leaflet-div-icon{background:#fff;border:1px solid #666}.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;-webkit-user-select:none;-moz-user-select:none;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}.leaflet-tooltip-top:before,.leaflet-tooltip-bottom:before,.leaflet-tooltip-left:before,.leaflet-tooltip-right:before{position:absolute;pointer-events:none;border:6px solid transparent;background:transparent;content:""}.leaflet-tooltip-bottom:before{top:0;left:50%;margin-left:-6px;margin-top:-12px;border-bottom-color:#fff}.leaflet-tooltip-top:before{bottom:0;left:50%;margin-left:-6px;margin-bottom:-12px;border-top-color:#fff}.leaflet-tooltip-left:before{top:50%;right:0;margin-top:-6px;margin-right:-12px;border-left-color:#fff}.leaflet-tooltip-right:before{top:50%;left:0;margin-top:-6px;margin-left:-12px;border-right-color:#fff}
+</style>
+<style>
+/* ===== ROOT ===== */
+:root{
+  --bg:#E9EDF2;--bg2:#DDE4EC;
+  --surface:rgba(255,255,255,.82);--border:rgba(105,158,191,.28);--border2:rgba(105,158,191,.14);
+  --text:#4E7DA6;--text2:#5a8cb8;--muted:rgba(78,125,166,.55);
+  --accent:#C9563A;--accent-lt:#F4EAE7;--accent-dk:#a8432a;
+  --mid:#8BC3D9;--mid-dk:#699EBF;--mid-lt:rgba(139,195,217,.15);
+  --gold:#D4952A;--gold-lt:#FDF4E3;
+  --sky:#4A90D9;--sage:#3D9E82;--sage-lt:#E6F5F1;
+  --grad-accent:linear-gradient(135deg,#C9563A,#D4952A);
+  --grad-mid:linear-gradient(135deg,#8BC3D9,#699EBF);
+  --grad-cool:linear-gradient(135deg,#4A90D9,#3D9E82);
+  --grad-main:linear-gradient(135deg,#C9563A 0%,#D4952A 50%,#4A90D9 100%);
+  --shadow:0 2px 16px rgba(74,90,140,.07);
+  --shadow-md:0 8px 40px rgba(74,90,140,.13);
+  --shadow-lg:0 20px 60px rgba(74,90,140,.18);
+  --font:'Noto Sans KR',sans-serif;--radius:20px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;overflow-x:hidden;min-height:100vh}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),var(--mid-dk));border-radius:4px}
+
+/* ===== KEYFRAMES ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes blob1{0%,100%{transform:translate(0,0)scale(1)}25%{transform:translate(40px,30px)scale(1.06)}50%{transform:translate(20px,-40px)scale(.96)}75%{transform:translate(-30px,20px)scale(1.04)}}
+@keyframes blob2{0%,100%{transform:translate(0,0)scale(1)}20%{transform:translate(-50px,25px)scale(1.08)}50%{transform:translate(-20px,-30px)scale(.94)}80%{transform:translate(35px,15px)scale(1.03)}}
+@keyframes blob3{0%,100%{transform:translate(0,0)scale(1)}33%{transform:translate(30px,-50px)scale(1.07)}66%{transform:translate(-40px,-20px)scale(.97)}}
+@keyframes blob4{0%,100%{transform:translate(0,0)scale(1)rotate(0)}30%{transform:translate(-35px,40px)scale(1.05)rotate(5deg)}60%{transform:translate(25px,-30px)scale(.95)rotate(-3deg)}}
+@keyframes blob5{0%,100%{transform:translate(0,0)scale(1)}50%{transform:translate(45px,35px)scale(1.1)}}
+@keyframes blob6{0%,100%{transform:translate(0,0)scale(1)}40%{transform:translate(-30px,-45px)scale(1.08)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-30px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes countUp{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes ripple{0%{transform:scale(0);opacity:.6}100%{transform:scale(4);opacity:0}}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes starTwinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .75s .1s cubic-bezier(.22,1,.36,1),transform .75s .1s cubic-bezier(.22,1,.36,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .75s .1s cubic-bezier(.22,1,.36,1),transform .75s .1s cubic-bezier(.22,1,.36,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* ===== BLOB ===== */
+.blob-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(72px);will-change:transform}
+.b1{width:700px;height:700px;background:radial-gradient(circle at 40% 40%,rgba(139,195,217,.22),transparent 70%);top:-200px;left:-180px;animation:blob1 18s ease-in-out infinite}
+.b2{width:600px;height:600px;background:radial-gradient(circle at 60% 50%,rgba(105,158,191,.16),transparent 70%);top:20%;right:-160px;animation:blob2 22s ease-in-out infinite}
+.b3{width:500px;height:500px;background:radial-gradient(circle at 50% 60%,rgba(139,195,217,.14),transparent 70%);bottom:5%;left:10%;animation:blob3 16s ease-in-out infinite}
+.b4{width:420px;height:420px;background:radial-gradient(circle at 55% 45%,rgba(201,86,58,.10),transparent 70%);top:50%;right:20%;animation:blob4 20s ease-in-out infinite}
+.b5{width:300px;height:300px;background:radial-gradient(circle at 50% 50%,rgba(78,125,166,.10),transparent 70%);top:10%;left:45%;animation:blob5 14s ease-in-out infinite}
+.b6{width:260px;height:260px;background:radial-gradient(circle at 50% 50%,rgba(139,195,217,.09),transparent 70%);bottom:25%;right:8%;animation:blob6 17s ease-in-out infinite}
+
+/* ===== PAGE TRANSITION OVERLAY ===== */
+#page-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;background:var(--grad-main);background-size:300% 300%;animation:gradShift 3s ease infinite;opacity:0;transition:opacity .4s ease}
+#page-overlay.active{opacity:1;pointer-events:all}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(233,237,242,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);height:52px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(233,237,242,.97);box-shadow:0 2px 20px rgba(78,125,166,.1)}
+.nav-logo{font-size:1rem;font-weight:900;color:var(--text);cursor:pointer;letter-spacing:-.01em;transition:transform .2s}
+.nav-logo:hover{transform:scale(1.05)}
+.nav-logo em{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;gap:.15rem;align-items:center}
+.nav-links a{font-size:.7rem;font-weight:600;color:var(--text2);text-decoration:none;padding:.35rem .75rem;border-radius:14px;transition:background .15s,color .15s;cursor:pointer;position:relative}
+.nav-links a:hover{background:var(--mid-lt);color:var(--text)}
+.nav-links a.active{background:var(--accent-lt);color:var(--accent);font-weight:700}
+.nav-links a.active::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--accent);border-radius:2px}
+.nav-sep{width:1px;height:16px;background:var(--border);margin:0 .4rem}
+.nav-epilogue{font-size:.7rem;font-weight:700!important;color:#C9563A!important}
+.dday-chip{font-size:.65rem;font-weight:700;background:var(--grad-accent);color:#fff;padding:.3rem 1rem;border-radius:20px;box-shadow:0 3px 12px rgba(201,86,58,.28);animation:pulse 3s ease-in-out infinite}
+.nav-back{display:none;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;color:var(--text2);padding:.35rem .85rem;border-radius:14px;border:1px solid var(--border);background:var(--surface);transition:all .2s;cursor:pointer}
+.nav-back:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+.nav-reset{font-size:.65rem;font-weight:600;color:var(--muted);padding:.3rem .7rem;border-radius:12px;border:1px solid var(--border2);background:transparent;cursor:pointer;transition:all .2s}
+.nav-reset:hover{color:var(--accent);border-color:var(--accent-lt)}
+@media(max-width:700px){.nav-links{display:none}}
+
+/* ===== STEP 1 SETUP ===== */
+#step-1-setup{min-height:100vh;padding-top:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1}
+/* Decorative stars */
+.setup-stars{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--mid-dk)}
+.setup-wrap{width:100%;max-width:620px;margin:0 auto;padding:2rem 1.5rem 4rem;position:relative;z-index:1}
+.setup-progress{margin-bottom:2.8rem}
+.progress-bar-bg{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:.6rem}
+.progress-bar-fill{height:100%;background:var(--grad-accent);border-radius:2px;transition:width .5s cubic-bezier(.22,1,.36,1)}
+.progress-label{font-size:.62rem;font-weight:700;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+.progress-dots{display:flex;gap:.4rem}
+.pdot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:background .3s,transform .3s}
+.pdot.active{background:var(--accent);transform:scale(1.4)}
+.pdot.done{background:var(--mid-dk)}
+
+.setup-slide{display:none}
+.setup-slide.active{display:block;animation:slideIn .4s cubic-bezier(.22,1,.36,1) forwards}
+.setup-slide.exit{animation:slideOut .25s ease forwards}
+.slide-step{font-size:.6rem;font-weight:700;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
+.slide-q{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;color:var(--text);letter-spacing:-.02em;margin-bottom:.5rem;line-height:1.2}
+.slide-desc{font-size:.85rem;color:var(--muted);margin-bottom:1.8rem;line-height:1.6}
+
+/* Input styles */
+.tf-input{width:100%;background:transparent;border:none;border-bottom:2px solid var(--border);color:var(--text);font-family:var(--font);font-size:1.1rem;font-weight:500;padding:.6rem 0;outline:none;transition:border-color .25s;caret-color:var(--accent)}
+.tf-input:focus{border-bottom-color:var(--accent)}
+.tf-input::placeholder{color:var(--muted);font-weight:400}
+.tf-input.error{border-bottom-color:#e05a5a}
+.tf-error{font-size:.68rem;color:#e05a5a;margin-top:.3rem;min-height:1em}
+.tf-textarea{width:100%;background:rgba(255,255,255,.5);border:1.5px solid var(--border);color:var(--text);font-family:var(--font);font-size:.9rem;line-height:1.7;padding:.9rem 1rem;outline:none;border-radius:14px;resize:none;min-height:100px;transition:border-color .25s}
+.tf-textarea:focus{border-color:var(--accent)}
+
+.date-row{display:grid;grid-template-columns:1fr auto 1fr;gap:.8rem;align-items:end}
+.date-sep{font-size:1.2rem;color:var(--muted);padding-bottom:.7rem;text-align:center}
+.tf-label{font-size:.65rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+
+/* Country rows */
+.country-list{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1rem}
+.country-row{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:.7rem;align-items:center;background:rgba(255,255,255,.6);border:1px solid var(--border);border-radius:14px;padding:.7rem 1rem;transition:border-color .2s,transform .2s,box-shadow .2s}
+.country-row:hover{border-color:var(--mid-dk);transform:translateX(2px);box-shadow:var(--shadow)}
+.country-num{font-size:.75rem;font-weight:700;color:var(--accent);width:18px;text-align:center}
+.country-row input{background:transparent;border:none;color:var(--text);font-family:var(--font);font-size:.85rem;font-weight:600;outline:none;width:100%}
+.country-row input::placeholder{color:var(--muted);font-weight:400}
+.country-row input.date-input{font-size:.78rem;color:var(--text2)}
+.country-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;padding:.2rem;border-radius:6px;transition:color .2s,transform .2s}
+.country-del:hover{color:var(--accent);transform:scale(1.2)}
+.add-country-btn{display:flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--mid-dk);background:transparent;border:1.5px dashed var(--border);border-radius:12px;padding:.55rem 1rem;cursor:pointer;transition:all .2s;font-family:var(--font)}
+.add-country-btn:hover{border-color:var(--mid-dk);background:var(--mid-lt);transform:scale(1.02)}
+
+.expect-list{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1rem}
+.expect-row{display:flex;align-items:center;gap:.7rem;background:rgba(255,255,255,.55);border:1px solid var(--border);border-radius:14px;padding:.65rem 1rem;transition:border-color .2s}
+.expect-row:focus-within{border-color:var(--accent)}
+.expect-emoji{font-size:1rem;flex-shrink:0}
+.expect-row input{flex:1;background:transparent;border:none;color:var(--text);font-family:var(--font);font-size:.85rem;outline:none}
+.expect-row input::placeholder{color:var(--muted)}
+
+/* Buttons */
+.btn-next{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;font-family:var(--font);font-size:.82rem;font-weight:700;padding:.75rem 2rem;border-radius:20px;border:none;background:var(--grad-accent);color:#fff;cursor:pointer;transition:all .3s;box-shadow:0 4px 18px rgba(201,86,58,.3);position:relative;overflow:hidden}
+.btn-next::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);opacity:0;transition:opacity .2s}
+.btn-next:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,86,58,.4)}
+.btn-next:hover::after{opacity:1}
+.btn-next:active{transform:translateY(0)}
+.btn-prev{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.8rem;margin-right:.8rem;font-family:var(--font);font-size:.78rem;font-weight:600;padding:.65rem 1.2rem;border-radius:16px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.btn-prev:hover{border-color:var(--mid-dk);color:var(--text)}
+.btn-generate{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.8rem;font-family:var(--font);font-size:.88rem;font-weight:900;padding:.9rem 2.5rem;border-radius:24px;border:none;background:var(--grad-main);background-size:200% 200%;color:#fff;cursor:pointer;transition:all .3s;box-shadow:0 6px 24px rgba(201,86,58,.35);letter-spacing:.02em;animation:gradShift 4s ease infinite}
+.btn-generate:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,86,58,.45)}
+.pw-hint{font-size:.7rem;color:var(--muted);margin-top:.5rem}
+.ripple-btn{position:relative;overflow:hidden}
+.ripple-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);transform:scale(0);animation:ripple .6s linear;pointer-events:none}
+
+/* ===== STEP 2 JOURNEY ===== */
+#step-2-journey{display:none;position:relative;z-index:1}
+
+/* HERO */
+#hero{min-height:100vh;padding-top:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(105,158,191,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(105,158,191,.07) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+.hero-content{position:relative;z-index:2;padding:3rem 2rem 4rem;max-width:900px;width:100%}
+.hero-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.35em;color:var(--accent);text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp .7s .1s forwards}
+.hero-title{font-size:clamp(3rem,10vw,7rem);font-weight:900;color:var(--text);line-height:1.05;letter-spacing:-.04em;opacity:0;animation:fadeUp .8s .3s forwards;word-break:keep-all}
+.hero-title .sub-line{display:block;font-size:clamp(1.6rem,4vw,3.5rem);font-weight:900;color:var(--accent);margin-bottom:.3rem;letter-spacing:-.02em}
+.hero-divider{width:80px;height:3px;margin:1.8rem auto;border-radius:2px;background:var(--grad-accent);opacity:0;animation:fadeUp .7s .5s forwards}
+.hero-sub{font-size:.95rem;font-weight:500;color:var(--text2);margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s .6s forwards}
+.hero-flags{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s .8s forwards}
+.hf{display:flex;align-items:center;gap:.6rem;background:var(--surface);backdrop-filter:blur(12px);border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:20px;box-shadow:var(--shadow);white-space:nowrap;transition:transform .25s,box-shadow .25s,border-color .25s;cursor:default}
+.hf:hover{transform:translateY(-5px) scale(1.03);box-shadow:var(--shadow-md);border-color:var(--mid-dk)}
+.hf-info .name{font-size:.72rem;font-weight:700;color:var(--text)}
+.hf-info .date{font-size:.55rem;color:var(--muted)}
+.hero-stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .7s 1s forwards}
+.hs{text-align:center;background:var(--surface);backdrop-filter:blur(12px);padding:.8rem 1.5rem;border-radius:16px;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.hs:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.hs-num{font-size:1.4rem;font-weight:900;color:var(--accent);transition:transform .3s}
+.hs-label{font-size:.58rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.1rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.3rem;font-size:.58rem;font-weight:700;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;opacity:0;animation:fadeUp .7s 1.4s forwards;z-index:2}
+.scroll-hint svg{animation:bounce 1.8s 2s infinite}
+
+/* Sections */
+section:not(#hero){padding:5rem 2.5rem;position:relative;z-index:1}
+.sec-wrap{max-width:1200px;margin:0 auto}
+.sec-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem}
+.sec-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--text);letter-spacing:-.03em;margin-bottom:.4rem}
+.sec-sub{font-size:.85rem;color:var(--text2);font-weight:400;margin-bottom:2.5rem}
+.sec-divider{display:flex;align-items:center;gap:1rem;margin-bottom:3rem}
+.sec-divider::before,.sec-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-divider span{font-size:.7rem;color:var(--muted)}
+
+/* OVERVIEW */
+#overview{background:transparent}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem}
+.ov-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;position:relative;overflow:hidden;cursor:default}
+.ov-card:hover{transform:translateY(-8px) rotate(.5deg);box-shadow:var(--shadow-md)}
+.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.ov-card:nth-child(4n+1)::before{background:var(--grad-accent)}
+.ov-card:nth-child(4n+2)::before{background:var(--grad-mid)}
+.ov-card:nth-child(4n+3)::before{background:linear-gradient(135deg,var(--mid-dk),var(--text))}
+.ov-card:nth-child(4n+4)::before{background:var(--grad-cool)}
+/* 3D Tilt */
+.ov-card{transform-style:preserve-3d;will-change:transform}
+.ov-num{font-size:.58rem;font-weight:700;color:var(--muted);margin-bottom:.7rem}
+.ov-city{font-size:.95rem;font-weight:700;color:var(--text)}
+.ov-country{font-size:.68rem;color:var(--muted);margin-top:.1rem;margin-bottom:.8rem}
+.ov-date{font-size:.58rem;font-weight:700;padding:.25rem .7rem;border-radius:8px;display:inline-block;margin-bottom:.8rem;background:var(--mid-lt);color:var(--text)}
+.ov-expect{font-size:.78rem;color:var(--text2);line-height:1.6;font-style:italic;border-left:2px solid var(--border);padding-left:.7rem;margin-top:.5rem}
+
+/* MAP */
+#map-sec{background:rgba(139,195,217,.06)}
+.map-layout{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start}
+@media(max-width:800px){.map-layout{grid-template-columns:1fr}}
+#leaflet-map{height:500px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);z-index:1}
+.map-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);position:sticky;top:4.5rem;opacity:0;transform:translateY(8px);transition:all .4s cubic-bezier(.22,1,.36,1)}
+.map-card.show{opacity:1;transform:translateY(0)}
+.mc-name{font-size:1rem;font-weight:700;color:var(--text)}
+.mc-sub{font-size:.7rem;color:var(--muted);margin:.2rem 0 .6rem}
+.mc-date{font-size:.6rem;font-weight:700;background:var(--grad-accent);color:#fff;padding:.25rem .7rem;border-radius:8px;display:inline-block;margin-bottom:.8rem}
+.mc-expect{font-size:.75rem;color:var(--text2);line-height:1.6;font-style:italic}
+.mc-badge{margin-top:.8rem;display:inline-block;font-size:.58rem;font-weight:700;padding:.25rem .7rem;border-radius:8px;background:var(--mid-lt);color:var(--text)}
+
+/* JOURNAL */
+#journal{background:rgba(139,195,217,.04)}
+.jn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.5rem}
+.jn-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.2rem;box-shadow:var(--shadow);transition:box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.jn-card:hover{box-shadow:var(--shadow-md);border-color:rgba(139,195,217,.5)}
+.jn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0;opacity:0;transition:opacity .3s}
+.jn-card:hover::before{opacity:1}
+.jn-card:nth-child(4n+1)::before{background:linear-gradient(to right,var(--accent),var(--mid))}
+.jn-card:nth-child(4n+2)::before{background:linear-gradient(to right,var(--mid),var(--mid-dk))}
+.jn-card:nth-child(4n+3)::before{background:linear-gradient(to right,var(--mid-dk),var(--text))}
+.jn-card:nth-child(4n+4)::before{background:linear-gradient(to right,var(--text),var(--accent))}
+.jn-num{font-size:4rem;font-weight:900;color:rgba(78,125,166,.04);position:absolute;top:-.5rem;right:.8rem;line-height:1;pointer-events:none}
+.jn-city{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.jn-date{font-size:.58rem;color:var(--muted);margin-bottom:.9rem;letter-spacing:.08em}
+.jn-divider{height:1px;background:var(--border);margin-bottom:.9rem}
+.jn-compare{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.jn-col-label{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.jn-col-label.expect{color:var(--accent)}
+.jn-col-label.real{color:var(--mid-dk)}
+.jn-expect-box{background:var(--accent-lt);border:1px solid rgba(201,86,58,.15);border-radius:10px;padding:.65rem .7rem;font-size:.78rem;color:var(--text2);line-height:1.7;font-style:italic}
+.jn-real-box{background:var(--mid-lt);border:1px solid var(--border);border-radius:10px;padding:.65rem .7rem;position:relative}
+.jn-textarea{width:100%;background:transparent;border:none;color:var(--text);font-family:var(--font);font-size:.78rem;line-height:1.75;padding:0;resize:none;min-height:80px;outline:none}
+.jn-textarea::placeholder{color:var(--muted);opacity:.7}
+.jn-mood{display:flex;gap:.25rem;flex-wrap:wrap;margin-top:.5rem}
+.mood-btn{background:rgba(255,255,255,.6);border:1px solid var(--border);color:var(--text2);font-size:.72rem;padding:.18rem .42rem;cursor:pointer;border-radius:12px;transition:all .2s;font-family:var(--font);white-space:nowrap}
+.mood-btn:hover,.mood-btn.on{border-color:var(--mid-dk);color:var(--text);background:var(--mid-lt);transform:scale(1.05)}
+.jn-save{margin-top:.7rem;width:100%;padding:.45rem;font-size:.68rem;font-weight:700;background:var(--grad-mid);border:none;color:#fff;cursor:pointer;border-radius:10px;transition:all .2s;font-family:var(--font)}
+.jn-save:hover{opacity:.88;transform:scale(1.02)}
+.jn-saved{font-size:.6rem;color:var(--mid-dk);opacity:0;transition:opacity .3s;text-align:center;margin-top:.3rem}
+
+/* GALLERY */
+#gallery{background:transparent}
+.gal-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.gf{display:inline-flex;align-items:center;font-size:.7rem;font-weight:600;padding:.4rem 1rem;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s}
+.gf:hover,.gf.on{border-color:var(--accent);color:var(--accent);background:var(--accent-lt);transform:scale(1.04)}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.gal-item{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;cursor:pointer;background:var(--bg2);box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+.gal-item:hover{transform:translateY(-6px) scale(1.02);box-shadow:var(--shadow-md)}
+.gal-item:hover .gal-ov{opacity:1}
+.gal-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(139,195,217,.15),rgba(201,86,58,.08))}
+.gal-ph .phi{font-size:1.8rem;opacity:.45;margin-bottom:.3rem}
+.gal-ph .phl{font-size:.6rem;font-weight:500;color:var(--muted)}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(78,125,166,.72),transparent);opacity:0;transition:opacity .25s;display:flex;flex-direction:column;justify-content:flex-end;padding:.8rem}
+.go-city{font-size:.58rem;font-weight:700;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.08em}
+.go-cap{font-size:.8rem;font-weight:500;color:#fff;margin-top:.1rem}
+
+/* GALLERY POPUP */
+.gal-popup-bg{position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(78,125,166,0);backdrop-filter:blur(0);transition:background .3s,backdrop-filter .3s}
+.gal-popup-bg.active{background:rgba(78,125,166,.35);backdrop-filter:blur(12px)}
+.gal-popup{background:#fff;border-radius:24px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-lg);position:relative;opacity:0;transform:scale(.88) translateY(20px);transition:opacity .35s cubic-bezier(.34,1.4,.64,1),transform .35s cubic-bezier(.34,1.4,.64,1);overscroll-behavior:contain}
+.gal-popup-bg.active .gal-popup{opacity:1;transform:scale(1) translateY(0)}
+.gal-popup-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:24px 24px 0 0}
+.gal-popup-img-placeholder{width:100%;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(201,86,58,.07),rgba(212,149,42,.07));border-radius:24px 24px 0 0;cursor:pointer;transition:opacity .2s}
+.gal-popup-img-placeholder:hover{opacity:.85}
+.upload-hint{font-size:.75rem;font-weight:600;color:var(--muted);margin-top:.6rem}
+.gal-popup-close{position:absolute;top:.8rem;right:.8rem;width:30px;height:30px;border-radius:50%;background:rgba(78,125,166,.35);backdrop-filter:blur(6px);border:none;color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;z-index:1}
+.gal-popup-close:hover{background:rgba(78,125,166,.6);transform:scale(1.1) rotate(90deg)}
+.gal-popup-body{padding:1.4rem 1.4rem 2rem}
+.gal-popup-title{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.gal-popup-date{font-size:.65rem;color:var(--muted);margin-bottom:1.1rem}
+.gal-popup-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;color:var(--accent);text-transform:uppercase;margin-bottom:.45rem}
+.gal-popup-textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--font);font-size:.85rem;line-height:1.7;padding:.8rem 1rem;resize:none;min-height:88px;outline:none;transition:border-color .2s;margin-bottom:1rem}
+.gal-popup-textarea:focus{border-color:rgba(201,86,58,.4)}
+.gal-moods{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.gal-mood-btn{padding:.38rem .75rem;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;font-family:var(--font);transition:all .18s}
+.gal-mood-btn:hover,.gal-mood-btn.on{border-color:var(--accent);background:var(--accent-lt);transform:scale(1.05)}
+.gal-popup-img-change{width:100%;padding:.5rem;background:var(--accent-lt);border:1.5px dashed var(--accent);border-radius:10px;color:var(--accent);font-family:var(--font);font-size:.72rem;font-weight:600;cursor:pointer;margin-bottom:1rem;transition:background .2s;display:block;text-align:center}
+.gal-popup-img-change:hover{background:rgba(201,86,58,.15)}
+.gal-popup-save{width:100%;padding:.65rem;background:var(--grad-accent);border:none;border-radius:12px;color:#fff;font-family:var(--font);font-size:.82rem;font-weight:700;cursor:pointer;transition:opacity .2s,transform .2s;box-shadow:0 4px 16px rgba(201,86,58,.28)}
+.gal-popup-save:hover{opacity:.88;transform:scale(1.02)}
+
+/* FINALE */
+#finale{background:rgba(139,195,217,.06);text-align:center;padding:6rem 2.5rem}
+.fin-lock{width:72px;height:72px;margin:0 auto 1.5rem;background:var(--mid-lt);border:2px solid rgba(255,255,255,.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:var(--shadow);animation:float 3s ease-in-out infinite}
+.fin-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;max-width:880px;margin:2rem auto}
+.fin-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem;filter:blur(5px);user-select:none;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.fin-card::after{content:'🔒';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:rgba(233,237,242,.65);border-radius:16px}
+.fin-city{font-size:.9rem;font-weight:600;color:var(--text)}
+.fin-score{font-size:2rem;font-weight:700;color:var(--accent);margin:.3rem 0}
+.fin-label{font-size:.72rem;color:var(--muted)}
+.fin-btn{margin-top:1.5rem;font-size:.72rem;font-weight:700;padding:.75rem 2.5rem;border-radius:20px;border:none;cursor:pointer;transition:all .3s;background:var(--grad-accent);color:#fff;box-shadow:0 4px 20px rgba(201,86,58,.3)}
+.fin-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,86,58,.42)}
+
+footer{text-align:center;padding:2.5rem;border-top:1px solid var(--border);background:rgba(233,237,242,.6)}
+.footer-logo{font-size:1.1rem;font-weight:900;color:var(--accent);margin-bottom:.4rem}
+.footer-sub{font-size:.68rem;color:var(--muted)}
+
+/* ===== STEP 3 EPILOGUE ===== */
+#step-3-epilogue{display:none;position:relative;z-index:1;padding-top:52px;min-height:100vh}
+.ep-hero-inner{padding:5rem 2.5rem 3rem;text-align:center}
+.ep-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.35em;color:var(--accent);text-transform:uppercase;margin-bottom:1rem}
+.ep-title{font-size:clamp(2.5rem,8vw,6rem);font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:.95;margin-bottom:1.2rem}
+.ep-title em{font-style:normal;color:var(--accent)}
+.ep-divider{width:80px;height:3px;margin:.2rem auto 1.5rem;border-radius:2px;background:var(--grad-accent)}
+.ep-sub{font-size:1rem;color:var(--text2);max-width:480px;margin:0 auto;line-height:1.7}
+.ep-locked{padding:2rem 2.5rem 5rem;max-width:500px;margin:0 auto;text-align:center}
+.ep-lock-icon{font-size:3.5rem;margin-bottom:1.2rem;animation:float 2.5s ease-in-out infinite}
+.ep-lock-msg{font-size:.95rem;color:var(--text2);line-height:1.8;margin-bottom:2rem}
+.ep-unlock-row{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.ep-pw{font-family:var(--font);font-size:.85rem;padding:.65rem 1.2rem;border:1.5px solid var(--border);border-radius:20px;outline:none;background:var(--surface);color:var(--text);transition:border-color .2s;width:190px;text-align:center;letter-spacing:.1em}
+.ep-pw:focus{border-color:var(--accent)}
+.ep-unlock-btn{font-family:var(--font);font-size:.82rem;font-weight:700;padding:.65rem 1.8rem;border-radius:20px;border:none;background:var(--grad-accent);color:#fff;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(201,86,58,.28)}
+.ep-unlock-btn:hover{transform:translateY(-2px)}
+.ep-error{font-size:.75rem;color:var(--accent);margin-top:.7rem;min-height:1.2em}
+.ep-content{padding:0 2.5rem 4rem;max-width:1200px;margin:0 auto;display:none}
+.cs-hdr{display:flex;align-items:center;gap:.9rem;margin:2.5rem 0 1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.cs-name{font-size:1.15rem;font-weight:900;color:var(--text)}
+.cs-dates{font-size:.62rem;color:var(--muted);margin-left:auto}
+
+/* Advent cards */
+.advent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem}
+.ac{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;cursor:pointer;transition:transform .3s,box-shadow .3s;background:var(--surface);border:1px solid var(--border);min-height:180px}
+.ac:hover:not(.ac-opened){transform:translateY(-5px) scale(1.02);box-shadow:var(--shadow-md)}
+.ac-opened{cursor:default}
+.ac-front{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border-radius:var(--radius);z-index:2;transition:transform .55s cubic-bezier(.34,1.2,.64,1),opacity .4s ease;transform-origin:top center}
+.ac-front.gone{transform:scaleY(0) translateY(-20px);opacity:0;pointer-events:none}
+.ac-front-label{font-size:.75rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.06em;text-align:center;padding:0 .8rem}
+.ac-front-hint{font-size:.58rem;color:rgba(255,255,255,.55);margin-top:.2rem;animation:pulse 2s ease-in-out infinite}
+.ac-back{position:relative;z-index:1;opacity:0;transform:translateY(14px) scale(.97);transition:opacity .45s .2s,transform .45s .2s cubic-bezier(.34,1.56,.64,1)}
+.ac-back.show{opacity:1;transform:translateY(0) scale(1)}
+.ac-body{padding:.9rem 1rem 1.1rem}
+.ac-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.7rem;line-height:1.3}
+.ac-pair{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.6rem}
+.ac-box{border-radius:9px;padding:.55rem .6rem}
+.ac-box.ex{background:var(--accent-lt);border:1px solid rgba(201,86,58,.15)}
+.ac-box.re{background:var(--mid-lt);border:1px solid var(--border)}
+.ac-box-lbl{font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.3rem}
+.ac-box.ex .ac-box-lbl{color:var(--accent)}
+.ac-box.re .ac-box-lbl{color:var(--mid-dk)}
+.ac-box-txt{font-size:.7rem;color:var(--text2);line-height:1.6;word-break:keep-all}
+.ac-box-empty{font-size:.66rem;color:var(--muted);font-style:italic}
+.ac-moods{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem}
+.ac-mood{font-size:.72rem;padding:.18rem .45rem;border-radius:9px;background:var(--accent-lt);border:1px solid rgba(201,86,58,.15)}
+
+/* Score section */
+.ep-score-section{padding:0 2.5rem 3rem;max-width:1200px;margin:0 auto;display:none}
+.score-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;margin-bottom:2rem}
+.score-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.score-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.score-card:nth-child(4n+1)::before{background:var(--grad-accent)}
+.score-card:nth-child(4n+2)::before{background:var(--grad-mid)}
+.score-card:nth-child(4n+3)::before{background:var(--grad-cool)}
+.score-card:nth-child(4n+4)::before{background:linear-gradient(135deg,#D4952A,#3D9E82)}
+.score-city{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:1rem}
+.score-label{font-size:.6rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.score-slider{width:100%;appearance:none;height:5px;border-radius:3px;background:var(--border);outline:none;cursor:pointer;margin-bottom:.3rem;accent-color:var(--accent)}
+.score-display{font-size:1.6rem;font-weight:900;color:var(--accent);text-align:center;margin-top:.5rem;transition:all .3s}
+.score-emoji{font-size:1.2rem;text-align:center;margin-top:.2rem}
+
+/* Chart section */
+.ep-chart-section{padding:0 2.5rem 4rem;max-width:900px;margin:0 auto;display:none}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)}
+.chart-title{font-size:1.1rem;font-weight:900;color:var(--text);margin-bottom:1.5rem;text-align:center}
+.chart-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+@media(max-width:640px){.chart-wrap{grid-template-columns:1fr}}
+.donut-svg{width:180px;height:180px;display:block;margin:0 auto}
+.mood-legend{display:flex;flex-direction:column;gap:.6rem}
+.mood-legend-item{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--text2)}
+.mood-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.chart-bar-section{margin-top:1.5rem}
+.bar-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem}
+.bar-label{font-size:.72rem;color:var(--text2);width:70px;text-align:right;flex-shrink:0}
+.bar-bg{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.bar-val{font-size:.7rem;font-weight:700;color:var(--text);width:28px;flex-shrink:0}
+
+/* Summary */
+.ep-summary{padding:0 2.5rem 3rem;max-width:900px;margin:0 auto;display:none}
+.ep-sum-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:24px;padding:2.5rem;box-shadow:var(--shadow-md)}
+.ep-sum-title{font-size:1.3rem;font-weight:900;color:var(--text);margin-bottom:1.8rem;text-align:center}
+.ep-sum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem}
+.ep-sc{border-radius:16px;padding:1.3rem;text-align:center;background:var(--mid-lt);border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .25s}
+.ep-sc:hover{transform:translateY(-4px)}
+.ep-sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
+.ep-sc:nth-child(4n+1)::before{background:var(--grad-accent)}
+.ep-sc:nth-child(4n+2)::before{background:var(--grad-mid)}
+.ep-sc:nth-child(4n+3)::before{background:var(--grad-cool)}
+.ep-sc:nth-child(4n+4)::before{background:linear-gradient(135deg,#D4952A,#3D9E82)}
+.ep-sc-name{font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:.8rem}
+.ep-sc-icon{font-size:1.8rem;margin-bottom:.3rem}
+.ep-sc-status{font-size:.65rem;font-weight:700;color:var(--text2)}
+.ep-sc-quote{font-size:.68rem;color:var(--text2);line-height:1.6;word-break:keep-all;margin-top:.7rem;font-style:italic}
+.ep-sc-moods{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.5rem;justify-content:center}
+.ep-sc-mood{font-size:.68rem;padding:.15rem .4rem;border-radius:8px;background:var(--accent-lt);border:1px solid rgba(201,86,58,.15)}
+
+/* AI Section */
+.ep-ai-section{padding:0 2.5rem 5rem;max-width:900px;margin:0 auto;display:none}
+.ai-card{background:var(--surface);border:1.5px solid var(--border);border-radius:24px;padding:2rem;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+.ai-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,86,58,.04),rgba(74,144,217,.04),rgba(61,158,130,.04));pointer-events:none}
+.ai-card-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+.ai-icon{width:40px;height:40px;border-radius:50%;background:var(--grad-main);background-size:200%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;animation:gradShift 4s ease infinite}
+.ai-title{font-size:1.1rem;font-weight:900;color:var(--text)}
+.ai-subtitle{font-size:.72rem;color:var(--muted)}
+.ai-btn{width:100%;padding:.8rem;background:var(--grad-main);background-size:200%;border:none;border-radius:16px;color:#fff;font-family:var(--font);font-size:.85rem;font-weight:700;cursor:pointer;transition:all .3s;animation:gradShift 4s ease infinite;box-shadow:0 4px 20px rgba(201,86,58,.25)}
+.ai-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,86,58,.38)}
+.ai-btn:disabled{opacity:.6;cursor:not-allowed}
+.ai-loading{display:none;align-items:center;gap:.8rem;padding:1rem 0;color:var(--muted);font-size:.82rem}
+.ai-loading.show{display:flex}
+.ai-spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+.ai-result{display:none;margin-top:1.2rem}
+.ai-result.show{display:block;animation:fadeUp .5s ease forwards}
+.ai-result-text{font-size:.85rem;color:var(--text2);line-height:1.9;white-space:pre-wrap;background:rgba(139,195,217,.08);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem}
+.ai-result-label{font-size:.62rem;font-weight:700;letter-spacing:.15em;color:var(--accent);text-transform:uppercase;margin-bottom:.6rem}
+</style>
+</head>
+<body>
+
+<div class="blob-wrap">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="blob b3"></div><div class="blob b4"></div>
+  <div class="blob b5"></div><div class="blob b6"></div>
+</div>
+<div id="page-overlay"></div>
+
+<nav id="main-nav">
+  <div class="nav-logo" id="nav-logo"><em>TRAVEL</em> JOURNAL</div>
+  <div class="nav-links" id="nav-main-links" style="display:none">
+    <a data-section="overview" onclick="navTo('overview')">개요</a>
+    <a data-section="map-sec"  onclick="navTo('map-sec')">지도</a>
+    <a data-section="journal"  onclick="navTo('journal')">일기</a>
+    <a data-section="gallery"  onclick="navTo('gallery')">갤러리</a>
+    <span class="nav-sep"></span>
+    <a class="nav-epilogue" onclick="transitionTo(3)">귀국 후 ↗</a>
+  </div>
+  <div class="nav-back" id="nav-back" onclick="transitionTo(2)">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7-7"/></svg>
+    여행으로
+  </div>
+  <div style="display:flex;align-items:center;gap:.6rem">
+    <div class="dday-chip" id="dday-nav" style="display:none">D-???</div>
+    <button class="nav-reset" id="nav-reset-btn" onclick="resetAll()" style="display:none">처음부터</button>
+  </div>
+</nav>
+
+<!-- ===== STEP 1 SETUP ===== -->
+<div id="step-1-setup">
+  <div class="setup-wrap">
+    <div class="setup-progress">
+      <div class="progress-label">
+        <span id="prog-label">STEP 1 / 4</span>
+        <div class="progress-dots" id="prog-dots"></div>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-bar" style="width:25%"></div></div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="setup-slide active" id="slide-1">
+      <div class="slide-step">01 / 04</div>
+      <div class="slide-q">어떤 여행인가요?</div>
+      <div class="slide-desc">여행의 이름과 주인공을 알려주세요.</div>
+      <div class="tf-label">여행 제목</div>
+      <input class="tf-input" id="f-title" placeholder="예) 남미 한 달 여행" maxlength="40" onkeydown="if(event.key==='Enter')document.getElementById('f-author').focus()"/>
+      <div class="tf-error" id="e-title"></div>
+      <div style="margin-top:1.4rem">
+        <div class="tf-label">여행자 이름 / 그룹 이름</div>
+        <input class="tf-input" id="f-author" placeholder="예) DIT 64기" maxlength="30" onkeydown="if(event.key==='Enter')goSlide(2)"/>
+        <div class="tf-error" id="e-author"></div>
+      </div>
+      <div><button class="btn-next ripple-btn" onclick="goSlide(2)">다음 →</button></div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="setup-slide" id="slide-2">
+      <div class="slide-step">02 / 04</div>
+      <div class="slide-q">언제 떠나나요?</div>
+      <div class="slide-desc">출발일과 귀국일을 입력해 주세요.</div>
+      <div class="date-row">
+        <div>
+          <div class="tf-label">출발일</div>
+          <input class="tf-input" id="f-start" type="date"/>
+        </div>
+        <div class="date-sep">→</div>
+        <div>
+          <div class="tf-label">귀국일</div>
+          <input class="tf-input" id="f-end" type="date" onkeydown="if(event.key==='Enter')goSlide(3)"/>
+        </div>
+      </div>
+      <div class="tf-error" id="e-date"></div>
+      <div>
+        <button class="btn-prev" onclick="goSlide(1)">← 이전</button>
+        <button class="btn-next ripple-btn" onclick="goSlide(3)">다음 →</button>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="setup-slide" id="slide-3">
+      <div class="slide-step">03 / 04</div>
+      <div class="slide-q">어디어디 가나요?</div>
+      <div class="slide-desc">방문할 나라와 도시, 머무는 기간을 입력하세요.</div>
+      <div class="country-list" id="country-list"></div>
+      <button class="add-country-btn" onclick="addCountryRow()">+ 나라 추가</button>
+      <div class="tf-error" id="e-country"></div>
+      <div>
+        <button class="btn-prev" onclick="goSlide(2)">← 이전</button>
+        <button class="btn-next ripple-btn" onclick="goSlide(4)">다음 →</button>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="setup-slide" id="slide-4">
+      <div class="slide-step">04 / 04</div>
+      <div class="slide-q">이번 여행에서 기대하는 것은?</div>
+      <div class="slide-desc">나라별로 한 줄씩 기대평을 남겨주세요.</div>
+      <div class="expect-list" id="expect-list"></div>
+      <div style="margin-top:1.2rem">
+        <div class="tf-label">귀국 후 페이지 비밀번호</div>
+        <input class="tf-input" id="f-password" type="password" placeholder="숫자 4자리 권장" maxlength="20" onkeydown="if(event.key==='Enter')generateJournal()"/>
+        <div class="pw-hint">에필로그 페이지를 잠글 비밀번호입니다.</div>
+        <div class="tf-error" id="e-pw"></div>
+      </div>
+      <div>
+        <button class="btn-prev" onclick="goSlide(3)">← 이전</button>
+        <button class="btn-generate ripple-btn" onclick="generateJournal()">✦ 나만의 여행 일지 생성하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STEP 2 JOURNEY ===== -->
+<div id="step-2-journey">
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow" id="hero-eyebrow"></div>
+      <h1 class="hero-title">
+        <span class="sub-line" id="hero-greeting">HELLO!</span>
+        <span id="hero-title-text">MY JOURNEY</span>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub" id="hero-sub"></p>
+      <div class="hero-flags" id="hero-flags"></div>
+      <div class="hero-stats" id="hero-stats"></div>
+    </div>
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <section id="overview" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Overview</div>
+      <div class="sec-title">THE JOURNEY</div>
+      <div class="sec-sub" id="ov-sub"></div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="ov-grid" id="ov-grid"></div>
+    </div>
+  </section>
+
+  <section id="map-sec" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Route</div>
+      <div class="sec-title">THE ROUTE</div>
+      <div class="sec-sub">핀을 클릭해 여행지 정보를 확인하세요</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="map-layout">
+        <div id="leaflet-map"></div>
+        <div class="map-card" id="map-card"><div style="font-size:.82rem;color:var(--muted);text-align:center;padding:1rem 0">지도에서 핀을 클릭하세요</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="journal" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Journal</div>
+      <div class="sec-title">EXPECT vs REALITY</div>
+      <div class="sec-sub">머릿속의 상상, 두 발로 직접 채워나갈 여정</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="jn-grid" id="jn-grid"></div>
+    </div>
+  </section>
+
+  <section id="gallery" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Gallery</div>
+      <div class="sec-title">MOMENTS</div>
+      <div class="sec-sub">여행의 순간들을 모아보세요</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="gal-filters" id="gal-filters"></div>
+      <div class="gal-grid" id="gal-grid"></div>
+    </div>
+  </section>
+
+  <div class="gal-popup-bg" id="gal-popup-bg" style="display:none">
+    <div class="gal-popup">
+      <button class="gal-popup-close" onclick="closePopup()">✕</button>
+      <div id="gal-popup-img-wrap"></div>
+      <div class="gal-popup-body">
+        <div class="gal-popup-title" id="pp-title"></div>
+        <div class="gal-popup-date" id="pp-date"></div>
+        <div class="gal-popup-label">기록</div>
+        <textarea class="gal-popup-textarea" id="pp-note" placeholder="이 순간을 기록해보세요..."></textarea>
+        <div class="gal-popup-label">감정</div>
+        <div class="gal-moods">
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😍 감동</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">✨ 신비로움</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">🥰 행복</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😮 놀라움</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😢 벅참</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">🌊 자유</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😴 피곤</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">🤩 설렘</button>
+        </div>
+        <label class="gal-popup-img-change">📷 이미지 추가 / 변경<input type="file" accept="image/*" style="display:none" onchange="changePopupImg(event)"></label>
+        <button class="gal-popup-save" onclick="savePopup()">저장하기</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="finale" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Epilogue</div>
+      <div class="fin-lock">🔒</div>
+      <div class="sec-title">여행이 끝나면</div>
+      <div class="sec-sub" style="max-width:460px;margin-inline:auto">귀국 후 에필로그 페이지에서 기대와 현실을 비교하고 AI 회고록을 받아보세요</div>
+      <div class="fin-cards" id="fin-cards"></div>
+      <button class="fin-btn" onclick="transitionTo(3)">귀국 후 공개하기 →</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo" id="footer-logo">MY TRAVEL JOURNAL</div>
+    <div class="footer-sub" id="footer-sub"></div>
+  </footer>
+</div>
+
+<!-- ===== STEP 3 EPILOGUE ===== -->
+<div id="step-3-epilogue">
+  <div class="ep-hero-inner">
+    <div class="ep-eyebrow">귀국 후 · Epilogue</div>
+    <h1 class="ep-title">EXPECT<br><em>vs</em><br>REALITY</h1>
+    <div class="ep-divider"></div>
+    <p class="ep-sub">머릿속을 가득 채웠던 상상과<br>두 발로 직접 채워낸 현실의 기록</p>
+  </div>
+  <div class="ep-locked" id="ep-locked">
+    <div class="ep-lock-icon">🔒</div>
+    <p class="ep-lock-msg">여행이 끝난 후 공개됩니다.<br>비밀번호를 입력해 잠금을 해제하세요.</p>
+    <div class="ep-unlock-row">
+      <input class="ep-pw" id="ep-pw-input" type="password" placeholder="비밀번호" onkeydown="if(event.key==='Enter')tryUnlock()">
+      <button class="ep-unlock-btn" onclick="tryUnlock()">공개하기</button>
+    </div>
+    <div class="ep-error" id="ep-error"></div>
+  </div>
+
+  <!-- 점수화 -->
+  <div class="ep-score-section" id="ep-score-section">
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div class="sec-eyebrow" style="margin-bottom:.3rem">Score</div>
+      <div style="font-size:1.4rem;font-weight:900;color:var(--text)">기대 충족도 평가</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-top:.3rem">각 나라에서의 경험을 점수로 남겨보세요</div>
+    </div>
+    <div class="score-grid" id="score-grid"></div>
+  </div>
+
+  <!-- 어드벤트 카드 -->
+  <div class="ep-content" id="ep-content">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <h2 style="font-size:1.6rem;font-weight:900;color:var(--text);margin-bottom:.4rem">여정의 기억들</h2>
+      <p style="font-size:.85rem;color:var(--muted)">카드를 클릭해서 기대와 현실을 비교해보세요</p>
+    </div>
+    <div id="ep-advent-wrap"></div>
+  </div>
+
+  <!-- 차트 -->
+  <div class="ep-chart-section" id="ep-chart-section">
+    <div class="chart-card">
+      <div class="chart-title">✦ 감정 분포 & 기대충족도</div>
+      <div class="chart-wrap">
+        <div>
+          <svg class="donut-svg" id="donut-chart" viewBox="0 0 100 100"></svg>
+          <div style="text-align:center;font-size:.65rem;color:var(--muted);margin-top:.5rem">감정 분포</div>
+        </div>
+        <div class="mood-legend" id="mood-legend"></div>
+      </div>
+      <div class="chart-bar-section" id="bar-chart"></div>
+    </div>
+  </div>
+
+  <!-- 요약 -->
+  <div class="ep-summary" id="ep-summary">
+    <div class="ep-sum-card">
+      <div class="ep-sum-title">✦ 나라별 기록 요약</div>
+      <div class="ep-sum-grid" id="ep-sum-grid"></div>
+    </div>
+  </div>
+
+  <!-- AI 섹션 -->
+  <div class="ep-ai-section" id="ep-ai-section">
+    <div class="ai-card">
+      <div class="ai-card-header">
+        <div class="ai-icon">✦</div>
+        <div>
+          <div class="ai-title">AI 여행 회고록</div>
+          <div class="ai-subtitle">여행 기록을 분석해 감성적인 회고록을 생성합니다</div>
+        </div>
+      </div>
+      <button class="ai-btn" id="ai-gen-btn" onclick="generateAIReport()">✦ AI 회고록 생성하기</button>
+      <div class="ai-loading" id="ai-loading">
+        <div class="ai-spinner"></div>
+        <span id="ai-loading-text">여행의 기억을 분석하는 중...</span>
+      </div>
+      <div class="ai-result" id="ai-result">
+        <div class="ai-result-label">AI 생성 회고록</div>
+        <div class="ai-result-text" id="ai-result-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== STATE ===== */
+const STORAGE_KEY='travelData', JOURNAL_KEY='journalEntries', GALLERY_KEY='galleryItems', SCORE_KEY='epScores';
+let TD=null, jStore={}, galItems=[], openedAC=new Set(), curFilter='all', ppId=null, ppTmpImg=null, currentStep=0, epScores={};
+
+const GEO_MAP={
+  '페루':[-9.19,-75.01],'peru':[-9.19,-75.01],'볼리비아':[-16.29,-63.59],'bolivia':[-16.29,-63.59],
+  '아르헨티나':[-38.41,-63.62],'argentina':[-38.41,-63.62],'브라질':[-14.24,-51.93],'brazil':[-14.24,-51.93],
+  '칠레':[-35.68,-71.54],'chile':[-35.68,-71.54],'콜롬비아':[4.57,-74.3],'colombia':[4.57,-74.3],
+  '에콰도르':[-1.83,-78.18],'ecuador':[-1.83,-78.18],'우루과이':[-32.52,-55.77],'uruguay':[-32.52,-55.77],
+  '파라과이':[-23.44,-58.44],'paraguay':[-23.44,-58.44],'베네수엘라':[6.42,-66.59],'venezuela':[6.42,-66.59],
+  '일본':[36.2,138.25],'japan':[36.2,138.25],'미국':[37.09,-95.71],'usa':[37.09,-95.71],
+  '프랑스':[46.23,2.21],'france':[46.23,2.21],'이탈리아':[41.87,12.57],'italy':[41.87,12.57],
+  '스페인':[40.46,-3.75],'spain':[40.46,-3.75],'독일':[51.17,10.45],'germany':[51.17,10.45],
+  '영국':[55.38,-3.44],'uk':[55.38,-3.44],'태국':[15.87,100.99],'thailand':[15.87,100.99],
+  '베트남':[14.06,108.28],'vietnam':[14.06,108.28],'인도네시아':[-0.79,113.92],'indonesia':[-0.79,113.92],
+  '호주':[-25.27,133.78],'australia':[-25.27,133.78],'캐나다':[56.13,-106.35],'canada':[56.13,-106.35],
+  '멕시코':[23.63,-102.55],'mexico':[23.63,-102.55],'중국':[35.86,104.2],'china':[35.86,104.2],
+  '인도':[20.59,78.96],'india':[20.59,78.96],'터키':[38.96,35.24],'turkey':[38.96,35.24],
+  '그리스':[39.07,21.82],'greece':[39.07,21.82],'포르투갈':[39.4,-8.22],'portugal':[39.4,-8.22],
+};
+function getCoords(n){const k=n.trim().toLowerCase();return GEO_MAP[k]||GEO_MAP[n.trim()]||null}
+function saveTD(){localStorage.setItem(STORAGE_KEY,JSON.stringify(TD))}
+function loadTD(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))}catch(e){return null}}
+function saveJournal(){localStorage.setItem(JOURNAL_KEY,JSON.stringify(jStore))}
+function loadJournal(){try{return JSON.parse(localStorage.getItem(JOURNAL_KEY))||{}}catch(e){return{}}}
+function saveGallery(){const s=galItems.map(({imgUrl,...r})=>r);localStorage.setItem(GALLERY_KEY,JSON.stringify(s))}
+function loadGallery(){try{return JSON.parse(localStorage.getItem(GALLERY_KEY))||[]}catch(e){return[]}}
+function saveScores(){localStorage.setItem(SCORE_KEY,JSON.stringify(epScores))}
+function loadScores(){try{return JSON.parse(localStorage.getItem(SCORE_KEY))||{}}catch(e){return{}}}
+
+/* ===== PAGE TRANSITION ===== */
+function transitionTo(n){
+  const ov=document.getElementById('page-overlay');
+  ov.classList.add('active');
+  setTimeout(()=>{showStep(n);ov.classList.remove('active');},380);
+}
+
+/* ===== STEP CONTROL ===== */
+function showStep(n){
+  document.getElementById('step-1-setup').style.display   = n===1?'block':'none';
+  document.getElementById('step-2-journey').style.display = n===2?'block':'none';
+  document.getElementById('step-3-epilogue').style.display= n===3?'block':'none';
+  const nm=document.getElementById('nav-main-links');
+  const nb=document.getElementById('nav-back');
+  const dd=document.getElementById('dday-nav');
+  const rb=document.getElementById('nav-reset-btn');
+  nm.style.display=n===2?'flex':'none';
+  nb.style.display=n===3?'flex':'none';
+  dd.style.display=n!==1?'flex':'none';
+  rb.style.display=n!==1?'block':'none';
+  window.scrollTo(0,0);
+  currentStep=n;
+}
+function resetAll(){
+  if(!confirm('처음부터 다시 시작하면 저장된 데이터가 삭제됩니다.')) return;
+  [STORAGE_KEY,JOURNAL_KEY,GALLERY_KEY,SCORE_KEY].forEach(k=>localStorage.removeItem(k));
+  location.reload();
+}
+
+/* ===== RIPPLE ===== */
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.ripple-btn'); if(!btn) return;
+  const r=document.createElement('span'); r.className='ripple-circle';
+  const rect=btn.getBoundingClientRect(); const sz=Math.max(rect.width,rect.height);
+  r.style.cssText=`width:${sz}px;height:${sz}px;top:${e.clientY-rect.top-sz/2}px;left:${e.clientX-rect.left-sz/2}px`;
+  btn.appendChild(r); setTimeout(()=>r.remove(),600);
+});
+
+/* ===== NAV SCROLL ===== */
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);
+},{passive:true});
+
+/* ===== STEP 1 FORM ===== */
+let slideIndex=1;
+const DEMO={title:'남미 한 달 어드벤처',author:'DIT 64기',start:'2026-04-25',end:'2026-05-14'};
+const DEMO_COUNTRIES=[['페루','리마·이카·쿠스코·마추픽추','04.25–05.03'],['볼리비아','라파스·우유니','05.03–05.07'],['아르헨티나','부에노스아이레스·이과수','05.07–05.12'],['브라질','이과수·상파울루','05.12–05.14']];
+const DEMO_EXPECTS=['나스카 라인 경비행기, 마추픽추 서킷 투어, 비니쿤카 무지개 산','우유니 소금사막 선셋과 별빛, 기차 공동묘지','El Ateneo 서점, 피아졸라 탱고 공연, 이과수 악마의 목구멍','브라질 이과수 전경, 보트 투어로 폭포 속 뛰어들기'];
+
+function goSlide(n){
+  // Validation
+  if(n>slideIndex){
+    if(slideIndex===1){
+      if(!document.getElementById('f-title').value.trim()){document.getElementById('f-title').value=DEMO.title}
+      if(!document.getElementById('f-author').value.trim()){document.getElementById('f-author').value=DEMO.author}
+    }
+    if(slideIndex===2){
+      if(!document.getElementById('f-start').value) document.getElementById('f-start').value=DEMO.start;
+      if(!document.getElementById('f-end').value)   document.getElementById('f-end').value=DEMO.end;
+      const s=new Date(document.getElementById('f-start').value),e=new Date(document.getElementById('f-end').value);
+      if(s>e){document.getElementById('e-date').textContent='출발일이 귀국일보다 늦습니다.';return;}
+      document.getElementById('e-date').textContent='';
+    }
+    if(slideIndex===3){
+      const rows=document.querySelectorAll('.country-row');
+      if(!rows.length){
+        DEMO_COUNTRIES.forEach(c=>addCountryRow(...c));
+      } else {
+        document.getElementById('e-country').textContent='';
+      }
+    }
+  }
+  const cur=document.getElementById('slide-'+slideIndex);
+  cur.classList.remove('active'); cur.classList.add('exit');
+  setTimeout(()=>{cur.classList.remove('exit');},250);
+  const next=document.getElementById('slide-'+n);
+  next.classList.add('active');
+  slideIndex=n;
+  if(n===4){
+    syncExpectRows();
+    setTimeout(()=>{
+      document.querySelectorAll('#expect-list input').forEach((inp,i)=>{if(!inp.value.trim())inp.value=DEMO_EXPECTS[i]||'';});
+      if(!document.getElementById('f-password').value) document.getElementById('f-password').value='1234';
+    },30);
+  }
+  updateProgress(n);
+}
+
+function updateProgress(n){
+  document.getElementById('prog-bar').style.width=(n/4*100)+'%';
+  document.getElementById('prog-label').textContent=`STEP ${n} / 4`;
+  document.querySelectorAll('.pdot').forEach((d,i)=>{
+    d.classList.toggle('active',i===n-1); d.classList.toggle('done',i<n-1);
+  });
+}
+
+let countryCount=0;
+function addCountryRow(name='',city='',range=''){
+  countryCount++;
+  const num=countryCount;
+  const div=document.createElement('div');
+  div.className='country-row'; div.dataset.num=num;
+  div.innerHTML=`<span class="country-num">${num}</span>
+    <input placeholder="나라 이름" value="${name}" class="c-name" onkeydown="if(event.key==='Enter')this.closest('.country-row').querySelector('.c-city').focus()"/>
+    <input placeholder="도시" value="${city}" class="c-city date-input" onkeydown="if(event.key==='Enter')this.closest('.country-row').querySelector('.c-range').focus()"/>
+    <input placeholder="기간 (예: 04.25~05.01)" value="${range}" class="c-range date-input"/>
+    <button class="country-del" onclick="delCountryRow(this)" title="삭제">✕</button>`;
+  div.style.cssText='opacity:0;transform:translateX(10px)';
+  document.getElementById('country-list').appendChild(div);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{div.style.transition='opacity .3s,transform .3s';div.style.opacity='1';div.style.transform='translateX(0)';}));
+}
+function delCountryRow(btn){
+  const row=btn.closest('.country-row');
+  row.style.transition='opacity .25s,transform .25s';
+  row.style.opacity='0'; row.style.transform='translateX(-10px)';
+  setTimeout(()=>{row.remove();document.querySelectorAll('.country-row').forEach((r,i)=>r.querySelector('.country-num').textContent=i+1);},250);
+}
+function syncExpectRows(){
+  const rows=document.querySelectorAll('.country-row');
+  const wrap=document.getElementById('expect-list'); wrap.innerHTML='';
+  const EMOJIS=['🌄','🌊','🏔️','🌿','🎭','✈️','🍽️','🌺','🗺️'];
+  rows.forEach((r,i)=>{
+    const name=r.querySelector('.c-name').value.trim()||`나라 ${i+1}`;
+    const div=document.createElement('div'); div.className='expect-row';
+    div.innerHTML=`<span class="expect-emoji">${EMOJIS[i%EMOJIS.length]}</span><input placeholder="${name}에서 기대하는 것은?" data-idx="${i}"/>`;
+    wrap.appendChild(div);
+  });
+}
+
+/* Progress dots init */
+(function(){const wrap=document.getElementById('prog-dots');for(let i=0;i<4;i++){const d=document.createElement('div');d.className='pdot'+(i===0?' active':'');wrap.appendChild(d);}})();
+
+function generateJournal(){
+  const title=document.getElementById('f-title').value.trim();
+  const author=document.getElementById('f-author').value.trim();
+  const start=document.getElementById('f-start').value;
+  const end=document.getElementById('f-end').value;
+  const pw=document.getElementById('f-password').value;
+  if(!title){document.getElementById('e-title').textContent='여행 제목을 입력해주세요.';goSlide(1);return;}
+  if(!start||!end){document.getElementById('e-date').textContent='날짜를 입력해주세요.';goSlide(2);return;}
+  if(!pw){document.getElementById('e-pw').textContent='비밀번호를 설정해주세요.';return;}
+  const countryRows=document.querySelectorAll('.country-row');
+  if(!countryRows.length){alert('방문할 나라를 추가해주세요.');goSlide(3);return;}
+  const countries=[];
+  countryRows.forEach((r,i)=>{
+    const name=r.querySelector('.c-name').value.trim();
+    const city=r.querySelector('.c-city').value.trim();
+    const range=r.querySelector('.c-range').value.trim();
+    countries.push({id:`c${i}`,name,city,range,coords:getCoords(name),expect:''});
+  });
+  document.querySelectorAll('#expect-list input').forEach((inp,i)=>{if(countries[i])countries[i].expect=inp.value.trim();});
+  const EMOJIS=['🌄','🌊','🏔️','🌿','🎭','✈️','🍽️','🌺'];
+  const galInit=[];
+  countries.forEach((c,ci)=>{
+    galInit.push({id:`${c.id}-0`,cIdx:ci,e:EMOJIS[ci*2%EMOJIS.length],l:c.name+' 도착',cap:'여행의 시작',note:'',moods:[],imgUrl:null});
+    galInit.push({id:`${c.id}-1`,cIdx:ci,e:EMOJIS[(ci*2+1)%EMOJIS.length],l:c.name+' 여행',cap:'특별한 순간들',note:'',moods:[],imgUrl:null});
+  });
+  TD={title,author,start,end,password:pw,countries};
+  saveTD(); galItems=galInit; saveGallery(); jStore={}; saveJournal();
+  buildJourney(); transitionTo(2);
+}
+
+/* ===== BUILD JOURNEY ===== */
+function buildJourney(){
+  if(!TD) return;
+  const {title,author,start,end,countries}=TD;
+  const dep=new Date(start);
+  function updateDday(){
+    const d=Math.ceil((dep-new Date())/864e5);
+    const el=document.getElementById('dday-nav');
+    if(el) el.textContent=d>0?'D-'+d:d===0?'D-DAY':'D+'+Math.abs(d);
+  }
+  updateDday(); setInterval(updateDday,60000);
+  const s=new Date(start),e=new Date(end);
+  const days=Math.round((e-s)/864e5)+1, nights=days-1;
+  const fmt=d=>d.replace(/-/g,'.');
+
+  // Hero
+  document.getElementById('hero-eyebrow').textContent=`${author} · 여행 일지`;
+  document.getElementById('hero-title-text').textContent=title.toUpperCase();
+  document.getElementById('hero-sub').textContent=`${fmt(start)} — ${fmt(end)}`;
+  const flagsEl=document.getElementById('hero-flags'); flagsEl.innerHTML='';
+  countries.forEach((c,i)=>{
+    const d=document.createElement('div'); d.className='hf';
+    d.style.cssText=`opacity:0;animation:fadeUp .6s ${.9+i*.15}s forwards`;
+    d.innerHTML=`<div class="hf-info"><div class="name">${c.name}</div><div class="date">${c.range||'—'}</div></div>`;
+    flagsEl.appendChild(d);
+  });
+  const statsEl=document.getElementById('hero-stats'); statsEl.innerHTML='';
+  [{n:days,l:'Days'},{n:nights,l:'Nights'},{n:countries.length,l:'Countries'}].forEach((s,i)=>{
+    const d=document.createElement('div'); d.className='hs';
+    d.style.cssText=`opacity:0;animation:countUp .6s ${1.1+i*.15}s forwards`;
+    d.innerHTML=`<div class="hs-num">${s.n}</div><div class="hs-label">${s.l}</div>`;
+    statsEl.appendChild(d);
+  });
+
+  // Overview
+  document.getElementById('ov-sub').textContent=`${fmt(start)} — ${fmt(end)} · ${nights}박 ${days}일 · ${countries.length}개국`;
+  const ovGrid=document.getElementById('ov-grid'); ovGrid.innerHTML='';
+  countries.forEach((c,i)=>{
+    const div=document.createElement('div'); div.className='ov-card reveal';
+    div.innerHTML=`<div class="ov-num">0${i+1} / 0${countries.length}</div>
+      <div class="ov-city">${c.name}</div>
+      <div class="ov-country">${c.city||'—'}</div>
+      <div class="ov-date">${c.range||'—'}</div>
+      ${c.expect?`<div class="ov-expect">"${c.expect}"</div>`:''}`;
+    // 3D tilt
+    div.addEventListener('mousemove',e=>{
+      const r=div.getBoundingClientRect();
+      const x=((e.clientX-r.left)/r.width-.5)*14;
+      const y=((e.clientY-r.top)/r.height-.5)*-14;
+      div.style.transform=`translateY(-8px) rotate(.5deg) perspective(600px) rotateX(${y}deg) rotateY(${x}deg)`;
+    });
+    div.addEventListener('mouseleave',()=>{div.style.transform='';});
+    ovGrid.appendChild(div);
+  });
+
+  // Journal
+  const jnGrid=document.getElementById('jn-grid'); jnGrid.innerHTML='';
+  countries.forEach((c,i)=>{
+    const key=c.id; const entry=jStore[key]||{text:'',moods:[]};
+    const div=document.createElement('div'); div.className='jn-card reveal';
+    div.innerHTML=`<div class="jn-num">0${i+1}</div>
+      <div class="jn-city">${c.name}${c.city?' — '+c.city:''}</div>
+      <div class="jn-date">${c.range||'—'}</div>
+      <div class="jn-divider"></div>
+      <div class="jn-compare">
+        <div>
+          <div class="jn-col-label expect">✦ 기대</div>
+          <div class="jn-expect-box">${c.expect||'(기대평 없음)'}</div>
+        </div>
+        <div>
+          <div class="jn-col-label real">◎ 현실</div>
+          <div class="jn-real-box">
+            <textarea class="jn-textarea" id="jt-${key}" placeholder="여행 중 기록하세요...">${entry.text}</textarea>
+            <div class="jn-mood" id="jm-${key}">
+              <button class="mood-btn" onclick="toggleMood(this)">😍 감동</button>
+              <button class="mood-btn" onclick="toggleMood(this)">🤢 힘듦</button>
+              <button class="mood-btn" onclick="toggleMood(this)">😅 당황</button>
+              <button class="mood-btn" onclick="toggleMood(this)">😴 피곤</button>
+              <button class="mood-btn" onclick="toggleMood(this)">✨ 신비</button>
+            </div>
+            <button class="jn-save" onclick="saveJ('${key}')">저장</button>
+            <div class="jn-saved" id="sv-${key}">✓ 저장됨</div>
+          </div>
+        </div>
+      </div>`;
+    jnGrid.appendChild(div);
+    if(entry.moods&&entry.moods.length){
+      setTimeout(()=>div.querySelectorAll('.mood-btn').forEach(b=>{if(entry.moods.includes(b.textContent.trim()))b.classList.add('on');}),100);
+    }
+  });
+
+  // Gallery filters
+  const gf=document.getElementById('gal-filters');
+  gf.innerHTML=`<button class="gf on" onclick="filterG('all',this)">전체</button>`;
+  countries.forEach((c,i)=>{
+    const b=document.createElement('button'); b.className='gf'; b.onclick=function(){filterG(i,this);};
+    b.textContent=c.name; gf.appendChild(b);
+  });
+  renderGallery('all');
+
+  // Finale
+  const fc=document.getElementById('fin-cards'); fc.innerHTML='';
+  countries.forEach(c=>{
+    const d=document.createElement('div'); d.className='fin-card';
+    d.innerHTML=`<div class="fin-city">${c.name}</div><div class="fin-score">?.?</div><div class="fin-label">기대 충족도</div>`;
+    fc.appendChild(d);
+  });
+
+  document.getElementById('footer-logo').textContent=title.toUpperCase();
+  document.getElementById('footer-sub').textContent=`© ${author} · ${fmt(start)} — ${fmt(end)} · ${countries.length}개국`;
+
+  // Reveal observer
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}}),{threshold:.08});
+  document.querySelectorAll('#step-2-journey .reveal, #step-2-journey .reveal-left, #step-2-journey .reveal-right').forEach(el=>obs.observe(el));
+
+  initMap();
+  initNavHighlight();
+}
+
+/* ===== MAP ===== */
+function initMap(){
+  if(window._mapInited) return;
+  if(window.L){window._mapInited=true;buildMap();return;}
+  const s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+  s.onload=()=>{window._mapInited=true;setTimeout(buildMap,100);};
+  s.onerror=()=>console.warn('Leaflet 로드 실패');
+  document.head.appendChild(s);
+}
+function buildMap(){
+  const L=window.L; const mapEl=document.getElementById('leaflet-map');
+  if(mapEl._leaflet_id) return;
+  const countries=TD.countries;
+  const vc=countries.filter(c=>c.coords).map(c=>c.coords);
+  const center=vc.length?[vc.reduce((a,c)=>a+c[0],0)/vc.length,vc.reduce((a,c)=>a+c[1],0)/vc.length]:[0,0];
+  const map=L.map('leaflet-map',{zoomControl:true,scrollWheelZoom:false}).setView(center,vc.length>1?3:5);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:20,subdomains:'abcd'}).addTo(map);
+  const COLORS=['#C9563A','#8BC3D9','#699EBF','#4E7DA6','#D4952A','#4A90D9'];
+  if(vc.length>1){
+    L.polyline(vc,{color:'rgba(139,195,217,.3)',weight:5}).addTo(map);
+    L.polyline(vc,{color:'#C9563A',weight:2,dashArray:'9 6',opacity:.8}).addTo(map);
+  }
+  countries.forEach((c,i)=>{
+    if(!c.coords) return;
+    const col=COLORS[i%COLORS.length];
+    const icon=L.divIcon({className:'',html:`<div style="width:36px;height:36px;border-radius:50%;background:${col};border:3px solid #fff;box-shadow:0 3px 12px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform=''">  ${i+1}</div>`,iconSize:[36,36],iconAnchor:[18,18]});
+    const mk=L.marker(c.coords,{icon}).addTo(map);
+    const popup=`<div style="font-family:'Noto Sans KR',sans-serif"><div style="font-size:.9rem;font-weight:700;color:#4E7DA6">${c.name}</div><div style="font-size:.68rem;color:#8BC3D9;margin:.1rem 0 .4rem">${c.range||'—'}</div>${c.city?`<div style="font-size:.72rem;color:#699EBF">${c.city}</div>`:''}${c.expect?`<div style="font-size:.7rem;color:#4E7DA6;margin-top:.5rem;font-style:italic">"${c.expect}"</div>`:''}</div>`;
+    mk.bindPopup(popup,{maxWidth:220});
+    mk.on('click',()=>{map.flyTo(c.coords,6,{animate:true,duration:1.1});showMapCard(c,col);});
+  });
+  window._map=map;
+}
+function showMapCard(c,col){
+  const card=document.getElementById('map-card');
+  card.classList.remove('show');
+  card.innerHTML=`<div class="mc-name">${c.name}</div><div class="mc-sub">${c.city||''}</div><div class="mc-date" style="background:${col}">${c.range||'—'}</div><div style="height:1px;background:var(--border);margin:.6rem 0"></div>${c.expect?`<div class="mc-expect">"${c.expect}"</div>`:'<div style="font-size:.75rem;color:var(--muted)">기대평이 없어요.</div>'}<div class="mc-badge">예정</div>`;
+  setTimeout(()=>card.classList.add('show'),10);
+}
+
+/* ===== NAV HIGHLIGHT ===== */
+const NAV_SECTIONS=['overview','map-sec','journal','gallery'];
+let isNavScrolling=false,navScrollTimer=null;
+function navTo(id){
+  const el=document.getElementById(id); if(!el) return;
+  document.querySelectorAll('.nav-links a[data-section]').forEach(a=>a.classList.toggle('active',a.dataset.section===id));
+  isNavScrolling=true; clearTimeout(navScrollTimer);
+  const top=el.getBoundingClientRect().top+window.scrollY-60;
+  window.scrollTo({top,behavior:'smooth'});
+  navScrollTimer=setTimeout(()=>isNavScrolling=false,800);
+}
+function initNavHighlight(){
+  const links=document.querySelectorAll('.nav-links a[data-section]');
+  function onScroll(){
+    if(isNavScrolling||currentStep!==2) return;
+    const ov=document.getElementById('overview'); if(!ov) return;
+    if(window.scrollY<ov.offsetTop-80){links.forEach(a=>a.classList.remove('active'));return;}
+    let cur=null; const thr=62;
+    NAV_SECTIONS.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=thr)cur=id;});
+    links.forEach(a=>a.classList.toggle('active',a.dataset.section===cur));
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+}
+
+/* ===== JOURNAL ===== */
+function toggleMood(btn){btn.classList.toggle('on');}
+function saveJ(key){
+  jStore[key]={text:document.getElementById('jt-'+key).value,moods:Array.from(document.querySelectorAll(`#jm-${key} .mood-btn.on`)).map(b=>b.textContent.trim())};
+  saveJournal();
+  const el=document.getElementById('sv-'+key); el.style.opacity='1';
+  setTimeout(()=>el.style.opacity='0',2200);
+}
+
+/* ===== GALLERY ===== */
+function renderGallery(f){
+  curFilter=f;
+  const g=document.getElementById('gal-grid');
+  const list=f==='all'?galItems:galItems.filter(it=>it.cIdx===f);
+  g.innerHTML='';
+  if(!list.length){g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">사진이 없어요 📷</div>`;return;}
+  list.forEach((it,idx)=>{
+    const d=document.createElement('div'); d.className='gal-item';
+    d.style.cssText=`opacity:0;animation:fadeUp .5s ${idx*.05}s forwards`;
+    d.onclick=()=>openPopup(it.id);
+    d.innerHTML=it.imgUrl
+      ?`<img src="${it.imgUrl}" style="width:100%;height:100%;object-fit:cover;display:block"><div class="gal-ov"><div class="go-city">${it.l}</div><div class="go-cap">${it.cap}${it.note?' · 기록됨':''}</div></div>`
+      :`<div class="gal-ph"><div class="phi">${it.e}</div><div class="phl">${it.l}</div></div><div class="gal-ov"><div class="go-city">${it.l}</div><div class="go-cap">${it.cap}${it.note?' · 기록됨':''}</div></div>`;
+    g.appendChild(d);
+  });
+}
+function filterG(f,btn){document.querySelectorAll('.gf').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderGallery(f);}
+
+/* ===== GALLERY POPUP ===== */
+function openPopup(id){
+  const it=galItems.find(x=>x.id===id); if(!it) return;
+  ppId=id; ppTmpImg=null;
+  document.getElementById('gal-popup-img-wrap').innerHTML=it.imgUrl
+    ?`<img src="${it.imgUrl}" class="gal-popup-img">`
+    :`<div class="gal-popup-img-placeholder" onclick="document.getElementById('pp-file-inp').click()"><div style="font-size:3rem;opacity:.3">${it.e}</div><div class="upload-hint">탭해서 사진 추가하기</div><input type="file" id="pp-file-inp" accept="image/*" style="display:none" onchange="changePopupImg(event)"></div>`;
+  const cName=TD&&TD.countries[it.cIdx]?TD.countries[it.cIdx].name:'';
+  document.getElementById('pp-title').textContent=it.l;
+  document.getElementById('pp-date').textContent=cName;
+  document.getElementById('pp-note').value=it.note||'';
+  document.querySelectorAll('.gal-mood-btn').forEach(b=>b.classList.toggle('on',it.moods&&it.moods.includes(b.textContent.trim())));
+  const bg=document.getElementById('gal-popup-bg');
+  bg.style.display='flex'; document.body.style.overflow='hidden';
+  bg.onclick=e=>{if(e.target===bg)closePopup();};
+  requestAnimationFrame(()=>requestAnimationFrame(()=>bg.classList.add('active')));
+}
+function closePopup(){
+  const bg=document.getElementById('gal-popup-bg');
+  bg.classList.remove('active');
+  setTimeout(()=>{bg.style.display='none';document.body.style.overflow='';ppId=null;ppTmpImg=null;},440);
+}
+function toggleGalMood(btn){btn.classList.toggle('on');}
+function changePopupImg(e){
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=ev=>{ppTmpImg=ev.target.result;document.getElementById('gal-popup-img-wrap').innerHTML=`<img src="${ppTmpImg}" class="gal-popup-img">`;};
+  r.readAsDataURL(file);
+}
+function savePopup(){
+  const it=galItems.find(x=>x.id===ppId); if(!it) return;
+  it.note=document.getElementById('pp-note').value;
+  it.moods=Array.from(document.querySelectorAll('.gal-mood-btn.on')).map(b=>b.textContent.trim());
+  if(ppTmpImg) it.imgUrl=ppTmpImg;
+  saveGallery(); closePopup(); renderGallery(curFilter);
+}
+
+/* ===== EPILOGUE ===== */
+function tryUnlock(){
+  const val=document.getElementById('ep-pw-input').value.trim();
+  const err=document.getElementById('ep-error');
+  if(!TD){err.textContent='여행 데이터가 없습니다.';return;}
+  if(val===TD.password){
+    err.textContent='';
+    document.getElementById('ep-locked').style.display='none';
+    ['ep-score-section','ep-content','ep-chart-section','ep-summary','ep-ai-section'].forEach(id=>{
+      const el=document.getElementById(id); el.style.display='block';
+      el.style.cssText='display:block;opacity:0;animation:fadeUp .6s forwards';
+    });
+    renderEpilogue();
+  } else {
+    err.textContent='비밀번호가 틀렸어요. 🔒';
+    document.getElementById('ep-pw-input').value='';
+    document.getElementById('ep-pw-input').classList.add('error');
+    setTimeout(()=>document.getElementById('ep-pw-input').classList.remove('error'),800);
+  }
+}
+
+function renderEpilogue(){
+  epScores=loadScores();
+  renderScoreSection();
+  renderAdventCards();
+  renderCharts();
+  renderEpSummary();
+}
+
+/* Score */
+function renderScoreSection(){
+  const sg=document.getElementById('score-grid'); sg.innerHTML='';
+  const SCORE_EMOJIS=['😢','😕','😐','🙂','😊','😃','🤩'];
+  TD.countries.forEach(c=>{
+    const score=epScores[c.id]||5;
+    const div=document.createElement('div'); div.className='score-card';
+    div.innerHTML=`<div class="score-city">${c.name}</div>
+      <div class="score-label">기대 충족도</div>
+      <input type="range" class="score-slider" min="1" max="10" value="${score}" id="sc-${c.id}" oninput="updateScore('${c.id}',this.value)">
+      <div class="score-display" id="sd-${c.id}">${score}<span style="font-size:.9rem">/10</span></div>
+      <div class="score-emoji" id="se-${c.id}">${SCORE_EMOJIS[Math.round((score-1)/9*6)]}</div>`;
+    sg.appendChild(div);
+    setTimeout(()=>{div.style.transition='opacity .5s,transform .5s';div.style.opacity='1';},100);
+  });
+}
+function updateScore(id,val){
+  const EMOJIS=['😢','😕','😐','🙂','😊','😃','🤩'];
+  epScores[id]=parseInt(val);
+  document.getElementById('sd-'+id).innerHTML=`${val}<span style="font-size:.9rem">/10</span>`;
+  document.getElementById('se-'+id).textContent=EMOJIS[Math.round((val-1)/9*6)];
+  saveScores();
+  updateBarChart();
+}
+
+/* Advent cards */
+function renderAdventCards(){
+  const GRADS=['linear-gradient(135deg,#C9563A,#E8896F)','linear-gradient(135deg,#D4952A,#F0C060)','linear-gradient(135deg,#8BC3D9,#699EBF)','linear-gradient(135deg,#699EBF,#4E7DA6)','linear-gradient(135deg,#4E7DA6,#3a6080)','linear-gradient(135deg,#C9563A,#D4952A)'];
+  const wrap=document.getElementById('ep-advent-wrap'); wrap.innerHTML='';
+  TD.countries.forEach((c,ci)=>{
+    const hdr=document.createElement('div'); hdr.className='cs-hdr';
+    hdr.innerHTML=`<div class="cs-name">${c.name}</div><div class="cs-dates">${c.range||'—'}</div>`;
+    wrap.appendChild(hdr);
+    const grid=document.createElement('div'); grid.className='advent-grid'; wrap.appendChild(grid);
+    ['도착 & 첫인상','기억에 남는 순간'].forEach((label,j)=>{
+      const cardId=`ep-${c.id}-${j}`;
+      const el=document.createElement('div');
+      el.className='ac'; el.id=cardId;
+      el.innerHTML=buildAC(cardId,c,ci,label,GRADS[ci%GRADS.length],false);
+      el.onclick=()=>openAC(cardId,c,ci,label,GRADS[ci%GRADS.length]);
+      el.style.cssText='opacity:0;transform:translateY(22px)';
+      setTimeout(()=>{el.style.transition='opacity .55s ease,transform .55s cubic-bezier(.34,1.56,.64,1)';el.style.opacity='1';el.style.transform='translateY(0)';},j*100+ci*200+150);
+      grid.appendChild(el);
+    });
+  });
+}
+function buildAC(cardId,c,ci,label,grad,opened){
+  const entry=jStore[c.id]||{text:'',moods:[]};
+  const hasReal=entry.text&&entry.text.trim().length>0;
+  return `<div class="ac-front${opened?' gone':''}" style="background:${grad}">
+    <div style="font-size:2.5rem;animation:float 3s ease-in-out infinite">🌍</div>
+    <div class="ac-front-label">${c.name} · ${label}</div>
+    <div class="ac-front-hint">클릭해서 열기 ✦</div>
+  </div>
+  <div class="ac-back${opened?' show':''}">
+    <div style="width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.3;background:linear-gradient(135deg,rgba(139,195,217,.15),rgba(201,86,58,.08))">🌍</div>
+    <div class="ac-body">
+      <div class="ac-title">${c.name} — ${label}</div>
+      <div style="font-size:.62rem;color:var(--muted);margin-bottom:.6rem">${c.range||'—'}</div>
+      <div class="ac-pair">
+        <div class="ac-box ex"><div class="ac-box-lbl">✦ 기대</div><div class="ac-box-txt">${c.expect||'(없음)'}</div></div>
+        <div class="ac-box re"><div class="ac-box-lbl">◎ 현실</div>${hasReal?`<div class="ac-box-txt">${entry.text}</div>`:`<div class="ac-box-empty">아직 기록 없음</div>`}</div>
+      </div>
+      ${entry.moods&&entry.moods.length?`<div class="ac-moods">${entry.moods.map(m=>`<span class="ac-mood">${m}</span>`).join('')}</div>`:''}
+    </div>
+  </div>`;
+}
+function openAC(cardId,c,ci,label,grad){
+  if(openedAC.has(cardId)) return;
+  openedAC.add(cardId);
+  const el=document.getElementById(cardId); if(!el) return;
+  el.innerHTML=buildAC(cardId,c,ci,label,grad,true);
+  el.onclick=null; el.classList.add('ac-opened');
+}
+
+/* Charts */
+const MOOD_COLORS=['#C9563A','#D4952A','#8BC3D9','#4A90D9','#3D9E82','#699EBF','#E8896F','#F0C060'];
+function renderCharts(){
+  buildDonutChart();
+  buildBarChart();
+}
+function getMoodTotals(){
+  const totals={};
+  Object.values(jStore).forEach(e=>{
+    (e.moods||[]).forEach(m=>{ totals[m]=(totals[m]||0)+1; });
+  });
+  return totals;
+}
+function buildDonutChart(){
+  const totals=getMoodTotals();
+  const entries=Object.entries(totals).sort((a,b)=>b[1]-a[1]);
+  const total=entries.reduce((s,[,v])=>s+v,0)||1;
+  const svg=document.getElementById('donut-chart');
+  const legend=document.getElementById('mood-legend');
+  svg.innerHTML=''; legend.innerHTML='';
+  if(!entries.length){
+    svg.innerHTML=`<text x="50" y="54" text-anchor="middle" font-size="8" fill="rgba(78,125,166,.4)" font-family="'Noto Sans KR',sans-serif">기록 없음</text>`;
+    return;
+  }
+  const R=38,r=24,cx=50,cy=50;
+  let angle=-Math.PI/2;
+  entries.forEach(([mood,cnt],i)=>{
+    const frac=cnt/total; const a=frac*Math.PI*2;
+    const x1=cx+R*Math.cos(angle), y1=cy+R*Math.sin(angle);
+    angle+=a;
+    const x2=cx+R*Math.cos(angle), y2=cy+R*Math.sin(angle);
+    const xi1=cx+r*Math.cos(angle-a), yi1=cy+r*Math.sin(angle-a);
+    const xi2=cx+r*Math.cos(angle), yi2=cy+r*Math.sin(angle);
+    const lg=frac>.5?1:0;
+    const col=MOOD_COLORS[i%MOOD_COLORS.length];
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',`M ${x1} ${y1} A ${R} ${R} 0 ${lg} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${r} ${r} 0 ${lg} 0 ${xi1} ${yi1} Z`);
+    path.setAttribute('fill',col); path.setAttribute('stroke','white'); path.setAttribute('stroke-width','1.5');
+    path.style.transition='opacity .3s'; path.style.cursor='default';
+    path.addEventListener('mouseenter',()=>path.style.opacity='.75');
+    path.addEventListener('mouseleave',()=>path.style.opacity='1');
+    svg.appendChild(path);
+    const li=document.createElement('div'); li.className='mood-legend-item';
+    li.innerHTML=`<div class="mood-legend-dot" style="background:${col}"></div><span>${mood} · ${cnt}회</span>`;
+    legend.appendChild(li);
+  });
+  // Center label
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x','50'); t.setAttribute('y','48'); t.setAttribute('text-anchor','middle');
+  t.setAttribute('font-size','8'); t.setAttribute('fill','#4E7DA6'); t.setAttribute('font-weight','700');
+  t.setAttribute('font-family',"'Noto Sans KR',sans-serif"); t.textContent='감정';
+  const t2=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t2.setAttribute('x','50'); t2.setAttribute('y','57'); t2.setAttribute('text-anchor','middle');
+  t2.setAttribute('font-size','6.5'); t2.setAttribute('fill','rgba(78,125,166,.6)');
+  t2.setAttribute('font-family',"'Noto Sans KR',sans-serif"); t2.textContent=`${total}회`;
+  svg.appendChild(t); svg.appendChild(t2);
+}
+function buildBarChart(){
+  const bc=document.getElementById('bar-chart'); bc.innerHTML='';
+  if(!TD) return;
+  const h=document.createElement('div'); h.style.cssText='font-size:.72rem;font-weight:700;color:var(--text2);margin-bottom:.8rem';
+  h.textContent='나라별 기대 충족도'; bc.appendChild(h);
+  TD.countries.forEach((c,i)=>{
+    const score=epScores[c.id]||5;
+    const col=MOOD_COLORS[i%MOOD_COLORS.length];
+    const row=document.createElement('div'); row.className='bar-row';
+    row.innerHTML=`<div class="bar-label">${c.name}</div>
+      <div class="bar-bg"><div class="bar-fill" id="bf-${c.id}" style="width:0%;background:${col}"></div></div>
+      <div class="bar-val" id="bv-${c.id}">${score}</div>`;
+    bc.appendChild(row);
+    setTimeout(()=>{document.getElementById('bf-'+c.id).style.width=(score/10*100)+'%';},200+i*100);
+  });
+}
+function updateBarChart(){
+  if(!TD) return;
+  TD.countries.forEach(c=>{
+    const score=epScores[c.id]||5;
+    const bf=document.getElementById('bf-'+c.id);
+    const bv=document.getElementById('bv-'+c.id);
+    if(bf) bf.style.width=(score/10*100)+'%';
+    if(bv) bv.textContent=score;
+  });
+}
+
+/* Summary */
+function renderEpSummary(){
+  const sg=document.getElementById('ep-sum-grid'); sg.innerHTML='';
+  TD.countries.forEach(c=>{
+    const entry=jStore[c.id]||{};
+    const has=entry.text&&entry.text.trim();
+    const div=document.createElement('div'); div.className='ep-sc';
+    div.innerHTML=`<div class="ep-sc-name">${c.name}</div>
+      <div class="ep-sc-icon">${has?'✍️':'📭'}</div>
+      <div class="ep-sc-status">${has?'기록 완료':'기록 없음'}</div>
+      ${has?`<div class="ep-sc-quote">"${entry.text.slice(0,80)}${entry.text.length>80?'…':''}"</div>`:''}
+      ${entry.moods&&entry.moods.length?`<div class="ep-sc-moods">${entry.moods.map(m=>`<span class="ep-sc-mood">${m}</span>`).join('')}</div>`:''}`;
+    sg.appendChild(div);
+  });
+}
+
+/* ===== AI REPORT ===== */
+const LOADING_MSGS=['여행의 기억을 분석하는 중...','감정 데이터를 읽고 있어요...','회고록을 작성하는 중...','마지막 마무리 중...'];
+let loadingInterval=null;
+
+async function generateAIReport(){
+  if(!TD) return;
+  const btn=document.getElementById('ai-gen-btn');
+  const loading=document.getElementById('ai-loading');
+  const result=document.getElementById('ai-result');
+  const resultText=document.getElementById('ai-result-text');
+  btn.disabled=true; btn.textContent='생성 중...';
+  loading.classList.add('show'); result.classList.remove('show');
+  let mi=0;
+  loadingInterval=setInterval(()=>{
+    document.getElementById('ai-loading-text').textContent=LOADING_MSGS[mi%LOADING_MSGS.length]; mi++;
+  },2200);
+
+  // Build prompt
+  const journalSummary=TD.countries.map(c=>{
+    const e=jStore[c.id]||{};
+    return `[${c.name} (${c.range||'—'})]
+기대: ${c.expect||'없음'}
+기록: ${e.text||'없음'}
+감정: ${(e.moods||[]).join(', ')||'없음'}
+기대충족도: ${epScores[c.id]||'미입력'}/10`;
+  }).join('\n\n');
+
+  const prompt=`당신은 감성적인 여행 작가입니다. 아래 여행 데이터를 바탕으로 따뜻하고 문학적인 회고록을 한국어로 작성해주세요.
+
+여행 정보:
+- 제목: ${TD.title}
+- 여행자: ${TD.author}
+- 기간: ${TD.start} ~ ${TD.end}
+- 방문 국가: ${TD.countries.map(c=>c.name).join(', ')}
+
+나라별 기록:
+${journalSummary}
+
+요청사항:
+1. 300~400자 분량의 감성적인 회고록 형식으로 작성
+2. 기대와 현실의 간극을 시적으로 표현
+3. 여행자의 감정 변화를 자연스럽게 담아주세요
+4. 마지막 문장은 여행이 남긴 가장 큰 의미로 마무리
+5. 각 나라에 대한 언급 포함`;
+
+  try {
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await res.json();
+    const text=data.content&&data.content[0]&&data.content[0].text;
+    clearInterval(loadingInterval);
+    loading.classList.remove('show');
+    if(text){
+      resultText.textContent=text;
+      result.classList.add('show');
+      btn.textContent='✦ 다시 생성하기';
+    } else {
+      resultText.textContent='회고록 생성에 실패했습니다. 잠시 후 다시 시도해주세요.';
+      result.classList.add('show');
+      btn.textContent='✦ AI 회고록 생성하기';
+    }
+  } catch(err){
+    clearInterval(loadingInterval);
+    loading.classList.remove('show');
+    resultText.textContent='네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+    result.classList.add('show');
+    btn.textContent='✦ AI 회고록 생성하기';
+  }
+  btn.disabled=false;
+}
+
+/* ===== INIT ===== */
+(function init(){
+  TD=loadTD(); jStore=loadJournal(); galItems=loadGallery(); epScores=loadScores();
+  // 항상 Step 1부터 시작 (저장 데이터 무시)
+  addCountryRow();
+  showStep(1);
+})();
+</script>
+</body>
+</html>
