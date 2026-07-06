@@ -654,7 +654,7 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
       <button class="btn-primary-land" onclick="signInGoogle()">🔑 로그인</button>
       <button class="btn-ghost-land" onclick="enterDemo()">예시 둘러보기</button>
     </div>
-    <p class="land-notice">로그인하면 나만의 기록을 저장할 수 있어요<br>둘러보기는 읽기 전용 예시 모드입니다</p>
+    <p class="land-notice">로그인하면 나만의 기록을 저장할 수 있어요<br>둘러보기는 읽기 전용 예시 모드예요</p>
   </div>
 </div>
 
@@ -895,7 +895,7 @@ function initFirebase(){
 function signInGoogle(){
   if(!auth){
     isDemo=false;isAuth=false;currentUser={displayName:"사용자",photoURL:null};trips=[];
-    showToast("Firebase 미설정 — 빈 아카이브로 시작합니다");
+    showToast("Firebase 미설정 — 빈 아카이브로 시작해요");
     setTimeout(()=>{
       document.getElementById("landing").classList.add("hidden");
       document.getElementById("app").classList.add("active");
@@ -908,7 +908,7 @@ function signInGoogle(){
     },400);return;
   }
   const p=new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(p).catch(e=>{console.warn(e);showToast("로그인 실패.");});
+  auth.signInWithPopup(p).catch(e=>{console.warn(e);showToast("로그인에 실패했어요");});
 }
 function doSignOut(){
   if(auth&&isAuth)auth.signOut();
@@ -1377,11 +1377,11 @@ function buildCompareTab(t){
   const sections=t.countries.map(c=>{
     const d=qr[c.code]||{reality:"",insight:"",memo:"",moods:[],score:7};
     const hasR=c.reality||d.reality;
-    const realityContent=hasR?`<div class="cmp-txt">${c.reality||d.reality}</div>`:(isPlan?buildInlineRealityForm(t.id,c.code,d):`<div class="cmp-empty">기록 없음</div>`);
+    const realityContent=hasR?`<div class="cmp-txt">${c.reality||d.reality}</div>`:(isPlan?buildInlineRealityForm(t.id,c.code,d):`<div class="cmp-empty">아직 기록이 없어요</div>`);
     const score=c.score||(d.score&&d.reality?d.score:0);
     const moods=c.moods?.length?c.moods:(d.reality?d.moods:[]);
     const insight=c.insight||d.insight;
-    return `<div class="cmp-country"><div class="cmp-header"><div class="cch-flag">${c.emoji}</div><div class="cch-name">${c.name}</div>${c.cities?`<div class="cch-cities">${c.cities}</div>`:""}</div><div class="cmp-grid"><div class="cmp-col expect-col"><span class="cmp-lbl e">기대</span>${c.expect?`<div class="cmp-txt">${c.expect}</div>`:`<div class="cmp-empty">기대 기록 없음</div>`}</div><div class="cmp-col"><span class="cmp-lbl r">현실</span>${realityContent}</div></div>${score||moods?.length||insight?`<div class="cmp-bottom">${score?`<div class="score-bar-wrap"><span class="sbl">별점</span>${starDisp(score,'.95rem')}</div>`:""}${moods?.length?`<div class="cmp-moods">${moods.map(m=>`<span class="cmp-mood">${m}</span>`).join("")}</div>`:""}${insight?`<div class="insight-row"><div class="ins-lbl">디자인 영감</div><div class="ins-txt">${insight}</div></div>`:""}</div>`:""}</div>`;
+    return `<div class="cmp-country"><div class="cmp-header"><div class="cch-flag">${c.emoji}</div><div class="cch-name">${c.name}</div>${c.cities?`<div class="cch-cities">${c.cities}</div>`:""}</div><div class="cmp-grid"><div class="cmp-col expect-col"><span class="cmp-lbl e">기대</span>${c.expect?`<div class="cmp-txt">${c.expect}</div>`:`<div class="cmp-empty">기대를 아직 남기지 않았어요</div>`}</div><div class="cmp-col"><span class="cmp-lbl r">현실</span>${realityContent}</div></div>${score||moods?.length||insight?`<div class="cmp-bottom">${score?`<div class="score-bar-wrap"><span class="sbl">별점</span>${starDisp(score,'.95rem')}</div>`:""}${moods?.length?`<div class="cmp-moods">${moods.map(m=>`<span class="cmp-mood">${m}</span>`).join("")}</div>`:""}${insight?`<div class="insight-row"><div class="ins-lbl">디자인 영감</div><div class="ins-txt">${insight}</div></div>`:""}</div>`:""}</div>`;
   }).join("");
   const editBtn=isAuth?`<button class="ma-btn ma-edit" onclick="openForm('${t.id}');closeModal()">전체 편집</button>`:"";
   return `<div class="modal-body">${sections}</div><div class="modal-actions">${editBtn}</div>`;
@@ -1395,7 +1395,7 @@ function qrToggleMood(tid,code,m){if(!qrData[tid]||!qrData[tid][code])return;con
 async function saveQR(tid,code){
   if(isDemo){showToast("예시 모드에서는 저장이 안 돼요");return;}
   const t=trips.find(x=>x.id===tid);if(!t)return;
-  const d=qrData[tid]?.[code];if(!d||!d.reality){showToast("현실 기록을 입력해주세요");return;}
+  const d=qrData[tid]?.[code];if(!d||!d.reality){showToast("현실 기록을 먼저 적어요");return;}
   t.countries=t.countries.map(c=>c.code!==code?c:{...c,reality:d.reality,insight:d.insight,memo:d.memo,moods:d.moods,score:d.score});
   if(t.countries.every(c=>c.reality))t.status="completed";
   await saveToFirestore(t);renderAll();showToast("저장됐어요!");document.getElementById("modal-inner").innerHTML=buildModal(t);
@@ -1449,7 +1449,7 @@ async function genAIMode(tid,mode){
   try{
     const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompts[mode]}]})});
     const data=await r.json();aiResults[tid][mode]=data.content?.[0]?.text||"생성 실패";
-  }catch{aiResults[tid][mode]="AI 서비스에 연결할 수 없습니다.";}
+  }catch{aiResults[tid][mode]="AI 서비스에 연결할 수 없어요.";}
   aiLoading[tid][mode]=false;document.getElementById("modal-inner").innerHTML=buildModal(t);
 }
 function openSharePanel(tid){curModalTab="share";const t=trips.find(x=>x.id===tid);if(t)document.getElementById("modal-inner").innerHTML=buildModal(t);}
@@ -1468,14 +1468,14 @@ async function exportTripImage(tid){
     const canvas=await html2canvas(card,{scale:2,useCORS:true,backgroundColor:"#ffffff"});
     const a=document.createElement("a");a.download=`DIT_${t.title.replace(/\s/g,"_")}.png`;a.href=canvas.toDataURL("image/png");a.click();
     showToast("이미지 저장됐어요!");
-  }catch{showToast("이미지 생성 실패");}
+  }catch{showToast("이미지 생성에 실패했어요");}
   shareGenerating=false;
 }
 function copyTripText(tid){
   const t=trips.find(x=>x.id===tid);if(!t)return;
   const avg=t.countries.length?Math.round(t.countries.reduce((s,c)=>s+(c.score||0),0)/t.countries.length*10)/10:0;
   const lines=["DIT Archive — "+t.title,`${t.startDate||""} – ${t.endDate||""} (${t.totalDays||0}일)`,t.countries.map(c=>c.emoji+" "+c.name).join(" · "),"", ...t.countries.flatMap(c=>{const o=[];if(c.expect)o.push(`[${c.name}] 기대: ${c.expect}`);if(c.reality)o.push(`[${c.name}] 현실: ${c.reality}`);if(c.insight)o.push(`[${c.name}] 영감: ${c.insight}`);return o;}),"",avg?`평균 충족도 ${avg}/10`:""].filter(Boolean);
-  navigator.clipboard.writeText(lines.join("\n")).then(()=>showToast("클립보드에 복사됐어요!")).catch(()=>showToast("복사 실패"));
+  navigator.clipboard.writeText(lines.join("\n")).then(()=>showToast("클립보드에 복사됐어요!")).catch(()=>showToast("복사에 실패했어요"));
 }
 function closeModal(){document.getElementById("modal-bg").classList.remove("open");document.body.style.overflow="";}
 document.getElementById("modal-bg").addEventListener("click",e=>{if(e.target===document.getElementById("modal-bg"))closeModal();});
@@ -1524,11 +1524,11 @@ function closeForm(){document.getElementById("form-view").style.display="none";s
 function wizBack(){if(formStep===1){closeForm();}else{formStep--;renderForm();}}
 function wizNext(){
   if(formStep===1){
-    if(!formData.countries.length){showToast("나라를 1개 이상 추가해주세요.");return;}
+    if(!formData.countries.length){showToast("나라를 1개 이상 추가해요.");return;}
     if(!wizActiveC)wizActiveC=formData.countries[0].code;
     formStep=2;
   }else if(formStep===2){
-    if(!formData.startDate||!formData.endDate){showToast("날짜를 입력해주세요.");return;}
+    if(!formData.startDate||!formData.endDate){showToast("날짜를 골라요.");return;}
     if(!wizActiveC&&formData.countries.length)wizActiveC=formData.countries[0].code;
     formStep=3;
   }
@@ -1562,8 +1562,8 @@ function updateWizDots(){
 function renderStep1(){
   const chips=formData.countries.map(c=>`<span class="country-chip-lg">${c.emoji} ${c.name}<span class="country-chip-rm" onclick="removeC('${c.code}')">${IC.xMark}</span></span>`).join("");
   return `<div class="wiz-wrap">
-    <div class="wiz-headline">어디 갔어?</div>
-    <div class="wiz-sub">나라를 검색해서 추가하세요. 여러 나라도 OK.</div>
+    <div class="wiz-headline">어디 다녀왔어요?</div>
+    <div class="wiz-sub">나라를 검색해서 추가해요. 여러 나라도 OK예요.</div>
     <div class="cs-wrap"><input class="cs-inp" id="cs-inp" placeholder="나라 검색 (예: 일본, 페루, 프랑스...)" oninput="showAC(this.value)" autocomplete="off"><div class="cs-dd" id="cs-dd"></div></div>
     ${chips?`<div style="margin-bottom:1rem">${chips}</div>`:""}
     <div class="wiz-footer">
@@ -1576,8 +1576,8 @@ function renderStep2(){
   const daysBadge=formData.totalDays?`<div class="days-badge">총 ${formData.totalDays}일</div>`:"";
   const emojiGrid=COVER_EMOJIS.map(e=>`<button class="eg-btn${formData.coverEmoji===e?" on":""}" onclick="formData.coverEmoji='${e}';document.querySelectorAll('.eg-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${e}</button>`).join("");
   return `<div class="wiz-wrap">
-    <div class="wiz-headline">언제 갔어?</div>
-    <div class="wiz-sub">날짜를 선택하세요.</div>
+    <div class="wiz-headline">언제 다녀왔어요?</div>
+    <div class="wiz-sub">날짜를 골라봐요.</div>
     <span class="wiz-label">여행 기간</span>
     <div class="date-row">
       <input type="date" value="${formData.startDate}" onchange="formData.startDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d){calcDays();d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';}">
@@ -1598,7 +1598,7 @@ function renderStep3(){
   if(!wizActiveC&&formData.countries.length)wizActiveC=formData.countries[0].code;
   const code=wizActiveC;
   const c=formData.countries.find(x=>x.code===code)||formData.countries[0];
-  if(!c)return`<div class="wiz-wrap"><div class="wiz-headline">어땠어?</div><div class="wiz-sub">나라 정보가 없습니다.</div></div>`;
+  if(!c)return`<div class="wiz-wrap"><div class="wiz-headline">어땠어요?</div><div class="wiz-sub">나라 정보가 없어요.</div></div>`;
   const ent=formData.entries[c.code]||{cities:"",expect:"",reality:"",memo:"",moods:[],score:7,photos:[]};
   const tabs=formData.countries.length>1?`<div class="ctab-row">${formData.countries.map(x=>`<button class="ctab-btn${x.code===code?" active":""}" onclick="wizActiveC='${x.code}';renderForm()">${x.emoji} ${x.name}</button>`).join("")}</div>`:"";
   const moodChips=ALL_MOODS.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("");
@@ -1606,8 +1606,8 @@ function renderStep3(){
   const sugSection=sugTags.length?`<span class="wiz-label">✨ ${c.name} 추천 태그</span><div class="mood-grid">${sugTags.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("")}</div>`:"";
   const photoGrid=ent.photos?.length?`<div class="photo-preview-grid" style="margin-bottom:.75rem">${ent.photos.map((p,i)=>`<div class="photo-preview-item"><img src="${p}" alt=""><button class="photo-del-btn" onclick="removeFormPhoto('${c.code}',${i})">${IC.xMark}</button></div>`).join("")}</div>`:"";
   return `<div class="wiz-wrap">
-    <div class="wiz-headline">어땠어?</div>
-    <div class="wiz-sub">기억을 남겨두세요. 모두 선택 사항이에요.</div>
+    <div class="wiz-headline">어땠어요?</div>
+    <div class="wiz-sub">기억을 남겨봐요. 모두 선택 사항이에요.</div>
     ${tabs}
     <span class="wiz-label">별점</span>
     ${starRating(c.code,ent)}
@@ -1621,7 +1621,7 @@ function renderStep3(){
     <div class="photo-zone" onclick="document.getElementById('wfp-${c.code}').click()">
       <input type="file" id="wfp-${c.code}" accept="image/*" multiple style="display:none" onchange="addFormPhotos('${c.code}',this.files)">
       <div class="pz-icon">${IC.camera}</div>
-      <div class="pz-text"><strong>사진 추가</strong><br>탭해서 선택하세요</div>
+      <div class="pz-text"><strong>사진 추가</strong><br>탭해서 추가해요</div>
     </div>
     <div class="wiz-footer">
       <button class="wiz-prev" onclick="wizBack()">←</button>
@@ -1654,7 +1654,7 @@ function renderEditForm(){
       <div class="photo-zone" onclick="document.getElementById('wfp-${c.code}').click()">
         <input type="file" id="wfp-${c.code}" accept="image/*" multiple style="display:none" onchange="addFormPhotos('${c.code}',this.files)">
         <div class="pz-icon">${IC.camera}</div>
-        <div class="pz-text"><strong>사진 추가</strong><br>탭해서 선택하세요</div>
+        <div class="pz-text"><strong>사진 추가</strong><br>탭해서 추가해요</div>
       </div>
     </div>`;
   }).join("");
@@ -1693,8 +1693,8 @@ function toggleMood(code,m){if(!formData.entries[code])return;const ms=formData.
 async function addFormPhotos(code,files){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[]};const photos=formData.entries[code].photos||[];const rem=20-photos.length;if(rem<=0){showToast("최대 20장까지 가능해요");return;}for(const f of [...files].slice(0,rem))photos.push(await compressImage(f,800,.75));formData.entries[code].photos=photos;renderForm();}
 function removeFormPhoto(code,idx){if(!formData.entries[code])return;formData.entries[code].photos.splice(idx,1);renderForm();}
 async function saveTrip(){
-  if(!formData.countries.length){showToast("나라를 추가해주세요.");return;}
-  if(!formData.startDate||!formData.endDate){showToast("날짜를 입력해주세요.");return;}
+  if(!formData.countries.length){showToast("나라를 추가해요.");return;}
+  if(!formData.startDate||!formData.endDate){showToast("날짜를 골라요.");return;}
   if(!formData.title.trim()){
     formData.title=formData.countries.map(c=>c.name).join(", ")+" "+formData.startDate.slice(0,4);
   }
