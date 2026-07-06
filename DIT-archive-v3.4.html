@@ -391,6 +391,9 @@ input,textarea,select{font-family:var(--font)}
 .ph-thumbs::-webkit-scrollbar{display:none}
 .ph-thumb{width:54px;height:54px;object-fit:cover;border-radius:var(--r-sm);opacity:.45;cursor:pointer;flex-shrink:0;transition:opacity .15s,outline .15s}
 .ph-thumb.ph-on{opacity:1;outline:2px solid var(--primary);outline-offset:2px}
+.ph-add-btn{width:54px;height:54px;border-radius:var(--r-sm);border:1.5px dashed rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .15s}
+.ph-add-btn:hover{background:rgba(255,255,255,.2)}
+.ph-add-btn svg{width:20px;height:20px;fill:currentColor}
 .photo-gallery img{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;transition:opacity .15s}
 .photo-gallery img:hover{opacity:.85}
 .photo-gallery-empty{background:var(--fog);border-radius:var(--r-lg);padding:1.5rem;text-align:center;color:var(--gray);font-size:var(--fs-sm);margin-bottom:.9rem}
@@ -1402,13 +1405,14 @@ async function saveQR(tid,code){
 }
 function switchToPhoto(id){photoIdx=0;switchMT(id,'photo');}
 function buildPhotoTab(t){
-  const photos=t.countries.flatMap(c=>(c.photos||[]).map(p=>({src:p,label:`${c.emoji} ${c.name}`})));
-  if(!photos.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">사진이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">기록 탭에서 사진을 추가해보세요</span></div>`;
+  const photos=t.countries.flatMap(c=>(c.photos||[]).map(p=>({src:p,label:`${c.emoji} ${c.name}`,code:c.code})));
+  if(!photos.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">사진이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">기록 탭에서 사진을 추가해봐요</span></div>`;
   const n=photos.length;
   photoIdx=Math.max(0,Math.min(photoIdx,n-1));
   const cur=photos[photoIdx];
   const bars=photos.map((_,i)=>`<div class="ph-bar${i<photoIdx?' ph-done':i===photoIdx?' ph-on':''}"></div>`).join('');
   const thumbs=photos.map((p,i)=>`<img class="ph-thumb${i===photoIdx?' ph-on':''}" src="${p.src}" alt="" onclick="phGoto(${i})">`).join('');
+  const addBtn=isAuth?`<input type="file" id="ph-add-file" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload('${t.id}','${cur.code}',this.files)"><button class="ph-add-btn" onclick="document.getElementById('ph-add-file').click()" aria-label="사진 추가">${IC.camera}</button>`:'';
   return `<div class="ph-scene">
     <div class="ph-bars">${bars}</div>
     <div class="ph-label">${cur.label}</div>
@@ -1417,7 +1421,7 @@ function buildPhotoTab(t){
       <div class="ph-tap-l" onclick="phGoto(${photoIdx-1})"></div>
       <div class="ph-tap-r" onclick="phGoto(${photoIdx+1})"></div>
     </div>
-    <div class="ph-thumbs" id="ph-thumbs">${thumbs}</div>
+    <div class="ph-thumbs" id="ph-thumbs">${thumbs}${addBtn}</div>
   </div>`;
 }
 function phGoto(i){
