@@ -159,9 +159,9 @@ input,textarea,select{font-family:var(--font)}
 .cards-header{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem .5rem;position:sticky;top:0;background:var(--bg);z-index:10;gap:.5rem;flex-wrap:wrap}
 .ch-title{font-size:var(--fs-md);font-weight:600;color:var(--sub);white-space:nowrap}
 .ch-filter{display:flex;gap:.28rem;flex-wrap:wrap}
-.cf-btn{font-size:var(--fs-xs);font-weight:600;padding:.28rem .7rem;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .15s}
+.cf-btn{font-size:var(--fs-xs);font-weight:600;padding:.28rem .7rem;border-radius:var(--r-pill);border:1px solid var(--hairline);background:var(--canvas-soft);color:var(--ink-muted);cursor:pointer;transition:all .15s}
 .cf-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.country-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;padding:.3rem 1rem 5rem}
+.country-cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;padding:.3rem 1rem 5rem;align-items:stretch}
 /* rec card */
 .rec-card{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline);overflow:hidden;cursor:pointer;transition:border-color .18s,transform .18s}
 .rec-card:hover{border-color:#C9C9CB;transform:translateY(-2px)}
@@ -200,9 +200,7 @@ input,textarea,select{font-family:var(--font)}
 .tl-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 .tl-section-label.plan{color:var(--sub)}
 .year-section{margin-bottom:1.8rem}
-.year-sidebar-label{font-size:var(--fs-2xl);font-weight:700;color:var(--ink);letter-spacing:-.03em;line-height:1;padding:0.5rem 0 0.75rem}
-.year-label{font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:var(--ink);margin-bottom:.75rem;letter-spacing:-.03em;display:flex;align-items:center;gap:.5rem}
-.year-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.year-sidebar-label{font-size:var(--fs-xl);font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1;padding:0.5rem 0 0.75rem}
 .tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem}
 .tl-card{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline);overflow:hidden;cursor:pointer;transition:border-color .18s,transform .18s;display:flex;flex-direction:column}
 .tl-card:hover{border-color:#C9C9CB;transform:translateY(-2px)}
@@ -286,7 +284,7 @@ input,textarea,select{font-family:var(--font)}
 .mh-title{font-family:var(--font-head);font-size:var(--fs-xl);font-weight:800;margin-bottom:.1rem;line-height:1.3;color:var(--ink);letter-spacing:-.02em}
 .mh-meta{font-size:var(--fs-xs);color:var(--gray);display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
 .mh-status{font-size:var(--fs-xs);font-weight:600;padding:2px 8px;border-radius:var(--r-pill)}
-.mh-actions{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+.mh-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
 .mh-share-btn{background:var(--fog);border:1px solid var(--border);border-radius:var(--r-md);padding:.3rem .65rem;font-size:var(--fs-xs);font-weight:600;color:var(--charcoal);transition:all .15s}
 .mh-share-btn:hover{border-color:var(--mint-base);color:var(--mint-base)}
 .mh-close{background:none;border:none;color:var(--gray);padding:.15rem;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
@@ -1254,7 +1252,7 @@ function tlCard(t,isPlan){
     const imgId=`cimg-${t.id}`;const fbId=`cfb-${t.id}`;
     coverEl=`<div class="tl-cover-placeholder" id="${fbId}" style="display:flex;background:${col}18">${t.coverEmoji||"✈️"}</div><img class="tl-cover" id="${imgId}" src="${imgUrl}" alt="${firstLoc?.locationName||""}" style="display:none" onload="var i=document.getElementById('${imgId}');var f=document.getElementById('${fbId}');if(i)i.style.display='block';if(f)f.style.display='none';" onerror="var i=document.getElementById('${imgId}');if(i)i.style.display='none';">`;
   }
-  return `<div class="tl-card${isPlan?" is-planning":""}" onclick="openModal('${t.id}')">${coverEl}<div class="tl-body"><div class="tl-top"><span class="tl-emoji">${t.coverEmoji||"✈️"}</span><div class="tl-title">${t.title}</div>${isPlan?`<span class="status-pill sp-plan" style="font-size:var(--fs-xs);padding:2px 6px;flex-shrink:0">계획</span>`:""}</div><div class="tl-meta">${t.startDate||""} ${t.endDate?"– "+t.endDate:""} · ${t.totalDays||0}일</div><div class="tl-ctags">${uniqLocs.slice(0,4).map(l=>`<span class="tl-ctag">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</span>`).join("")}</div>${!isPlan&&moods.length?`<div class="tl-moods">${moods.map(m=>`<span class="tl-mood">${m}</span>`).join("")}</div>`:""}<div class="tl-bottom"><span></span>${allPhotos.length?`<span class="tl-photo-count">📷 ${allPhotos.length}</span>`:""}</div></div></div>`;
+  return `<div class="tl-card${isPlan?" is-planning":""}" onclick="openModal('${t.id}')">${coverEl}<div class="tl-body"><div class="tl-top"><span class="tl-emoji">${t.coverEmoji||"✈️"}</span><div class="tl-title">${t.title}</div>${isPlan?`<span class="status-pill sp-plan" style="font-size:var(--fs-xs);padding:2px 6px;flex-shrink:0">계획</span>`:""}</div><div class="tl-meta">${t.startDate||""} ${t.endDate?"– "+t.endDate:""} · ${t.totalDays||0}일</div><div class="tl-ctags">${uniqLocs.slice(0,4).map(l=>`<span class="tl-ctag">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</span>`).join("")}</div>${!isPlan&&moods.length?`<div class="tl-moods">${moods.map(m=>`<span class="tl-mood">${m}</span>`).join("")}</div>`:""}<div class="tl-bottom"><span></span>${allPhotos.length?`<span class="tl-photo-count" style="display:inline-flex;align-items:center;gap:3px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;flex-shrink:0"><path d="M12 9a3.75 3.75 0 1 0 0 7.5A3.75 3.75 0 0 0 12 9Z"/><path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 0 1 5.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 0 1-3 3h-15a3 3 0 0 1-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 0 0 1.11-.71l.822-1.315a2.942 2.942 0 0 1 2.332-1.39ZM6.75 12.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Zm12-1.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd"/></svg>${allPhotos.length}</span>`:""}</div></div></div>`;
 }
 
 // ── STATS ──
