@@ -592,6 +592,11 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 .pz-icon svg{width:100%;height:100%;fill:currentColor}
 .pz-text{font-size:var(--fs-md);color:var(--ink-muted)}
 .pz-text strong{color:var(--ink);font-weight:600}
+.more-toggle{width:100%;padding:.62rem;border:1.5px solid var(--hairline);border-radius:var(--r-md);background:var(--canvas-soft);font-size:var(--fs-sm);font-weight:600;color:var(--ink-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.35rem;margin-bottom:1.25rem;transition:all .15s}
+.more-toggle:hover{border-color:var(--primary);color:var(--primary)}
+.more-toggle svg{width:14px;height:14px;fill:currentColor;transition:transform .2s}
+.more-toggle.open svg{transform:rotate(180deg)}
+.more-section{margin-bottom:.25rem}
 .ctab-row{display:flex;gap:.4rem;overflow-x:auto;margin-bottom:1.25rem;scrollbar-width:none}
 .ctab-row::-webkit-scrollbar{display:none}
 .ctab-btn{padding:.38rem .9rem;border-radius:var(--r-pill);border:1.5px solid var(--hairline);font-size:var(--fs-sm);font-weight:600;white-space:nowrap;background:var(--canvas);color:var(--ink-muted);cursor:pointer;flex-shrink:0}
@@ -923,7 +928,7 @@ let auth=null,db=null,currentUser=null,isDemo=false,isAuth=false;
 let trips=[],_map=null,_markers={},_routes=[],currentView="main",cfFilter="all";
 let formData={status:"planning",title:"",coverEmoji:"✈️",startDate:"",endDate:"",totalDays:0,countries:[],entries:{}};
 let editingId=null,isEditMode=false,accOpenSections=new Set(["status","basic","countries"]);
-let formStep=1,wizActiveC=null,photoIdx=0,dayFocus={};
+let formStep=1,wizActiveC=null,photoIdx=0,dayFocus={},step3Expanded={};
 let curModalId=null,curModalTab="overview",curModalCI=0;
 let aiResults={},aiLoading={},qrData={},shareGenerating=false;
 
@@ -1654,15 +1659,10 @@ function renderStep3(){
   const sugSection=sugTags.length?`<span class="wiz-label">✨ ${c.name} 추천 태그</span><div class="mood-grid">${sugTags.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("")}</div>`:"";
   const photoGrid=ent.photos?.length?`<div class="photo-preview-grid" style="margin-bottom:.75rem">${ent.photos.map((p,i)=>`<div class="photo-preview-item"><img src="${p}" alt=""><button class="photo-del-btn" onclick="removeFormPhoto('${c.code}',${i})">${IC.xMark}</button></div>`).join("")}</div>`:"";
   const dayStripHtml=buildDayStrip(c.code,ent);
-  return `<div class="wiz-wrap">
-    <div class="wiz-headline">어땠어요?</div>
-    <div class="wiz-sub">기억을 남겨봐요. 모두 선택 사항이에요.</div>
-    ${tabs}
-    <span class="wiz-label">별점</span>
-    ${starRating(c.code,ent)}
-    ${sugSection}
-    <span class="wiz-label">기분</span>
-    <div class="mood-grid">${moodChips}</div>
+  const hasMore=!!(ent.memo||(ent.days||[]).length||(ent.photos||[]).length);
+  const expanded=step3Expanded[c.code]??hasMore;
+  const chevronDown=`<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>`;
+  const moreSection=expanded?`<div class="more-section">
     <span class="wiz-label">메모 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
     <textarea class="wiz-textarea" placeholder="느낀 것, 기억하고 싶은 것..." oninput="updE('${c.code}','memo',this.value)">${esc(ent.memo||"")}</textarea>
     <span class="wiz-label">일차별 기록 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-muted)">(선택)</span></span>
@@ -1674,6 +1674,20 @@ function renderStep3(){
       <div class="pz-icon">${IC.camera}</div>
       <div class="pz-text"><strong>사진 추가</strong><br>탭해서 추가해요</div>
     </div>
+  </div>`:``;
+  return `<div class="wiz-wrap">
+    <div class="wiz-headline">어땠어요?</div>
+    <div class="wiz-sub">기억을 남겨봐요. 모두 선택 사항이에요.</div>
+    ${tabs}
+    <span class="wiz-label">별점</span>
+    ${starRating(c.code,ent)}
+    ${sugSection}
+    <span class="wiz-label">기분</span>
+    <div class="mood-grid" style="margin-bottom:1.25rem">${moodChips}</div>
+    <button class="more-toggle${expanded?' open':''}" onclick="toggleStep3More('${c.code}')">
+      ${expanded?'접기':'더 기록하기 (메모·일차·사진)'}${chevronDown}
+    </button>
+    ${moreSection}
     <div class="wiz-footer">
       <button class="wiz-prev" onclick="wizBack()">←</button>
       <button class="wiz-next" onclick="saveTrip()">저장</button>
@@ -1755,6 +1769,7 @@ async function handleDayPhotoUpload(code,idx,files){
 function addDay(code){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};const days=formData.entries[code].days||[];const num=days.length+1;days.push({day:num,date:"",city:"",memo:"",photos:[]});formData.entries[code].days=days;dayFocus[code]=days.length-1;renderForm();}
 function removeDay(code,idx){if(!formData.entries[code])return;formData.entries[code].days.splice(idx,1);formData.entries[code].days.forEach((d,i)=>d.day=i+1);if(dayFocus[code]>=formData.entries[code].days.length)dayFocus[code]=formData.entries[code].days.length-1;renderForm();}
 function updDay(code,idx,f,val){if(!formData.entries[code]?.days)return;formData.entries[code].days[idx][f]=val;}
+function toggleStep3More(code){step3Expanded[code]=!step3Expanded[code];renderForm();}
 function selectDay(code,idx){dayFocus[code]=dayFocus[code]===idx?-1:idx;renderForm();}
 function buildDayStrip(code,ent){
   const days=ent.days||[];
