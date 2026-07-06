@@ -232,7 +232,7 @@ input,textarea,select{font-family:var(--font)}
 .pv-avatar img{width:100%;height:100%;object-fit:cover}
 .pv-name{font-family:var(--font-head);font-size:var(--fs-xl);font-weight:800;color:var(--ink);letter-spacing:-.02em}
 .pv-btn{width:100%;margin-bottom:.6rem}
-.stats-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:.75rem}
+.stats-hero{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:.75rem}
 .sh-card{border-radius:var(--r-lg);padding:1rem 1rem;position:relative;overflow:hidden;height:88px;display:flex;flex-direction:column;justify-content:center;background:var(--canvas);border:1px solid var(--hairline)}
 .sh-val{font-family:var(--font);font-size:var(--fs-2xl);font-weight:600;color:var(--ink);line-height:1;letter-spacing:-.03em}
 .sh-label{font-size:var(--fs-xs);font-weight:400;color:var(--muted);margin-top:.25rem}
@@ -481,8 +481,10 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 .stars-disp .empty{color:var(--hairline)}
 /* Tag Cloud */
 .tag-cloud{position:relative;overflow:visible}
-.tag-cloud-item{position:absolute;line-height:1.2;cursor:default;white-space:nowrap;opacity:0;scale:0.6;transition:opacity .35s ease,scale .35s cubic-bezier(0.34,1.2,0.64,1)}
+.tag-cloud-item{position:absolute;line-height:1.2;cursor:pointer;white-space:nowrap;opacity:0;scale:0.6;transition:opacity .35s ease,scale .35s cubic-bezier(0.34,1.2,0.64,1),filter .2s ease}
 .tag-cloud-item.tc-show{opacity:var(--tc-op,1);scale:1}
+.tag-cloud-item.tc-show:hover{scale:1.18;filter:brightness(1.08)}
+.tag-cloud-item.tc-show:active{scale:0.92;transition:scale .08s cubic-bezier(0.4,1.0,0.6,1),opacity .35s ease,filter .2s ease}
 
 /* ── WIZARD FORM ── */
 .wiz-progress{display:flex;align-items:center;gap:.4rem;flex:1;justify-content:center}
@@ -1286,7 +1288,6 @@ function renderStats(){
   const heroData=[
     {val:done.length,label:"완료 여행",icon:IC.plane},{val:totalC,label:"방문 나라",icon:IC.globe},
     {val:totalD,label:"총 여행일",icon:IC.calendar},{val:avg,label:"평균 충족도",icon:IC.star},
-    {val:planning,label:"계획 중",icon:IC.sparkles},{val:insight,label:"디자인 영감",icon:IC.lightBulb},
   ];
   const heroHtml=heroData.map(h=>`<div class="sh-card"><div class="sh-val">${h.val}</div><div class="sh-label">${h.label}</div><div class="sh-icon">${h.icon}</div></div>`).join("");
   const CKEYS=["asia","europe","americas","africa","oceania"];
