@@ -859,6 +859,65 @@ const COUNTRIES=[
   {code:"AU",name:"호주",emoji:"🇦🇺",continent:"oceania"},{code:"NZ",name:"뉴질랜드",emoji:"🇳🇿",continent:"oceania"},
   {code:"FJ",name:"피지",emoji:"🇫🇯",continent:"oceania"},
 ];
+const CITIES=[
+  {code:'JP_TYO',name:'도쿄',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_OSA',name:'오사카',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_KYO',name:'교토',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_SAP',name:'삿포로',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_FUK',name:'후쿠오카',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_NAR',name:'나라',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_HIR',name:'히로시마',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_KAM',name:'가마쿠라',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_HAK',name:'하코다테',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'FR_PAR',name:'파리',emoji:'📍',parentCode:'FR',parentEmoji:'🇫🇷',parentName:'프랑스',type:'city',continent:'europe'},
+  {code:'FR_NCE',name:'니스',emoji:'📍',parentCode:'FR',parentEmoji:'🇫🇷',parentName:'프랑스',type:'city',continent:'europe'},
+  {code:'FR_LYS',name:'리옹',emoji:'📍',parentCode:'FR',parentEmoji:'🇫🇷',parentName:'프랑스',type:'city',continent:'europe'},
+  {code:'IT_ROM',name:'로마',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_FLO',name:'피렌체',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_VEN',name:'베네치아',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_MIL',name:'밀라노',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_NAP',name:'나폴리',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_AMA',name:'아말피',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'ES_BCN',name:'바르셀로나',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  {code:'ES_MAD',name:'마드리드',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  {code:'ES_SEV',name:'세비야',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  {code:'ES_GRX',name:'그라나다',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  {code:'GB_LON',name:'런던',emoji:'📍',parentCode:'GB',parentEmoji:'🇬🇧',parentName:'영국',type:'city',continent:'europe'},
+  {code:'GB_EDI',name:'에든버러',emoji:'📍',parentCode:'GB',parentEmoji:'🇬🇧',parentName:'영국',type:'city',continent:'europe'},
+  {code:'DE_BER',name:'베를린',emoji:'📍',parentCode:'DE',parentEmoji:'🇩🇪',parentName:'독일',type:'city',continent:'europe'},
+  {code:'DE_MUC',name:'뮌헨',emoji:'📍',parentCode:'DE',parentEmoji:'🇩🇪',parentName:'독일',type:'city',continent:'europe'},
+  {code:'TH_BKK',name:'방콕',emoji:'📍',parentCode:'TH',parentEmoji:'🇹🇭',parentName:'태국',type:'city',continent:'asia'},
+  {code:'TH_CNX',name:'치앙마이',emoji:'📍',parentCode:'TH',parentEmoji:'🇹🇭',parentName:'태국',type:'city',continent:'asia'},
+  {code:'TH_HKT',name:'푸켓',emoji:'📍',parentCode:'TH',parentEmoji:'🇹🇭',parentName:'태국',type:'city',continent:'asia'},
+  {code:'TH_PYX',name:'파타야',emoji:'📍',parentCode:'TH',parentEmoji:'🇹🇭',parentName:'태국',type:'city',continent:'asia'},
+  {code:'TH_USM',name:'코사무이',emoji:'📍',parentCode:'TH',parentEmoji:'🇹🇭',parentName:'태국',type:'city',continent:'asia'},
+  {code:'VN_HAN',name:'하노이',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  {code:'VN_SGN',name:'호치민',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  {code:'VN_DAD',name:'다낭',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  {code:'VN_HIA',name:'호이안',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  {code:'US_NYC',name:'뉴욕',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_LAX',name:'로스앤젤레스',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_SFO',name:'샌프란시스코',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_LAS',name:'라스베이거스',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_HNL',name:'호놀룰루',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'AU_SYD',name:'시드니',emoji:'📍',parentCode:'AU',parentEmoji:'🇦🇺',parentName:'호주',type:'city',continent:'oceania'},
+  {code:'AU_MEL',name:'멜버른',emoji:'📍',parentCode:'AU',parentEmoji:'🇦🇺',parentName:'호주',type:'city',continent:'oceania'},
+  {code:'AU_OOL',name:'골드코스트',emoji:'📍',parentCode:'AU',parentEmoji:'🇦🇺',parentName:'호주',type:'city',continent:'oceania'},
+  {code:'PE_LIM',name:'리마',emoji:'📍',parentCode:'PE',parentEmoji:'🇵🇪',parentName:'페루',type:'city',continent:'americas'},
+  {code:'PE_CUZ',name:'쿠스코',emoji:'📍',parentCode:'PE',parentEmoji:'🇵🇪',parentName:'페루',type:'city',continent:'americas'},
+  {code:'PE_MFP',name:'마추픽추',emoji:'📍',parentCode:'PE',parentEmoji:'🇵🇪',parentName:'페루',type:'city',continent:'americas'},
+  {code:'PT_LIS',name:'리스본',emoji:'📍',parentCode:'PT',parentEmoji:'🇵🇹',parentName:'포르투갈',type:'city',continent:'europe'},
+  {code:'PT_OPO',name:'포르투',emoji:'📍',parentCode:'PT',parentEmoji:'🇵🇹',parentName:'포르투갈',type:'city',continent:'europe'},
+  {code:'CZ_PRG',name:'프라하',emoji:'📍',parentCode:'CZ',parentEmoji:'🇨🇿',parentName:'체코',type:'city',continent:'europe'},
+  {code:'HU_BUD',name:'부다페스트',emoji:'📍',parentCode:'HU',parentEmoji:'🇭🇺',parentName:'헝가리',type:'city',continent:'europe'},
+  {code:'GR_ATH',name:'아테네',emoji:'📍',parentCode:'GR',parentEmoji:'🇬🇷',parentName:'그리스',type:'city',continent:'europe'},
+  {code:'GR_JTR',name:'산토리니',emoji:'📍',parentCode:'GR',parentEmoji:'🇬🇷',parentName:'그리스',type:'city',continent:'europe'},
+  {code:'GR_JMK',name:'미코노스',emoji:'📍',parentCode:'GR',parentEmoji:'🇬🇷',parentName:'그리스',type:'city',continent:'europe'},
+  {code:'MA_RAK',name:'마라케시',emoji:'📍',parentCode:'MA',parentEmoji:'🇲🇦',parentName:'모로코',type:'city',continent:'africa'},
+  {code:'MA_FEZ',name:'페스',emoji:'📍',parentCode:'MA',parentEmoji:'🇲🇦',parentName:'모로코',type:'city',continent:'africa'},
+  {code:'MX_MEX',name:'멕시코시티',emoji:'📍',parentCode:'MX',parentEmoji:'🇲🇽',parentName:'멕시코',type:'city',continent:'americas'},
+  {code:'MX_CUN',name:'칸쿤',emoji:'📍',parentCode:'MX',parentEmoji:'🇲🇽',parentName:'멕시코',type:'city',continent:'americas'},
+];
 const COUNTRY_TAGS={
   JP:["🌸 벚꽃","🍜 라멘","⛩️ 사찰","♨️ 온천","🎎 전통문화","🌃 야경","🎌 축제","🍣 스시"],
   KR:["🍚 한식","🏯 고궁","🌃 야경","🛍️ 쇼핑","🎵 케이팝","☕ 카페","🌊 바다"],
@@ -909,6 +968,28 @@ const COUNTRY_TAGS={
   AU:["🦘 자연","🌊 바다","🏄 서핑","🌅 일몰","🏙️ 도시"],
   NZ:["🏔️ 자연","🌿 피오르드","🐑 목가적","🎬 반지의제왕","🌊 바다"],
   FJ:["🌴 열대","🌊 바다","🤿 다이빙","🏝️ 섬","🌅 일몰"],
+  JP_TYO:['시부야','아사쿠사','신주쿠','아키하바라','하라주쿠','츠키지','우에노'],
+  JP_KYO:['기온','아라시야마','후시미이나리','금각사','철학의 길','니시키시장'],
+  JP_OSA:['도톤보리','우메다','신사이바시','난바','유니버설스튜디오'],
+  JP_FUK:['텐진','하카타','야타이','모츠나베','캐널시티'],
+  JP_SAP:['스스키노','오도리공원','삿포로맥주','홋카이도신궁','라멘'],
+  FR_PAR:['에펠탑','루브르','몽마르트','마레','오르세','베르사유'],
+  IT_ROM:['콜로세움','바티칸','트레비분수','스페인광장','판테온'],
+  IT_FLO:['우피치','두오모','베키오다리','미켈란젤로광장','가죽시장'],
+  IT_VEN:['산마르코광장','리알토다리','곤돌라','무라노','부라노'],
+  ES_BCN:['사그라다파밀리아','가우디','람블라스','고딕지구','바르셀로네타'],
+  GB_LON:['빅벤','타워브리지','버킹엄궁전','코벤트가든','소호'],
+  TH_BKK:['카오산로드','왓포','왓아룬','차뚜짝','아이콘시암'],
+  TH_CNX:['나이트바자','도이수텝','님만해민','써데이마켓','엘리펀트캠프'],
+  VN_HAN:['호안끼엠','구시가지','호치민묘','문묘','동쑤언시장'],
+  VN_SGN:['벤탄시장','전쟁박물관','통일궁','부이비엔거리','메콩델타'],
+  VN_DAD:['바나힐','마블마운틴','미케비치','한시장','참박물관'],
+  PE_LIM:['미라플로레스','바랑코','중앙광장','라르코박물관','세비체'],
+  PE_CUZ:['아르마스광장','삭사이와만','잉카시장','피삭','마추픽추투어'],
+  GR_JTR:['이아마을','피라','오이아','화산섬','와인투어'],
+  PT_LIS:['알파마','벨렘','신트라','트램28','타임아웃마켓'],
+  CZ_PRG:['구시가지광장','카를교','프라하성','말라스트라나','트르델닉'],
+  HU_BUD:['온천','어부의요새','국회의사당','루인바','야경유람선'],
 };
 const COUNTRY_COORDS={
   KR:[37.5,127],JP:[36,138],CN:[35,105],TH:[15,101],VN:[16,108],TW:[23.5,121],HK:[22.3,114],
@@ -1405,7 +1486,7 @@ function switchMCI(id,idx){curModalCI=idx;const t=trips.find(x=>x.id===id);if(t)
 function buildOverviewTab(t){
   const c=t.countries[curModalCI]||t.countries[0];
   const col=CC[c.continent]||DS.gray;const isPlan=t.status==="planning";
-  const tabs=t.countries.length>1?`<div class="country-tabs">${t.countries.map((ct,i)=>`<button class="ct-btn${i===curModalCI?" active":""}" onclick="switchMCI('${t.id}',${i})">${ct.emoji} ${ct.name}</button>`).join("")}</div>`:"";
+  const tabs=t.countries.length>1?`<div class="country-tabs">${t.countries.map((ct,i)=>`<button class="ct-btn${i===curModalCI?" active":""}" onclick="switchMCI('${t.id}',${i})">${ct.type==='city'?(ct.parentEmoji||'📍'):ct.emoji} ${ct.name}</button>`).join("")}</div>`:"";
   const editBtn=isAuth?`<button class="ma-btn ma-edit" onclick="openForm('${t.id}');closeModal()">편집</button>`:"";
   const realityBtn=isPlan&&isAuth?`<button class="ma-btn ma-reality" onclick="switchMT('${t.id}','compare')">현실 기록하기</button>`:"";
   const photos=c.photos||[];
@@ -1418,7 +1499,7 @@ function buildOverviewTab(t){
 }
 function buildPhotosTab(t){
   const c=t.countries[curModalCI]||t.countries[0];
-  const tabs=t.countries.length>1?`<div class="country-tabs" style="padding:.9rem 1.2rem 0">${t.countries.map((ct,i)=>`<button class="ct-btn${i===curModalCI?" active":""}" onclick="switchMCI('${t.id}',${i})">${ct.emoji} ${ct.name}</button>`).join("")}</div>`:"";
+  const tabs=t.countries.length>1?`<div class="country-tabs" style="padding:.9rem 1.2rem 0">${t.countries.map((ct,i)=>`<button class="ct-btn${i===curModalCI?" active":""}" onclick="switchMCI('${t.id}',${i})">${ct.type==='city'?(ct.parentEmoji||'📍'):ct.emoji} ${ct.name}</button>`).join("")}</div>`:"";
   const photos=c.photos||[];
   const gallery=photos.length?`<div class="photo-gallery">${photos.map(p=>`<img src="${p}" alt="" onclick="openLightbox('${p}')">`).join("")}</div>`:`<div class="photo-gallery-empty">아직 사진이 없어요</div>`;
   const uploadBtn=isAuth?`<div class="photo-upload-area" onclick="document.getElementById('photo-file-${c.code}').click()"><input type="file" id="photo-file-${c.code}" accept="image/*" multiple onchange="handlePhotoUpload('${t.id}','${c.code}',this.files)"><div class="pua-icon">${IC.camera}</div><div class="pua-text"><strong>사진 추가</strong> · 최대 20장</div></div>`:"";
@@ -1433,7 +1514,7 @@ function buildCompareTab(t){
     const score=c.score||(d.score&&d.reality?d.score:0);
     const moods=c.moods?.length?c.moods:(d.reality?d.moods:[]);
     const insight=c.insight||d.insight;
-    return `<div class="cmp-country"><div class="cmp-header"><div class="cch-flag">${c.emoji}</div><div class="cch-name">${c.name}</div>${c.cities?`<div class="cch-cities">${c.cities}</div>`:""}</div><div class="cmp-grid"><div class="cmp-col expect-col"><span class="cmp-lbl e">기대</span>${c.expect?`<div class="cmp-txt">${c.expect}</div>`:`<div class="cmp-empty">기대를 아직 남기지 않았어요</div>`}</div><div class="cmp-col"><span class="cmp-lbl r">현실</span>${realityContent}</div></div>${score||moods?.length||insight?`<div class="cmp-bottom">${score?`<div class="score-bar-wrap"><span class="sbl">별점</span>${starDisp(score,'.95rem')}</div>`:""}${moods?.length?`<div class="cmp-moods">${moods.map(m=>`<span class="cmp-mood">${m}</span>`).join("")}</div>`:""}${insight?`<div class="insight-row"><div class="ins-lbl">디자인 영감</div><div class="ins-txt">${insight}</div></div>`:""}</div>`:""}</div>`;
+    return `<div class="cmp-country"><div class="cmp-header"><div class="cch-flag">${c.type==='city'?(c.parentEmoji||'📍'):c.emoji}</div><div class="cch-name">${c.type==='city'?`${c.parentName||''} · ${c.name}`:c.name}</div>${c.cities?`<div class="cch-cities">${c.cities}</div>`:""}</div><div class="cmp-grid"><div class="cmp-col expect-col"><span class="cmp-lbl e">기대</span>${c.expect?`<div class="cmp-txt">${c.expect}</div>`:`<div class="cmp-empty">기대를 아직 남기지 않았어요</div>`}</div><div class="cmp-col"><span class="cmp-lbl r">현실</span>${realityContent}</div></div>${score||moods?.length||insight?`<div class="cmp-bottom">${score?`<div class="score-bar-wrap"><span class="sbl">별점</span>${starDisp(score,'.95rem')}</div>`:""}${moods?.length?`<div class="cmp-moods">${moods.map(m=>`<span class="cmp-mood">${m}</span>`).join("")}</div>`:""}${insight?`<div class="insight-row"><div class="ins-lbl">디자인 영감</div><div class="ins-txt">${insight}</div></div>`:""}</div>`:""}</div>`;
   }).join("");
   const editBtn=isAuth?`<button class="ma-btn ma-edit" onclick="openForm('${t.id}');closeModal()">전체 편집</button>`:"";
   return `<div class="modal-body">${sections}</div><div class="modal-actions">${editBtn}</div>`;
@@ -1454,7 +1535,7 @@ async function saveQR(tid,code){
 }
 function switchToPhoto(id){photoIdx=0;switchMT(id,'photo');}
 function buildPhotoTab(t){
-  const photos=t.countries.flatMap(c=>[...(c.photos||[]).map(p=>({src:p,label:`${c.emoji} ${c.name}`,code:c.code})),...(c.days||[]).flatMap(d=>(d.photos||[]).map(p=>({src:p,label:`${c.emoji} ${c.name} ${d.day}일차`,code:c.code})))]);
+  const photos=t.countries.flatMap(c=>{const flag=c.type==='city'?(c.parentEmoji||'📍'):c.emoji;const lbl=c.type==='city'?`${c.parentName||''} · ${c.name}`:c.name;return[...(c.photos||[]).map(p=>({src:p,label:`${flag} ${lbl}`,code:c.code})),...(c.days||[]).flatMap(d=>(d.photos||[]).map(p=>({src:p,label:`${flag} ${lbl} ${d.day}일차`,code:c.code})))]});
   if(!photos.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">사진이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">기록 탭에서 사진을 추가해봐요</span></div>`;
   const n=photos.length;
   photoIdx=Math.max(0,Math.min(photoIdx,n-1));
@@ -1616,8 +1697,8 @@ function renderStep1(){
   const chips=formData.countries.map(c=>`<span class="country-chip-lg">${c.emoji} ${c.name}<span class="country-chip-rm" onclick="removeC('${c.code}')">${IC.xMark}</span></span>`).join("");
   return `<div class="wiz-wrap">
     <div class="wiz-headline">어디 다녀왔어요?</div>
-    <div class="wiz-sub">나라를 검색해서 추가해요. 여러 나라도 OK예요.</div>
-    <div class="cs-wrap"><input class="cs-inp" id="cs-inp" placeholder="나라 검색 (예: 일본, 페루, 프랑스...)" oninput="showAC(this.value)" autocomplete="off"><div class="cs-dd" id="cs-dd"></div></div>
+    <div class="wiz-sub">나라 또는 도시를 검색해서 추가해요. 여러 곳도 OK예요.</div>
+    <div class="cs-wrap"><input class="cs-inp" id="cs-inp" placeholder="나라 또는 도시 (예: 일본, 도쿄, 파리...)" oninput="showAC(this.value)" autocomplete="off"><div class="cs-dd" id="cs-dd"></div></div>
     ${chips?`<div style="margin-bottom:1rem">${chips}</div>`:""}
     <div class="wiz-footer">
       <button class="wiz-next" onclick="wizNext()" ${formData.countries.length===0?"disabled":""}>다음 →</button>
@@ -1729,7 +1810,7 @@ function renderEditForm(){
   return `<div class="wiz-wrap">
     <div class="wiz-headline" style="font-size:var(--fs-xl)">여행 편집</div>
     <span class="wiz-label">나라</span>
-    <div class="cs-wrap"><input class="cs-inp" id="cs-inp" placeholder="나라 추가..." oninput="showAC(this.value)" autocomplete="off"><div class="cs-dd" id="cs-dd"></div></div>
+    <div class="cs-wrap"><input class="cs-inp" id="cs-inp" placeholder="나라 또는 도시 추가..." oninput="showAC(this.value)" autocomplete="off"><div class="cs-dd" id="cs-dd"></div></div>
     ${chips?`<div style="margin-bottom:1rem">${chips}</div>`:""}
     <span class="wiz-label">여행 기간</span>
     <div class="date-row">
@@ -1753,7 +1834,18 @@ function toggleAcc(key){if(accOpenSections.has(key))accOpenSections.delete(key);
 function toggleCountryAcc(code){const k="c_"+code;if(accOpenSections.has(k))accOpenSections.delete(k);else accOpenSections.add(k);renderForm();}
 function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function calcDays(){if(formData.startDate&&formData.endDate)formData.totalDays=Math.max(1,Math.ceil((new Date(formData.endDate)-new Date(formData.startDate))/86400000)+1);}
-function showAC(q){const dd=document.getElementById("cs-dd");if(!q){dd.style.display="none";return;}const res=COUNTRIES.filter(c=>c.name.includes(q)||c.code.toLowerCase()===q.toLowerCase()).slice(0,8);let html=res.map(c=>`<div class="cs-item" onclick='addC(${JSON.stringify(c)})'>${c.emoji} <span>${c.name}</span></div>`).join("");if(!COUNTRIES.find(c=>c.name===q))html+=`<div class="cs-item" onclick="addC({code:'${q.slice(0,3).toUpperCase()}',name:'${q}',emoji:'🌍',continent:'unknown'})">🌍 <span>"${q}" 직접 추가</span></div>`;dd.innerHTML=html;dd.style.display="block";}
+function showAC(q){
+  const dd=document.getElementById("cs-dd");
+  if(!q){dd.style.display="none";return;}
+  const existing=new Set(formData.countries.map(c=>c.code));
+  const cRes=COUNTRIES.filter(c=>c.name.includes(q)||c.code.toLowerCase()===q.toLowerCase()).filter(c=>!existing.has(c.code)).slice(0,4);
+  const cityRes=CITIES.filter(c=>c.name.includes(q)).filter(c=>!existing.has(c.code)).slice(0,5);
+  let html='';
+  html+=cRes.map(c=>`<div class="cs-item" onclick='addC(${JSON.stringify(c)})'>${c.emoji} <span>${c.name}</span></div>`).join('');
+  html+=cityRes.map(c=>`<div class="cs-item" onclick='addC(${JSON.stringify(c)})'><span>${c.parentEmoji}</span> <span>${c.name} <span style="color:var(--ink-muted);font-weight:400;font-size:var(--fs-sm)">· ${c.parentName}</span></span></div>`).join('');
+  if(!html)html=`<div class="cs-item" onclick="addC({code:'LOC_${Date.now()}',name:'${q.replace(/'/g,'')}',emoji:'📍',type:'city',continent:'unknown'})">📍 <span>"${q}" 직접 추가</span></div>`;
+  dd.innerHTML=html;dd.style.display="block";
+}
 function addC(c){if(formData.countries.find(x=>x.code===c.code))return;formData.countries.push(c);if(!formData.entries[c.code])formData.entries[c.code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};accOpenSections.add("c_"+c.code);document.getElementById("cs-inp").value="";document.getElementById("cs-dd").style.display="none";renderForm();}
 function removeC(code){formData.countries=formData.countries.filter(c=>c.code!==code);accOpenSections.delete("c_"+code);renderForm();}
 function updE(code,f,val){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};formData.entries[code][f]=val;}
