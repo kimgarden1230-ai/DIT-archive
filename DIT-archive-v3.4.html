@@ -626,6 +626,13 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 .day-item-date{font-size:var(--fs-xs);color:var(--ink-muted)}
 .day-item-city{font-size:var(--fs-sm);font-weight:600;color:var(--ink)}
 .day-item-memo{font-size:var(--fs-sm);color:var(--ink-muted);line-height:1.6;white-space:pre-wrap}
+.day-item-photos{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}
+.day-item-photo{width:48px;height:48px;border-radius:var(--r-sm);object-fit:cover;cursor:pointer}
+.day-photos{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.day-photo-thumb{width:54px;height:54px;border-radius:var(--r-sm);object-fit:cover;cursor:pointer}
+.day-photo-add{width:54px;height:54px;border-radius:var(--r-sm);border:1.5px dashed var(--hairline);background:var(--canvas-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:border-color .15s}
+.day-photo-add:hover{border-color:var(--primary)}
+.day-photo-add svg{width:16px;height:16px;fill:var(--ink-muted)}
 .country-chip-lg{display:inline-flex;align-items:center;gap:.35rem;padding:.32rem .8rem;border-radius:var(--r-pill);font-size:var(--fs-md);font-weight:600;background:var(--mint-light);color:var(--primary);margin:.2rem .2rem .2rem 0}
 .country-chip-rm{opacity:.5;cursor:pointer;display:inline-flex;align-items:center;width:13px;height:13px;margin-left:.1rem}
 .country-chip-rm svg{width:100%;height:100%;fill:currentColor}
@@ -1386,7 +1393,7 @@ function buildOverviewTab(t){
   const photoHead=`<div class="photo-section-head"><span class="sec-lbl" style="margin-bottom:0">사진 <span style="font-weight:400;color:var(--ink-muted)">${photos.length}/20</span></span>${addPhotoBtn}</div>`;
   const photoGrid=photos.length?`<div class="photo-gallery" style="grid-template-columns:1fr">${`<img src="${photos[0]}" alt="" onclick="openLightbox('${photos[0]}')" style="width:100%;aspect-ratio:16/9;object-fit:cover">`}</div>`:`<div class="photo-gallery-empty">사진을 추가해보세요</div>`;
   const photoRow=`${photoHead}${photoGrid}`;
-  const days=c.days?.length?`<span class="sec-lbl">일차별 기록</span><div class="day-list">${c.days.map(d=>`<div class="day-item"><div class="day-item-head"><span class="day-item-num">${d.day}일차</span>${d.date?`<span class="day-item-date">${d.date}</span>`:""}</div>${d.city?`<div class="day-item-city">${d.city}</div>`:""} ${d.memo?`<div class="day-item-memo">${d.memo}</div>`:""}</div>`).join("")}</div>`:"";
+  const days=c.days?.length?`<span class="sec-lbl">일차별 기록</span><div class="day-list">${c.days.map(d=>{const dImgs=d.photos?.length?`<div class="day-item-photos">${d.photos.map(src=>`<img class="day-item-photo" src="${src}" alt="" onclick="openLightbox('${src}')">`).join('')}</div>`:'';return`<div class="day-item"><div class="day-item-head"><span class="day-item-num">${d.day}일차</span>${d.date?`<span class="day-item-date">${d.date}</span>`:""}</div>${d.city?`<div class="day-item-city">${d.city}</div>`:""} ${d.memo?`<div class="day-item-memo">${d.memo}</div>`:""}${dImgs}</div>`;}).join("")}</div>`:"";
   return `<div class="modal-body">${tabs}${photoRow}${c.cities?`<span class="sec-lbl">방문 도시</span><div class="sec-box">${c.cities}</div>`:""}${days}${c.expect?`<span class="sec-lbl">기대</span><div class="sec-box expect-box">${c.expect}</div>`:""}${c.reality?`<span class="sec-lbl">현실</span><div class="sec-box reality-box">${c.reality}</div>`:""}${c.insight?`<span class="sec-lbl">디자인 영감</span><div class="sec-box" style="border-left:3px solid ${DS.mint}">${c.insight}</div>`:""}${c.memo?`<span class="sec-lbl">메모</span><div class="sec-box">${c.memo}</div>`:""}${c.moods?.length?`<span class="sec-lbl">감정</span><div class="mood-chips">${c.moods.map(m=>`<span class="mc">${m}</span>`).join("")}</div>`:""}${c.score?`<span class="sec-lbl">기대 충족도</span><div class="score-display">${c.score}<span style="font-size:var(--fs-md);color:var(--gray);font-weight:400">/10</span></div>`:""}</div><div class="modal-actions">${editBtn}${realityBtn}</div>`;
 }
 function buildPhotosTab(t){
@@ -1427,7 +1434,7 @@ async function saveQR(tid,code){
 }
 function switchToPhoto(id){photoIdx=0;switchMT(id,'photo');}
 function buildPhotoTab(t){
-  const photos=t.countries.flatMap(c=>(c.photos||[]).map(p=>({src:p,label:`${c.emoji} ${c.name}`,code:c.code})));
+  const photos=t.countries.flatMap(c=>[...(c.photos||[]).map(p=>({src:p,label:`${c.emoji} ${c.name}`,code:c.code})),...(c.days||[]).flatMap(d=>(d.photos||[]).map(p=>({src:p,label:`${c.emoji} ${c.name} ${d.day}일차`,code:c.code})))]);
   if(!photos.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">사진이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">기록 탭에서 사진을 추가해봐요</span></div>`;
   const n=photos.length;
   photoIdx=Math.max(0,Math.min(photoIdx,n-1));
@@ -1537,7 +1544,7 @@ function openForm(id){
   if(id){
     const t=trips.find(x=>x.id===id);
     formData={status:t.status||"planning",title:t.title||"",coverEmoji:t.coverEmoji||"✈️",startDate:t.startDate||"",endDate:t.endDate||"",totalDays:t.totalDays||0,countries:[...t.countries.map(c=>({...c}))],entries:{}};
-    t.countries.forEach(c=>{formData.entries[c.code]={cities:c.cities||"",expect:c.expect||"",reality:c.reality||"",insight:c.insight||"",memo:c.memo||"",moods:[...(c.moods||[])],score:c.score||7,photos:[...(c.photos||[])]};});
+    t.countries.forEach(c=>{formData.entries[c.code]={cities:c.cities||"",expect:c.expect||"",reality:c.reality||"",insight:c.insight||"",memo:c.memo||"",moods:[...(c.moods||[])],score:c.score||7,photos:[...(c.photos||[])],days:(c.days||[]).map(d=>({...d,photos:[...(d.photos||[])]}))};});
     formStep=1;
   }else{
     formData={status:"completed",title:"",coverEmoji:"✈️",startDate:"",endDate:"",totalDays:0,countries:[],entries:{}};
@@ -1631,12 +1638,7 @@ function renderStep3(){
   const sugTags=COUNTRY_TAGS[c.code]||[];
   const sugSection=sugTags.length?`<span class="wiz-label">✨ ${c.name} 추천 태그</span><div class="mood-grid">${sugTags.map(m=>`<button class="mood-chip${(ent.moods||[]).includes(m)?" on":""}" onclick="toggleMood('${c.code}','${m}')">${m}</button>`).join("")}</div>`:"";
   const photoGrid=ent.photos?.length?`<div class="photo-preview-grid" style="margin-bottom:.75rem">${ent.photos.map((p,i)=>`<div class="photo-preview-item"><img src="${p}" alt=""><button class="photo-del-btn" onclick="removeFormPhoto('${c.code}',${i})">${IC.xMark}</button></div>`).join("")}</div>`:"";
-  const dayCards=(ent.days||[]).map((d,i)=>`<div class="day-card">
-    <div class="day-card-head"><span class="day-badge">${d.day}일차</span><button class="day-del" onclick="removeDay('${c.code}',${i})">${IC.xMark}</button></div>
-    <input class="day-inp" type="date" value="${d.date||''}" placeholder="날짜" oninput="updDay('${c.code}',${i},'date',this.value)">
-    <input class="day-inp" type="text" value="${esc(d.city||'')}" placeholder="장소 (예: 도쿄 시부야)" oninput="updDay('${c.code}',${i},'city',this.value)">
-    <textarea class="day-textarea" placeholder="그날의 기억..." oninput="updDay('${c.code}',${i},'memo',this.value)">${esc(d.memo||'')}</textarea>
-  </div>`).join("");
+  const dayCards=(ent.days||[]).map((d,i)=>{const dThumbs=(d.photos||[]).map(src=>`<img class="day-photo-thumb" src="${src}" alt="" onclick="openLightbox('${src}')">`).join('');const dAddBtn=`<label class="day-photo-add" title="사진 추가"><input type="file" accept="image/*" multiple style="display:none" onchange="handleDayPhotoUpload('${c.code}',${i},this.files)">${IC.camera}</label>`;return`<div class="day-card"><div class="day-card-head"><span class="day-badge">${d.day}일차</span><button class="day-del" onclick="removeDay('${c.code}',${i})">${IC.xMark}</button></div><input class="day-inp" type="date" value="${d.date||''}" placeholder="날짜" oninput="updDay('${c.code}',${i},'date',this.value)"><input class="day-inp" type="text" value="${esc(d.city||'')}" placeholder="장소 (예: 도쿄 시부야)" oninput="updDay('${c.code}',${i},'city',this.value)"><textarea class="day-textarea" placeholder="그날의 기억..." oninput="updDay('${c.code}',${i},'memo',this.value)">${esc(d.memo||'')}</textarea><div class="day-photos">${dThumbs}${dAddBtn}</div></div>`;}).join("");
   return `<div class="wiz-wrap">
     <div class="wiz-headline">어땠어요?</div>
     <div class="wiz-sub">기억을 남겨봐요. 모두 선택 사항이에요.</div>
@@ -1733,7 +1735,16 @@ function showAC(q){const dd=document.getElementById("cs-dd");if(!q){dd.style.dis
 function addC(c){if(formData.countries.find(x=>x.code===c.code))return;formData.countries.push(c);if(!formData.entries[c.code])formData.entries[c.code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};accOpenSections.add("c_"+c.code);document.getElementById("cs-inp").value="";document.getElementById("cs-dd").style.display="none";renderForm();}
 function removeC(code){formData.countries=formData.countries.filter(c=>c.code!==code);accOpenSections.delete("c_"+code);renderForm();}
 function updE(code,f,val){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};formData.entries[code][f]=val;}
-function addDay(code){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};const days=formData.entries[code].days||[];const num=days.length+1;days.push({day:num,date:"",city:"",memo:""});formData.entries[code].days=days;renderForm();}
+async function handleDayPhotoUpload(code,idx,files){
+  if(!formData.entries[code]?.days?.[idx])return;
+  const day=formData.entries[code].days[idx];
+  if(!day.photos)day.photos=[];
+  const rem=10-day.photos.length;if(rem<=0){showToast("일차당 최대 10장까지 가능해요");return;}
+  showToast("사진 압축 중...");
+  for(const file of [...files].slice(0,rem))day.photos.push(await compressImage(file,800,.75));
+  renderForm();showToast("사진 추가됐어요!");
+}
+function addDay(code){if(!formData.entries[code])formData.entries[code]={cities:"",expect:"",reality:"",insight:"",memo:"",moods:[],score:7,photos:[],days:[]};const days=formData.entries[code].days||[];const num=days.length+1;days.push({day:num,date:"",city:"",memo:"",photos:[]});formData.entries[code].days=days;renderForm();}
 function removeDay(code,idx){if(!formData.entries[code])return;formData.entries[code].days.splice(idx,1);formData.entries[code].days.forEach((d,i)=>d.day=i+1);renderForm();}
 function updDay(code,idx,f,val){if(!formData.entries[code]?.days)return;formData.entries[code].days[idx][f]=val;}
 function toggleMood(code,m){if(!formData.entries[code])return;const ms=formData.entries[code].moods||[];formData.entries[code].moods=ms.includes(m)?ms.filter(x=>x!==m):[...ms,m];renderForm();}
