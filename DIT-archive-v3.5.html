@@ -1606,7 +1606,7 @@ function initModalMap(trip){
   });
   const locs=orderedLocs.map(l=>({...l,coords:COUNTRY_COORDS[l.code]})).filter(l=>l.coords);
   const coords=locs.map(l=>l.coords);
-  const mm=L.map(el,{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,touchZoom:false,doubleClickZoom:false,keyboard:false,tap:false});
+  const mm=L.map(el,{zoomControl:true,attributionControl:false,dragging:true,scrollWheelZoom:true,touchZoom:true,doubleClickZoom:true,keyboard:false,tap:true});
   window._modalMap=mm;
   L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",{maxZoom:19}).addTo(mm);
   if(!coords.length){mm.setView([20,0],2);return;}
