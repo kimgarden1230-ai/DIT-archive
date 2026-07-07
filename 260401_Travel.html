@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUR AMÉRICA — DIT 64기 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ── LEAFLET ── */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden}.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;user-select:none;-webkit-user-drag:none}.leaflet-tile::selection{background:transparent}.leaflet-marker-icon,.leaflet-marker-shadow{display:block}.leaflet-container .leaflet-overlay-pane svg,.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer,.leaflet-container .leaflet-tile{max-width:none!important;max-height:none!important}.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}.leaflet-container{-webkit-tap-highlight-color:transparent;background:#dde4ee;font-family:sans-serif;font-size:12px;line-height:1.5}.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}.leaflet-control{position:relative;z-index:800;pointer-events:auto;float:left;clear:both}.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}.leaflet-fade-anim .leaflet-popup{opacity:0;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{transform-origin:0 0}.leaflet-zoom-anim .leaflet-zoom-animated{will-change:transform;transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:grab}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive,.leaflet-dragging .leaflet-marker-draggable{cursor:grabbing}.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-image-layer,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-marker-icon.leaflet-interactive,.leaflet-image-layer.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive{pointer-events:auto}.leaflet-tile{filter:inherit;visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-zoom-box{width:0;height:0;box-sizing:border-box;z-index:800}.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.4);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:26px;height:26px;line-height:26px;display:block;text-align:center;text-decoration:none;color:#000}.leaflet-bar a:hover{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-control-attribution{background:rgba(255,255,255,.75);margin:0;padding:0 5px;color:#333;line-height:1.4}.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fff;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.3)}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:14px}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;transform:rotate(45deg)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:transparent}
+
+/* ── ROOT ── */
+:root{
+  --bg:#F5F7FA;--bg2:#EDF1F7;
+  --surface:rgba(255,255,255,.82);--border:rgba(180,200,230,.35);--border2:rgba(180,200,230,.18);
+  --text:#1B2340;--text2:#4A5578;--muted:#8E9DBE;
+  --latin:#C9563A;--latin-lt:#F4EAE7;--latin-mid:#E8896F;
+  --gold:#D4952A;--gold-lt:#FDF4E3;--gold-mid:#F0C060;
+  --sky:#4A90D9;--sky-lt:#EAF3FC;--sky-mid:#85B8E8;
+  --sage:#3D9E82;--sage-lt:#E6F5F1;
+  --grad-main:linear-gradient(135deg,#C9563A 0%,#D4952A 50%,#4A90D9 100%);
+  --grad-warm:linear-gradient(135deg,#C9563A,#D4952A);
+  --grad-cool:linear-gradient(135deg,#4A90D9,#3D9E82);
+  --grad-bg:linear-gradient(160deg,#EEF3FA 0%,#F5F7FA 40%,#F0F4F9 100%);
+  --shadow:0 2px 16px rgba(74,90,140,.07);
+  --shadow-md:0 8px 40px rgba(74,90,140,.13);
+  --shadow-lg:0 20px 60px rgba(74,90,140,.18);
+  --font:'Noto Sans KR',sans-serif;--radius:20px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--grad-bg);color:var(--text);font-family:var(--font);font-size:14px;overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--latin),var(--gold));border-radius:4px}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes ripple{0%{transform:scale(0);opacity:.55}100%{transform:scale(4);opacity:0}}
+@keyframes blob1{0%,100%{transform:translate(0,0)scale(1)}25%{transform:translate(40px,30px)scale(1.06)}50%{transform:translate(20px,-40px)scale(.96)}75%{transform:translate(-30px,20px)scale(1.04)}}
+@keyframes blob2{0%,100%{transform:translate(0,0)scale(1)}20%{transform:translate(-50px,25px)scale(1.08)}50%{transform:translate(-20px,-30px)scale(.94)}80%{transform:translate(35px,15px)scale(1.03)}}
+@keyframes blob3{0%,100%{transform:translate(0,0)scale(1)}33%{transform:translate(30px,-50px)scale(1.07)}66%{transform:translate(-40px,-20px)scale(.97)}}
+@keyframes blob4{0%,100%{transform:translate(0,0)scale(1)}30%{transform:translate(-35px,40px)scale(1.05)}60%{transform:translate(25px,-30px)scale(.95)}}
+@keyframes blob5{0%,100%{transform:translate(0,0)scale(1)}50%{transform:translate(45px,35px)scale(1.1)}}
+@keyframes blob6{0%,100%{transform:translate(0,0)scale(1)}40%{transform:translate(-30px,-45px)scale(1.08)}}
+@keyframes particleFly{0%{transform:translate(0,0)scale(1);opacity:.8}100%{transform:translate(var(--dx),var(--dy))scale(0);opacity:0}}
+@keyframes staggerIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-s{transition-delay:.1s}.reveal-m{transition-delay:.2s}.reveal-l{transition-delay:.3s}
+.stagger-child{opacity:0;transform:translateY(24px)}
+.stagger-child.in{animation:staggerIn .6s cubic-bezier(.22,1,.36,1) forwards}
+
+/* ── BLOB ── */
+.blob-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(72px);will-change:transform}
+.b1{width:700px;height:700px;background:radial-gradient(circle at 40% 40%,rgba(74,144,217,.18),transparent 70%);top:-200px;left:-180px;animation:blob1 18s ease-in-out infinite}
+.b2{width:600px;height:600px;background:radial-gradient(circle at 60% 50%,rgba(212,149,42,.15),transparent 70%);top:20%;right:-160px;animation:blob2 22s ease-in-out infinite}
+.b3{width:500px;height:500px;background:radial-gradient(circle at 50% 60%,rgba(61,158,130,.13),transparent 70%);bottom:5%;left:10%;animation:blob3 16s ease-in-out infinite}
+.b4{width:420px;height:420px;background:radial-gradient(circle at 55% 45%,rgba(201,86,58,.12),transparent 70%);top:50%;right:20%;animation:blob4 20s ease-in-out infinite}
+.b5{width:300px;height:300px;background:radial-gradient(circle at 50% 50%,rgba(160,100,220,.10),transparent 70%);top:10%;left:45%;animation:blob5 14s ease-in-out infinite}
+.b6{width:260px;height:260px;background:radial-gradient(circle at 50% 50%,rgba(74,144,217,.09),transparent 70%);bottom:25%;right:8%;animation:blob6 17s ease-in-out infinite}
+
+/* ── PAGE TRANSITION OVERLAY ── */
+#page-overlay{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:0;transition:opacity .38s ease;background:var(--grad-main);background-size:300% 300%;animation:gradShift 3s ease infinite}
+#page-overlay.active{opacity:1;pointer-events:all}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(245,247,250,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:52px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s,background .3s}
+nav.scrolled{background:rgba(245,247,250,.96);box-shadow:0 2px 24px rgba(74,90,140,.1)}
+.nav-logo{font-size:1rem;font-weight:900;color:var(--text);cursor:pointer;letter-spacing:-.01em;transition:transform .2s}
+.nav-logo:hover{transform:scale(1.04)}
+.nav-logo em{font-style:normal;background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:.15rem;align-items:center}
+.nav-links a{font-size:.7rem;font-weight:600;color:var(--text2);text-decoration:none;padding:.35rem .75rem;border-radius:14px;transition:background .1s,color .1s;cursor:pointer;position:relative}
+.nav-links a:hover{background:var(--latin-lt);color:var(--latin)}
+.nav-links a.active{background:var(--latin-lt);color:var(--latin);font-weight:700}
+.nav-links a.active::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--latin);border-radius:2px}
+.nav-sep{width:1px;height:16px;background:var(--border);margin:0 .4rem}
+.nav-epilogue{font-size:.7rem;font-weight:700!important;color:#C9563A!important}
+.dday-chip{font-size:.65rem;font-weight:700;background:var(--grad-warm);color:#fff;padding:.3rem 1rem;border-radius:20px;box-shadow:0 3px 12px rgba(201,86,58,.25);animation:pulse 3s ease-in-out infinite}
+.nav-back{display:none;align-items:center;gap:.5rem;font-size:.72rem;font-weight:600;color:var(--text2);padding:.35rem .85rem;border-radius:14px;border:1px solid var(--border);background:var(--surface);transition:all .2s;cursor:pointer}
+.nav-back:hover{border-color:var(--latin);color:var(--latin);background:var(--latin-lt)}
+@media(max-width:700px){.nav-links{display:none}}
+
+/* ── PARTICLE CANVAS ── */
+#particle-canvas{position:absolute;inset:0;pointer-events:none;z-index:1}
+
+/* ── HERO ── */
+#hero{min-height:100vh;padding-top:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(74,144,217,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(74,144,217,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.hero-content{position:relative;z-index:2;padding:3rem 2rem 4rem;max-width:900px;width:100%}
+.hero-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.35em;color:var(--latin);text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp .7s .1s forwards}
+.hero-title{font-size:clamp(3.5rem,12vw,9rem);font-weight:900;color:var(--text);line-height:.9;letter-spacing:-.04em;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-title .sub-line{display:block;font-size:clamp(1.8rem,5vw,4rem);font-weight:900;background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem;letter-spacing:-.02em}
+.hero-divider{width:80px;height:3px;margin:1.8rem auto;border-radius:2px;background:var(--grad-main);opacity:0;animation:fadeUp .7s .5s forwards}
+.hero-sub{font-size:1rem;font-weight:500;color:var(--text2);margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s .6s forwards}
+.hero-flags{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s .8s forwards}
+.hf{display:flex;align-items:center;gap:.6rem;background:var(--surface);backdrop-filter:blur(12px);border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:20px;box-shadow:var(--shadow);white-space:nowrap;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;cursor:default}
+.hf:hover{transform:translateY(-5px) scale(1.03);box-shadow:var(--shadow-md)}
+.hf-flag{width:26px;height:18px;border-radius:3px;overflow:hidden;flex-shrink:0}
+.hf-flag svg{width:100%;height:100%;display:block}
+.hf-info .name{font-size:.72rem;font-weight:700;color:var(--text)}
+.hf-info .date{font-size:.55rem;color:var(--muted)}
+.hero-stats{display:flex;gap:1.5rem;justify-content:center;opacity:0;animation:fadeUp .7s 1s forwards}
+.hs{text-align:center;background:var(--surface);backdrop-filter:blur(12px);padding:.8rem 1.5rem;border-radius:16px;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;cursor:default}
+.hs:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.hs-num{font-size:1.4rem;font-weight:900;background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hs-label{font-size:.58rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.1rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.3rem;font-size:.58rem;font-weight:700;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;opacity:0;animation:fadeUp .7s 1.4s forwards;z-index:2}
+.scroll-hint svg{animation:bounce 1.8s 2s infinite}
+
+/* ── SECTIONS ── */
+section:not(#hero){padding:5rem 2.5rem;position:relative;z-index:1}
+.sec-wrap{max-width:1200px;margin:0 auto}
+.sec-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.3em;color:var(--latin);text-transform:uppercase;margin-bottom:.5rem}
+.sec-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--text);letter-spacing:-.03em;margin-bottom:.4rem}
+.sec-sub{font-size:.85rem;color:var(--text2);margin-bottom:2.5rem}
+.sec-divider{display:flex;align-items:center;gap:1rem;margin-bottom:3rem}
+.sec-divider::before,.sec-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-divider span{font-size:.7rem;color:var(--muted)}
+
+/* ── OVERVIEW ── */
+#overview{background:transparent}
+.ov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+@media(max-width:900px){.ov-grid{grid-template-columns:1fr 1fr}}
+.ov-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);position:relative;overflow:hidden;cursor:default;transform-style:preserve-3d;will-change:transform;transition:box-shadow .3s}
+.ov-card:hover{box-shadow:var(--shadow-md)}
+.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.ov-card.pe::before{background:linear-gradient(to right,#C9563A,#E8896F)}
+.ov-card.bo::before{background:linear-gradient(to right,#D4952A,#F0C060)}
+.ov-card.ar::before{background:linear-gradient(to right,#4A90D9,#85B8E8)}
+.ov-card.br::before{background:linear-gradient(to right,#3D9E82,#6ECFB5)}
+.ov-num{font-size:.58rem;font-weight:700;color:var(--muted);margin-bottom:.7rem}
+.ov-flag-row{display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem}
+.ov-flag{width:30px;height:20px;border-radius:3px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.ov-flag svg{width:100%;height:100%;display:block}
+.ov-city{font-size:.95rem;font-weight:700;color:var(--text)}
+.ov-country{font-size:.68rem;color:var(--muted);margin-top:.1rem}
+.ov-date{font-size:.58rem;font-weight:700;padding:.25rem .7rem;border-radius:8px;display:inline-block;margin-bottom:.8rem}
+.ov-card.pe .ov-date{background:var(--latin-lt);color:var(--latin)}
+.ov-card.bo .ov-date{background:var(--gold-lt);color:var(--gold)}
+.ov-card.ar .ov-date{background:var(--sky-lt);color:var(--sky)}
+.ov-card.br .ov-date{background:var(--sage-lt);color:var(--sage)}
+.ov-nights{font-size:.72rem;font-weight:600;color:var(--text2);margin-bottom:.8rem}
+.ov-list{list-style:none}
+.ov-list li{font-size:.75rem;color:var(--text2);padding:.22rem 0;border-bottom:1px solid var(--border2);display:flex;gap:.4rem;line-height:1.45;word-break:keep-all}
+.ov-list li:last-child{border-bottom:none}
+.ov-list li::before{content:'›';color:var(--latin);font-weight:700;flex-shrink:0}
+
+/* ── MAP ── */
+#map-sec{background:rgba(237,241,247,.5)}
+.map-layout{display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start}
+@media(max-width:800px){.map-layout{grid-template-columns:1fr}}
+#leaflet-map{height:500px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);z-index:1}
+.map-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);position:sticky;top:4.5rem;opacity:0;transform:translateY(8px);transition:all .4s cubic-bezier(.22,1,.36,1)}
+.map-card.show{opacity:1;transform:translateY(0)}
+.mc-flag{font-size:1.6rem;margin-bottom:.4rem}
+.mc-name{font-size:1rem;font-weight:700;color:var(--text)}
+.mc-sub{font-size:.7rem;color:var(--muted);margin:.2rem 0 .6rem}
+.mc-date{font-size:.6rem;font-weight:700;background:var(--grad-warm);color:#fff;padding:.25rem .7rem;border-radius:8px;display:inline-block;margin-bottom:.8rem}
+.mc-list{list-style:none}
+.mc-list li{font-size:.75rem;color:var(--text2);padding:.25rem 0;border-bottom:1px solid var(--border2);display:flex;gap:.4rem}
+.mc-list li:last-child{border-bottom:none}
+.mc-list li::before{content:'✦';color:var(--latin);font-size:.55rem;margin-top:.3rem;flex-shrink:0}
+.mc-badge{margin-top:.8rem;display:inline-block;font-size:.58rem;font-weight:700;padding:.25rem .7rem;border-radius:8px;background:var(--latin-lt);color:var(--latin)}
+.leaflet-popup-content-wrapper{border-radius:14px;border:1px solid var(--border);font-family:var(--font);box-shadow:var(--shadow-md)}
+.leaflet-popup-content{margin:12px 14px;font-size:.8rem;color:var(--text);line-height:1.6}
+
+/* ── SCHEDULE ── */
+#schedule{background:transparent}
+.sch-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.sch-tab{display:inline-flex;align-items:center;font-size:.72rem;font-weight:600;padding:.45rem 1.1rem;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s}
+.sch-tab.active{color:#fff;border-color:transparent}
+.sch-tab.pe.active{background:linear-gradient(135deg,var(--latin),var(--latin-mid))}
+.sch-tab.bo.active{background:linear-gradient(135deg,var(--gold),var(--gold-mid))}
+.sch-tab.ar.active{background:linear-gradient(135deg,var(--sky),var(--sky-mid))}
+.sch-tab.br.active{background:linear-gradient(135deg,var(--sage),#6ECFB5)}
+.sch-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
+.sch-grid.active{display:grid}
+.day-card{background:var(--surface);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:16px;padding:1.2rem;box-shadow:var(--shadow);transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;transform-style:preserve-3d;cursor:default}
+.day-card:hover{box-shadow:var(--shadow-md)}
+.dc-date{font-size:.58rem;font-weight:700;color:var(--muted);margin-bottom:.3rem}
+.dc-title{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.7rem;line-height:1.3}
+.dc-list{list-style:none}
+.dc-list li{font-size:.72rem;color:var(--text2);padding:.18rem 0;border-bottom:1px solid var(--border2);display:flex;gap:.3rem;line-height:1.4;word-break:keep-all}
+.dc-list li:last-child{border-bottom:none}
+.dc-list li::before{content:'·';color:var(--muted);flex-shrink:0}
+.dc-list li.hl{color:var(--latin);font-weight:600}
+.dc-list li.hl::before{content:'★';color:var(--gold)}
+.dc-flight{margin-top:.6rem;background:linear-gradient(135deg,var(--sky-lt),var(--latin-lt));border-radius:8px;padding:.4rem .7rem;font-size:.6rem;font-weight:700;color:var(--sky);text-align:center}
+
+/* ── JOURNAL ── */
+#journal{background:rgba(237,241,247,.4)}
+.jn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+@media(max-width:1200px){.jn-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.jn-grid{grid-template-columns:1fr}}
+.jn-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.2rem;box-shadow:var(--shadow);transition:box-shadow .3s;position:relative;overflow:hidden;transform-style:preserve-3d;cursor:default}
+.jn-card:hover{box-shadow:var(--shadow-md)}
+.jn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0;opacity:0;transition:opacity .3s}
+.jn-card:hover::before{opacity:1}
+.jn-card.pe::before{background:linear-gradient(to right,var(--latin),var(--gold))}
+.jn-card.bo::before{background:linear-gradient(to right,var(--gold),var(--sky))}
+.jn-card.ar::before{background:linear-gradient(to right,var(--sky),var(--sage))}
+.jn-card.br::before{background:linear-gradient(to right,var(--sage),var(--latin))}
+.jn-num{font-size:4rem;font-weight:900;color:rgba(74,90,140,.04);position:absolute;top:-.5rem;right:.8rem;line-height:1;pointer-events:none}
+.jn-flag{font-size:1.4rem;margin-bottom:.4rem}
+.jn-city{font-size:.95rem;font-weight:700;color:var(--text);word-break:keep-all}
+.jn-date{font-size:.58rem;color:var(--muted);margin:.2rem 0 .9rem;letter-spacing:.08em}
+.jn-divider{height:1px;background:var(--border);margin-bottom:.9rem}
+.jn-compare{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.jn-col-label{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.jn-col-label.expect{color:var(--latin)}
+.jn-col-label.real{color:var(--sage)}
+.jn-expect-box{background:var(--latin-lt);border:1px solid rgba(201,86,58,.15);border-radius:10px;padding:.65rem .7rem;font-size:.78rem;color:var(--text2);line-height:1.7;word-break:keep-all}
+.jn-expect-list{list-style:none;margin-top:.6rem}
+.jn-expect-list li{font-size:.72rem;color:var(--muted);padding:.15rem 0;display:flex;gap:.25rem}
+.jn-expect-list li::before{content:'→';color:var(--latin);font-weight:700;flex-shrink:0}
+.jn-real-box{background:var(--sage-lt);border:1px solid rgba(61,158,130,.2);border-radius:10px;padding:.65rem .7rem}
+.jn-textarea{width:100%;background:transparent;border:none;color:var(--text);font-family:var(--font);font-size:.78rem;line-height:1.75;resize:none;min-height:80px;outline:none}
+.jn-textarea::placeholder{color:var(--muted);opacity:.7}
+.jn-mood{display:flex;gap:.25rem;flex-wrap:wrap;margin-top:.5rem}
+.mood-btn{background:rgba(255,255,255,.7);border:1px solid var(--border);color:var(--text2);font-size:.72rem;padding:.18rem .42rem;cursor:pointer;border-radius:12px;transition:all .18s;font-family:var(--font);white-space:nowrap}
+.mood-btn:hover,.mood-btn.on{border-color:var(--sage);color:var(--sage);background:var(--sage-lt);transform:scale(1.06)}
+.jn-save{margin-top:.7rem;width:100%;padding:.45rem;font-size:.68rem;font-weight:700;background:var(--grad-cool);border:none;color:#fff;cursor:pointer;border-radius:10px;transition:all .2s;font-family:var(--font)}
+.jn-save:hover{opacity:.88;transform:scale(1.01)}
+.jn-saved{font-size:.6rem;color:var(--sage);opacity:0;transition:opacity .3s;text-align:center;margin-top:.3rem}
+
+/* ── GALLERY ── */
+#gallery{background:transparent}
+.gal-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.gf{display:inline-flex;align-items:center;font-size:.7rem;font-weight:600;padding:.4rem 1rem;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s}
+.gf:hover,.gf.on{border-color:var(--latin);color:var(--latin);background:var(--latin-lt);transform:scale(1.03)}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.gal-item{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;cursor:pointer;background:var(--bg2);box-shadow:var(--shadow);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+.gal-item:hover{transform:translateY(-6px) scale(1.02);box-shadow:var(--shadow-md)}
+.gal-item:hover .gal-ov{opacity:1}
+.gal-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--latin-lt),var(--gold-lt))}
+.gal-ph .phi{font-size:1.8rem;opacity:.5;margin-bottom:.3rem}
+.gal-ph .phl{font-size:.6rem;font-weight:500;color:var(--muted)}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(27,35,64,.65),transparent);opacity:0;transition:opacity .25s;display:flex;flex-direction:column;justify-content:flex-end;padding:.8rem;border-radius:16px}
+.go-city{font-size:.58rem;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.08em}
+.go-cap{font-size:.8rem;font-weight:500;color:#fff;margin-top:.1rem}
+
+/* POPUP */
+.gal-popup-bg{position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(27,35,64,0);backdrop-filter:blur(0);transition:background .28s,backdrop-filter .28s}
+.gal-popup-bg.active{background:rgba(27,35,64,.45);backdrop-filter:blur(10px)}
+.gal-popup{background:#fff;border-radius:24px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-lg);position:relative;opacity:0;transform:scale(.88) translateY(16px);transition:opacity .32s cubic-bezier(.34,1.4,.64,1),transform .32s cubic-bezier(.34,1.4,.64,1);overscroll-behavior:contain}
+.gal-popup-bg.active .gal-popup{opacity:1;transform:scale(1) translateY(0)}
+.gal-popup-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:24px 24px 0 0}
+.gal-popup-img-placeholder{width:100%;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--latin-lt),var(--gold-lt));border-radius:24px 24px 0 0;cursor:pointer;transition:opacity .2s}
+.gal-popup-img-placeholder:hover{opacity:.85}
+.upload-hint{font-size:.75rem;font-weight:600;color:var(--muted);margin-top:.6rem}
+.gal-popup-close{position:absolute;top:.8rem;right:.8rem;width:30px;height:30px;border-radius:50%;background:rgba(27,35,64,.35);backdrop-filter:blur(6px);border:none;color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;z-index:1}
+.gal-popup-close:hover{background:rgba(27,35,64,.6);transform:scale(1.1) rotate(90deg)}
+.gal-popup-body{padding:1.4rem 1.4rem 2rem}
+.gal-popup-title{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.gal-popup-date{font-size:.65rem;color:var(--muted);margin-bottom:1.1rem}
+.gal-popup-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;color:var(--latin);text-transform:uppercase;margin-bottom:.45rem}
+.gal-popup-textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--font);font-size:.85rem;line-height:1.7;padding:.8rem 1rem;resize:none;min-height:88px;outline:none;transition:border-color .2s;margin-bottom:1rem}
+.gal-popup-textarea:focus{border-color:rgba(201,86,58,.4)}
+.gal-moods{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.gal-mood-btn{padding:.38rem .75rem;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;font-family:var(--font);transition:all .18s}
+.gal-mood-btn:hover,.gal-mood-btn.on{border-color:var(--latin);background:var(--latin-lt)}
+.gal-popup-img-change{width:100%;padding:.5rem;background:rgba(201,86,58,.05);border:1.5px dashed var(--latin);border-radius:10px;color:var(--latin);font-family:var(--font);font-size:.72rem;font-weight:600;cursor:pointer;margin-bottom:1rem;transition:background .2s;display:block;text-align:center}
+.gal-popup-img-change:hover{background:rgba(201,86,58,.1)}
+.gal-popup-save{width:100%;padding:.65rem;background:var(--grad-warm);border:none;border-radius:12px;color:#fff;font-family:var(--font);font-size:.82rem;font-weight:700;cursor:pointer;transition:opacity .2s,transform .2s;box-shadow:0 4px 16px rgba(201,86,58,.25)}
+.gal-popup-save:hover{opacity:.88;transform:scale(1.01)}
+
+/* ── FINALE ── */
+#finale{background:rgba(237,241,247,.5);text-align:center;padding:6rem 2.5rem}
+.fin-lock{width:72px;height:72px;margin:0 auto 1.5rem;background:linear-gradient(135deg,var(--latin-lt),var(--gold-lt));border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:var(--shadow)}
+.fin-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;max-width:880px;margin:2rem auto}
+.fin-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem;filter:blur(5px);user-select:none;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.fin-card::after{content:'🔒';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:rgba(245,247,250,.65);border-radius:16px}
+.fin-city{font-size:.9rem;font-weight:600;color:var(--text)}
+.fin-score{font-size:2rem;font-weight:700;background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:.3rem 0}
+.fin-label{font-size:.72rem;color:var(--muted)}
+.fin-btn{margin-top:1.5rem;font-size:.72rem;font-weight:700;padding:.75rem 2.5rem;border-radius:20px;border:none;cursor:pointer;transition:all .3s;background:var(--grad-warm);color:#fff;box-shadow:0 4px 20px rgba(201,86,58,.3);position:relative;overflow:hidden}
+.fin-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,86,58,.4)}
+footer{text-align:center;padding:2.5rem;border-top:1px solid var(--border);background:rgba(237,241,247,.6)}
+.footer-logo{font-size:1.1rem;font-weight:900;background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+.footer-sub{font-size:.68rem;color:var(--muted)}
+
+/* ── EPILOGUE ── */
+#page-main,#page-epilogue{transition:opacity .4s ease,transform .4s ease}
+#page-epilogue{display:none;opacity:0;transform:translateY(20px);position:relative;z-index:1;padding-top:52px;min-height:100vh}
+.ep-hero-inner{padding:5rem 2.5rem 3rem;text-align:center}
+.ep-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.35em;color:var(--latin);text-transform:uppercase;margin-bottom:1rem}
+.ep-title{font-size:clamp(2.5rem,8vw,6rem);font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:.95;margin-bottom:1.2rem}
+.ep-title em{font-style:normal;background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ep-divider{width:80px;height:3px;margin:.2rem auto 1.5rem;border-radius:2px;background:var(--grad-main)}
+.ep-sub{font-size:1rem;color:var(--text2);max-width:480px;margin:0 auto;line-height:1.7}
+.ep-locked{padding:2rem 2.5rem 5rem;max-width:500px;margin:0 auto;text-align:center}
+.ep-lock-icon{font-size:3.5rem;margin-bottom:1.2rem}
+.ep-lock-msg{font-size:.95rem;color:var(--text2);line-height:1.8;margin-bottom:2rem}
+.ep-unlock-row{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.ep-pw{font-family:var(--font);font-size:.85rem;padding:.65rem 1.2rem;border:1.5px solid var(--border);border-radius:20px;outline:none;background:var(--surface);color:var(--text);transition:border-color .2s;width:190px;text-align:center;letter-spacing:.1em}
+.ep-pw:focus{border-color:var(--latin)}
+.ep-unlock-btn{font-family:var(--font);font-size:.82rem;font-weight:700;padding:.65rem 1.8rem;border-radius:20px;border:none;background:var(--grad-warm);color:#fff;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(201,86,58,.25)}
+.ep-unlock-btn:hover{transform:translateY(-2px)}
+.ep-error{font-size:.75rem;color:var(--latin);margin-top:.7rem;min-height:1.2em}
+.ep-content{padding:0 2.5rem 3rem;max-width:1200px;margin:0 auto;display:none}
+.cs-hdr{display:flex;align-items:center;gap:.9rem;margin:2.5rem 0 1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.cs-flag{width:34px;height:22px;border-radius:3px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.1);flex-shrink:0}
+.cs-flag svg{width:100%;height:100%;display:block}
+.cs-name{font-size:1.15rem;font-weight:900;color:var(--text)}
+.cs-dates{font-size:.62rem;color:var(--muted);margin-left:auto;letter-spacing:.06em}
+.advent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem}
+.ac{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;cursor:pointer;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;background:var(--surface);border:1px solid var(--border);min-height:200px;transform-style:preserve-3d}
+.ac:hover:not(.ac-opened){transform:translateY(-5px) scale(1.02);box-shadow:var(--shadow-md)}
+.ac-opened{cursor:default}
+.ac-front{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border-radius:var(--radius);z-index:2;transition:transform .55s cubic-bezier(.34,1.2,.64,1),opacity .4s;transform-origin:top center}
+.ac-front.gone{transform:scaleY(0) translateY(-20px);opacity:0;pointer-events:none}
+.ac-front-emoji{font-size:3rem;line-height:1}
+.ac-front-label{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.08em;text-align:center;padding:0 .8rem}
+.ac-front-hint{font-size:.58rem;color:rgba(255,255,255,.5);margin-top:.2rem;animation:pulse 2s ease-in-out infinite}
+.ac-back{position:relative;z-index:1;opacity:0;transform:translateY(14px) scale(.97);transition:opacity .45s .2s,transform .45s .2s cubic-bezier(.34,1.56,.64,1)}
+.ac-back.show{opacity:1;transform:translateY(0) scale(1)}
+.ac-img-ph{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.35}
+.ac-body{padding:.9rem 1rem 1.1rem}
+.ac-cntry{display:flex;align-items:center;gap:.4rem;margin-bottom:.35rem}
+.ac-cntry-flag{width:16px;height:11px;border-radius:2px;overflow:hidden;flex-shrink:0}
+.ac-cntry-flag svg{width:100%;height:100%;display:block}
+.ac-cntry-name{font-size:.6rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.ac-cntry-date{font-size:.58rem;color:var(--muted);margin-left:auto}
+.ac-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.7rem;line-height:1.3}
+.ac-pair{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.6rem}
+.ac-box{border-radius:9px;padding:.55rem .6rem}
+.ac-box.ex{background:var(--latin-lt);border:1px solid rgba(201,86,58,.15)}
+.ac-box.re{background:var(--sage-lt);border:1px solid rgba(61,158,130,.18)}
+.ac-box-lbl{font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.3rem}
+.ac-box.ex .ac-box-lbl{color:var(--latin)}
+.ac-box.re .ac-box-lbl{color:var(--sage)}
+.ac-box-txt{font-size:.7rem;color:var(--text2);line-height:1.6;word-break:keep-all}
+.ac-box-empty{font-size:.66rem;color:var(--muted);font-style:italic}
+.ac-moods{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem}
+.ac-mood{font-size:.72rem;padding:.18rem .45rem;border-radius:9px;background:var(--latin-lt);border:1px solid rgba(201,86,58,.15)}
+
+/* ── SCORE SECTION ── */
+.ep-score-section{padding:0 2.5rem 2.5rem;max-width:1200px;margin:0 auto;display:none}
+.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:900px){.score-grid{grid-template-columns:repeat(2,1fr)}}
+.score-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow);position:relative;overflow:hidden;text-align:center}
+.score-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.score-card.pe::before{background:linear-gradient(to right,#C9563A,#E8896F)}
+.score-card.bo::before{background:linear-gradient(to right,#D4952A,#F0C060)}
+.score-card.ar::before{background:linear-gradient(to right,#4A90D9,#85B8E8)}
+.score-card.br::before{background:linear-gradient(to right,#3D9E82,#6ECFB5)}
+.score-flag{font-size:1.6rem;margin-bottom:.3rem}
+.score-name{font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:.9rem}
+.score-val{font-size:2.6rem;font-weight:900;background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:.3rem}
+.score-emoji{font-size:1.3rem;margin-bottom:.7rem}
+.score-slider{width:100%;appearance:none;height:5px;border-radius:3px;background:var(--border);outline:none;cursor:pointer;accent-color:var(--latin);margin-bottom:.4rem}
+.score-label{font-size:.58rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* ── CHART SECTION ── */
+.ep-chart-section{padding:0 2.5rem 2.5rem;max-width:900px;margin:0 auto;display:none}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)}
+.chart-header{font-size:1rem;font-weight:900;color:var(--text);margin-bottom:1.5rem;text-align:center}
+.chart-layout{display:grid;grid-template-columns:180px 1fr;gap:2rem;align-items:center}
+@media(max-width:600px){.chart-layout{grid-template-columns:1fr}}
+.donut-wrap{position:relative;width:180px;height:180px;margin:0 auto}
+.donut-svg{display:block}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.donut-center-num{font-size:1.8rem;font-weight:900;background:var(--grad-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.donut-center-lbl{font-size:.58rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+.chart-legend{display:flex;flex-direction:column;gap:.6rem}
+.cl-item{display:flex;align-items:center;gap:.55rem;font-size:.78rem;color:var(--text2)}
+.cl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.bar-section{margin-top:1.5rem}
+.bar-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem}
+.bar-label{font-size:.7rem;color:var(--text2);width:80px;text-align:right;flex-shrink:0}
+.bar-bg{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.bar-val{font-size:.68rem;font-weight:700;color:var(--text);width:28px;flex-shrink:0}
+
+/* ── SUMMARY ── */
+.ep-summary{padding:0 2.5rem 3rem;max-width:900px;margin:0 auto;display:none}
+.ep-sum-card{background:var(--surface);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:24px;padding:2.5rem;box-shadow:var(--shadow-md)}
+.ep-sum-title{font-size:1.3rem;font-weight:900;color:var(--text);margin-bottom:1.8rem;text-align:center}
+.ep-sum-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:700px){.ep-sum-grid{grid-template-columns:1fr 1fr}}
+.ep-sc{border-radius:16px;padding:1.3rem;text-align:center;position:relative;overflow:hidden}
+.ep-sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
+.ep-sc.pe{background:var(--latin-lt)}.ep-sc.pe::before{background:linear-gradient(to right,var(--latin),var(--latin-mid))}
+.ep-sc.bo{background:var(--gold-lt)}.ep-sc.bo::before{background:linear-gradient(to right,var(--gold),var(--gold-mid))}
+.ep-sc.ar{background:var(--sky-lt)}.ep-sc.ar::before{background:linear-gradient(to right,var(--sky),var(--sky-mid))}
+.ep-sc.br{background:var(--sage-lt)}.ep-sc.br::before{background:linear-gradient(to right,var(--sage),#6ECFB5)}
+.ep-sc-flag{font-size:1.4rem;margin-bottom:.4rem}
+.ep-sc-name{font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:.8rem}
+.ep-sc-icon{font-size:1.8rem;margin-bottom:.3rem}
+.ep-sc-status{font-size:.65rem;font-weight:700;color:var(--text2)}
+.ep-sc-quote{font-size:.68rem;color:var(--text2);line-height:1.6;word-break:keep-all;margin-top:.7rem;font-style:italic}
+.ep-sc-moods{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.5rem;justify-content:center}
+.ep-sc-mood{font-size:.68rem;padding:.15rem .4rem;border-radius:8px;background:var(--latin-lt);border:1px solid rgba(201,86,58,.15)}
+
+/* ── AI SECTION ── */
+.ep-ai-section{padding:0 2.5rem 6rem;max-width:900px;margin:0 auto;display:none}
+.ai-card{background:linear-gradient(135deg,#1B2340 0%,#2A3560 100%);border-radius:24px;padding:2.2rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.ai-card::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(201,86,58,.25),transparent 70%);pointer-events:none}
+.ai-card::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(74,144,217,.2),transparent 70%);pointer-events:none}
+.ai-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;position:relative;z-index:1}
+.ai-orb{width:44px;height:44px;border-radius:50%;background:var(--grad-main);background-size:200%;animation:gradShift 3s ease infinite;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 4px 18px rgba(201,86,58,.4)}
+.ai-htitle{font-size:1.1rem;font-weight:900;color:#fff}
+.ai-hsub{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:.1rem}
+.ai-btn{width:100%;padding:.85rem;background:var(--grad-main);background-size:200%;animation:gradShift 4s ease infinite;border:none;border-radius:16px;color:#fff;font-family:var(--font);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(201,86,58,.3);position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.ai-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,86,58,.45)}
+.ai-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.ai-loading{display:none;align-items:center;gap:.8rem;padding:1rem 0;color:rgba(255,255,255,.55);font-size:.82rem;position:relative;z-index:1}
+.ai-loading.show{display:flex}
+.ai-spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+.ai-result{display:none;margin-top:1.4rem;position:relative;z-index:1}
+.ai-result.show{display:block;animation:fadeUp .5s ease forwards}
+.ai-result-label{font-size:.62rem;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:.6rem}
+.ai-result-text{font-size:.88rem;color:rgba(255,255,255,.82);line-height:1.9;white-space:pre-wrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.3rem 1.5rem}
+.ai-regen{margin-top:1rem;font-family:var(--font);font-size:.72rem;font-weight:600;color:rgba(255,255,255,.4);background:transparent;border:1px solid rgba(255,255,255,.15);padding:.4rem 1rem;border-radius:12px;cursor:pointer;transition:all .2s}
+.ai-regen:hover{color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.3)}
+
+/* ── RIPPLE ── */
+.rpl-btn{position:relative;overflow:hidden}
+.rpl-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,.28);transform:scale(0);animation:ripple .55s linear;pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="blob-wrap">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="blob b3"></div><div class="blob b4"></div>
+  <div class="blob b5"></div><div class="blob b6"></div>
+</div>
+<div id="page-overlay"></div>
+
+<nav id="main-nav">
+  <div class="nav-logo" onclick="goMain()"><em>VIVA</em> LATINA</div>
+  <div class="nav-links" id="nav-main-links">
+    <a data-section="overview" onclick="navTo('overview')">개요</a>
+    <a data-section="map-sec"  onclick="navTo('map-sec')">지도</a>
+    <a data-section="schedule" onclick="navTo('schedule')">일정</a>
+    <a data-section="journal"  onclick="navTo('journal')">일기</a>
+    <a data-section="gallery"  onclick="navTo('gallery')">갤러리</a>
+    <span class="nav-sep"></span>
+    <a class="nav-epilogue" onclick="openEpilogue()">귀국 후 ↗</a>
+  </div>
+  <div class="nav-back" id="nav-back" onclick="goMain()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7-7"/></svg>
+    여행으로 돌아가기
+  </div>
+  <div class="dday-chip" id="dday-nav">D-???</div>
+</nav>
+
+<div id="page-main">
+  <section id="hero">
+    <canvas id="particle-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-eyebrow">DIT 64기 · 남미 여행 일지 2026</div>
+      <h1 class="hero-title"><span class="sub-line">¡Hola!</span>SUR AMÉRICA</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">DIT 64기 — 남미 · 2026.04.25 — 05.13</p>
+      <div class="hero-flags">
+        <div class="hf"><div class="hf-flag"><svg viewBox="0 0 60 40"><rect width="60" height="13.3" fill="#D91023"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#D91023"/></svg></div><div class="hf-info"><div class="name">페루</div><div class="date">04.25–05.01</div></div></div>
+        <div class="hf"><div class="hf-flag"><svg viewBox="0 0 60 40"><rect width="60" height="13.3" fill="#D52B1E"/><rect y="13.3" width="60" height="13.3" fill="#F4E400"/><rect y="26.6" width="60" height="13.4" fill="#007A3D"/></svg></div><div class="hf-info"><div class="name">볼리비아</div><div class="date">05.01–05.05</div></div></div>
+        <div class="hf"><div class="hf-flag"><svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#74ACDF"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><circle cx="30" cy="20" r="4.5" fill="#F6B40E"/></svg></div><div class="hf-info"><div class="name">아르헨티나</div><div class="date">05.05–05.10</div></div></div>
+        <div class="hf"><div class="hf-flag"><svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#009C3B"/><polygon points="30,4 56,20 30,36 4,20" fill="#FFDF00"/><circle cx="30" cy="20" r="8" fill="#002776"/></svg></div><div class="hf-info"><div class="name">브라질</div><div class="date">05.10–05.13</div></div></div>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><div class="hs-num">20</div><div class="hs-label">Days</div></div>
+        <div class="hs"><div class="hs-num">4</div><div class="hs-label">Countries</div></div>
+        <div class="hs"><div class="hs-num">8+</div><div class="hs-label">Cities</div></div>
+        <div class="hs"><div class="hs-num">3</div><div class="hs-label">Flights</div></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <section id="overview" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Overview</div>
+      <div class="sec-title">THE JOURNEY</div>
+      <div class="sec-sub">2026.04.25 — 05.13 · 19박 20일 · 4개국 8개 도시</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="ov-grid">
+        <div class="ov-card pe reveal reveal-s"><div class="ov-num">01 / 04</div><div class="ov-flag-row"><div class="ov-flag"><svg viewBox="0 0 60 40"><rect width="60" height="13.3" fill="#D91023"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#D91023"/></svg></div><div><div class="ov-city">페루</div><div class="ov-country">리마 · 이카 · 쿠스코 · 마추픽추</div></div></div><div class="ov-date">04.25 — 05.01</div><div class="ov-nights">7박 8일</div><ul class="ov-list"><li>리마 도착 · 미라플로레스</li><li>이카 사막 · 나스카 라인 경비행기</li><li>쿠스코 고산적응 · 성스러운 계곡</li><li>마추픽추 서킷 1 투어</li><li>비니쿤카(무지개 산)</li></ul></div>
+        <div class="ov-card bo reveal reveal-m"><div class="ov-num">02 / 04</div><div class="ov-flag-row"><div class="ov-flag"><svg viewBox="0 0 60 40"><rect width="60" height="13.3" fill="#D52B1E"/><rect y="13.3" width="60" height="13.3" fill="#F4E400"/><rect y="26.6" width="60" height="13.4" fill="#007A3D"/></svg></div><div><div class="ov-city">볼리비아</div><div class="ov-country">라파스 · 우유니</div></div></div><div class="ov-date">05.01 — 05.05</div><div class="ov-nights">4박 5일</div><ul class="ov-list"><li>쿠스코 → 라파스 버스 이동</li><li>마녀시장 · 볼리비아 국립미술관</li><li>우유니 소금사막 (선셋+별빛)</li><li>우유니 선라이즈 투어</li><li>기차무덤 · 소금호텔</li></ul></div>
+        <div class="ov-card ar reveal reveal-l"><div class="ov-num">03 / 04</div><div class="ov-flag-row"><div class="ov-flag"><svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#74ACDF"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><circle cx="30" cy="20" r="4.5" fill="#F6B40E"/></svg></div><div><div class="ov-city">아르헨티나</div><div class="ov-country">부에노스아이레스 · 이과수</div></div></div><div class="ov-date">05.05 — 05.11</div><div class="ov-nights">6박</div><ul class="ov-list"><li>La Boca · El Ateneo 서점</li><li>오벨리스크 · 레콜레타 공동묘지</li><li>피아졸라 탱고 공연</li><li>이과수 폭포 (악마의 목구멍)</li><li>이과수 헬기투어</li></ul></div>
+        <div class="ov-card br reveal reveal-l"><div class="ov-num">04 / 04</div><div class="ov-flag-row"><div class="ov-flag"><svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#009C3B"/><polygon points="30,4 56,20 30,36 4,20" fill="#FFDF00"/><circle cx="30" cy="20" r="8" fill="#002776"/></svg></div><div><div class="ov-city">브라질</div><div class="ov-country">이과수 · 상파울루</div></div></div><div class="ov-date">05.11 — 05.13</div><div class="ov-nights">2박 3일</div><ul class="ov-list"><li>브라질 이과수 투어</li><li>이과수 보트 투어</li><li>상파울루 경유 귀국</li><li>프랑크푸르트 → 서울 귀국</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="map-sec" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Route</div>
+      <div class="sec-title">THE ROUTE</div>
+      <div class="sec-sub">핀을 클릭해 도시 정보를 확인하세요</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="map-layout">
+        <div id="leaflet-map"></div>
+        <div class="map-card" id="map-card"><div style="font-size:.82rem;color:var(--muted);text-align:center;padding:1rem 0">지도에서 핀을 클릭하세요</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Schedule</div>
+      <div class="sec-title">DAY BY DAY</div>
+      <div class="sec-sub">상세 일정을 날짜별로 확인하세요</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="sch-tabs">
+        <button class="sch-tab pe active" onclick="switchSch(this,'sp')"><svg width="16" height="11" viewBox="0 0 60 40" style="border-radius:2px;margin-right:5px"><rect width="60" height="13.3" fill="#D91023"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#D91023"/></svg>페루</button>
+        <button class="sch-tab bo" onclick="switchSch(this,'sb')"><svg width="16" height="11" viewBox="0 0 60 40" style="border-radius:2px;margin-right:5px"><rect width="60" height="13.3" fill="#D52B1E"/><rect y="13.3" width="60" height="13.3" fill="#F4E400"/><rect y="26.6" width="60" height="13.4" fill="#007A3D"/></svg>볼리비아</button>
+        <button class="sch-tab ar" onclick="switchSch(this,'sa')"><svg width="16" height="11" viewBox="0 0 60 40" style="border-radius:2px;margin-right:5px"><rect width="60" height="40" fill="#74ACDF"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><circle cx="30" cy="20" r="4.5" fill="#F6B40E"/></svg>아르헨티나</button>
+        <button class="sch-tab br" onclick="switchSch(this,'sr')"><svg width="16" height="11" viewBox="0 0 60 40" style="border-radius:2px;margin-right:5px"><rect width="60" height="40" fill="#009C3B"/><polygon points="30,4 56,20 30,36 4,20" fill="#FFDF00"/><circle cx="30" cy="20" r="8" fill="#002776"/></svg>브라질</button>
+      </div>
+      <div class="sch-grid active" id="sp">
+        <div class="day-card"><div class="dc-date">04.25 SAT · DAY 1</div><div class="dc-title">서울 → 멕시코시티 → 리마</div><ul class="dc-list"><li class="hl">인천공항 11:40 출발</li><li>LATAM 5113 · 13시간 55분</li><li>멕시코시티 경유 4시간 35분</li><li>멕시코 15:10 → 리마 22:05</li></ul><div class="dc-flight">✈ ICN → MEX → LIM</div></div>
+        <div class="day-card"><div class="dc-date">04.26 SUN · DAY 2</div><div class="dc-title">리마 도착</div><ul class="dc-list"><li>공항 도착 · 호텔 체크인</li><li>케네디 공원 · 고양이 산책</li><li>피카로네스 맛보기</li><li>사랑의 공원 일몰</li></ul></div>
+        <div class="day-card"><div class="dc-date">04.27 MON · DAY 3</div><div class="dc-title">리마 관광</div><ul class="dc-list"><li>리마 신·구시가지</li><li>점심: 알 토케 페즈</li><li>리마 대성당 · 산 마르틴 광장</li><li>Restaurant Huaca Pucllana</li></ul></div>
+        <div class="day-card"><div class="dc-date">04.28 TUE · DAY 4</div><div class="dc-title">리마 → 이카</div><ul class="dc-list"><li>패키지 START</li><li>이카 버스 4시간 반</li><li>와카치나 버기투어</li><li>이카 사막 바베큐 디너</li></ul></div>
+        <div class="day-card"><div class="dc-date">04.29 WED · DAY 5</div><div class="dc-title">나스카 선택 일정</div><ul class="dc-list"><li class="hl">★ 나스카 라인 경비행기</li><li>또는 바예스타스 섬 투어</li><li>이카 → 리마 버스</li></ul></div>
+        <div class="day-card"><div class="dc-date">04.30 THU · DAY 6</div><div class="dc-title">리마 → 쿠스코</div><ul class="dc-list"><li>리마 → 쿠스코 항공</li><li>고산병 약 구매/복용</li><li>아르마스 광장 · 일몰</li></ul></div>
+        <div class="day-card"><div class="dc-date">05.01 FRI · DAY 7</div><div class="dc-title">마추픽추</div><ul class="dc-list"><li class="hl">★ 마추픽추 서킷 1</li><li>오얀따이땀보 → 아구아 깔리엔테스</li><li>Ego's Restaurant 저녁</li></ul></div>
+        <div class="day-card"><div class="dc-date">05.02 SAT · DAY 8</div><div class="dc-title">비니쿤카</div><ul class="dc-list"><li class="hl">★ 비니쿤카 무지개 산</li><li>쿠스코 시내 · 산 페드로 시장</li><li>코리칸차</li></ul></div>
+        <div class="day-card"><div class="dc-date">05.03 SUN · DAY 9</div><div class="dc-title">쿠스코 → 라파스</div><ul class="dc-list"><li>쿠스코 → 푸노 버스 7시간</li><li>티티카카 호수 우로스 섬</li><li class="hl">볼리비아 입국</li></ul></div>
+      </div>
+      <div class="sch-grid" id="sb">
+        <div class="day-card"><div class="dc-date">05.04 MON · DAY 10</div><div class="dc-title">라파스</div><ul class="dc-list"><li>라파스 도착 · 체크인</li><li>마녀시장</li><li>볼리비아 국립 미술관</li><li>산 프란시스코 교회</li></ul></div>
+        <div class="day-card"><div class="dc-date">05.05 TUE · DAY 11</div><div class="dc-title">라파스 → 우유니</div><ul class="dc-list"><li class="hl">우유니 항공 이동</li><li>기차무덤 · 소금호텔 · 꼴차니</li><li class="hl">★ 우유니 투어 1일차</li></ul><div class="dc-flight">✈ LPB → UYU</div></div>
+        <div class="day-card"><div class="dc-date">05.06 WED · DAY 12</div><div class="dc-title">우유니 2일차</div><ul class="dc-list"><li class="hl">★ 우유니 선라이즈</li><li>알티 플라노 · 버섯바위</li><li>플라맹고 호수 · 달리 사막</li></ul></div>
+        <div class="day-card"><div class="dc-date">05.07 THU · DAY 13</div><div class="dc-title">우유니 → 부에노스아이레스</div><ul class="dc-list"><li>볼리비아 → 칠레 아따까마</li><li>칼라마 → 산티아고</li><li class="hl">산티아고 → 부에노스아이레스</li></ul><div class="dc-flight">✈ UYU → SCL → EZE</div></div>
+      </div>
+      <div class="sch-grid" id="sa">
+        <div class="day-card"><div class="dc-date">05.08 FRI · DAY 14</div><div class="dc-title">부에노스아이레스 도착</div><ul class="dc-list"><li>La Boca · El Ateneo 서점</li><li>오벨리스크 · 마요 광장</li></ul></div>
+        <div class="day-card"><div class="dc-date">05.09 SAT · DAY 15</div><div class="dc-title">부에노스아이레스</div><ul class="dc-list"><li>레콜레타 공동묘지</li><li class="hl">★ 피아졸라 탱고 공연</li><li>자유 관광</li></ul></div>
+        <div class="day-card"><div class="dc-date">05.10 SUN · DAY 16</div><div class="dc-title">부에노스아이레스 → 이과수</div><ul class="dc-list"><li class="hl">부에노스 → 이과수 항공</li><li class="hl">★ 이과수 투어 START</li></ul><div class="dc-flight">✈ EZE → IGR</div></div>
+        <div class="day-card"><div class="dc-date">05.11 MON · DAY 17</div><div class="dc-title">아르헨티나 이과수</div><ul class="dc-list"><li class="hl">★ 악마의 목구멍</li><li>Upper + Lower Trail</li><li>헬기투어 or 휴식</li></ul></div>
+      </div>
+      <div class="sch-grid" id="sr">
+        <div class="day-card"><div class="dc-date">05.12 TUE · DAY 18</div><div class="dc-title">브라질 이과수</div><ul class="dc-list"><li class="hl">★ 브라질 이과수 투어</li><li class="hl">★ 이과수 보트 투어</li><li>상파울루 이동</li></ul><div class="dc-flight">✈ IGU → GRU</div></div>
+        <div class="day-card"><div class="dc-date">05.13 WED · DAY 19</div><div class="dc-title">상파울루 → 귀국</div><ul class="dc-list"><li class="hl">23:45 상파울루 출발</li><li>LATAM 8070 · 11시간 40분</li><li>프랑크푸르트 경유 3시간 15분</li></ul><div class="dc-flight">✈ GRU → FRA → ICN</div></div>
+        <div class="day-card"><div class="dc-date">05.14 THU · DAY 20</div><div class="dc-title">인천공항 도착 🎉</div><ul class="dc-list"><li>아시아나 542편</li><li class="hl">인천공항 T2 14:35 도착!</li><li class="hl">🎉 19박 20일 여행 종료</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="journal" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Journal</div>
+      <div class="sec-title">EXPECT vs REALITY</div>
+      <div class="sec-sub">머릿속을 채웠던 상상, 두 발로 직접 채워나갈 여정</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="jn-grid">
+        <div class="jn-card pe reveal"><div class="jn-num">01</div><div class="jn-flag">🇵🇪</div><div class="jn-city">페루 — 리마·이카·쿠스코·마추픽추</div><div class="jn-date">2026.04.25 — 05.03</div><div class="jn-divider"></div><div class="jn-compare"><div><div class="jn-col-label expect">✦ 기대</div><div class="jn-expect-box">"나스카 라인을 하늘에서 내려다보며, 안개 속에서 드러나는 마추픽추를 보고 싶다."<ul class="jn-expect-list"><li>나스카 경비행기</li><li>마추픽추 서킷 1</li><li>비니쿤카 무지개 산</li><li>쿠스코 고산 극복</li></ul></div></div><div><div class="jn-col-label real">◎ 현실</div><div class="jn-real-box"><textarea class="jn-textarea" id="jt-pe" placeholder="여행 중 기록하세요..."></textarea><div class="jn-mood" id="jm-pe"><button class="mood-btn" onclick="toggleMood(this)">😍 감동</button><button class="mood-btn" onclick="toggleMood(this)">🤢 고산증</button><button class="mood-btn" onclick="toggleMood(this)">😅 당황</button><button class="mood-btn" onclick="toggleMood(this)">😴 피곤</button></div><button class="jn-save rpl-btn" onclick="saveJ('pe')">저장</button><div class="jn-saved" id="sv-pe">✓ 저장됨</div></div></div></div></div>
+        <div class="jn-card bo reveal"><div class="jn-num">02</div><div class="jn-flag">🇧🇴</div><div class="jn-city">볼리비아 — 라파스·우유니</div><div class="jn-date">2026.05.04 — 05.07</div><div class="jn-divider"></div><div class="jn-compare"><div><div class="jn-col-label expect">✦ 기대</div><div class="jn-expect-box">"하늘과 대지가 하나가 되는 거울 위에 서고 싶다. 별이 쏟아지는 밤을 보내고 싶다."<ul class="jn-expect-list"><li>소금사막 선셋+별빛</li><li>우유니 일출</li><li>기차 공동묘지</li><li>달리 사막·라구나 베르데</li></ul></div></div><div><div class="jn-col-label real">◎ 현실</div><div class="jn-real-box"><textarea class="jn-textarea" id="jt-bo" placeholder="여행 중 기록하세요..."></textarea><div class="jn-mood" id="jm-bo"><button class="mood-btn" onclick="toggleMood(this)">😍 감동</button><button class="mood-btn" onclick="toggleMood(this)">🥶 추위</button><button class="mood-btn" onclick="toggleMood(this)">✨ 신비</button><button class="mood-btn" onclick="toggleMood(this)">😴 피곤</button></div><button class="jn-save rpl-btn" onclick="saveJ('bo')">저장</button><div class="jn-saved" id="sv-bo">✓ 저장됨</div></div></div></div></div>
+        <div class="jn-card ar reveal"><div class="jn-num">03</div><div class="jn-flag">🇦🇷</div><div class="jn-city">아르헨티나 — 부에노스아이레스·이과수</div><div class="jn-date">2026.05.08 — 05.11</div><div class="jn-divider"></div><div class="jn-compare"><div><div class="jn-col-label expect">✦ 기대</div><div class="jn-expect-box">"세상에서 가장 아름다운 서점 El Ateneo와 탱고, 그리고 악마의 목구멍."<ul class="jn-expect-list"><li>El Ateneo 서점</li><li>피아졸라 탱고 공연</li><li>악마의 목구멍</li><li>이과수 헬기투어</li></ul></div></div><div><div class="jn-col-label real">◎ 현실</div><div class="jn-real-box"><textarea class="jn-textarea" id="jt-ar" placeholder="여행 중 기록하세요..."></textarea><div class="jn-mood" id="jm-ar"><button class="mood-btn" onclick="toggleMood(this)">😍 감동</button><button class="mood-btn" onclick="toggleMood(this)">🍷 낭만</button><button class="mood-btn" onclick="toggleMood(this)">💃 활기</button><button class="mood-btn" onclick="toggleMood(this)">😴 피곤</button></div><button class="jn-save rpl-btn" onclick="saveJ('ar')">저장</button><div class="jn-saved" id="sv-ar">✓ 저장됨</div></div></div></div></div>
+        <div class="jn-card br reveal"><div class="jn-num">04</div><div class="jn-flag">🇧🇷</div><div class="jn-city">브라질 — 이과수·상파울루</div><div class="jn-date">2026.05.12 — 05.14</div><div class="jn-divider"></div><div class="jn-compare"><div><div class="jn-col-label expect">✦ 기대</div><div class="jn-expect-box">"브라질 쪽 이과수의 전경, 보트 투어로 폭포 속으로 뛰어드는 마지막 하이라이트."<ul class="jn-expect-list"><li>브라질 이과수 전경</li><li>이과수 보트 투어</li><li>여정의 완벽한 마무리</li><li>무사 귀국 🎉</li></ul></div></div><div><div class="jn-col-label real">◎ 현실</div><div class="jn-real-box"><textarea class="jn-textarea" id="jt-br" placeholder="여행 중 기록하세요..."></textarea><div class="jn-mood" id="jm-br"><button class="mood-btn" onclick="toggleMood(this)">😍 감동</button><button class="mood-btn" onclick="toggleMood(this)">🌊 짜릿</button><button class="mood-btn" onclick="toggleMood(this)">😢 아쉬움</button><button class="mood-btn" onclick="toggleMood(this)">🎉 마무리</button></div><button class="jn-save rpl-btn" onclick="saveJ('br')">저장</button><div class="jn-saved" id="sv-br">✓ 저장됨</div></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="reveal">
+    <div class="sec-wrap">
+      <div class="sec-eyebrow">Gallery</div>
+      <div class="sec-title">MOMENTS</div>
+      <div class="sec-sub">여행의 순간들을 모아보세요</div>
+      <div class="sec-divider"><span>✦</span></div>
+      <div class="gal-filters">
+        <button class="gf on" onclick="filterG('all',this)">전체</button>
+        <button class="gf" onclick="filterG('pe',this)"><svg width="18" height="12" viewBox="0 0 60 40" style="border-radius:2px;margin-right:4px"><rect width="60" height="13.3" fill="#D91023"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#D91023"/></svg>페루</button>
+        <button class="gf" onclick="filterG('bo',this)"><svg width="18" height="12" viewBox="0 0 60 40" style="border-radius:2px;margin-right:4px"><rect width="60" height="13.3" fill="#D52B1E"/><rect y="13.3" width="60" height="13.3" fill="#F4E400"/><rect y="26.6" width="60" height="13.4" fill="#007A3D"/></svg>볼리비아</button>
+        <button class="gf" onclick="filterG('ar',this)"><svg width="18" height="12" viewBox="0 0 60 40" style="border-radius:2px;margin-right:4px"><rect width="60" height="40" fill="#74ACDF"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><circle cx="30" cy="20" r="4.5" fill="#F6B40E"/></svg>아르헨티나</button>
+        <button class="gf" onclick="filterG('br',this)"><svg width="18" height="12" viewBox="0 0 60 40" style="border-radius:2px;margin-right:4px"><rect width="60" height="40" fill="#009C3B"/><polygon points="30,4 56,20 30,36 4,20" fill="#FFDF00"/><circle cx="30" cy="20" r="8" fill="#002776"/></svg>브라질</button>
+      </div>
+      <div class="gal-grid" id="gal-grid"></div>
+    </div>
+  </section>
+
+  <div class="gal-popup-bg" id="gal-popup-bg" style="display:none">
+    <div class="gal-popup">
+      <button class="gal-popup-close" onclick="closePopup()">✕</button>
+      <div id="gal-popup-img-wrap"></div>
+      <div class="gal-popup-body">
+        <div class="gal-popup-title" id="pp-title"></div>
+        <div class="gal-popup-date" id="pp-date"></div>
+        <div class="gal-popup-label">기록</div>
+        <textarea class="gal-popup-textarea" id="pp-note" placeholder="이 순간을 기록해보세요..."></textarea>
+        <div class="gal-popup-label">감정</div>
+        <div class="gal-moods">
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😍 감동</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">✨ 신비로움</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">🥰 행복</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😮 놀라움</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😢 벅참</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">🌊 자유</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">😴 피곤</button>
+          <button class="gal-mood-btn" onclick="toggleGalMood(this)">🤩 설렘</button>
+        </div>
+        <label class="gal-popup-img-change">📷 이미지 변경 / 추가<input type="file" accept="image/*" style="display:none" onchange="changePopupImg(event)"></label>
+        <button class="gal-popup-save" onclick="savePopup()">저장하기</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="finale" class="reveal">
+    <div class="sec-wrap" style="text-align:center">
+      <div class="sec-eyebrow">Epilogue</div>
+      <div class="fin-lock">🔒</div>
+      <div class="sec-title">EXPECT vs REALITY</div>
+      <div class="sec-sub" style="max-width:460px;margin-inline:auto">여행이 끝난 후 귀국 후 페이지에서 모든 기록을 확인하세요</div>
+      <div class="fin-cards">
+        <div class="fin-card"><div class="fin-city">🇵🇪 페루</div><div class="fin-score">?.?</div><div class="fin-label">기대 충족도</div></div>
+        <div class="fin-card"><div class="fin-city">🇧🇴 볼리비아</div><div class="fin-score">?.?</div><div class="fin-label">기대 충족도</div></div>
+        <div class="fin-card"><div class="fin-city">🇦🇷 아르헨티나</div><div class="fin-score">?.?</div><div class="fin-label">기대 충족도</div></div>
+        <div class="fin-card"><div class="fin-city">🇧🇷 브라질</div><div class="fin-score">?.?</div><div class="fin-label">기대 충족도</div></div>
+      </div>
+      <button class="fin-btn rpl-btn" onclick="openEpilogue()">귀국 후 공개하기 →</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">VIVA LATINA · SUR AMÉRICA</div>
+    <div class="footer-sub">© 2026 · DIT 64기 · 04.25 — 05.14 · 19박 20일 · 4개국</div>
+  </footer>
+</div>
+
+<!-- EPILOGUE -->
+<div id="page-epilogue">
+  <div class="ep-hero-inner">
+    <div class="ep-eyebrow">귀국 후 · Epilogue 2026</div>
+    <h1 class="ep-title">EXPECT<br><em>vs</em><br>REALITY</h1>
+    <div class="ep-divider"></div>
+    <p class="ep-sub">머릿속을 가득 채웠던 상상과 두 발로 직접 채워낸 현실의 기록</p>
+  </div>
+  <div class="ep-locked" id="ep-locked">
+    <div class="ep-lock-icon">🔒</div>
+    <p class="ep-lock-msg">여행이 끝난 후 공개됩니다.<br>비밀번호를 입력해 잠금을 해제하세요.</p>
+    <div class="ep-unlock-row">
+      <input class="ep-pw" id="ep-pw-input" type="password" placeholder="비밀번호" onkeydown="if(event.key==='Enter')tryUnlock()">
+      <button class="ep-unlock-btn rpl-btn" onclick="tryUnlock()">공개하기</button>
+    </div>
+    <div class="ep-error" id="ep-error"></div>
+  </div>
+
+  <!-- 점수 -->
+  <div class="ep-score-section" id="ep-score-section">
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div class="sec-eyebrow" style="margin-bottom:.3rem">Score</div>
+      <div style="font-size:1.4rem;font-weight:900;color:var(--text)">기대 충족도 평가</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-top:.3rem">슬라이더로 각 나라의 기대 충족도를 평가해보세요</div>
+    </div>
+    <div class="score-grid" id="score-grid"></div>
+  </div>
+
+  <!-- 어드벤트 -->
+  <div class="ep-content" id="ep-content">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <h2 style="font-size:1.6rem;font-weight:900;color:var(--text);margin-bottom:.4rem">여정의 기억들</h2>
+      <p style="font-size:.85rem;color:var(--muted)">카드를 클릭해서 기대와 현실을 비교해보세요</p>
+    </div>
+    <div><div class="cs-hdr"><div class="cs-flag"><svg viewBox="0 0 60 40"><rect width="60" height="13.3" fill="#D91023"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#D91023"/></svg></div><div class="cs-name">페루</div><div class="cs-dates">2026.04.25 — 05.03 · 7박 8일</div></div><div class="advent-grid" id="ag-pe"></div></div>
+    <div><div class="cs-hdr"><div class="cs-flag"><svg viewBox="0 0 60 40"><rect width="60" height="13.3" fill="#D52B1E"/><rect y="13.3" width="60" height="13.3" fill="#F4E400"/><rect y="26.6" width="60" height="13.4" fill="#007A3D"/></svg></div><div class="cs-name">볼리비아</div><div class="cs-dates">2026.05.04 — 05.07 · 4박 5일</div></div><div class="advent-grid" id="ag-bo"></div></div>
+    <div><div class="cs-hdr"><div class="cs-flag"><svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#74ACDF"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><circle cx="30" cy="20" r="4.5" fill="#F6B40E"/></svg></div><div class="cs-name">아르헨티나</div><div class="cs-dates">2026.05.08 — 05.11 · 4박</div></div><div class="advent-grid" id="ag-ar"></div></div>
+    <div><div class="cs-hdr"><div class="cs-flag"><svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#009C3B"/><polygon points="30,4 56,20 30,36 4,20" fill="#FFDF00"/><circle cx="30" cy="20" r="8" fill="#002776"/></svg></div><div class="cs-name">브라질</div><div class="cs-dates">2026.05.12 — 05.14 · 2박 3일</div></div><div class="advent-grid" id="ag-br"></div></div>
+  </div>
+
+  <!-- 차트 -->
+  <div class="ep-chart-section" id="ep-chart-section">
+    <div class="chart-card">
+      <div class="chart-header">✦ 감정 분포 & 기대 충족도</div>
+      <div class="chart-layout">
+        <div class="donut-wrap">
+          <svg class="donut-svg" id="donut-svg" viewBox="0 0 180 180" width="180" height="180"></svg>
+          <div class="donut-center">
+            <div class="donut-center-num" id="donut-total">0</div>
+            <div class="donut-center-lbl">감정</div>
+          </div>
+        </div>
+        <div class="chart-legend" id="chart-legend"></div>
+      </div>
+      <div class="bar-section" id="bar-section"></div>
+    </div>
+  </div>
+
+  <!-- 요약 -->
+  <div class="ep-summary" id="ep-summary">
+    <div class="ep-sum-card">
+      <div class="ep-sum-title">✦ 나라별 기록 요약</div>
+      <div class="ep-sum-grid" id="ep-sum-grid"></div>
+    </div>
+  </div>
+
+  <!-- AI 회고록 -->
+  <div class="ep-ai-section" id="ep-ai-section">
+    <div class="ai-card">
+      <div class="ai-header">
+        <div class="ai-orb">✦</div>
+        <div>
+          <div class="ai-htitle">AI 여행 회고록</div>
+          <div class="ai-hsub">여행 기록 전체를 분석해 감성적인 회고록을 생성합니다</div>
+        </div>
+      </div>
+      <button class="ai-btn rpl-btn" id="ai-gen-btn" onclick="generateAI()">
+        <span>✦ AI 회고록 생성하기</span>
+      </button>
+      <div class="ai-loading" id="ai-loading">
+        <div class="ai-spinner"></div>
+        <span id="ai-loading-text">여행의 기억을 분석하는 중...</span>
+      </div>
+      <div class="ai-result" id="ai-result">
+        <div class="ai-result-label">AI 생성 회고록</div>
+        <div class="ai-result-text" id="ai-result-text"></div>
+        <button class="ai-regen" onclick="generateAI()">↺ 다시 생성하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── DATA ── */
+const CITY_DATA={
+  pe:{flag:'🇵🇪',name:'페루',sub:'리마 · 이카 · 쿠스코 · 마추픽추',date:'2026.04.25 — 05.01',color:'#C9563A',items:['나스카 라인 경비행기','마추픽추 서킷 1','비니쿤카 무지개 산','쿠스코 고산 적응','성스러운 계곡']},
+  bo:{flag:'🇧🇴',name:'볼리비아',sub:'라파스 · 우유니',date:'2026.05.01 — 05.05',color:'#D4952A',items:['우유니 소금사막 선셋+별빛','우유니 선라이즈','기차 공동묘지','달리 사막·라구나 베르데','마녀시장']},
+  ar:{flag:'🇦🇷',name:'아르헨티나',sub:'부에노스아이레스 · 이과수',date:'2026.05.08 — 05.11',color:'#4A90D9',items:['El Ateneo 서점','피아졸라 탱고','레콜레타 공동묘지','악마의 목구멍','이과수 헬기투어']},
+  br:{flag:'🇧🇷',name:'브라질',sub:'이과수 · 상파울루',date:'2026.05.12 — 05.14',color:'#3D9E82',items:['브라질 이과수 투어','이과수 보트 투어','상파울루 경유 귀국','인천공항 도착 🎉']},
+};
+const LATLNGS={pe:[-13.1631,-72.5450],bo:[-20.4617,-66.8252],ar:[-34.6037,-58.3816],br:[-22.9068,-43.1729]};
+const MAP_NUMS={pe:'①',bo:'②',ar:'③',br:'④'};
+const GAL_ITEMS=[
+  {id:0,c:'pe',e:'✈️',l:'리마 도착',cap:'19박 20일의 시작',date:'2026.04.26',imgUrl:null,note:'',moods:[]},
+  {id:1,c:'pe',e:'🍽️',l:'알 토케 페즈',cap:'세비체 + 오징어튀김',date:'2026.04.27',imgUrl:null,note:'',moods:[]},
+  {id:2,c:'pe',e:'🏜️',l:'나스카 라인',cap:'하늘에서 본 신비로운 선',date:'2026.04.29',imgUrl:null,note:'',moods:[]},
+  {id:3,c:'pe',e:'🌊',l:'와카치나',cap:'사막의 오아시스',date:'2026.04.28',imgUrl:null,note:'',moods:[]},
+  {id:4,c:'pe',e:'🏔️',l:'마추픽추',cap:'안개 속 잉카의 도시',date:'2026.05.01',imgUrl:null,note:'',moods:[]},
+  {id:5,c:'pe',e:'🦙',l:'마추픽추 라마',cap:'라마와 함께한 오후',date:'2026.05.01',imgUrl:null,note:'',moods:[]},
+  {id:6,c:'pe',e:'🌈',l:'비니쿤카',cap:'무지개 산의 장관',date:'2026.05.02',imgUrl:null,note:'',moods:[]},
+  {id:7,c:'pe',e:'🌄',l:'쿠스코',cap:'태양의 도시 일몰',date:'2026.04.30',imgUrl:null,note:'',moods:[]},
+  {id:8,c:'bo',e:'🧂',l:'우유니 소금사막',cap:'하늘과 땅이 하나가 되는 순간',date:'2026.05.05',imgUrl:null,note:'',moods:[]},
+  {id:9,c:'bo',e:'🌅',l:'우유니 일출',cap:'새벽 4시의 기다림',date:'2026.05.06',imgUrl:null,note:'',moods:[]},
+  {id:10,c:'bo',e:'🚂',l:'기차 공동묘지',cap:'녹슨 철마들의 무덤',date:'2026.05.05',imgUrl:null,note:'',moods:[]},
+  {id:11,c:'bo',e:'🌋',l:'달리 사막',cap:'살바도르 달리의 그림 같은',date:'2026.05.06',imgUrl:null,note:'',moods:[]},
+  {id:12,c:'ar',e:'📚',l:'El Ateneo 서점',cap:'세상에서 가장 아름다운 서점',date:'2026.05.08',imgUrl:null,note:'',moods:[]},
+  {id:13,c:'ar',e:'💃',l:'탱고 공연',cap:'피아졸라의 탱고',date:'2026.05.09',imgUrl:null,note:'',moods:[]},
+  {id:14,c:'ar',e:'💀',l:'레콜레타',cap:'귀족들의 잠든 공동묘지',date:'2026.05.09',imgUrl:null,note:'',moods:[]},
+  {id:15,c:'ar',e:'🌊',l:'악마의 목구멍',cap:'이과수의 하이라이트',date:'2026.05.11',imgUrl:null,note:'',moods:[]},
+  {id:16,c:'br',e:'🌿',l:'브라질 이과수',cap:'거대한 초록의 물보라',date:'2026.05.12',imgUrl:null,note:'',moods:[]},
+  {id:17,c:'br',e:'🚤',l:'보트 투어',cap:'폭포 속으로 뛰어들다',date:'2026.05.12',imgUrl:null,note:'',moods:[]},
+  {id:18,c:'br',e:'🎉',l:'여정의 끝',cap:'19박 20일, 안녕 남미',date:'2026.05.13',imgUrl:null,note:'',moods:[]},
+];
+const ADVENT_CARDS={
+  pe:[
+    {id:'pe1',emoji:'✈️',label:'리마 도착',date:'04.26',expect:'케네디 공원, 피카로네스, 사랑의 공원 일몰. 남미 첫 발걸음.'},
+    {id:'pe2',emoji:'🌊',label:'이카·와카치나',date:'04.28',expect:'사막 한가운데 오아시스. 버기카로 모래언덕을 달리는 상상.'},
+    {id:'pe3',emoji:'🏜️',label:'나스카 라인',date:'04.29',expect:'하늘에서 내려다보는 2000년 전 수수께끼의 그림들.'},
+    {id:'pe4',emoji:'🌄',label:'쿠스코',date:'04.30',expect:'해발 3400m, 잉카 문명의 수도. 고산증을 이겨내는 도전.'},
+    {id:'pe5',emoji:'🏔️',label:'마추픽추',date:'05.01',expect:'안개 속에서 서서히 드러나는 잉카의 도시.'},
+    {id:'pe6',emoji:'🌈',label:'비니쿤카',date:'05.02',expect:'무지개 빛깔 산. 5000m 고지를 걸어 올라가는 여정.'},
+  ],
+  bo:[
+    {id:'bo1',emoji:'🏙️',label:'라파스',date:'05.04',expect:'하늘 위의 도시. 마녀시장과 케이블카, 고산의 공기.'},
+    {id:'bo2',emoji:'🧂',label:'우유니 소금사막',date:'05.05',expect:'세상에서 가장 하얀 땅. 하늘과 대지가 하나가 되는 거울.'},
+    {id:'bo3',emoji:'🌅',label:'우유니 선셋+별빛',date:'05.05',expect:'소금사막 위로 별이 쏟아지는 밤. 세상 가장 고요한 곳.'},
+    {id:'bo4',emoji:'🌋',label:'달리 사막·라구나',date:'05.06',expect:'살바도르 달리의 그림 같은 풍경, 핑크빛 플라맹고 호수.'},
+  ],
+  ar:[
+    {id:'ar1',emoji:'📚',label:'El Ateneo 서점',date:'05.08',expect:'극장을 개조한 세상에서 가장 아름다운 서점.'},
+    {id:'ar2',emoji:'💀',label:'레콜레타',date:'05.09',expect:'대리석 묘지에 잠든 귀족들. 에비타의 무덤을 찾아서.'},
+    {id:'ar3',emoji:'💃',label:'피아졸라 탱고',date:'05.09',expect:'정열적인 탱고 공연. 부에노스의 밤은 탱고와 함께.'},
+    {id:'ar4',emoji:'🌊',label:'악마의 목구멍',date:'05.11',expect:'이과수 폭포의 하이라이트. 굉음과 물보라의 압도.'},
+  ],
+  br:[
+    {id:'br1',emoji:'🌿',label:'브라질 이과수',date:'05.12',expect:'아르헨 쪽과 또 다른 시각. 초록 우림 속의 장관.'},
+    {id:'br2',emoji:'🚤',label:'이과수 보트 투어',date:'05.12',expect:'폭포 속으로 뛰어드는 짜릿함. 온몸이 젖는 경험.'},
+    {id:'br3',emoji:'🎉',label:'여정의 마무리',date:'05.13',expect:'19박 20일의 끝. 인천공항에서 느끼는 안도와 아쉬움.'},
+  ],
+};
+const FLAG_SVGS={
+  pe:'<rect width="60" height="13.3" fill="#D91023"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><rect y="26.7" width="60" height="13.3" fill="#D91023"/>',
+  bo:'<rect width="60" height="13.3" fill="#D52B1E"/><rect y="13.3" width="60" height="13.3" fill="#F4E400"/><rect y="26.6" width="60" height="13.4" fill="#007A3D"/>',
+  ar:'<rect width="60" height="40" fill="#74ACDF"/><rect y="13.3" width="60" height="13.4" fill="#fff"/><circle cx="30" cy="20" r="4.5" fill="#F6B40E"/>',
+  br:'<rect width="60" height="40" fill="#009C3B"/><polygon points="30,4 56,20 30,36 4,20" fill="#FFDF00"/><circle cx="30" cy="20" r="8" fill="#002776"/>',
+};
+const COUNTRY_NAMES={pe:'페루',bo:'볼리비아',ar:'아르헨티나',br:'브라질'};
+const COUNTRY_GRADS={
+  pe:'linear-gradient(135deg,#C9563A,#E8896F)',
+  bo:'linear-gradient(135deg,#D4952A,#F0C060)',
+  ar:'linear-gradient(135deg,#4A90D9,#85B8E8)',
+  br:'linear-gradient(135deg,#3D9E82,#6ECFB5)',
+};
+const EP_PASSWORD='1230';
+const SCORE_EMOJIS=['😢','😕','😐','🙂','😊','😃','🤩'];
+const CHART_COLORS=['#C9563A','#D4952A','#4A90D9','#3D9E82','#E8896F','#F0C060','#85B8E8','#6ECFB5'];
+
+/* ── STATE ── */
+const jStore={pe:{text:'',moods:[]},bo:{text:'',moods:[]},ar:{text:'',moods:[]},br:{text:'',moods:[]}};
+const scores={pe:5,bo:5,ar:5,br:5};
+const openedAC=new Set();
+let curFilter='all',ppId=null,ppTmpImg=null;
+
+/* ── RIPPLE ── */
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.rpl-btn');if(!btn)return;
+  const c=document.createElement('span');c.className='rpl-circle';
+  const r=btn.getBoundingClientRect(),sz=Math.max(r.width,r.height);
+  c.style.cssText=`width:${sz}px;height:${sz}px;top:${e.clientY-r.top-sz/2}px;left:${e.clientX-r.left-sz/2}px`;
+  btn.appendChild(c);setTimeout(()=>c.remove(),550);
+});
+
+/* ── 3D TILT ── */
+function initTilt(){
+  document.querySelectorAll('.ov-card,.day-card,.jn-card,.ac').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=((e.clientX-r.left)/r.width-.5)*16;
+      const y=((e.clientY-r.top)/r.height-.5)*-16;
+      card.style.transform=`perspective(700px) rotateX(${y}deg) rotateY(${x}deg) translateY(-6px) scale(1.02)`;
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform='';
+    });
+  });
+}
+
+/* ── PARTICLE CANVAS ── */
+function initParticles(){
+  const canvas=document.getElementById('particle-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[];
+  let mouse={x:null,y:null};
+
+  function resize(){
+    W=canvas.width=canvas.offsetWidth;
+    H=canvas.height=canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+
+  canvas.addEventListener('mousemove',e=>{
+    const r=canvas.getBoundingClientRect();
+    mouse.x=e.clientX-r.left;
+    mouse.y=e.clientY-r.top;
+  });
+  canvas.addEventListener('mouseleave',()=>{mouse.x=null;mouse.y=null;});
+
+  const COLORS=['rgba(201,86,58,','rgba(212,149,42,','rgba(74,144,217,','rgba(61,158,130,','rgba(232,137,111,'];
+  class Particle{
+    constructor(){this.reset(true);}
+    reset(init=false){
+      this.x=Math.random()*W;
+      this.y=init?Math.random()*H:H+10;
+      this.vx=(Math.random()-.5)*.4;
+      this.vy=-(Math.random()*.5+.2);
+      this.r=Math.random()*2+.8;
+      this.alpha=Math.random()*.5+.15;
+      this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+      this.life=0;
+      this.maxLife=Math.random()*300+200;
+    }
+    update(){
+      if(mouse.x!=null){
+        const dx=this.x-mouse.x,dy=this.y-mouse.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){const f=.4*(1-dist/120);this.vx+=f*(dx/dist);this.vy+=f*(dy/dist);}
+      }
+      this.x+=this.vx;this.y+=this.vy;this.life++;
+      const t=this.life/this.maxLife;
+      this.alpha=t<.2?t/.2*.45:t>.7?(1-(t-.7)/.3)*.45:.45;
+      if(this.life>this.maxLife||this.y<-10)this.reset();
+    }
+    draw(){
+      ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+      ctx.fillStyle=this.color+this.alpha+')';ctx.fill();
+    }
+  }
+
+  for(let i=0;i<80;i++) particles.push(new Particle());
+
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{p.update();p.draw();});
+    requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+/* ── PAGE TRANSITION ── */
+function pageTransition(fn){
+  const ov=document.getElementById('page-overlay');
+  ov.classList.add('active');
+  setTimeout(()=>{fn();ov.classList.remove('active');},380);
+}
+
+/* ── NAV ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>20);
+},{passive:true});
+
+let isNavScrolling=false,navScrollTimer=null;
+const NAV_SECTIONS=['overview','map-sec','schedule','journal','gallery'];
+function navTo(id){
+  const el=document.getElementById(id);if(!el)return;
+  document.querySelectorAll('.nav-links a[data-section]').forEach(a=>a.classList.toggle('active',a.dataset.section===id));
+  isNavScrolling=true;clearTimeout(navScrollTimer);
+  const top=el.getBoundingClientRect().top+window.scrollY-60;
+  window.scrollTo({top,behavior:'smooth'});
+  navScrollTimer=setTimeout(()=>isNavScrolling=false,800);
+}
+(function initNavHL(){
+  const links=document.querySelectorAll('.nav-links a[data-section]');
+  function onScroll(){
+    if(isNavScrolling)return;
+    const ov=document.getElementById('overview');if(!ov)return;
+    if(window.scrollY<ov.offsetTop-80){links.forEach(a=>a.classList.remove('active'));return;}
+    let cur=null;
+    NAV_SECTIONS.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=62)cur=id;});
+    links.forEach(a=>a.classList.toggle('active',a.dataset.section===cur));
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+
+function openEpilogue(){
+  pageTransition(()=>{
+    const main=document.getElementById('page-main');
+    const ep=document.getElementById('page-epilogue');
+    main.style.display='none';
+    ep.style.display='block';
+    ep.style.cssText='display:block;opacity:0;transform:translateY(20px)';
+    document.getElementById('nav-main-links').style.display='none';
+    document.getElementById('nav-back').style.display='flex';
+    window.scrollTo(0,0);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      ep.style.transition='opacity .4s ease,transform .4s ease';
+      ep.style.opacity='1';ep.style.transform='translateY(0)';
+    }));
+    setTimeout(initTilt,400);
+  });
+}
+function goMain(){
+  pageTransition(()=>{
+    const main=document.getElementById('page-main');
+    const ep=document.getElementById('page-epilogue');
+    ep.style.display='none';
+    main.style.display='block';
+    main.style.cssText='display:block;opacity:0;transform:translateY(10px)';
+    document.getElementById('nav-main-links').style.display='flex';
+    document.getElementById('nav-back').style.display='none';
+    window.scrollTo(0,0);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      main.style.transition='opacity .4s ease,transform .4s ease';
+      main.style.opacity='1';main.style.transform='translateY(0)';
+    }));
+  });
+}
+
+/* ── MAP ── */
+function initMap(){
+  const L=window.L;
+  const map=L.map('leaflet-map',{zoomControl:true,scrollWheelZoom:false}).setView([-20,-60],3.5);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:20,subdomains:'abcd'}).addTo(map);
+  const coords=Object.values(LATLNGS);
+  L.polyline(coords,{color:'rgba(212,149,42,.25)',weight:5}).addTo(map);
+  L.polyline(coords,{color:'#C9563A',weight:2,dashArray:'9 6',opacity:.8}).addTo(map);
+  Object.keys(CITY_DATA).forEach(id=>{
+    const c=CITY_DATA[id];
+    const icon=L.divIcon({className:'',html:`<div style="width:38px;height:38px;border-radius:50%;background:${c.color};border:3px solid #fff;box-shadow:0 3px 14px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:#fff;cursor:pointer;transition:transform .2s" onmouseover="this.style.transform='scale(1.18)'" onmouseout="this.style.transform='scale(1)'">${MAP_NUMS[id]}</div>`,iconSize:[38,38],iconAnchor:[19,19]});
+    const popup=`<div style="font-family:'Noto Sans KR',sans-serif"><div style="font-size:1.2rem;margin-bottom:.3rem">${c.flag}</div><div style="font-size:.9rem;font-weight:700">${c.name}</div><div style="font-size:.68rem;color:#8E9DBE;margin:.1rem 0 .5rem">${c.date}</div><ul style="list-style:none;padding:0;margin:0">${c.items.map(it=>`<li style="font-size:.72rem;color:#4A5578;padding:.15rem 0;border-bottom:1px solid rgba(180,200,230,.3);display:flex;gap:.3rem"><span style="color:#C9563A;font-weight:700">›</span>${it}</li>`).join('')}</ul></div>`;
+    const mk=L.marker(LATLNGS[id],{icon}).addTo(map);
+    mk.bindPopup(popup,{maxWidth:220});
+    mk.on('click',()=>{map.flyTo(LATLNGS[id],6,{animate:true,duration:1.1});showMapCard(id);});
+  });
+  const rb=L.control({position:'topright'});
+  rb.onAdd=()=>{const d=L.DomUtil.create('div');d.innerHTML=`<button onclick="window._map.flyTo([-20,-60],3.5,{animate:true,duration:1.1})" style="font-family:'Noto Sans KR',sans-serif;font-size:.65rem;font-weight:600;padding:.4rem .8rem;background:rgba(245,247,250,.95);border:1.5px solid rgba(180,200,230,.4);border-radius:12px;color:#C9563A;cursor:pointer">🗺 전체 보기</button>`;return d;};
+  rb.addTo(map);window._map=map;
+}
+function showMapCard(id){
+  const c=CITY_DATA[id];const card=document.getElementById('map-card');
+  card.classList.remove('show');
+  card.innerHTML=`<div class="mc-flag">${c.flag}</div><div class="mc-name">${c.name}</div><div class="mc-sub">${c.sub}</div><div class="mc-date">${c.date}</div><div style="height:1px;background:var(--border);margin:.6rem 0"></div><ul class="mc-list">${c.items.map(i=>`<li>${i}</li>`).join('')}</ul><div class="mc-badge">예정</div>`;
+  setTimeout(()=>card.classList.add('show'),10);
+}
+
+/* ── SCHEDULE ── */
+function switchSch(btn,id){
+  document.querySelectorAll('.sch-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sch-grid').forEach(g=>g.classList.remove('active'));
+  btn.classList.add('active');document.getElementById(id).classList.add('active');
+}
+
+/* ── JOURNAL ── */
+function toggleMood(btn){btn.classList.toggle('on');}
+function saveJ(c){
+  jStore[c].text=document.getElementById('jt-'+c).value;
+  jStore[c].moods=Array.from(document.querySelectorAll('#jm-'+c+' .mood-btn.on')).map(b=>b.textContent.trim());
+  const el=document.getElementById('sv-'+c);el.style.opacity='1';
+  setTimeout(()=>el.style.opacity='0',2000);
+}
+
+/* ── GALLERY ── */
+function renderGallery(f){
+  curFilter=f;const g=document.getElementById('gal-grid');
+  const list=f==='all'?GAL_ITEMS:GAL_ITEMS.filter(i=>i.c===f);
+  g.innerHTML='';
+  if(!list.length){g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.85rem">사진이 없어요 📷</div>`;return;}
+  list.forEach((it,idx)=>{
+    const d=document.createElement('div');d.className='gal-item';
+    d.style.cssText=`opacity:0;animation:fadeUp .5s ${idx*.04}s forwards`;
+    d.onclick=()=>openPopup(it.id);
+    d.innerHTML=it.imgUrl
+      ?`<img src="${it.imgUrl}" style="width:100%;height:100%;object-fit:cover;display:block"><div class="gal-ov"><div class="go-city">${it.l}</div><div class="go-cap">${it.cap}${it.note?' · 기록됨':''}</div></div>`
+      :`<div class="gal-ph"><div class="phi">${it.e}</div><div class="phl">${it.l}</div></div><div class="gal-ov"><div class="go-city">${it.l}</div><div class="go-cap">${it.cap}${it.note?' · 기록됨':''}</div></div>`;
+    g.appendChild(d);
+  });
+}
+function filterG(f,btn){document.querySelectorAll('.gf').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderGallery(f);}
+
+/* ── POPUP ── */
+function openPopup(id){
+  const it=GAL_ITEMS.find(x=>x.id===id);if(!it)return;
+  ppId=id;ppTmpImg=null;
+  document.getElementById('gal-popup-img-wrap').innerHTML=it.imgUrl
+    ?`<img src="${it.imgUrl}" class="gal-popup-img">`
+    :`<div class="gal-popup-img-placeholder" onclick="document.getElementById('pp-file-inp').click()"><div style="font-size:3rem;opacity:.3">${it.e}</div><div class="upload-hint">탭해서 사진 추가하기</div><input type="file" id="pp-file-inp" accept="image/*" style="display:none" onchange="changePopupImg(event)"></div>`;
+  document.getElementById('pp-title').textContent=it.l;
+  document.getElementById('pp-date').textContent=it.date+' · '+COUNTRY_NAMES[it.c];
+  document.getElementById('pp-note').value=it.note||'';
+  document.querySelectorAll('.gal-mood-btn').forEach(b=>b.classList.toggle('on',it.moods&&it.moods.includes(b.textContent.trim())));
+  const bg=document.getElementById('gal-popup-bg');
+  bg.style.display='flex';document.body.style.overflow='hidden';
+  bg.onclick=e=>{if(e.target===bg)closePopup();};
+  requestAnimationFrame(()=>requestAnimationFrame(()=>bg.classList.add('active')));
+}
+function closePopup(){
+  const bg=document.getElementById('gal-popup-bg');bg.classList.remove('active');
+  setTimeout(()=>{bg.style.display='none';document.body.style.overflow='';ppId=null;ppTmpImg=null;},440);
+}
+function toggleGalMood(btn){btn.classList.toggle('on');}
+function changePopupImg(e){
+  const file=e.target.files[0];if(!file)return;
+  const r=new FileReader();r.onload=ev=>{ppTmpImg=ev.target.result;document.getElementById('gal-popup-img-wrap').innerHTML=`<img src="${ppTmpImg}" class="gal-popup-img">`;};
+  r.readAsDataURL(file);
+}
+function savePopup(){
+  const it=GAL_ITEMS.find(x=>x.id===ppId);if(!it)return;
+  it.note=document.getElementById('pp-note').value;
+  it.moods=Array.from(document.querySelectorAll('.gal-mood-btn.on')).map(b=>b.textContent.trim());
+  if(ppTmpImg)it.imgUrl=ppTmpImg;
+  closePopup();renderGallery(curFilter);
+}
+
+/* ── EPILOGUE UNLOCK ── */
+function tryUnlock(){
+  const val=document.getElementById('ep-pw-input').value.trim();
+  const err=document.getElementById('ep-error');
+  if(val===EP_PASSWORD){
+    err.textContent='';
+    document.getElementById('ep-locked').style.display='none';
+    ['ep-score-section','ep-content','ep-chart-section','ep-summary','ep-ai-section'].forEach(id=>{
+      const el=document.getElementById(id);el.style.display='block';
+      el.style.cssText='display:block;opacity:0;animation:fadeUp .6s forwards';
+    });
+    renderScores();renderAdvent();renderCharts();renderSummary();
+    setTimeout(initTilt,300);
+  } else {
+    err.textContent='비밀번호가 틀렸어요. 다시 확인해주세요.';
+    document.getElementById('ep-pw-input').value='';
+    document.getElementById('ep-pw-input').focus();
+  }
+}
+
+/* ── SCORES ── */
+function renderScores(){
+  const sg=document.getElementById('score-grid');sg.innerHTML='';
+  ['pe','bo','ar','br'].forEach(c=>{
+    const sc=scores[c];
+    const div=document.createElement('div');div.className=`score-card ${c}`;
+    div.innerHTML=`<div class="score-flag">${CITY_DATA[c].flag}</div>
+      <div class="score-name">${CITY_DATA[c].name}</div>
+      <div class="score-val" id="scv-${c}">${sc}</div>
+      <div class="score-emoji" id="sce-${c}">${SCORE_EMOJIS[Math.round((sc-1)/9*6)]}</div>
+      <input type="range" class="score-slider" min="1" max="10" value="${sc}" oninput="updateScore('${c}',this.value)">
+      <div class="score-label">기대 충족도</div>`;
+    sg.appendChild(div);
+  });
+}
+function updateScore(c,v){
+  scores[c]=parseInt(v);
+  document.getElementById('scv-'+c).textContent=v;
+  document.getElementById('sce-'+c).textContent=SCORE_EMOJIS[Math.round((v-1)/9*6)];
+  updateBarChart();
+}
+
+/* ── ADVENT ── */
+function renderAdvent(){
+  ['pe','bo','ar','br'].forEach(c=>{
+    const grid=document.getElementById('ag-'+c);grid.innerHTML='';
+    ADVENT_CARDS[c].forEach((card,i)=>{
+      const el=document.createElement('div');el.className='ac';el.id='ac-'+card.id;
+      el.innerHTML=buildAC(card,c,false);
+      el.onclick=()=>openAC(card.id,c);
+      el.style.cssText='opacity:0;transform:translateY(22px)';
+      setTimeout(()=>{el.style.transition='opacity .55s ease,transform .55s cubic-bezier(.34,1.56,.64,1)';el.style.opacity='1';el.style.transform='translateY(0)';},i*90+150);
+      grid.appendChild(el);
+    });
+  });
+  renderSummary();
+}
+function buildAC(card,c,opened){
+  const real=jStore[c]||{};const hasReal=real.text&&real.text.trim().length>0;
+  return `<div class="ac-front${opened?' gone':''}" style="background:${COUNTRY_GRADS[c]}">
+    <div class="ac-front-emoji">${card.emoji}</div>
+    <div class="ac-front-label">${card.label}</div>
+    <div class="ac-front-hint">${card.date} · 클릭해서 열기</div>
+  </div>
+  <div class="ac-back${opened?' show':''}">
+    <div class="ac-img-ph" style="background:linear-gradient(135deg,var(--latin-lt),var(--gold-lt))">${card.emoji}</div>
+    <div class="ac-body">
+      <div class="ac-cntry">
+        <div class="ac-cntry-flag"><svg viewBox="0 0 60 40">${FLAG_SVGS[c]}</svg></div>
+        <div class="ac-cntry-name">${COUNTRY_NAMES[c]}</div>
+        <div class="ac-cntry-date">${card.date}</div>
+      </div>
+      <div class="ac-title">${card.label}</div>
+      <div class="ac-pair">
+        <div class="ac-box ex"><div class="ac-box-lbl">✦ 기대</div><div class="ac-box-txt">${card.expect}</div></div>
+        <div class="ac-box re"><div class="ac-box-lbl">◎ 현실</div>${hasReal?`<div class="ac-box-txt">${real.text}</div>`:`<div class="ac-box-empty">아직 기록 없음</div>`}</div>
+      </div>
+      ${real.moods&&real.moods.length?`<div class="ac-moods">${real.moods.map(m=>`<span class="ac-mood">${m}</span>`).join('')}</div>`:''}
+    </div>
+  </div>`;
+}
+function openAC(id,c){
+  if(openedAC.has(id))return;openedAC.add(id);
+  const el=document.getElementById('ac-'+id);
+  const card=Object.values(ADVENT_CARDS).flat().find(x=>x.id===id);
+  if(!el||!card)return;
+  el.innerHTML=buildAC(card,c,true);el.onclick=null;el.classList.add('ac-opened');
+}
+
+/* ── CHARTS ── */
+function getMoodTotals(){
+  const t={};
+  Object.values(jStore).forEach(e=>(e.moods||[]).forEach(m=>{t[m]=(t[m]||0)+1;}));
+  return t;
+}
+function renderCharts(){buildDonut();buildBarChart();}
+function buildDonut(){
+  const totals=getMoodTotals();
+  const entries=Object.entries(totals).sort((a,b)=>b[1]-a[1]);
+  const total=entries.reduce((s,[,v])=>s+v,0)||0;
+  const svg=document.getElementById('donut-svg');
+  const legend=document.getElementById('chart-legend');
+  svg.innerHTML='';legend.innerHTML='';
+  document.getElementById('donut-total').textContent=total||'0';
+  if(!entries.length){
+    svg.innerHTML=`<circle cx="90" cy="90" r="60" fill="none" stroke="rgba(180,200,230,.4)" stroke-width="20"/><text x="90" y="94" text-anchor="middle" font-size="11" fill="#8E9DBE" font-family="'Noto Sans KR',sans-serif">기록 없음</text>`;
+    return;
+  }
+  const R=65,r=42,cx=90,cy=90;let angle=-Math.PI/2;
+  entries.forEach(([mood,cnt],i)=>{
+    const frac=cnt/total,a=frac*Math.PI*2;
+    const x1=cx+R*Math.cos(angle),y1=cy+R*Math.sin(angle);
+    angle+=a;
+    const x2=cx+R*Math.cos(angle),y2=cy+R*Math.sin(angle);
+    const xi1=cx+r*Math.cos(angle-a),yi1=cy+r*Math.sin(angle-a);
+    const xi2=cx+r*Math.cos(angle),yi2=cy+r*Math.sin(angle);
+    const lg=frac>.5?1:0;const col=CHART_COLORS[i%CHART_COLORS.length];
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',`M ${x1} ${y1} A ${R} ${R} 0 ${lg} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${r} ${r} 0 ${lg} 0 ${xi1} ${yi1} Z`);
+    path.setAttribute('fill',col);path.setAttribute('stroke','white');path.setAttribute('stroke-width','2');
+    path.style.cursor='default';
+    path.addEventListener('mouseenter',()=>path.style.opacity='.75');
+    path.addEventListener('mouseleave',()=>path.style.opacity='1');
+    svg.appendChild(path);
+    const li=document.createElement('div');li.className='cl-item';
+    li.innerHTML=`<div class="cl-dot" style="background:${col}"></div><span>${mood} · ${cnt}회</span>`;
+    legend.appendChild(li);
+  });
+}
+function buildBarChart(){
+  const bs=document.getElementById('bar-section');bs.innerHTML='';
+  const h=document.createElement('div');h.style.cssText='font-size:.75rem;font-weight:700;color:var(--text2);margin-bottom:.8rem';
+  h.textContent='나라별 기대 충족도';bs.appendChild(h);
+  ['pe','bo','ar','br'].forEach((c,i)=>{
+    const sc=scores[c];const col=CHART_COLORS[i];
+    const row=document.createElement('div');row.className='bar-row';
+    row.innerHTML=`<div class="bar-label">${CITY_DATA[c].flag} ${CITY_DATA[c].name}</div>
+      <div class="bar-bg"><div class="bar-fill" id="bf-${c}" style="width:0%;background:${col}"></div></div>
+      <div class="bar-val" id="bv-${c}">${sc}</div>`;
+    bs.appendChild(row);
+    setTimeout(()=>{document.getElementById('bf-'+c).style.width=(sc/10*100)+'%';},200+i*100);
+  });
+}
+function updateBarChart(){
+  ['pe','bo','ar','br'].forEach(c=>{
+    const sc=scores[c];
+    const bf=document.getElementById('bf-'+c),bv=document.getElementById('bv-'+c);
+    if(bf)bf.style.width=(sc/10*100)+'%';if(bv)bv.textContent=sc;
+  });
+}
+
+/* ── SUMMARY ── */
+function renderSummary(){
+  const sg=document.getElementById('ep-sum-grid');sg.innerHTML='';
+  ['pe','bo','ar','br'].forEach(c=>{
+    const real=jStore[c]||{};const has=real.text&&real.text.trim();
+    const div=document.createElement('div');div.className=`ep-sc ${c}`;
+    div.innerHTML=`<div class="ep-sc-flag">${CITY_DATA[c].flag}</div>
+      <div class="ep-sc-name">${CITY_DATA[c].name}</div>
+      <div class="ep-sc-icon">${has?'✍️':'📭'}</div>
+      <div class="ep-sc-status">${has?'기록 완료':'기록 없음'}</div>
+      ${has?`<div class="ep-sc-quote">"${real.text.slice(0,80)}${real.text.length>80?'…':''}"</div>`:''}
+      ${real.moods&&real.moods.length?`<div class="ep-sc-moods">${real.moods.map(m=>`<span class="ep-sc-mood">${m}</span>`).join('')}</div>`:''}`;
+    sg.appendChild(div);
+  });
+}
+
+/* ── AI 회고록 ── */
+const AI_LOADING_MSGS=['여행의 기억을 분석하는 중...','감정 데이터를 읽고 있어요...','회고록을 작성하는 중...','마지막 마무리 중...'];
+let aiLoadingInterval=null;
+
+async function generateAI(){
+  const btn=document.getElementById('ai-gen-btn');
+  const loading=document.getElementById('ai-loading');
+  const result=document.getElementById('ai-result');
+  const resultText=document.getElementById('ai-result-text');
+  btn.disabled=true;
+  loading.classList.add('show');result.classList.remove('show');
+  let mi=0;
+  aiLoadingInterval=setInterval(()=>{
+    document.getElementById('ai-loading-text').textContent=AI_LOADING_MSGS[mi%AI_LOADING_MSGS.length];mi++;
+  },2200);
+
+  const journalSummary=['pe','bo','ar','br'].map(c=>{
+    const d=CITY_DATA[c];const j=jStore[c];
+    return `[${d.name} (${d.date})]
+기대: "${d.items.join(', ')}"
+실제 기록: ${j.text||'(기록 없음)'}
+감정 태그: ${j.moods.length?j.moods.join(', '):'없음'}
+기대 충족도: ${scores[c]}/10`;
+  }).join('\n\n');
+
+  const prompt=`당신은 감성적인 여행 작가입니다. DIT 64기의 남미 여행 데이터를 바탕으로 따뜻하고 문학적인 회고록을 한국어로 작성해주세요.
+
+여행 정보:
+- 제목: SUR AMÉRICA — DIT 64기 남미 여행 2026
+- 기간: 2026.04.25 — 05.14 (19박 20일)
+- 방문 국가: 페루 → 볼리비아 → 아르헨티나 → 브라질
+
+나라별 기록:
+${journalSummary}
+
+요청사항:
+1. 400~500자 분량의 감성적인 회고록 형식으로 작성
+2. 기대와 현실의 간극을 시적으로 표현
+3. 남미 특유의 분위기(태양, 안데스, 탱고, 폭포)를 담아주세요
+4. 여행자들의 감정 변화를 자연스럽게 담아주세요
+5. 마지막 문장은 여행이 남긴 가장 큰 의미로 마무리
+6. 각 나라에 대한 언급 포함`;
+
+  try {
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1200,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await res.json();
+    const text=data.content&&data.content[0]&&data.content[0].text;
+    clearInterval(aiLoadingInterval);loading.classList.remove('show');
+    if(text){
+      resultText.textContent=text;result.classList.add('show');
+    } else {
+      resultText.textContent='회고록 생성에 실패했습니다. 잠시 후 다시 시도해주세요.';result.classList.add('show');
+    }
+  } catch(err){
+    clearInterval(aiLoadingInterval);loading.classList.remove('show');
+    resultText.textContent='네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';result.classList.add('show');
+  }
+  btn.disabled=false;
+}
+
+/* ── INIT ── */
+(function init(){
+  const dep=new Date('2026-04-25T00:00:00');
+  function updateDday(){
+    const d=Math.ceil((dep-new Date())/864e5);
+    document.getElementById('dday-nav').textContent=d>0?'D-'+d:d===0?'D-DAY':'D+'+Math.abs(d);
+  }
+  updateDday();setInterval(updateDday,60000);
+
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  renderGallery('all');
+  initParticles();
+  initTilt();
+
+  const sc=document.createElement('script');
+  sc.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+  sc.onload=()=>setTimeout(initMap,80);
+  document.head.appendChild(sc);
+})();
+</script>
+</body>
+</html>
