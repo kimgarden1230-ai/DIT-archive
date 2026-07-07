@@ -1594,14 +1594,14 @@ function initModalMap(trip){
     const c=d.locationCode?.split("_")[0];
     return c?COUNTRY_COORDS[c]||null:null;
   });
-  // 지도용: 연속 중복 제거된 경로
+  // 지도용: 연속 중복 제거된 경로 (dayNum, locationName 포함)
   const orderedLocs=[];
   (trip.tripDays||[]).forEach(d=>{
     const c=d.locationCode?.split("_")[0];if(!c)return;
     if(orderedLocs.length&&orderedLocs[orderedLocs.length-1].code===c){
       if(!orderedLocs[orderedLocs.length-1].photo&&d.photos?.length)orderedLocs[orderedLocs.length-1].photo=d.photos[0];
     }else{
-      orderedLocs.push({code:c,photo:d.photos?.[0]||null});
+      orderedLocs.push({code:c,photo:d.photos?.[0]||null,dayNum:d.dayNum,name:d.locationName||''});
     }
   });
   const locs=orderedLocs.map(l=>({...l,coords:COUNTRY_COORDS[l.code]})).filter(l=>l.coords);
@@ -1611,13 +1611,21 @@ function initModalMap(trip){
   L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",{maxZoom:19}).addTo(mm);
   if(!coords.length){mm.setView([20,0],2);return;}
   if(coords.length>1)L.polyline(coords,{color:"var(--primary)",weight:2.5,opacity:.8}).addTo(mm);
-  locs.forEach((l,i)=>{
+  const labelStyle=`background:#1D1D1F;color:#fff;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.3);font-family:Pretendard,sans-serif;letter-spacing:-.01em`;
+  const wrapStyle=`display:flex;flex-direction:column;align-items:center;gap:3px`;
+  locs.forEach((l)=>{
+    const labelText=`Day ${l.dayNum}${l.name?` · ${l.name}`:''}`;
+    const label=`<div style="${labelStyle}">${labelText}</div>`;
+    let markerHtml,w,h,aX,aY;
     if(l.photo){
-      const icon=L.divIcon({className:"",html:`<div style="width:36px;height:36px;border-radius:8px;border:2.5px solid #fff;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.25)"><img src="${l.photo}" style="width:100%;height:100%;object-fit:cover"></div>`,iconSize:[36,36],iconAnchor:[18,18]});
-      L.marker(l.coords,{icon}).addTo(mm);
+      markerHtml=`<div style="${wrapStyle}">${label}<div style="width:36px;height:36px;border-radius:8px;border:2.5px solid #fff;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.25)"><img src="${l.photo}" style="width:100%;height:100%;object-fit:cover"></div></div>`;
+      w=90;h=58;aX=45;aY=58;
     }else{
-      L.circleMarker(l.coords,{radius:i===0||i===locs.length-1?6:4,color:"#fff",fillColor:"var(--primary)",fillOpacity:1,weight:2}).addTo(mm);
+      markerHtml=`<div style="${wrapStyle}">${label}<div style="width:10px;height:10px;border-radius:50%;background:#00C896;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)"></div></div>`;
+      w=90;h=34;aX=45;aY=34;
     }
+    const icon=L.divIcon({className:"",html:markerHtml,iconSize:[w,h],iconAnchor:[aX,aY]});
+    L.marker(l.coords,{icon}).addTo(mm);
   });
   if(coords.length===1)mm.setView(coords[0],4);
   else mm.fitBounds(L.latLngBounds(coords),{padding:[28,28],maxZoom:7});
