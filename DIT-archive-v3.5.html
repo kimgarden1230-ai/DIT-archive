@@ -576,7 +576,8 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 .tl-carousel-viewport{flex:0 0 auto;overflow:hidden;cursor:grab;user-select:none}
 .tl-carousel-viewport.dragging{cursor:grabbing}
 .tl-carousel-track{display:flex;align-items:stretch;padding:.75rem 1.1rem 1rem;gap:.75rem;will-change:transform}
-.tl-swipe-card{flex:0 0 82%;padding:1.1rem 1.1rem .9rem;box-sizing:border-box;display:flex;flex-direction:column;gap:.55rem;background:var(--canvas-soft);border-radius:var(--r-md);border:1px solid var(--hairline);overflow-y:auto}
+.tl-swipe-card{flex:0 0 82%;padding:1.1rem 1.1rem .9rem;box-sizing:border-box;display:flex;flex-direction:column;gap:.55rem;background:var(--canvas-soft);border-radius:var(--r-md);border:1px solid var(--hairline);overflow-y:auto;transform:scale(0.93);transform-origin:top center;opacity:.55;transition:transform .35s cubic-bezier(0.34,1.2,0.64,1),opacity .25s ease}
+.tl-swipe-card.active{transform:scale(1);opacity:1;background:#fff;border-color:var(--hairline)}
 .tl-card-header{display:flex;align-items:baseline;gap:.5rem}
 .tl-card-day{font-size:var(--fs-sm);font-weight:700;color:var(--primary)}
 .tl-card-date{font-size:var(--fs-xs);color:var(--ink-muted)}
@@ -1495,6 +1496,7 @@ function initCarousel(){
   function snapTo(idx,animated=true){
     currentIdx=Math.max(0,Math.min(total-1,idx));
     applyOffset(-cardStep()*currentIdx,animated);
+    cards.forEach((c,i)=>c.classList.toggle('active',i===currentIdx));
     if(animated){
       const coords=window._mapDayCoords?.[currentIdx];
       const mm=window._modalMap;
