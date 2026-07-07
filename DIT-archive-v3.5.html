@@ -1495,6 +1495,11 @@ function initCarousel(){
   function snapTo(idx,animated=true){
     currentIdx=Math.max(0,Math.min(total-1,idx));
     applyOffset(-cardStep()*currentIdx,animated);
+    if(animated){
+      const coords=window._mapDayCoords?.[currentIdx];
+      const mm=window._modalMap;
+      if(mm&&coords)mm.flyTo(coords,5,{animate:true,duration:0.4});
+    }
   }
 
   function nearestIdx(){
@@ -1577,14 +1582,23 @@ function initCarousel(){
   snapTo(0,false);
 }
 function initModalMap(trip){
+  window._modalMap=null;window._mapDayCoords=[];
   const el=document.getElementById("modal-mini-map");if(!el)return;
-  const days=(trip.tripDays||[]);
-  // day 순서대로 국가코드 + 첫 사진 추출 (연속 중복 제거)
+  // Leaflet doesn't clean up when the container is replaced via innerHTML.
+  // Forcefully reset the element so L.map() can reinitialize.
+  el.innerHTML='';
+  if(el._leaflet_id)delete el._leaflet_id;
+  const days=(trip.tripDays||[]).filter(d=>d.memo||d.moods?.length||d.photos?.length||d.locationCode);
+  // 카드 순서와 동일하게 일자별 coords 배열 구성
+  window._mapDayCoords=days.map(d=>{
+    const c=d.locationCode?.split("_")[0];
+    return c?COUNTRY_COORDS[c]||null:null;
+  });
+  // 지도용: 연속 중복 제거된 경로
   const orderedLocs=[];
-  days.forEach(d=>{
+  (trip.tripDays||[]).forEach(d=>{
     const c=d.locationCode?.split("_")[0];if(!c)return;
     if(orderedLocs.length&&orderedLocs[orderedLocs.length-1].code===c){
-      // 같은 나라 — 사진 없으면 업데이트
       if(!orderedLocs[orderedLocs.length-1].photo&&d.photos?.length)orderedLocs[orderedLocs.length-1].photo=d.photos[0];
     }else{
       orderedLocs.push({code:c,photo:d.photos?.[0]||null});
@@ -1593,6 +1607,7 @@ function initModalMap(trip){
   const locs=orderedLocs.map(l=>({...l,coords:COUNTRY_COORDS[l.code]})).filter(l=>l.coords);
   const coords=locs.map(l=>l.coords);
   const mm=L.map(el,{zoomControl:false,attributionControl:false,dragging:false,scrollWheelZoom:false,touchZoom:false,doubleClickZoom:false,keyboard:false,tap:false});
+  window._modalMap=mm;
   L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",{maxZoom:19}).addTo(mm);
   if(!coords.length){mm.setView([20,0],2);return;}
   if(coords.length>1)L.polyline(coords,{color:"var(--primary)",weight:2.5,opacity:.8}).addTo(mm);
