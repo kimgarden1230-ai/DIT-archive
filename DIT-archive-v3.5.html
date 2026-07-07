@@ -1618,11 +1618,13 @@ function initModalMap(trip){
     const label=`<div style="${labelStyle}">${labelText}</div>`;
     let markerHtml,w,h,aX,aY;
     if(l.photo){
+      // label≈18px + gap 3px + photo center 18px = anchorY 39
       markerHtml=`<div style="${wrapStyle}">${label}<div style="width:36px;height:36px;border-radius:8px;border:2.5px solid #fff;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.25)"><img src="${l.photo}" style="width:100%;height:100%;object-fit:cover"></div></div>`;
-      w=90;h=58;aX=45;aY=58;
+      w=90;h=57;aX=45;aY=39;
     }else{
+      // label≈18px + gap 3px + dot center 5px = anchorY 26
       markerHtml=`<div style="${wrapStyle}">${label}<div style="width:10px;height:10px;border-radius:50%;background:#00C896;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.25)"></div></div>`;
-      w=90;h=34;aX=45;aY=34;
+      w=90;h=31;aX=45;aY=26;
     }
     const icon=L.divIcon({className:"",html:markerHtml,iconSize:[w,h],iconAnchor:[aX,aY]});
     L.marker(l.coords,{icon}).addTo(mm);
