@@ -1578,6 +1578,10 @@ function initCarousel(){
   window.addEventListener('mouseup',sliderUp);
   window.addEventListener('touchend',sliderUp);
 
+  // expose for map marker clicks
+  window._carouselSnap=snapTo;
+  window._carouselDayNums=dayNums;
+
   // initial render
   snapTo(0,false);
 }
@@ -1627,7 +1631,10 @@ function initModalMap(trip){
       w=90;h=31;aX=45;aY=26;
     }
     const icon=L.divIcon({className:"",html:markerHtml,iconSize:[w,h],iconAnchor:[aX,aY]});
-    L.marker(l.coords,{icon}).addTo(mm);
+    const cardIdx=days.findIndex(d=>d.dayNum===l.dayNum);
+    L.marker(l.coords,{icon}).addTo(mm).on('click',()=>{
+      if(window._carouselSnap&&cardIdx>=0)window._carouselSnap(cardIdx);
+    });
   });
   if(coords.length===1)mm.setView(coords[0],4);
   else mm.fitBounds(L.latLngBounds(coords),{padding:[28,28],maxZoom:7});
