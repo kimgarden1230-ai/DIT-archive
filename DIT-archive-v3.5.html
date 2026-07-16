@@ -152,7 +152,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .ml-item{display:flex;align-items:center;gap:.32rem;font-size:var(--fs-sm);font-weight:400;color:var(--charcoal)}
 .ml-dot{width:10px;height:10px;border-radius:50%}
 .ml-dot.done{background:var(--mint)}
-.ml-dot.plan{background:#fff;border:2px dashed var(--muted)}
 .ml-line{width:16px;height:2px;background:var(--muted);border-radius:var(--r-pill);opacity:.6}
 
 /* ── CARDS PANEL ── */
@@ -166,7 +165,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 /* rec card */
 .rec-card{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline);overflow:hidden;cursor:pointer;transition:border-color .18s,transform .18s}
 .rec-card:hover{border-color:#C9C9CB;transform:translateY(-2px)}
-.rec-card.is-planning{border:1.5px dashed var(--border)}
 .rc-thumb{width:100%;height:96px;object-fit:cover;display:block}
 .rc-thumb-placeholder{width:100%;height:96px;display:flex;align-items:center;justify-content:center;font-size:2rem}
 .rc-thumb-wrap{position:relative;overflow:hidden}.rc-thumb-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.15) 100%);pointer-events:none}
@@ -184,7 +182,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .rc-add-btn{width:100%;margin-top:.5rem;padding:.42rem;background:transparent;border:1.5px dashed var(--border);border-radius:var(--r-md);font-size:var(--fs-sm);font-weight:600;color:var(--muted);cursor:pointer;transition:all .18s}
 .rc-add-btn:hover{border-color:var(--mint);color:var(--mint);background:var(--mint-bg)}
 .status-pill{font-size:var(--fs-xs);font-weight:600;padding:3px 9px;border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:3px;margin-bottom:.38rem}
-.sp-plan{background:var(--bg);color:var(--sub);border:1px solid var(--border)}
 .sp-done{background:var(--mint-light);color:var(--mint);border:1px solid rgba(0,200,150,.2)}
 .empty-cards{text-align:center;padding:2.5rem 1rem;color:var(--gray);grid-column:1/-1}
 .empty-cards .ei{width:32px;height:32px;margin:0 auto .6rem;color:var(--muted);display:flex;align-items:center;justify-content:center}
@@ -199,13 +196,11 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 #timeline-view{flex:1;overflow-y:auto;padding:1rem;display:none;min-height:0;background:var(--bg);overscroll-behavior:contain}
 .tl-section-label{font-size:var(--fs-xs);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;margin-top:.4rem;display:flex;align-items:center;gap:.5rem}
 .tl-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.tl-section-label.plan{color:var(--sub)}
 .year-section{margin-bottom:1.8rem}
 .year-sidebar-label{font-size:var(--fs-xl);font-weight:600;color:var(--ink);letter-spacing:-.02em;line-height:1;padding:0.5rem 0 0.75rem}
 .tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem}
 .tl-card{background:var(--canvas);border-radius:var(--r-lg);border:1px solid var(--hairline);overflow:hidden;cursor:pointer;transition:border-color .18s,transform .18s;display:flex;flex-direction:column}
 .tl-card:hover{border-color:#C9C9CB;transform:translateY(-2px)}
-.tl-card.is-planning{border:1.5px dashed var(--border)}
 .tl-cover{width:100%;height:120px;object-fit:cover;display:block;flex-shrink:0;object-position:center}
 .tl-cover-placeholder{width:100%;height:120px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;background:var(--canvas-soft)}
 .tl-body{padding:.9rem 1rem .9rem;flex:1;display:flex;flex-direction:column}
@@ -706,7 +701,7 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
       <div class="pv-avatar" id="pv-avatar" onclick="document.getElementById('avatar-input').click()" style="cursor:pointer;position:relative">?</div>
       <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
       <div class="pv-name" id="pv-name">게스트</div>
-      <div class="tb-mode-badge" id="pv-mode-badge" style="display:none;margin-top:.5rem">읽기 전용</div>
+      <div class="tb-mode-badge" id="pv-mode-badge" style="display:none;margin-top:.5rem">둘러보기 모드</div>
     </div>
     <div class="demo-lock-banner" id="demo-banner" style="border-radius:var(--r-lg);margin-bottom:1rem">
       <span>👀 예시 둘러보기 모드 — 기록을 저장하려면 로그인이 필요해요</span>
@@ -1100,8 +1095,7 @@ function setCF(cont,btn){cfFilter=cont;document.querySelectorAll(".cf-btn").forE
 function renderCountryCards(){
   const grid=document.getElementById("country-cards-grid");
   let recs=getTripRecs();
-  if(cfFilter==="planning")recs=recs.filter(r=>r.tripStatus==="planning");
-  else if(cfFilter!=="all")recs=recs.filter(r=>r.continent===cfFilter);
+  if(cfFilter!=="all")recs=recs.filter(r=>r.continent===cfFilter);
   document.getElementById("cards-count").textContent=`여행 기록 ${recs.length}건`;
   if(!recs.length){
     const msg=cfFilter!=="all"?"이 필터에 해당하는 기록이 없어요":"아직 여행 기록이 없어요";
@@ -1110,19 +1104,17 @@ function renderCountryCards(){
     return;
   }
   grid.innerHTML=recs.map(r=>{
-    const isPlan=r.tripStatus==="planning";
-    const col=isPlan?DS.coral:(CC[r.continent]||DS.gray);
-    const pill=isPlan?`<div class="status-pill sp-plan">계획 중</div>`:"";
+    const col=CC[r.continent]||DS.gray;
     const thumbInner=(r.coverPhoto||r.allPhotos[0])?`<img class="rc-thumb" src="${r.coverPhoto||r.allPhotos[0]}" alt="">`:`<div class="rc-thumb-placeholder" style="background:${col}18">${r.tripEmoji||"✈️"}</div>`;
     const thumb=`<div class="rc-thumb-wrap">${thumbInner}</div>`;
-    return `<div class="rec-card${isPlan?" is-planning":""}" onclick="openModal('${r.tripId}')">${thumb}<div class="rc-body"><div class="rc-top"><div class="rc-flag">${r.tripEmoji||"✈️"}</div><div class="rc-info"><div class="rc-trip">${r.tripTitle}</div></div></div>${pill}${r.startDate?`<div class="rc-date">${r.startDate.replace(/-/g,".")}${r.endDate?" - "+r.endDate.replace(/-/g,"."):""} · ${r.totalDays||0}일</div>`:""}${r.allMoods.length?`<div class="rc-moods">${r.allMoods.slice(0,3).map(m=>`<span class="rc-mood">${m}</span>`).join("")}</div>`:""}</div></div>`;
+    return `<div class="rec-card" onclick="openModal('${r.tripId}')">${thumb}<div class="rc-body"><div class="rc-top"><div class="rc-flag">${r.tripEmoji||"✈️"}</div><div class="rc-info"><div class="rc-trip">${r.tripTitle}</div></div></div>${r.startDate?`<div class="rc-date">${r.startDate.replace(/-/g,".")}${r.endDate?" - "+r.endDate.replace(/-/g,"."):""} · ${r.totalDays||0}일</div>`:""}${r.allMoods.length?`<div class="rc-moods">${r.allMoods.slice(0,3).map(m=>`<span class="rc-mood">${m}</span>`).join("")}</div>`:""}</div></div>`;
   }).join("");
 }
 
 // ── MAP ──
-function makePin(code,borderColor,bgColor,shadow,isPlan){
+function makePin(code,borderColor,bgColor,shadow){
   const label=code.slice(0,2).toUpperCase();
-  const textColor=isPlan?DS.coral:borderColor;
+  const textColor=borderColor;
   return `<div style="position:relative;width:40px;height:50px;cursor:pointer;filter:drop-shadow(0 3px 8px ${shadow});transition:transform .18s cubic-bezier(.34,1.56,.64,1)" onmouseenter="this.style.transform='scale(1.2) translateY(-3px)'" onmouseleave="this.style.transform='scale(1) translateY(0)'"><div style="position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bgColor};border:2.5px solid ${borderColor};box-sizing:border-box"></div><div style="position:absolute;top:0;left:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;z-index:1"><span style="font-size:10px;font-weight:700;color:${textColor};letter-spacing:-.5px;font-family:'Pretendard','Noto Sans KR',sans-serif">${label}</span></div></div>`;
 }
 function initMap(){
@@ -1136,13 +1128,6 @@ function updateMapMarkers(){
   if(!_map)return;
   Object.values(_markers).forEach(m=>m.remove());_markers={};
   _routes.forEach(r=>r.remove());_routes=[];
-  trips.filter(t=>t.status==="planning").forEach(t=>{
-    const mt=migrateTrip(t);
-    const codes=[...new Set((mt.tripDays||[]).map(d=>d.locationCode.split('_')[0]).filter(Boolean))];
-    const coords=codes.map(c=>COUNTRY_COORDS[c]).filter(Boolean);
-    if(coords.length<2)return;
-    _routes.push(L.polyline(coords,{color:"#ABABAB",weight:2,opacity:.5,dashArray:"6 5"}).addTo(_map));
-  });
   const byCode={};
   trips.forEach(t=>{
     const mt=migrateTrip(t);
@@ -1155,25 +1140,21 @@ function updateMapMarkers(){
   });
   Object.entries(byCode).forEach(([code,{country,trips:ct}])=>{
     const coords=COUNTRY_COORDS[code];if(!coords)return;
-    const hasDone=ct.some(t=>t.status!=="planning");
-    const isPlanOnly=!hasDone;
-    const borderColor=isPlanOnly?"#ABABAB":(CC[country.continent]||DS.gray);
+    const borderColor=CC[country.continent]||DS.gray;
     const bgColor="#fff";
-    const shadow=isPlanOnly?"rgba(0,0,0,.12)":"rgba(0,0,0,.18)";
-    const colStr=isPlanOnly?"#8E8E8E":(CC[country.continent]||DS.gray);
-    const icon=L.divIcon({className:"",html:makePin(code,borderColor,bgColor,shadow,isPlanOnly),iconSize:[40,50],iconAnchor:[20,50]});
+    const shadow="rgba(0,0,0,.18)";
+    const colStr=CC[country.continent]||DS.gray;
+    const icon=L.divIcon({className:"",html:makePin(code,borderColor,bgColor,shadow),iconSize:[40,50],iconAnchor:[20,50]});
     const mk=L.marker(coords,{icon}).addTo(_map);
-    const tripTags=ct.map(t=>{const ip=t.status==="planning";return `<span class="mp-c" style="background:${ip?"#F5F5F5":colStr+"18"};color:${ip?"#8E8E8E":colStr}" onclick="openModal('${t.id}');closePopup()">${t.coverEmoji||"✈️"} ${t.title}</span>`;}).join("");
-    const planTrip=ct.find(t=>t.status==="planning");
-    const doneBtn=ct.length===1&&!planTrip?`<button class="mp-open" onclick="openModal('${ct[0].id}');closePopup()">기록 보기 →</button>`:"";
-    const planBtn=planTrip?`<button class="mp-reality" onclick="openModal('${planTrip.id}',true);closePopup()">현실 기록하기</button>`:"";
-    mk.bindPopup(`<div class="map-popup"><div class="mp-title">${country.emoji} ${country.name}</div><div class="mp-date">${ct.length}번 기록</div><div class="mp-ctags">${tripTags}</div>${doneBtn}${planBtn}</div>`,{maxWidth:230});
+    const tripTags=ct.map(t=>`<span class="mp-c" style="background:${colStr+"18"};color:${colStr}" onclick="openModal('${t.id}');closePopup()">${t.coverEmoji||"✈️"} ${t.title}</span>`).join("");
+    const doneBtn=ct.length===1?`<button class="mp-open" onclick="openModal('${ct[0].id}');closePopup()">기록 보기 →</button>`:"";
+    mk.bindPopup(`<div class="map-popup"><div class="mp-title">${country.emoji} ${country.name}</div><div class="mp-date">${ct.length}번 기록</div><div class="mp-ctags">${tripTags}</div>${doneBtn}</div>`,{maxWidth:230});
     _markers[code]=mk;
   });
 }
 function flyToTrips(){
   if(!_map)return;
-  const done=trips.filter(t=>t.status!=="planning");
+  const done=trips;
   const coords=done.flatMap(t=>{const mt=migrateTrip(t);return[...new Set((mt.tripDays||[]).map(d=>d.locationCode.split('_')[0]).filter(Boolean))].map(c=>COUNTRY_COORDS[c]).filter(Boolean);});
   if(!coords.length)return;
   if(coords.length===1){_map.flyTo(coords[0],5,{duration:0.6});}
@@ -1181,7 +1162,7 @@ function flyToTrips(){
 }
 function flyToNearest(){
   if(!_map)return;
-  const done=trips.filter(t=>t.status!=="planning"&&(t.startDate||t.endDate));
+  const done=trips.filter(t=>t.startDate||t.endDate);
   if(!done.length)return;
   done.sort((a,b)=>(b.endDate||b.startDate||"").localeCompare(a.endDate||a.startDate||""));
   const mt0=migrateTrip(done[0]);
@@ -1219,23 +1200,9 @@ function renderTimeline(){
     el.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;min-height:60vh"><div class="empty-state-wrap"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="40" cy="40" r="36" fill="rgba(0,200,150,.1)"/><g transform="translate(20,20) scale(1.67)"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" fill="#00C896"/></g></svg><div class="es-title">타임라인이 비어있어요</div><div class="es-sub">여행을 기록하면 연도별로 정리돼요</div><button class="es-cta" onclick="fabClick()">+ 첫 여행 기록하기</button></div></div>`;
     return;
   }
-  const planning=trips.filter(t=>t.status==="planning").sort((a,b)=>new Date(a.startDate||a.createdAt)-new Date(b.startDate||b.createdAt));
-  const done=trips.filter(t=>t.status!=="planning");
   const byYear={};
-  done.forEach(t=>{const y=(t.startDate||t.createdAt||"").slice(0,4)||"기타";if(!byYear[y])byYear[y]=[];byYear[y].push(t);});
+  trips.forEach(t=>{const y=(t.startDate||t.createdAt||"").slice(0,4)||"기타";if(!byYear[y])byYear[y]=[];byYear[y].push(t);});
   let html="";
-  if(planning.length){
-    html+=`<div class="tl-section-label plan">계획 중</div>
-    <div class="year-section" style="margin-bottom:1.8rem">
-      <div class="year-sidebar">
-        <div class="year-sidebar-inner">
-          <div class="year-sidebar-label" style="color:var(--muted);writing-mode:horizontal-tb;transform:none;font-size:var(--fs-sm);font-weight:700;letter-spacing:.06em;text-transform:uppercase">PLAN</div>
-          <div class="year-sidebar-line" style="background:linear-gradient(to bottom,var(--border),transparent)"></div>
-        </div>
-      </div>
-      <div class="tl-grid">${planning.map(t=>tlCard(t,true)).join("")}</div>
-    </div>`;
-  }
   html+=Object.keys(byYear).sort((a,b)=>b-a).map(y=>`
     <div class="year-section">
       <div class="year-sidebar">
@@ -1244,7 +1211,7 @@ function renderTimeline(){
           <div class="year-sidebar-line"></div>
         </div>
       </div>
-      <div class="tl-grid">${byYear[y].map(t=>tlCard(t,false)).join("")}</div>
+      <div class="tl-grid">${byYear[y].map(t=>tlCard(t)).join("")}</div>
     </div>`).join("");
   el.innerHTML=html;
 }
@@ -1277,14 +1244,14 @@ function getCountryImgUrl(countryName,emoji){
   return `https://source.unsplash.com/400x220/?${encodeURIComponent(q)}`;
 }
 
-function tlCard(t,isPlan){
+function tlCard(t){
   const mt=migrateTrip(t);
   const days=mt.tripDays||[];
   const uniqLocs=[...new Map(days.filter(d=>d.locationCode).map(d=>[d.locationCode.split('_')[0],d])).values()];
   const firstLoc=uniqLocs[0];
   const firstCode=firstLoc?firstLoc.locationCode.split('_')[0]:null;
   const continent=(COUNTRIES.find(c=>c.code===firstCode)||{}).continent||'';
-  const col=isPlan?DS.coral:(CC[continent]||DS.gray);
+  const col=CC[continent]||DS.gray;
   const moods=[...new Set(days.flatMap(d=>d.moods||[]))].slice(0,3);
   const allPhotos=days.flatMap(d=>d.photos||[]);
   let coverEl;
@@ -1295,13 +1262,13 @@ function tlCard(t,isPlan){
     const imgId=`cimg-${t.id}`;const fbId=`cfb-${t.id}`;
     coverEl=`<div class="tl-cover-placeholder" id="${fbId}" style="display:flex;background:${col}18">${t.coverEmoji||"✈️"}</div><img class="tl-cover" id="${imgId}" src="${imgUrl}" alt="${firstLoc?.locationName||""}" style="display:none" onload="var i=document.getElementById('${imgId}');var f=document.getElementById('${fbId}');if(i)i.style.display='block';if(f)f.style.display='none';" onerror="var i=document.getElementById('${imgId}');if(i)i.style.display='none';">`;
   }
-  return `<div class="tl-card${isPlan?" is-planning":""}" onclick="openModal('${t.id}')">${coverEl}<div class="tl-body"><div class="tl-top"><span class="tl-emoji">${t.coverEmoji||"✈️"}</span><div class="tl-title">${t.title}</div>${isPlan?`<span class="status-pill sp-plan" style="font-size:var(--fs-xs);padding:2px 6px;flex-shrink:0">계획</span>`:""}</div><div class="tl-meta">${t.startDate||""} ${t.endDate?"– "+t.endDate:""} · ${t.totalDays||0}일</div><div class="tl-ctags">${uniqLocs.slice(0,4).map(l=>`<span class="tl-ctag">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</span>`).join("")}</div>${!isPlan&&moods.length?`<div class="tl-moods">${moods.map(m=>`<span class="tl-mood">${m}</span>`).join("")}</div>`:""}<div class="tl-bottom"><span></span>${allPhotos.length?`<span class="tl-photo-count" style="display:inline-flex;align-items:center;gap:3px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;flex-shrink:0"><path d="M12 9a3.75 3.75 0 1 0 0 7.5A3.75 3.75 0 0 0 12 9Z"/><path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 0 1 5.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 0 1-3 3h-15a3 3 0 0 1-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 0 0 1.11-.71l.822-1.315a2.942 2.942 0 0 1 2.332-1.39ZM6.75 12.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Zm12-1.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd"/></svg>${allPhotos.length}</span>`:""}</div></div></div>`;
+  return `<div class="tl-card" onclick="openModal('${t.id}')">${coverEl}<div class="tl-body"><div class="tl-top"><span class="tl-emoji">${t.coverEmoji||"✈️"}</span><div class="tl-title">${t.title}</div></div><div class="tl-meta">${t.startDate||""} ${t.endDate?"– "+t.endDate:""} · ${t.totalDays||0}일</div><div class="tl-ctags">${uniqLocs.slice(0,4).map(l=>`<span class="tl-ctag">${l.locationType==='city'&&l.parentEmoji?l.parentEmoji:l.locationEmoji} ${l.locationName}</span>`).join("")}</div>${moods.length?`<div class="tl-moods">${moods.map(m=>`<span class="tl-mood">${m}</span>`).join("")}</div>`:""}<div class="tl-bottom"><span></span>${allPhotos.length?`<span class="tl-photo-count" style="display:inline-flex;align-items:center;gap:3px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;flex-shrink:0"><path d="M12 9a3.75 3.75 0 1 0 0 7.5A3.75 3.75 0 0 0 12 9Z"/><path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 0 1 5.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 0 1-3 3h-15a3 3 0 0 1-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 0 0 1.11-.71l.822-1.315a2.942 2.942 0 0 1 2.332-1.39ZM6.75 12.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Zm12-1.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd"/></svg>${allPhotos.length}</span>`:""}</div></div></div>`;
 }
 
 // ── STATS ──
 function renderStats(){
   const el=document.getElementById("stats-view");
-  const done=trips.filter(t=>t.status!=="planning");
+  const done=trips;
   // tripDays 기반 통계 — 나라 단위 집계를 위해 unique locationCode per trip
   const allDays=done.flatMap(t=>(migrateTrip(t).tripDays||[]));
   // ac: 나라/도시 단위 대표 day 배열 (code/name/continent/score/moods/photos 포함)
@@ -1317,12 +1284,11 @@ function renderStats(){
     if(d.memo&&d.memo.trim())codeMap[code].memoCount++;
   });
   const ac=Object.values(codeMap).map(c=>({...c,score:c.scores.length?(c.scores.reduce((a,b)=>a+b,0)/c.scores.length):0}));
-  if(!ac.length){el.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;min-height:60vh"><div class="empty-state-wrap"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="40" cy="40" r="36" fill="rgba(0,200,150,.1)"/><g transform="translate(20,20) scale(1.67)"><path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75z" fill="#00C896"/><path d="M9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625z" fill="#00C896"/><path d="M3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z" fill="#00C896"/></g></svg><div class="es-title">아직 통계가 없어요</div><div class="es-sub">완료된 여행이 생기면 통계가 나타나요</div><button class="es-cta" onclick="fabClick()">+ 여행 기록하기</button></div></div>`;return;}
+  if(!ac.length){el.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;min-height:60vh"><div class="empty-state-wrap"><svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64"><circle cx="40" cy="40" r="36" fill="rgba(0,200,150,.1)"/><g transform="translate(20,20) scale(1.67)"><path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75z" fill="#00C896"/><path d="M9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625z" fill="#00C896"/><path d="M3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z" fill="#00C896"/></g></svg><div class="es-title">아직 통계가 없어요</div><div class="es-sub">완료된 여행이 생기면 통계가 나타나요</div><button class="es-cta" onclick="fabClick()">+ 첫 여행 기록하기</button></div></div>`;return;}
   const totalC=new Set(ac.map(c=>c.code)).size;
   const totalD=done.reduce((s,t)=>s+(t.totalDays||0),0);
   const scores=ac.map(c=>c.score).filter(Boolean);
   const avg=scores.length?(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1):"-";
-  const planning=trips.filter(t=>t.status==="planning").length;
   const insight=ac.reduce((s,c)=>s+c.memoCount,0);
   const allPhotos=allDays.flatMap(d=>(d.photos||[]).map(src=>({src,label:`Day ${d.dayNum}${d.locationName?' · '+d.locationName:''}`})));
   const grad=(i,d="90deg")=>`linear-gradient(${d},${P[i%P.length].a},${P[i%P.length].b})`;
@@ -1659,24 +1625,22 @@ function openModal(id,goToReality){
   const raw=trips.find(x=>x.id===id);if(!raw)return;
   const t=migrateTrip(raw);
   curModalId=id;curModalCI=0;photoIdx=0;
-  curModalTab=(goToReality&&t.status==="planning")?"ai":"timeline";
+  curModalTab="timeline";
   renderModal(t);
   document.getElementById("modal-bg").classList.add("open");
   document.body.style.overflow="hidden";
 }
 function buildModal(t){
   const trip=migrateTrip(t);
-  const isPlan=trip.status==="planning";
   const days=trip.tripDays||[];
   const uniqCodes=[...new Set(days.map(d=>d.locationCode).filter(Boolean))];
   const firstLoc=days.find(d=>d.locationCode);
   const firstContinent=firstLoc?(COUNTRIES.find(c=>c.code===firstLoc.locationCode)||{}).continent:'';
-  const col=isPlan?DS.coral:(CC[firstContinent]||DS.gray);
-  const statusHtml=isPlan?`<span class="mh-status" style="background:#F5F5F5;color:#8E8E8E;border:1px solid #E5E5E5">계획 중</span>`:`<span class="mh-status" style="background:rgba(0,200,150,.1);color:${DS.mintHover};border:1px solid rgba(0,200,150,.2)">완료</span>`;
-  const shareBtn=(!isPlan&&isAuth)?`<button class="mh-share-btn" onclick="openSharePanel('${trip.id}')">↗ 공유</button>`:"";
+  const col=CC[firstContinent]||DS.gray;
+  const statusHtml=`<span class="mh-status" style="background:rgba(0,200,150,.1);color:${DS.mintHover};border:1px solid rgba(0,200,150,.2)">완료</span>`;
+  const shareBtn=isAuth?`<button class="mh-share-btn" onclick="openSharePanel('${trip.id}')">↗ 공유</button>`:"";
   const head=`<div id="modal-mini-map"></div><div class="modal-head"><div class="mh-emoji">${trip.coverEmoji||"✈️"}</div><div class="mh-info"><div class="mh-title">${trip.title}</div><div class="mh-meta">${trip.startDate||""} – ${trip.endDate||""} · ${trip.totalDays||0}일 · ${uniqCodes.length}개국 ${statusHtml}</div></div><div class="mh-actions">${shareBtn}<button class="mh-close" onclick="closeModal()">${IC.xMark}</button></div></div>`;
-  const aiClick=isPlan?`showToast('여행 완료 후 AI 회고를 사용할 수 있어요')`:`switchMT('${trip.id}','ai')`;
-  const tabs=`<div class="modal-tabs"><button class="mt-btn${curModalTab==="timeline"?" active":""}" onclick="switchMT('${trip.id}','timeline')">타임라인</button><button class="mt-btn${curModalTab==="photo"?" active":""}" onclick="switchToPhoto('${trip.id}')">사진</button><button class="mt-btn${curModalTab==="ai"?" active":""}${isPlan?" style='opacity:.4'":""}" onclick="${aiClick}">AI 회고</button>${curModalTab==="share"?`<button class="mt-btn active">공유</button>`:""}</div>`;
+  const tabs=`<div class="modal-tabs"><button class="mt-btn${curModalTab==="timeline"?" active":""}" onclick="switchMT('${trip.id}','timeline')">타임라인</button><button class="mt-btn${curModalTab==="photo"?" active":""}" onclick="switchToPhoto('${trip.id}')">사진</button><button class="mt-btn${curModalTab==="ai"?" active":""}" onclick="switchMT('${trip.id}','ai')">AI 회고</button>${curModalTab==="share"?`<button class="mt-btn active">공유</button>`:""}</div>`;
   let content="";
   if(curModalTab==="timeline")content=buildTimelineTab(trip);
   else if(curModalTab==="photo")content=buildPhotoTab(trip);
@@ -1811,7 +1775,7 @@ document.getElementById("modal-bg").addEventListener("click",e=>{if(e.target===d
 
 // ── PHOTO ──
 async function handlePhotoUpload(tid,dayNum,files){
-  if(isDemo){showToast("예시 모드에서는 저장이 안 돼요");return;}
+  if(isDemo){showToast("둘러보기 모드에서는 저장이 안 돼요");return;}
   const t=trips.find(x=>x.id===tid);if(!t)return;
   const mt=migrateTrip(t);
   const day=mt.tripDays.find(d=>d.dayNum===dayNum);if(!day)return;
@@ -1879,7 +1843,7 @@ function openForm(id){
   if(id){
     const raw=trips.find(x=>x.id===id);
     const t=migrateTrip(raw);
-    formData={status:t.status||'planning',title:t.title||'',coverEmoji:t.coverEmoji||'✈️',startDate:t.startDate||'',endDate:t.endDate||'',totalDays:t.totalDays||0,tripDays:t.tripDays?t.tripDays.map(d=>({...d,photos:[...(d.photos||[])],moods:[...(d.moods||[])]})):[]};
+    formData={status:'completed',title:t.title||'',coverEmoji:t.coverEmoji||'✈️',startDate:t.startDate||'',endDate:t.endDate||'',totalDays:t.totalDays||0,tripDays:t.tripDays?t.tripDays.map(d=>({...d,photos:[...(d.photos||[])],moods:[...(d.moods||[])]})):[]};
     formStep=2;activeDayIdx=0;
   }else{
     formData={status:'completed',title:'',coverEmoji:'✈️',startDate:'',endDate:'',totalDays:0,tripDays:[]};

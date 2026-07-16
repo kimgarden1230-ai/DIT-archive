@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "DIT Archive",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["live-server", "--no-browser", "--quiet"],
+      "port": 5500,
+      "autoPort": true
+    },
+    {
+      "name": "Landing RND",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5510", "--directory", "D:/260713_Expression/Projectfiles/Landing_RND"],
+      "port": 5510
+    }
+  ]
+}
