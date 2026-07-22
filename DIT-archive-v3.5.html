@@ -710,6 +710,7 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
     <button class="btn-primary-land pv-btn" id="pv-login-btn" onclick="signInGoogle()">🔑 로그인</button>
     <button class="btn-ghost-land pv-btn" id="pv-logout-btn" style="display:none" onclick="doSignOut()">로그아웃</button>
     <button class="btn-ghost-land pv-btn" onclick="goHome()">홈으로</button>
+    <button class="wiz-delete pv-btn" style="margin-top:2rem" onclick="resetAllData()">데이터 초기화</button>
   </div>
   <div class="bottom-nav" id="bottom-nav">
     <button class="bn-item active" id="bn-main" onclick="switchView('main')">
@@ -2024,6 +2025,7 @@ async function saveTrip(){
   await saveToFirestore(trip);renderAll();closeForm();showToast("저장됐어요!");
 }
 async function deleteTrip(id){if(!confirm("이 여행 기록을 삭제하시겠어요?"))return;trips=trips.filter(t=>t.id!==id);await delFromFirestore(id);renderAll();closeForm();showToast("삭제됐어요.");}
+function resetAllData(){if(!confirm("모든 여행 기록을 삭제하시겠어요? 되돌릴 수 없어요."))return;const k="ta_"+(currentUser?.uid||"g");localStorage.removeItem(k);trips=[];renderAll();showToast("초기화됐어요.");}
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 document.addEventListener("click",e=>{if(!e.target.closest(".cs-wrap"))document.querySelectorAll(".cs-dd").forEach(d=>d.style.display="none");});
 
