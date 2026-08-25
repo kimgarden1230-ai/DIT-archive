@@ -118,7 +118,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .tb-logo .l1{font-family:var(--font-head);font-size:var(--fs-lg);font-weight:800;color:var(--ink);letter-spacing:-.02em;display:flex;align-items:center;gap:.4rem}
 .tb-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);display:inline-block;flex-shrink:0}
 .tb-logo .l2{font-size:var(--fs-xs);color:var(--muted);font-weight:400;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
-.tb-mode-badge{font-size:var(--fs-xs);font-weight:600;padding:.25rem .7rem;border-radius:var(--r-pill);background:var(--bg);color:var(--muted);border:1px solid var(--border)}
 .tb-avatar{width:34px;height:34px;border-radius:50%;background:#1D1D1F;display:flex;align-items:center;justify-content:center;color:#fff;font-size:var(--fs-sm);font-weight:700;flex-shrink:0;overflow:hidden;cursor:pointer}
 .tb-avatar img{width:100%;height:100%;object-fit:cover}
 
@@ -133,12 +132,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .bn-add .bni{width:50px;height:50px;border-radius:50%;background:var(--mint);color:#fff;display:flex;align-items:center;justify-content:center;margin-top:-22px}
 .bn-add .bni svg{width:24px;height:24px}
 
-/* ── DEMO BANNER ── */
-.demo-lock-banner{display:none;align-items:center;gap:.5rem;padding:.5rem 1.2rem;background:var(--bg);border-bottom:1px solid var(--border);font-size:var(--fs-sm);color:var(--sub);font-weight:400;flex-shrink:0}
-.demo-lock-banner.show{display:flex}
-.dlb-btn{margin-left:auto;background:var(--ink);border:none;color:#fff;font-size:var(--fs-xs);font-weight:600;padding:.3rem .9rem;border-radius:var(--r-pill);cursor:pointer}
-.dlb-btn:hover{opacity:.88}
-
 /* ── MAIN VIEW ── */
 #main-view{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;background:var(--bg)}
 .map-panel{flex:0 0 42%;min-height:0;position:relative;overflow:hidden;margin:.8rem 1rem .6rem;border-radius:var(--r-xl);border:1px solid var(--hairline)}
@@ -148,11 +141,7 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .leaflet-control-zoom-in,.leaflet-control-zoom-out{border-radius:0!important;border:none!important;border-bottom:1px solid var(--hairline)!important;font-size:1rem!important;font-weight:400!important;color:var(--ink)!important;width:30px!important;height:30px!important;line-height:30px!important}
 .leaflet-control-zoom-out{border-bottom:none!important}
 .leaflet-control-attribution{display:none!important}
-.map-legend{position:absolute;bottom:10px;left:10px;z-index:400;background:rgba(255,255,255,.96);border:1px solid var(--border);border-radius:var(--r-lg);padding:.5rem .9rem;display:flex;gap:.8rem;box-shadow:var(--shadow-sm)}
-.ml-item{display:flex;align-items:center;gap:.32rem;font-size:var(--fs-sm);font-weight:400;color:var(--charcoal)}
-.ml-dot{width:10px;height:10px;border-radius:50%}
-.ml-dot.done{background:var(--mint)}
-.ml-line{width:16px;height:2px;background:var(--muted);border-radius:var(--r-pill);opacity:.6}
+
 
 /* ── CARDS PANEL ── */
 .cards-panel{flex:1;overflow-y:auto;background:var(--bg);min-height:0;overscroll-behavior:contain}
@@ -179,10 +168,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .rc-preview{font-size:var(--fs-sm);color:var(--sub);line-height:1.65;margin-bottom:.35rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rc-moods{display:flex;flex-wrap:wrap;gap:.25rem}
 .rc-mood{font-size:var(--fs-xs);padding:3px 8px;border-radius:var(--r-pill);background:rgba(255,107,94,.1);color:var(--accent);font-weight:600}
-.rc-add-btn{width:100%;margin-top:.5rem;padding:.42rem;background:transparent;border:1.5px dashed var(--border);border-radius:var(--r-md);font-size:var(--fs-sm);font-weight:600;color:var(--muted);cursor:pointer;transition:all .18s}
-.rc-add-btn:hover{border-color:var(--mint);color:var(--mint);background:var(--mint-bg)}
-.status-pill{font-size:var(--fs-xs);font-weight:600;padding:3px 9px;border-radius:var(--r-pill);display:inline-flex;align-items:center;gap:3px;margin-bottom:.38rem}
-.sp-done{background:var(--mint-light);color:var(--mint);border:1px solid rgba(0,200,150,.2)}
 .empty-cards{text-align:center;padding:2.5rem 1rem;color:var(--gray);grid-column:1/-1}
 .empty-cards .ei{width:32px;height:32px;margin:0 auto .6rem;color:var(--muted);display:flex;align-items:center;justify-content:center}
 .empty-cards .ei svg{width:100%;height:100%;fill:currentColor}
@@ -215,8 +200,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .tl-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.4rem}
 .tl-score{font-size:var(--fs-sm);font-weight:600;color:var(--mint)}
 .tl-photo-count{font-size:var(--fs-sm);color:var(--muted)}
-.tl-add-btn{width:100%;margin-top:.5rem;padding:.42rem;background:transparent;border:1.5px dashed var(--border);border-radius:var(--r-md);font-size:var(--fs-sm);font-weight:600;color:var(--muted);cursor:pointer;transition:all .18s}
-.tl-add-btn:hover{border-color:var(--mint);color:var(--mint);background:var(--mint-bg)}
 
 /* ── STATS ── */
 #stats-view{flex:1;overflow-y:auto;padding:1rem;display:none;min-height:0;background:var(--bg)}
@@ -325,7 +308,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .spinner{width:11px;height:11px;border:2px solid rgba(0,0,0,.08);border-top-color:var(--mint-base);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* photos */
-.photo-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:.9rem;border-radius:var(--r-lg);overflow:hidden}
 /* ── Photo story tab ── */
 .ph-scene{background:#000;display:flex;flex-direction:column;overflow:hidden}
 .ph-bars{display:flex;gap:3px;padding:10px 12px 6px;flex-shrink:0}
@@ -348,9 +330,6 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 .ph-add-btn{width:54px;height:54px;border-radius:var(--r-sm);border:1.5px dashed rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .15s}
 .ph-add-btn:hover{background:rgba(255,255,255,.2)}
 .ph-add-btn svg{width:20px;height:20px;fill:currentColor}
-.photo-gallery img{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;transition:opacity .15s}
-.photo-gallery img:hover{opacity:.85}
-.photo-gallery-empty{background:var(--fog);border-radius:var(--r-lg);padding:1.5rem;text-align:center;color:var(--gray);font-size:var(--fs-sm);margin-bottom:.9rem}
 .pg-add-btn{width:26px;height:26px;border-radius:50%;background:var(--canvas-soft);border:1.5px solid var(--hairline);color:var(--ink-muted);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:0;flex-shrink:0;transition:background .12s;padding:0}
 .pg-add-btn:active{background:var(--hairline)}
 .photo-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.45rem}
@@ -648,9 +627,8 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
     <p class="land-tagline">여행을 떠나기 전 설렘을 기록하고<br>돌아와서 경험과 비교해보세요</p>
     <div class="land-btns">
       <button class="btn-primary-land" onclick="signInGoogle()">🔑 로그인</button>
-      <button class="btn-ghost-land" onclick="enterDemo()">예시 둘러보기</button>
     </div>
-    <p class="land-notice">로그인하면 나만의 기록을 저장할 수 있어요<br>둘러보기는 읽기 전용 예시 모드예요</p>
+    <p class="land-notice">로그인하면 나만의 여행 기록을 저장할 수 있어요</p>
   </div>
 </div>
 
@@ -701,11 +679,6 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
       <div class="pv-avatar" id="pv-avatar" onclick="document.getElementById('avatar-input').click()" style="cursor:pointer;position:relative">?</div>
       <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
       <div class="pv-name" id="pv-name">게스트</div>
-      <div class="tb-mode-badge" id="pv-mode-badge" style="display:none;margin-top:.5rem">둘러보기 모드</div>
-    </div>
-    <div class="demo-lock-banner" id="demo-banner" style="border-radius:var(--r-lg);margin-bottom:1rem">
-      <span>👀 예시 둘러보기 모드 — 기록을 저장하려면 로그인이 필요해요</span>
-      <button class="dlb-btn" onclick="signInGoogle()">로그인 →</button>
     </div>
     <button class="btn-primary-land pv-btn" id="pv-login-btn" onclick="signInGoogle()">🔑 로그인</button>
     <button class="btn-ghost-land pv-btn" id="pv-logout-btn" style="display:none" onclick="doSignOut()">로그아웃</button>
@@ -743,7 +716,6 @@ const FIREBASE_CONFIG={apiKey:"YOUR_API_KEY",authDomain:"YOUR_AUTH_DOMAIN",proje
 
 // ── HEROICONS SOLID ──
 const ICON_USER='<svg width="66%" height="66%" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd"/></svg>';
-const ICON_EYE='<svg width="66%" height="66%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd"/></svg>';
 // icon helpers for templates
 const IC={
   mapPin:'<svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-2.003 3.5-4.667 3.5-8.327a8 8 0 10-16 0c0 3.66 1.556 6.324 3.5 8.327a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.144.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>',
@@ -761,10 +733,7 @@ const IC={
 };
 
 // ── DS TOKENS ──
-const DS={
-  mint:"#00C896", mintHover:"#00B085", mintLight:"rgba(0,200,150,.12)",
-  coral:"#FF6B5E", ink:"#1D1D1F", charcoal:"#6B6B70", gray:"#6B6B70",
-};
+const DS={mintHover:"#00B085",gray:"#6B6B70"};
 // continent colors — mint family
 const CC={
   asia:"#00C896", europe:"#00B085", americas:"#48D9B2",
@@ -880,79 +849,6 @@ function migrateTrip(trip){
   days.forEach((d,i)=>d.dayNum=i+1);
   return{...trip,tripDays:days};
 }
-const COUNTRY_TAGS={
-  JP:["🌸 벚꽃","🍜 라멘","⛩️ 사찰","♨️ 온천","🎎 전통문화","🌃 야경","🎌 축제","🍣 스시"],
-  KR:["🍚 한식","🏯 고궁","🌃 야경","🛍️ 쇼핑","🎵 케이팝","☕ 카페","🌊 바다"],
-  CN:["🏛️ 역사","🐼 자연","🍜 중식","🗺️ 광활함","🏔️ 산악","🏮 전통"],
-  TH:["🌴 열대","🍛 태국음식","🛕 사원","🌊 바다","🐘 자연","💆 마사지"],
-  VN:["🍜 쌀국수","🌿 자연","🛵 활기","🏛️ 역사","🌊 바다","☕ 카페"],
-  TW:["🧋 버블티","🌃 야시장","🏔️ 산악","🍜 먹방","🏯 전통"],
-  HK:["🌃 야경","🛍️ 쇼핑","🥟 딤섬","🌆 도시","🚢 항구"],
-  SG:["🌿 정원도시","🍜 호커푸드","🌃 야경","🛍️ 쇼핑","🏙️ 현대도시"],
-  MY:["🌴 열대","🍜 로컬푸드","🌆 도시","🏔️ 자연","🦧 밀림"],
-  ID:["🌋 화산","🏊 바다","🛕 사원","🌴 자연","🎨 예술"],
-  PH:["🌊 바다","🏝️ 섬","🌴 열대","🤿 다이빙","🌅 일몰"],
-  IN:["🕌 역사","🍛 커리","🎨 색채","🐘 자연","🧘 명상","🛕 사원"],
-  NP:["🏔️ 히말라야","🧗 트레킹","🌄 자연","🛕 사원","🕊️ 평화"],
-  TR:["🕌 역사","🍽️ 현지음식","🌅 일몰","🎈 카파도키아","🚢 보스포러스"],
-  AE:["🏙️ 사막도시","🛍️ 쇼핑","🌅 사막","🌃 야경","✨ 럭셔리"],
-  QA:["🏙️ 현대도시","🌅 사막","🛍️ 쇼핑","🕌 문화"],
-  JO:["🏛️ 역사","🌅 사막","🏜️ 페트라","🏕️ 와디럼","🕌 문화"],
-  IL:["🕌 역사","🍽️ 현지음식","✡️ 유적지","🌅 사막","🌊 바다"],
-  EG:["🏺 유적","🌅 사막","🕌 문화","🌊 홍해"],
-  FR:["🗼 파리","🍷 와인","🥐 빵집","🎨 예술","💃 낭만","🏛️ 박물관"],
-  IT:["🏛️ 역사","🍕 피자","🎨 예술","🌊 지중해","🍷 와인","🏰 성"],
-  ES:["💃 플라멩코","🌅 태양","🍷 와인","🏛️ 역사","🌊 바다","🍴 타파스"],
-  DE:["🍺 맥주","🏰 성","🎭 문화","🚗 자동차","🌲 자연"],
-  GB:["☕ 티타임","🏛️ 역사","🎭 공연","🏰 왕궁","🌧️ 빗속산책"],
-  NL:["🌷 튤립","🚲 자전거","🎨 예술","🛶 운하","🧀 치즈"],
-  CH:["🏔️ 알프스","🍫 초콜릿","⌚ 시계","🌿 자연","🎿 스키"],
-  AT:["🎶 음악","🏰 왕궁","☕ 카페","🎨 예술","🏔️ 알프스"],
-  CZ:["🍺 맥주","🏰 성","🏛️ 역사","🌉 야경","🎭 문화"],
-  GR:["🏛️ 유적","🌊 지중해","🌅 일몰","🍴 음식","🏝️ 섬"],
-  PT:["🌊 대서양","🍷 와인","🎶 파두","🏛️ 역사","🌅 일몰"],
-  HR:["🌊 아드리아해","🏛️ 역사","🏖️ 바다","🌅 일몰","🐠 스노쿨링"],
-  HU:["🏰 왕궁","♨️ 온천","🍷 와인","🌃 야경","🎭 문화"],
-  PL:["🏛️ 역사","🍺 맥주","🌆 도시","🏰 성","🎭 문화"],
-  RU:["🏰 왕궁","🌨️ 눈","🎭 발레","🏛️ 박물관","🚂 기차여행"],
-  SE:["🌲 자연","🌠 오로라","🎨 디자인","🍣 음식","🌊 호수"],
-  NO:["🌠 오로라","🏔️ 피요르드","🌲 자연","🚢 크루즈","🎿 스키"],
-  IS:["🌠 오로라","🌋 화산","♨️ 온천","🌿 자연","🐋 고래관찰"],
-  US:["🗽 자유","🏙️ 대도시","🌄 자연","🎬 할리우드","🏜️ 광활함"],
-  CA:["🍁 단풍","🏔️ 로키산맥","🌲 자연","🐻 야생","🌊 바다"],
-  MX:["🌮 타코","🏖️ 바다","🏛️ 유적","🎉 축제","🌵 자연"],
-  BR:["🌴 아마존","🏖️ 바다","💃 삼바","🎉 카니발","🌅 일몰"],
-  PE:["🏛️ 마추픽추","🌄 안데스","🍽️ 음식","🏺 유적","🌿 자연"],
-  AR:["🥩 스테이크","💃 탱고","🍷 와인","🏔️ 파타고니아","🏛️ 문화"],
-  ZA:["🦁 사파리","🌊 바다","🍷 와인","🏔️ 자연","🌍 아프리카"],
-  KE:["🦁 사파리","🌍 사바나","🏔️ 킬리만자로","🌅 일몰","🐘 코끼리"],
-  MA:["🕌 역사","🏜️ 사하라","🎨 색채","🍽️ 음식","🛍️ 시장"],
-  AU:["🦘 자연","🌊 바다","🏄 서핑","🌅 일몰","🏙️ 도시"],
-  NZ:["🏔️ 자연","🌿 피오르드","🐑 목가적","🎬 반지의제왕","🌊 바다"],
-  FJ:["🌴 열대","🌊 바다","🤿 다이빙","🏝️ 섬","🌅 일몰"],
-  JP_TYO:['시부야','아사쿠사','신주쿠','아키하바라','하라주쿠','츠키지','우에노'],
-  JP_KYO:['기온','아라시야마','후시미이나리','금각사','철학의 길','니시키시장'],
-  JP_OSA:['도톤보리','우메다','신사이바시','난바','유니버설스튜디오'],
-  JP_FUK:['텐진','하카타','야타이','모츠나베','캐널시티'],
-  JP_SAP:['스스키노','오도리공원','삿포로맥주','홋카이도신궁','라멘'],
-  FR_PAR:['에펠탑','루브르','몽마르트','마레','오르세','베르사유'],
-  IT_ROM:['콜로세움','바티칸','트레비분수','스페인광장','판테온'],
-  IT_FLO:['우피치','두오모','베키오다리','미켈란젤로광장','가죽시장'],
-  IT_VEN:['산마르코광장','리알토다리','곤돌라','무라노','부라노'],
-  ES_BCN:['사그라다파밀리아','가우디','람블라스','고딕지구','바르셀로네타'],
-  GB_LON:['빅벤','타워브리지','버킹엄궁전','코벤트가든','소호'],
-  TH_BKK:['카오산로드','왓포','왓아룬','차뚜짝','아이콘시암'],
-  TH_CNX:['나이트바자','도이수텝','님만해민','써데이마켓','엘리펀트캠프'],
-  VN_HAN:['호안끼엠','구시가지','호치민묘','문묘','동쑤언시장'],
-  VN_SGN:['벤탄시장','전쟁박물관','통일궁','부이비엔거리','메콩델타'],
-  VN_DAD:['바나힐','마블마운틴','미케비치','한시장','참박물관'],
-  PE_LIM:['미라플로레스','바랑코','중앙광장','라르코박물관','세비체'],
-  PE_CUZ:['아르마스광장','삭사이와만','잉카시장','피삭','마추픽추투어'],
-  GR_JTR:['이아마을','피라','오이아','화산섬','와인투어'],
-  PT_LIS:['알파마','벨렘','신트라','트램28','타임아웃마켓'],
-  CZ_PRG:['구시가지광장','카를교','프라하성','말라스트라나','트르델닉'],
-  HU_BUD:['온천','어부의요새','국회의사당','루인바','야경유람선'],
-};
 const COUNTRY_COORDS={
   KR:[37.5,127],JP:[36,138],CN:[35,105],TH:[15,101],VN:[16,108],TW:[23.5,121],HK:[22.3,114],
   SG:[1.3,103.8],MY:[3.1,101.7],ID:[-2.5,118],PH:[13,122],IN:[22,78],NP:[28,84],TR:[39,35],AE:[24,54],
@@ -964,15 +860,13 @@ const COUNTRY_COORDS={
 };
 const COVER_EMOJIS=["✈️","🗺️","🌏","🏔️","🏖️","🌊","🌸","🏰","🌴","🎌","🗼","🎭","🌺","🍜","🎿","⛵","🏝️","🌅","🏕️","🎠","🕌","🦙","🧳","🎪","🌃"];
 const ALL_MOODS=["😍 감동","🤩 설렘","😅 당황","😴 피곤","✨ 신비","🍷 낭만","🌊 짜릿","😢 아쉬움","🥰 행복","😮 놀라움","💪 도전","🤔 생각"];
-const SAMPLE_TRIPS=[];
-
 // ── STATE ──
-let auth=null,db=null,currentUser=null,isDemo=false,isAuth=false;
-let trips=[],_map=null,_markers={},_routes=[],currentView="main",cfFilter="all";
+let auth=null,db=null,currentUser=null,isAuth=false;
+let trips=[],_map=null,_markers={},currentView="main",cfFilter="all";
 let formData={status:"completed",title:"",coverEmoji:"✈️",startDate:"",endDate:"",totalDays:0,tripDays:[]};
 let editingId=null;
 let formStep=1,activeDayIdx=0,photoIdx=0;
-let curModalId=null,curModalTab="timeline",curModalCI=0;
+let curModalId=null,curModalTab="timeline";
 let aiResults={},aiLoading={},shareGenerating=false;
 
 // ── AUTH ──
@@ -982,20 +876,18 @@ function initFirebase(){
     if(!window.firebase)return false;
     firebase.initializeApp(FIREBASE_CONFIG);
     auth=firebase.auth();db=firebase.firestore();
-    auth.onAuthStateChanged(u=>{if(u){currentUser=u;isDemo=false;isAuth=true;enterApp();}else if(!isDemo)showLanding();});
+    auth.onAuthStateChanged(u=>{if(u){currentUser=u;isAuth=true;enterApp();}else showLanding();});
     return true;
   }catch{return false;}
 }
 function signInGoogle(){
   if(!auth){
-    isDemo=false;isAuth=false;currentUser={displayName:"사용자",photoURL:null};trips=[];
+    isAuth=false;currentUser={displayName:"사용자",photoURL:null};trips=[];
     showToast("Firebase 미설정 — 빈 아카이브로 시작해요");
     setTimeout(()=>{
       document.getElementById("landing").classList.add("hidden");
       document.getElementById("app").classList.add("active");
       setUserUI();
-      document.getElementById("demo-banner").classList.remove("show");
-      document.getElementById("pv-mode-badge").style.display="none";
       document.getElementById("pv-logout-btn").style.display="block";
       document.getElementById("pv-login-btn").style.display="none";
       renderAll();setTimeout(initMap,120);openForm(null);
@@ -1006,21 +898,19 @@ function signInGoogle(){
 }
 function doSignOut(){
   if(auth&&isAuth)auth.signOut();
-  isDemo=false;isAuth=false;currentUser=null;trips=[];
+  isAuth=false;currentUser=null;trips=[];
   document.getElementById("pv-name").textContent="게스트";
   const _saved=localStorage.getItem("profilePhoto");
   if(_saved){const _img=`<img src="${_saved}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;document.getElementById("tb-avatar").innerHTML=_img;document.getElementById("pv-avatar").innerHTML=_img;}
   else{document.getElementById("tb-avatar").innerHTML=ICON_USER;document.getElementById("pv-avatar").innerHTML=ICON_USER;}
   document.getElementById("pv-login-btn").style.display="none";
   document.getElementById("pv-logout-btn").style.display="none";
-  document.getElementById("demo-banner").classList.remove("show");
-  document.getElementById("pv-mode-badge").style.display="none";
   renderAll();switchView("main");
 }
 function goHome(){switchView("main");}
 function showLanding(){
-  isDemo=false;trips=[];
-  if(_map){_map.remove();_map=null;_markers={};_routes=[];}
+  trips=[];
+  if(_map){_map.remove();_map=null;_markers={};}
   document.getElementById("landing").classList.remove("hidden");
   document.getElementById("app").classList.remove("active");
   document.getElementById("form-view").style.display="none";
@@ -1039,29 +929,10 @@ function setUserUI(){
   }
   document.getElementById("pv-name").textContent=name;
 }
-function enterDemo(){
-  isDemo=true;
-  trips=SAMPLE_TRIPS.map(t=>{
-    const mt=migrateTrip(t);
-    return {...mt,tripDays:(mt.tripDays||[]).map(d=>({...d,photos:[...(d.photos||[])],moods:[...(d.moods||[])]}))};
-  });
-  document.getElementById("tb-avatar").innerHTML=ICON_EYE;
-  document.getElementById("pv-avatar").innerHTML=ICON_EYE;
-  document.getElementById("pv-name").textContent="둘러보기";
-  document.getElementById("landing").classList.add("hidden");
-  document.getElementById("app").classList.add("active");
-  document.getElementById("demo-banner").classList.add("show");
-  document.getElementById("pv-mode-badge").style.display="block";
-  document.getElementById("pv-logout-btn").style.display="none";
-  document.getElementById("pv-login-btn").style.display="block";
-  renderAll();switchView("main");setTimeout(initMap,120);
-}
 function enterApp(){
   document.getElementById("landing").classList.add("hidden");
   document.getElementById("app").classList.add("active");
   setUserUI();
-  document.getElementById("demo-banner").classList.remove("show");
-  document.getElementById("pv-mode-badge").style.display="none";
   document.getElementById("pv-logout-btn").style.display="block";
   document.getElementById("pv-login-btn").style.display="none";
   if(db){loadFromFirestore().then(()=>{renderAll();setTimeout(initMap,120);if(!trips.length&&isAuth)openForm(null);});}
@@ -1128,7 +999,6 @@ function initMap(){
 function updateMapMarkers(){
   if(!_map)return;
   Object.values(_markers).forEach(m=>m.remove());_markers={};
-  _routes.forEach(r=>r.remove());_routes=[];
   const byCode={};
   trips.forEach(t=>{
     const mt=migrateTrip(t);
@@ -1389,12 +1259,6 @@ function starDisp(score,size){
     Array.from({length:5},(_,i)=>i<n?'★':`<span class="empty">★</span>`).join('') +
   `</span>`;
 }
-function starRating(code,ent){
-  const cur=Math.round((ent.score||6)/2);
-  return `<div class="star-row">${Array.from({length:5},(_,i)=>
-    `<button class="star-btn${i<cur?' filled':''}" onclick="updE('${code}','score',${(i+1)*2});renderForm()">★</button>`
-  ).join('')}</div>`;
-}
 function animCount(el){
   const txt=el.textContent.trim();const n=parseFloat(txt);
   if(isNaN(n)||n===0)return;
@@ -1625,7 +1489,7 @@ function initModalMap(trip){
 function openModal(id,goToReality){
   const raw=trips.find(x=>x.id===id);if(!raw)return;
   const t=migrateTrip(raw);
-  curModalId=id;curModalCI=0;photoIdx=0;
+  curModalId=id;photoIdx=0;
   curModalTab="timeline";
   renderModal(t);
   document.getElementById("modal-bg").classList.add("open");
@@ -1776,7 +1640,6 @@ document.getElementById("modal-bg").addEventListener("click",e=>{if(e.target===d
 
 // ── PHOTO ──
 async function handlePhotoUpload(tid,dayNum,files){
-  if(isDemo){showToast("둘러보기 모드에서는 저장이 안 돼요");return;}
   const t=trips.find(x=>x.id===tid);if(!t)return;
   const mt=migrateTrip(t);
   const day=mt.tripDays.find(d=>d.dayNum===dayNum);if(!day)return;
@@ -1834,9 +1697,8 @@ document.addEventListener('keydown',e=>{
 });
 
 // ── FORM (WIZARD) ──
-function fabClick(){if(isDemo){showToast("기록을 남기려면 로그인이 필요해요");return;}openForm(null);}
+function fabClick(){openForm(null);}
 function openForm(id){
-  if(isDemo){showToast("기록을 남기려면 로그인이 필요해요");return;}
   editingId=id;
   ["main-view","timeline-view","stats-view","profile-view"].forEach(v=>document.getElementById(v).style.display="none");
   document.getElementById("bottom-nav").style.display="none";
@@ -2050,14 +1912,13 @@ document.addEventListener("click",e=>{if(!e.target.closest(".cs-wrap"))document.
 
 // ── BOOT (랜딩 없이 바로 지도 화면, 게스트 편집 모드) ──
 (function boot(){
-  isAuth=true;isDemo=false;currentUser=null;
+  isAuth=true;currentUser=null;
   trips=loadLocal();
   document.getElementById("landing").classList.add("hidden");
   document.getElementById("app").classList.add("active");
   document.getElementById("tb-avatar").innerHTML=ICON_USER;
   document.getElementById("pv-avatar").innerHTML=ICON_USER;
   document.getElementById("pv-name").textContent="게스트";
-  document.getElementById("pv-mode-badge").style.display="none";
   document.getElementById("pv-login-btn").style.display="none";
   document.getElementById("pv-logout-btn").style.display="none";
   renderAll();switchView("main");setTimeout(initMap,120);
