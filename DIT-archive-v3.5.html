@@ -1006,7 +1006,7 @@ function signInGoogle(){
 }
 function doSignOut(){
   if(auth&&isAuth)auth.signOut();
-  isDemo=false;isAuth=true;currentUser=null;trips=[];
+  isDemo=false;isAuth=false;currentUser=null;trips=[];
   document.getElementById("pv-name").textContent="게스트";
   const _saved=localStorage.getItem("profilePhoto");
   if(_saved){const _img=`<img src="${_saved}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;document.getElementById("tb-avatar").innerHTML=_img;document.getElementById("pv-avatar").innerHTML=_img;}
@@ -1327,7 +1327,7 @@ function renderStats(){
   const top3=Object.values(tcm).sort((a,b)=>b.n-a.n).slice(0,3);
   const topHtml=top3.map((c,i)=>{const sc=c.sc.length?Math.round(c.sc.reduce((a,b)=>a+b,0)/c.sc.length):0;return `<div class="top-country-row"><span class="tcr-rank">${i+1}</span><div class="tcr-badge" style="background:${grad(i,'135deg')}">${c.name.slice(0,2)}</div><div class="tcr-info"><div class="tcr-name">${c.name}</div><div class="tcr-sub">${CLBL[c.continent]||""}<br>${c.n}회</div></div>${sc?starDisp(sc,'.8rem'):""}</div>`;}).join("");
   const maxMood=Object.values(mm).reduce((a,b)=>Math.max(a,b),1);
-  const tagCloud=(()=>{const entries=Object.entries(mm);if(!entries.length)return"";const sorted=entries.sort((a,b)=>b[1]-a[1]);const maxN=sorted[0][1]||1;const fsTiers=[2.4,1.6,1.15,0.95,0.85,0.78,0.73];const fwTiers=[700,700,600,400,400,400,400];const chips=sorted.map(([m,n],rank)=>{const words=m.split(' ').slice(1).join(' ')||m;const fs=fsTiers[Math.min(rank,fsTiers.length-1)];const fw=fwTiers[Math.min(rank,fwTiers.length-1)];const col='var(--accent)';const op=rank===0?1:rank<=2?0.75:0.5;let ps;if(rank===0){ps="left:48%;top:47%";}else{let ring,idx,cnt;if(rank<=2){ring=0;idx=rank-1;cnt=Math.min(2,sorted.length-1);}else if(rank<=6){ring=1;idx=rank-3;cnt=Math.min(4,sorted.length-3);}else{ring=2;idx=rank-7;cnt=Math.min(6,sorted.length-7);}const rx=[18,28,38][ring];const ry=[14,21,30][ring];const rot=[0.4,0.1,0.6][ring];const ang=-Math.PI/2+rot+(idx/cnt)*2*Math.PI;const x=(48+rx*Math.cos(ang)).toFixed(1);const y=(47+ry*Math.sin(ang)).toFixed(1);ps=`left:${x}%;top:${y}%`;}return`<span class="tag-cloud-item" data-rank="${rank}" style="${ps};font-size:${fs}rem;font-weight:${fw};--tc-op:${op};color:${col}">${words}</span>`}).join("");return`<div class="chart-card"><div class="chart-title">여행 선호 태그</div><div class="tag-cloud" style="height:260px">${chips}</div></div>`;})();
+  const tagCloud=(()=>{const entries=Object.entries(mm);if(!entries.length)return"";const sorted=entries.sort((a,b)=>b[1]-a[1]);const maxN=sorted[0][1]||1;const fsTiers=[2.4,1.6,1.15,0.95,0.85,0.78,0.73];const fwTiers=[700,700,600,400,400,400,400];const chips=sorted.map(([m,n],rank)=>{const words=m.split(' ').slice(1).join(' ')||m;const fs=fsTiers[Math.min(rank,fsTiers.length-1)];const fw=fwTiers[Math.min(rank,fwTiers.length-1)];const col='var(--accent)';const op=rank===0?1:rank<=2?0.75:0.5;let ps;if(rank===0){ps="left:48%;top:47%";}else{let ring,idx,cnt;if(rank<=2){ring=0;idx=rank-1;cnt=Math.min(2,sorted.length-1);}else if(rank<=6){ring=1;idx=rank-3;cnt=Math.min(4,sorted.length-3);}else{ring=2;idx=rank-7;cnt=Math.min(6,sorted.length-7);}const rx=[18,28,38][ring];const ry=[14,21,30][ring];const rot=[0.4,0.1,0.6][ring];const ang=-Math.PI/2+rot+(cnt>0?idx/cnt:0)*2*Math.PI;const x=(48+rx*Math.cos(ang)).toFixed(1);const y=(47+ry*Math.sin(ang)).toFixed(1);ps=`left:${x}%;top:${y}%`;}return`<span class="tag-cloud-item" data-rank="${rank}" style="${ps};font-size:${fs}rem;font-weight:${fw};--tc-op:${op};color:${col}">${words}</span>`}).join("");return`<div class="chart-card"><div class="chart-title">여행 선호 태그</div><div class="tag-cloud" style="height:260px">${chips}</div></div>`;})();
   window._statsAllPhotos=allPhotos;
   const photoMosaic=allPhotos.length?`<div class="chart-card"><div class="chart-title">여행 사진<span class="chart-count">${allPhotos.length}장</span></div><div class="photo-mosaic">${allPhotos.slice(0,8).map((p,i)=>`<img src="${p.src}" alt="" onclick="openStatsGallery(window._statsAllPhotos,${i})">`).join("")}${allPhotos.length>8?`<div class="pm-more" onclick="openStatsGallery(window._statsAllPhotos,8)">+${allPhotos.length-8}</div>`:''}</div></div>`:"";
   el.className="stats-anim";
@@ -1781,7 +1781,7 @@ async function handlePhotoUpload(tid,dayNum,files){
   const mt=migrateTrip(t);
   const day=mt.tripDays.find(d=>d.dayNum===dayNum);if(!day)return;
   if(!day.photos)day.photos=[];
-  const rem=20-day.photos.length;if(rem<=0){showToast("최대 20장까지 가능해요");return;}
+  const rem=10-day.photos.length;if(rem<=0){showToast("하루에 최대 10장까지 가능해요");return;}
   showToast("사진 압축 중...");
   for(const file of [...files].slice(0,rem))day.photos.push(await compressImage(file,800,.75));
   // 원본 trip 객체에 tripDays 반영
@@ -1789,7 +1789,7 @@ async function handlePhotoUpload(tid,dayNum,files){
   await saveToFirestore(t);renderAll();showToast("사진 추가됐어요!");
   renderModal(t);
 }
-function compressImage(file,maxW,q){return new Promise(res=>{const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{let w=img.width,h=img.height;if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);URL.revokeObjectURL(url);res(c.toDataURL("image/jpeg",q));};img.src=url;});}
+function compressImage(file,maxW,q){return new Promise((res,rej)=>{const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{let w=img.width,h=img.height;if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);URL.revokeObjectURL(url);res(c.toDataURL("image/jpeg",q));};img.onerror=()=>{URL.revokeObjectURL(url);rej(new Error("이미지를 읽을 수 없어요"));};img.src=url;});}
 function openLightbox(src){document.getElementById("lightbox-img").src=src;document.getElementById("lightbox").classList.add("open");}
 function closeLightbox(){document.getElementById("lightbox").classList.remove("open");}
 document.getElementById("lightbox").addEventListener("click",e=>{if(e.target===document.getElementById("lightbox"))closeLightbox();});
@@ -1932,6 +1932,8 @@ function renderStep2(){
         ${usedChips?`<div class="loc-suggest">${usedChips}</div>`:''}
         <span class="wiz-label" style="margin-top:.75rem">기분</span>
         <div class="mood-grid" style="margin-bottom:.75rem">${moodChips}</div>
+        <span class="wiz-label">충족도 <span style="font-weight:400;color:var(--ink-muted)">${d.score||'-'}/10</span></span>
+        <div class="star-row" style="margin-bottom:.75rem">${Array.from({length:5},(_,si)=>`<button class="star-btn${(d.score||0)>si*2?' filled':''}" onclick="event.stopPropagation();formData.tripDays[${i}].score=${(si+1)*2};renderForm()">★</button>`).join('')}</div>
         <span class="wiz-label">메모</span>
         <textarea class="day-textarea" placeholder="그날의 기억..." oninput="formData.tripDays[${i}].memo=this.value" style="margin-bottom:.75rem">${esc(d.memo||'')}</textarea>
         <span class="wiz-label">사진 <span style="font-weight:400;color:var(--ink-muted)">${(d.photos||[]).length}/10장</span></span>
@@ -2005,8 +2007,9 @@ async function addDayPhotos(idx,files){
   if(!d.photos)d.photos=[];
   const rem=10-d.photos.length;if(rem<=0){showToast("하루에 최대 10장까지 가능해요");return;}
   showToast("사진 압축 중...");
-  for(const file of [...files].slice(0,rem))d.photos.push(await compressImage(file,800,.75));
-  renderForm();showToast("사진 추가됐어요!");
+  let added=0;
+  for(const file of [...files].slice(0,rem)){try{d.photos.push(await compressImage(file,800,.75));added++;}catch{showToast("읽을 수 없는 파일이 있어요");}}
+  if(added)renderForm(),showToast("사진 추가됐어요!");
 }
 function removeDayPhoto(idx,pi){formData.tripDays[idx]?.photos?.splice(pi,1);renderForm();}
 async function saveTrip(){
