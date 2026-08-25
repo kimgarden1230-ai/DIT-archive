@@ -72,7 +72,7 @@
 }
 html,body{height:100%;background:var(--canvas-soft);font-family:var(--font);color:var(--text);font-size:16px;-webkit-font-smoothing:antialiased;overflow:hidden}
 @media(min-width:481px){
-  #landing,#app{max-width:480px;margin:0 auto;box-shadow:0 0 48px rgba(0,0,0,.18)}
+  #app{max-width:480px;margin:0 auto;box-shadow:0 0 48px rgba(0,0,0,.18)}
 }
 button{font-family:var(--font);cursor:pointer;-webkit-tap-highlight-color:transparent}
 a,button,input,select,textarea,[onclick]{-webkit-tap-highlight-color:transparent}
@@ -80,37 +80,13 @@ input,textarea,select{font-family:var(--font);font-size:16px}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:var(--r-pill)}
 
-/* ── LANDING ── */
-#landing{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;background:linear-gradient(145deg,#F0FBF7 0%,#FFF5FA 45%,#FFFBF0 100%);overflow:hidden}
-#landing.hidden{display:none}
-.globe-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:.55}
-.globe-wrap svg{width:min(80vw,80vh);height:min(80vw,80vh)}
-.land-content{position:relative;z-index:1;max-width:400px;width:100%}
-.land-wordmark{margin-bottom:2rem}
-.land-dit{font-size:clamp(3.2rem,11vw,5.5rem);font-weight:900;letter-spacing:-.06em;line-height:.9;display:block;
-  background:linear-gradient(120deg,#00C896,#00B085,#007F60,#00C896);
-  background-size:300% 300%;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:ditFlow 8s ease-in-out infinite}
-@keyframes ditFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.land-archive{font-size:clamp(3.2rem,11vw,5.5rem);font-weight:900;letter-spacing:-.06em;text-transform:uppercase;display:block;margin-top:.1rem;
-  background:linear-gradient(120deg,#FF6B6B,#FC4985,#FF8C42,#FC4985,#FF6B6B);
-  background-size:300% 300%;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:archiveFlow 10s ease-in-out infinite}
-@keyframes archiveFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.land-divider{width:36px;height:2px;background:var(--mint-base);margin:.5rem auto 1.6rem;border-radius:var(--r-pill)}
-.land-tagline{font-size:var(--fs-md);color:var(--charcoal);line-height:1.85;margin-bottom:2.4rem;font-weight:400}
-.land-btns{display:flex;flex-direction:column;gap:.7rem;align-items:center}
 .btn-primary-land{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.82rem 2rem;background:var(--mint);border:none;border-radius:var(--r-pill);font-size:var(--fs-md);font-weight:700;color:#fff;width:220px;transition:all .2s;letter-spacing:-.01em}
 .btn-primary-land:hover{opacity:.88;transform:translateY(-2px)}
 .btn-ghost-land{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.78rem 2rem;background:transparent;border:1.5px solid var(--border);border-radius:var(--r-pill);font-size:var(--fs-md);font-weight:600;color:var(--sub);width:220px;transition:all .2s}
 .btn-ghost-land:hover{border-color:var(--mint);color:var(--mint)}
-.land-notice{font-size:var(--fs-sm);color:var(--gray);margin-top:1.1rem;line-height:1.65}
 
 /* ── APP SHELL ── */
-#app{display:none;height:100vh;flex-direction:column;overflow:hidden;position:relative}
-#app.active{display:flex}
+#app{display:flex;height:100vh;flex-direction:column;overflow:hidden;position:relative}
 
 /* ── TOPBAR ── */
 .topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.1rem;gap:.75rem;flex-shrink:0;z-index:200}
@@ -584,54 +560,6 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 </head>
 <body>
 
-<!-- LANDING -->
-<div id="landing">
-  <div class="globe-wrap">
-    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="bg-g" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#E0F7EE" stop-opacity=".7"/>
-          <stop offset="100%" stop-color="#A8EDD8" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <circle cx="300" cy="300" r="280" fill="url(#bg-g)"/>
-      <circle cx="300" cy="300" r="240" fill="none" stroke="#00C896" stroke-width="1.3" opacity=".6"/>
-      <ellipse cx="300" cy="300" rx="240" ry="80"  fill="none" stroke="#FC4985" stroke-width="1"   opacity=".5"/>
-      <ellipse cx="300" cy="300" rx="240" ry="155" fill="none" stroke="#FFD166" stroke-width=".9"  opacity=".5"/>
-      <ellipse cx="300" cy="300" rx="240" ry="220" fill="none" stroke="#34D399" stroke-width=".8"  opacity=".45"/>
-      <line x1="60" y1="300" x2="540" y2="300" stroke="#FF8EC4" stroke-width=".9" opacity=".45"/>
-      <line x1="300" y1="60"  x2="300" y2="540" stroke="#FFE066" stroke-width=".8" opacity=".4"/>
-      <!-- 경도선 -->
-      <ellipse id="lon0" cx="300" cy="300" rx="0"   ry="240" fill="none" stroke="#00C896" stroke-width="1"  opacity=".6"/>
-      <ellipse id="lon1" cx="300" cy="300" rx="120" ry="240" fill="none" stroke="#FC4985" stroke-width=".9" opacity=".5"/>
-      <ellipse id="lon2" cx="300" cy="300" rx="200" ry="240" fill="none" stroke="#FFD166" stroke-width=".8" opacity=".5"/>
-      <ellipse id="lon3" cx="300" cy="300" rx="240" ry="240" fill="none" stroke="#34D399" stroke-width=".7" opacity=".45"/>
-      <ellipse id="lon4" cx="300" cy="300" rx="200" ry="240" fill="none" stroke="#FF8EC4" stroke-width=".8" opacity=".5"/>
-      <ellipse id="lon5" cx="300" cy="300" rx="120" ry="240" fill="none" stroke="#00A87A" stroke-width=".9" opacity=".5"/>
-      <!-- 블롭 -->
-      <path id="bl1" fill="#00C896" opacity=".22"/>
-      <path id="bl2" fill="#FC4985" opacity=".2"/>
-      <path id="bl3" fill="#FFD166" opacity=".28"/>
-      <path id="bl4" fill="#34D399" opacity=".2"/>
-      <path id="bl5" fill="#FF8EC4" opacity=".25"/>
-      <path id="bl6" fill="#FFE066" opacity=".28"/>
-      <path id="bl7" fill="#00A87A" opacity=".2"/>
-    </svg>
-  </div>
-  <div class="land-content">
-    <div class="land-wordmark">
-      <span class="land-dit">DIT</span>
-      <span class="land-archive">Archive</span>
-    </div>
-    <div class="land-divider"></div>
-    <p class="land-tagline">여행을 떠나기 전 설렘을 기록하고<br>돌아와서 경험과 비교해보세요</p>
-    <div class="land-btns">
-      <button class="btn-primary-land" onclick="signInGoogle()">🔑 로그인</button>
-    </div>
-    <p class="land-notice">로그인하면 나만의 여행 기록을 저장할 수 있어요</p>
-  </div>
-</div>
-
 <!-- APP -->
 <div id="app">
   <div class="topbar">
@@ -876,45 +804,27 @@ function initFirebase(){
     if(!window.firebase)return false;
     firebase.initializeApp(FIREBASE_CONFIG);
     auth=firebase.auth();db=firebase.firestore();
-    auth.onAuthStateChanged(u=>{if(u){currentUser=u;isAuth=true;enterApp();}else showLanding();});
+    auth.onAuthStateChanged(u=>{if(u){currentUser=u;isAuth=true;enterApp();}});
     return true;
   }catch{return false;}
 }
 function signInGoogle(){
-  if(!auth){
-    isAuth=false;currentUser={displayName:"사용자",photoURL:null};trips=[];
-    showToast("Firebase 미설정 — 빈 아카이브로 시작해요");
-    setTimeout(()=>{
-      document.getElementById("landing").classList.add("hidden");
-      document.getElementById("app").classList.add("active");
-      setUserUI();
-      document.getElementById("pv-logout-btn").style.display="block";
-      document.getElementById("pv-login-btn").style.display="none";
-      renderAll();setTimeout(initMap,120);openForm(null);
-    },400);return;
-  }
+  if(!auth){showToast("Firebase 미설정 — 로그인을 사용할 수 없어요");return;}
   const p=new firebase.auth.GoogleAuthProvider();
   auth.signInWithPopup(p).catch(e=>{console.warn(e);showToast("로그인에 실패했어요");});
 }
 function doSignOut(){
   if(auth&&isAuth)auth.signOut();
-  isAuth=false;currentUser=null;trips=[];
+  isAuth=false;currentUser=null;
   document.getElementById("pv-name").textContent="게스트";
   const _saved=localStorage.getItem("profilePhoto");
   if(_saved){const _img=`<img src="${_saved}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;document.getElementById("tb-avatar").innerHTML=_img;document.getElementById("pv-avatar").innerHTML=_img;}
   else{document.getElementById("tb-avatar").innerHTML=ICON_USER;document.getElementById("pv-avatar").innerHTML=ICON_USER;}
-  document.getElementById("pv-login-btn").style.display="none";
+  document.getElementById("pv-login-btn").style.display="";
   document.getElementById("pv-logout-btn").style.display="none";
-  renderAll();switchView("main");
+  trips=loadLocal();renderAll();switchView("main");
 }
 function goHome(){switchView("main");}
-function showLanding(){
-  trips=[];
-  if(_map){_map.remove();_map=null;_markers={};}
-  document.getElementById("landing").classList.remove("hidden");
-  document.getElementById("app").classList.remove("active");
-  document.getElementById("form-view").style.display="none";
-}
 function setUserUI(){
   const name=currentUser?.displayName||"사용자";
   const saved=localStorage.getItem("profilePhoto");
@@ -930,8 +840,6 @@ function setUserUI(){
   document.getElementById("pv-name").textContent=name;
 }
 function enterApp(){
-  document.getElementById("landing").classList.add("hidden");
-  document.getElementById("app").classList.add("active");
   setUserUI();
   document.getElementById("pv-logout-btn").style.display="block";
   document.getElementById("pv-login-btn").style.display="none";
@@ -1894,32 +1802,14 @@ function resetAllData(){if(!confirm("모든 여행 기록을 삭제하시겠어�
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 document.addEventListener("click",e=>{if(!e.target.closest(".cs-wrap"))document.querySelectorAll(".cs-dd").forEach(d=>d.style.display="none");});
 
-// ── GLOBE ANIMATION ──
-(function(){
-  const lons=[0,1,2,3,4,5].map(i=>document.getElementById("lon"+i));
-  const offsets=lons.map((_,i)=>i*Math.PI/6);
-  const R=240,speed=0.004;let angle=0,rafId=null;
-  const BLOBS=[{hx:440,hy:180,gx:330,gy:218,rx:[56,44,50,58],ry:[44,52,40,46],ph:0,delay:0},{hx:365,hy:168,gx:292,gy:232,rx:[28,34,24,30],ry:[22,18,26,24],ph:.9,delay:150},{hx:258,hy:162,gx:268,gy:228,rx:[42,36,46,40],ry:[34,40,30,36],ph:1.8,delay:280},{hx:155,hy:185,gx:272,gy:260,rx:[32,26,36,30],ry:[26,32,22,28],ph:2.7,delay:430},{hx:170,hy:295,gx:284,gy:270,rx:[24,28,20,26],ry:[20,16,24,22],ph:3.6,delay:90},{hx:300,hy:285,gx:308,gy:245,rx:[28,24,32,26],ry:[23,28,20,25],ph:4.5,delay:350},{hx:468,hy:345,gx:322,gy:255,rx:[22,18,26,20],ry:[18,22,14,20],ph:5.4,delay:210}];
-  const bEls=BLOBS.map((_,i)=>document.getElementById("bl"+(i+1)));
-  const globeSvg=document.querySelector(".globe-wrap svg");
-  function getPulse(t){return(1-Math.cos((t/5000)*Math.PI*2))/2;}
-  function pebblePath(cx,cy,t,b){const N=64,T=t*.0004+b.ph;const ki=(Math.sin(T)*.5+.5)*3;const k0=Math.floor(ki)%4,k1=(k0+1)%4,f=ki-Math.floor(ki);const brx=b.rx[k0]+(b.rx[k1]-b.rx[k0])*f,bry=b.ry[k0]+(b.ry[k1]-b.ry[k0])*f;const pts=[];for(let i=0;i<N;i++){const a=(i/N)*Math.PI*2;const r=1+.07*Math.sin(2*a+T*.6+b.ph)+.04*Math.sin(3*a-T*.4+b.ph*1.2)+.02*Math.cos(4*a+T*.25);pts.push([cx+brx*r*Math.cos(a),cy+bry*r*Math.sin(a)]);}let d=`M${pts[0][0].toFixed(2)},${pts[0][1].toFixed(2)}`;for(let i=0;i<N;i++){const p0=pts[(i-1+N)%N],p1=pts[i],p2=pts[(i+1)%N],p3=pts[(i+2)%N];const cp1x=p1[0]+(p2[0]-p0[0])/6,cp1y=p1[1]+(p2[1]-p0[1])/6,cp2x=p2[0]-(p3[0]-p1[0])/6,cp2y=p2[1]-(p3[1]-p1[1])/6;d+=`C${cp1x.toFixed(2)},${cp1y.toFixed(2)} ${cp2x.toFixed(2)},${cp2y.toFixed(2)} ${p2[0].toFixed(2)},${p2[1].toFixed(2)}`;}return d+"Z";}
-  function tick(){angle+=speed;const t=performance.now();const baseS=((s)=>s*s*(3-2*s))(getPulse(t));if(globeSvg)globeSvg.style.transform=`scale(${1+baseS*.06})`;lons.forEach((el,i)=>{if(!el)return;const a=angle+offsets[i];el.setAttribute("rx",Math.abs(Math.cos(a)*R).toFixed(2));el.setAttribute("stroke-opacity",Math.cos(a)>=0?".8":".25");});BLOBS.forEach((b,i)=>{if(!bEls[i])return;const s=((r)=>r*r*(3-2*r))(getPulse(t-b.delay));const cx=b.gx+(b.hx-b.gx)*s,cy=b.gy+(b.hy-b.gy)*s;bEls[i].setAttribute("d",pebblePath(cx,cy,t,b));});rafId=requestAnimationFrame(tick);}
-  const obs=new MutationObserver(()=>{const h=document.getElementById("landing").classList.contains("hidden");if(h&&rafId){cancelAnimationFrame(rafId);rafId=null;}else if(!h&&!rafId)tick();});
-  obs.observe(document.getElementById("landing"),{attributes:true,attributeFilter:["class"]});
-  tick();
-})();
-
-// ── BOOT (랜딩 없이 바로 지도 화면, 게스트 편집 모드) ──
+// ── BOOT ──
 (function boot(){
   isAuth=true;currentUser=null;
   trips=loadLocal();
-  document.getElementById("landing").classList.add("hidden");
-  document.getElementById("app").classList.add("active");
   document.getElementById("tb-avatar").innerHTML=ICON_USER;
   document.getElementById("pv-avatar").innerHTML=ICON_USER;
   document.getElementById("pv-name").textContent="게스트";
-  document.getElementById("pv-login-btn").style.display="none";
+  document.getElementById("pv-login-btn").style.display="";
   document.getElementById("pv-logout-btn").style.display="none";
   renderAll();switchView("main");setTimeout(initMap,120);
 })();
