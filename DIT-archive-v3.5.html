@@ -637,6 +637,16 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 <div id="lightbox"><button id="lightbox-close" onclick="closeLightbox()"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd"/></svg></button><img id="lightbox-img" src="" alt=""></div>
 <div id="share-card"></div>
 <div class="toast" id="toast"></div>
+<div id="confirm-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:none;align-items:center;justify-content:center">
+  <div id="confirm-sheet" style="background:var(--canvas);border-radius:var(--r-lg);padding:1.5rem 1.25rem 1.25rem;width:min(360px,calc(100% - 2.5rem));text-align:center;transform:scale(.88) translateY(12px);opacity:0;transition:transform .25s cubic-bezier(0.34,1.2,0.64,1),opacity .2s ease-out">
+    <div style="font-size:var(--fs-lg);font-weight:700;color:var(--ink);margin-bottom:.5rem">이 여행 기록을 삭제할까요?</div>
+    <div style="font-size:var(--fs-sm);color:var(--ink-muted);margin-bottom:1.25rem">삭제하면 되돌릴 수 없어요</div>
+    <div style="display:flex;gap:.65rem">
+      <button class="wiz-prev" style="flex:1" onclick="const s=document.getElementById('confirm-sheet');s.style.transform='scale(.88) translateY(12px)';s.style.opacity='0';setTimeout(()=>document.getElementById('confirm-overlay').style.display='none',200)">취소</button>
+      <button class="wiz-delete" style="flex:1;border-radius:var(--r-pill);padding:12px 16px" id="confirm-del-btn" onclick="">확인</button>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -980,8 +990,8 @@ function enterApp(){
 }
 // ── STORAGE ──
 async function loadFromFirestore(){try{const snap=await db.collection("users").doc(currentUser.uid).collection("trips").orderBy("createdAt","desc").get();trips=snap.docs.map(d=>({id:d.id,...d.data()}));}catch{trips=loadLocal();}}
-async function saveToFirestore(trip){if(!db||!isAuth){saveLocal(trip);return;}try{await db.collection("users").doc(currentUser.uid).collection("trips").doc(trip.id).set(trip);}catch{saveLocal(trip);}}
-async function delFromFirestore(id){if(!db||!isAuth){delLocal(id);return;}try{await db.collection("users").doc(currentUser.uid).collection("trips").doc(id).delete();}catch{delLocal(id);}}
+async function saveToFirestore(trip){if(!db||!isAuth||!currentUser){saveLocal(trip);return;}try{await db.collection("users").doc(currentUser.uid).collection("trips").doc(trip.id).set(trip);}catch{saveLocal(trip);}}
+async function delFromFirestore(id){if(!db||!isAuth||!currentUser){delLocal(id);return;}try{await db.collection("users").doc(currentUser.uid).collection("trips").doc(id).delete();}catch{delLocal(id);}}
 function saveLocal(trip){const k="ta_"+(currentUser?.uid||"g");const a=loadLocal().filter(t=>t.id!==trip.id);a.push(trip);try{localStorage.setItem(k,JSON.stringify(a));}catch{showToast("저장 공간 부족");}}
 function delLocal(id){const k="ta_"+(currentUser?.uid||"g");localStorage.setItem(k,JSON.stringify(loadLocal().filter(t=>t.id!==id)));}
 function loadLocal(){try{return JSON.parse(localStorage.getItem("ta_"+(currentUser?.uid||"g"))||"[]");}catch{return [];}}
@@ -1557,7 +1567,7 @@ function switchMT(id,tab){curModalTab=tab;const raw=trips.find(x=>x.id===id);if(
 function buildTimelineTab(t){
   const trip=migrateTrip(t);
   const days=(trip.tripDays||[]).filter(d=>d.memo||d.moods?.length||d.photos?.length||d.locationCode);
-  if(!days.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">기록이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">편집해서 날짜별 기억을 남겨봐요</span><br><button class="es-cta" style="margin-top:1.25rem" onclick="closeModal();openForm('${trip.id}')">일정 추가</button></div>`;
+  if(!days.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">기록이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">편집해서 날짜별 기억을 남겨봐요</span><br><button class="es-cta" style="margin-top:1.25rem" onclick="closeModal();openForm('${trip.id}')">일정 추가</button><br><button class="wiz-delete" style="margin-top:.75rem;width:auto;padding:8px 20px;font-size:var(--fs-sm)" onclick="closeModal();deleteTrip('${trip.id}')">이 여행 기록 삭제</button></div>`;
   const total=days.length;
   const cards=days.map(d=>{
     const locLabel=d.locationCode?(d.locationType==='city'&&d.parentEmoji?`${d.parentEmoji} ${d.locationName}`:`${d.locationEmoji||'📍'} ${d.locationName}`):`${d.dayNum}일차`;
@@ -1948,7 +1958,18 @@ async function saveTrip(){
   trips=editingId?trips.map(t=>t.id===id?trip:t):[trip,...trips];
   await saveToFirestore(trip);renderAll();closeForm();showToast("저장됐어요!");
 }
-async function deleteTrip(id){if(!confirm("이 여행 기록을 삭제하시겠어요?"))return;trips=trips.filter(t=>t.id!==id);await delFromFirestore(id);renderAll();closeForm();showToast("삭제됐어요.");}
+function deleteTrip(id){
+  const ov=document.getElementById('confirm-overlay');
+  const btn=document.getElementById('confirm-del-btn');
+  btn.onclick=()=>{
+    const sheet=document.getElementById('confirm-sheet');
+    sheet.style.transform='scale(.88) translateY(12px)';sheet.style.opacity='0';
+    setTimeout(()=>{ov.style.display='none';trips=trips.filter(t=>t.id!==id);delFromFirestore(id);renderAll();closeForm();closeModal();showToast("삭제됐어요.");},200);
+  };
+  ov.style.display='flex';
+  const sheet=document.getElementById('confirm-sheet');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{sheet.style.transform='scale(1) translateY(0)';sheet.style.opacity='1';}));
+}
 function resetAllData(){if(!confirm("모든 여행 기록을 삭제하시겠어요? 되돌릴 수 없어요."))return;const k="ta_"+(currentUser?.uid||"g");localStorage.removeItem(k);trips=[];renderAll();showToast("초기화됐어요.");}
 function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 document.addEventListener("click",e=>{if(!e.target.closest(".cs-wrap"))document.querySelectorAll(".cs-dd").forEach(d=>d.style.display="none");});
