@@ -932,7 +932,7 @@ const COVER_EMOJIS=["✈️","🗺️","🌏","🏔️","🏖️","🌊","🌸",
 const ALL_MOODS=["😍 감동","🤩 설렘","😅 당황","😴 피곤","✨ 신비","🍷 낭만","🌊 짜릿","😢 아쉬움","🥰 행복","😮 놀라움","💪 도전","🤔 생각"];
 // ── STATE ──
 let auth=null,db=null,currentUser=null,isAuth=false;
-let trips=[],_map=null,_markers={},currentView="main",cfFilter="all";
+let trips=[],_map=null,_markers={},_lines=[],currentView="main",cfFilter="all";
 let formData={status:"completed",title:"",coverEmoji:"✈️",startDate:"",endDate:"",totalDays:0,tripDays:[]};
 let editingId=null;
 let formStep=1,activeDayIdx=0,photoIdx=0;
@@ -1049,6 +1049,7 @@ function initMap(){
 function updateMapMarkers(){
   if(!_map)return;
   Object.values(_markers).forEach(m=>m.remove());_markers={};
+  _lines.forEach(l=>l.remove());_lines=[];
   const byCode={};
   trips.forEach(t=>{
     const mt=migrateTrip(t);
@@ -1073,6 +1074,17 @@ function updateMapMarkers(){
     const doneBtn=ct.length===1?`<button class="mp-open" onclick="openModal('${ct[0].id}');closePopup()">기록 보기 →</button>`:"";
     mk.bindPopup(`<div class="map-popup"><div class="mp-title">${country.emoji} ${country.name}</div><div class="mp-date">${ct.length}번 기록</div><div class="mp-ctags">${tripTags}</div>${doneBtn}</div>`,{maxWidth:230});
     _markers[code]=mk;
+  });
+  // 여행별 경로 라인 (핀 아래 레이어)
+  if(!_map.getPane('routePane')){_map.createPane('routePane');_map.getPane('routePane').style.zIndex=350;}
+  trips.forEach(t=>{
+    const mt=migrateTrip(t);
+    const isFuture=t.startDate&&t.startDate>today;
+    const ordered=[...new Map((mt.tripDays||[]).filter(d=>d.locationCode).sort((a,b)=>a.dayNum-b.dayNum).map(d=>[d.locationCode.split('_')[0],d])).values()];
+    const pts=ordered.map(d=>COUNTRY_COORDS[d.locationCode.split('_')[0]]).filter(Boolean);
+    if(pts.length<2)return;
+    const line=L.polyline(pts,{color:isFuture?"#B0B0B5":"#00C896",weight:2,opacity:isFuture?.45:.6,dashArray:"6 5",smoothFactor:1,pane:'routePane'}).addTo(_map);
+    _lines.push(line);
   });
 }
 function flyToTrips(){
