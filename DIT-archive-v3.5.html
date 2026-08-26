@@ -441,8 +441,8 @@ input[type=range]{flex:1;accent-color:var(--mint-base)}
 /* Star Rating */
 .star-row{display:flex;gap:.2rem;margin-bottom:1.25rem}
 .star-btn{font-size:1.7rem;background:none;border:none;cursor:pointer;padding:0 .05rem;line-height:1;transition:transform .12s,color .12s;color:var(--hairline)}
-.star-btn:hover,.star-btn.filled{color:var(--accent)}
-.star-btn:hover~.star-btn{color:var(--hairline)!important}
+.star-btn.hovered:not(.filled){color:#9E9EA3}
+.star-btn.filled{color:var(--accent)}
 .stars-disp{font-size:var(--fs-md);letter-spacing:.04rem;color:var(--accent)}
 .stars-disp .empty{color:var(--hairline)}
 /* Tag Cloud */
@@ -1703,7 +1703,7 @@ function renderStep2(){
         <span class="wiz-label" style="margin-top:.75rem">기분</span>
         <div class="mood-grid" style="margin-bottom:.75rem">${moodChips}</div>
         <span class="wiz-label">충족도 <span style="font-weight:400;color:var(--ink-muted)">${d.score||'-'}/10</span></span>
-        <div class="star-row" style="margin-bottom:.75rem">${Array.from({length:5},(_,si)=>`<button class="star-btn${(d.score||0)>si*2?' filled':''}" onclick="event.stopPropagation();formData.tripDays[${i}].score=${(si+1)*2};renderForm()">★</button>`).join('')}</div>
+        <div class="star-row" style="margin-bottom:.75rem">${Array.from({length:5},(_,si)=>`<button class="star-btn${(d.score||0)>si*2?' filled':''}" onmouseenter="this.parentNode.querySelectorAll('.star-btn').forEach((b,bi)=>b.classList.toggle('hovered',bi<=${si}))" onmouseleave="this.parentNode.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('hovered'))" onclick="event.stopPropagation();formData.tripDays[${i}].score=${(si+1)*2};renderForm()">★</button>`).join('')}</div>
         <span class="wiz-label">메모</span>
         <textarea class="day-textarea" placeholder="그날의 기억..." oninput="formData.tripDays[${i}].memo=this.value" style="margin-bottom:.75rem">${esc(d.memo||'')}</textarea>
         <span class="wiz-label">사진 <span style="font-weight:400;color:var(--ink-muted)">${(d.photos||[]).length}/10장</span></span>
