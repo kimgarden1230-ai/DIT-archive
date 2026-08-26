@@ -1884,11 +1884,24 @@ function renderStep2(){
 }
 function esc(s){return(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function calcDays(){if(formData.startDate&&formData.endDate)formData.totalDays=Math.max(1,Math.ceil((new Date(formData.endDate)-new Date(formData.startDate))/86400000)+1);}
+const _CHO=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+function _cho(c){const n=c.charCodeAt(0)-0xAC00;return(n>=0&&n<=11171)?_CHO[Math.floor(n/28/21)]:c;}
+function _matchKo(name,q){
+  if(!q)return false;
+  if(name.includes(q))return true;
+  const isCon=c=>/[ㄱ-ㅎ]/.test(c);
+  for(let i=0;i<=name.length-q.length;i++){
+    let ok=true;
+    for(let j=0;j<q.length;j++){const qc=q[j];const nc=name[i+j];if(!nc){ok=false;break;}ok=isCon(qc)?_cho(nc)===qc:nc===qc;if(!ok)break;}
+    if(ok)return true;
+  }
+  return false;
+}
 function showDayLocAC(q,idx){
   const dd=document.getElementById('day-dd-'+idx);if(!dd)return;
   if(!q){dd.style.display='none';return;}
-  const cRes=COUNTRIES.filter(c=>c.name.includes(q)||c.code.toLowerCase()===q.toLowerCase()).slice(0,4);
-  const cityRes=CITIES.filter(c=>c.name.includes(q)).slice(0,4);
+  const cRes=COUNTRIES.filter(c=>_matchKo(c.name,q)||c.code.toLowerCase()===q.toLowerCase()).slice(0,4);
+  const cityRes=CITIES.filter(c=>_matchKo(c.name,q)).slice(0,4);
   let html='';
   html+=cRes.map(c=>`<div class="cs-item" onclick="setDayLoc(${idx},${JSON.stringify(c).replace(/"/g,'&quot;')})">${c.emoji} <span>${c.name}</span></div>`).join('');
   html+=cityRes.map(c=>`<div class="cs-item" onclick="setDayLoc(${idx},${JSON.stringify(c).replace(/"/g,'&quot;')})">${c.parentEmoji} <span>${c.name} <span style="color:var(--ink-muted);font-size:var(--fs-sm)">· ${c.parentName}</span></span></div>`).join('');
