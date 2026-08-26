@@ -699,7 +699,22 @@ const COUNTRIES=[
   {code:"MA",name:"모로코",emoji:"🇲🇦",continent:"africa"},{code:"TZ",name:"탄자니아",emoji:"🇹🇿",continent:"africa"},
   {code:"ZA",name:"남아프리카공화국",emoji:"🇿🇦",continent:"africa"},{code:"KE",name:"케냐",emoji:"🇰🇪",continent:"africa"},
   {code:"AU",name:"호주",emoji:"🇦🇺",continent:"oceania"},{code:"NZ",name:"뉴질랜드",emoji:"🇳🇿",continent:"oceania"},
-  {code:"FJ",name:"피지",emoji:"🇫🇯",continent:"oceania"},
+  {code:"FJ",name:"피지",emoji:"🇫🇯",continent:"oceania"},{code:"MV",name:"몰디브",emoji:"🇲🇻",continent:"asia"},
+  {code:"LK",name:"스리랑카",emoji:"🇱🇰",continent:"asia"},{code:"MM",name:"미얀마",emoji:"🇲🇲",continent:"asia"},
+  {code:"KH",name:"캄보디아",emoji:"🇰🇭",continent:"asia"},{code:"LA",name:"라오스",emoji:"🇱🇦",continent:"asia"},
+  {code:"MN",name:"몽골",emoji:"🇲🇳",continent:"asia"},{code:"UZ",name:"우즈베키스탄",emoji:"🇺🇿",continent:"asia"},
+  {code:"IL",name:"이스라엘",emoji:"🇮🇱",continent:"asia"},{code:"JO",name:"요르단",emoji:"🇯🇴",continent:"asia"},
+  {code:"SE",name:"스웨덴",emoji:"🇸🇪",continent:"europe"},{code:"DK",name:"덴마크",emoji:"🇩🇰",continent:"europe"},
+  {code:"FI",name:"핀란드",emoji:"🇫🇮",continent:"europe"},{code:"BE",name:"벨기에",emoji:"🇧🇪",continent:"europe"},
+  {code:"RO",name:"루마니아",emoji:"🇷🇴",continent:"europe"},{code:"SI",name:"슬로베니아",emoji:"🇸🇮",continent:"europe"},
+  {code:"SK",name:"슬로바키아",emoji:"🇸🇰",continent:"europe"},{code:"RS",name:"세르비아",emoji:"🇷🇸",continent:"africa"},
+  {code:"ME",name:"몬테네그로",emoji:"🇲🇪",continent:"europe"},{code:"AL",name:"알바니아",emoji:"🇦🇱",continent:"europe"},
+  {code:"UA",name:"우크라이나",emoji:"🇺🇦",continent:"europe"},{code:"ET",name:"에티오피아",emoji:"🇪🇹",continent:"africa"},
+  {code:"GH",name:"가나",emoji:"🇬🇭",continent:"africa"},{code:"SN",name:"세네갈",emoji:"🇸🇳",continent:"africa"},
+  {code:"UG",name:"우간다",emoji:"🇺🇬",continent:"africa"},{code:"MU",name:"모리셔스",emoji:"🇲🇺",continent:"africa"},
+  {code:"EC",name:"에콰도르",emoji:"🇪🇨",continent:"americas"},{code:"PY",name:"파라과이",emoji:"🇵🇾",continent:"americas"},
+  {code:"UY",name:"우루과이",emoji:"🇺🇾",continent:"americas"},{code:"PA",name:"파나마",emoji:"🇵🇦",continent:"americas"},
+  {code:"CR",name:"코스타리카",emoji:"🇨🇷",continent:"americas"},{code:"GT",name:"과테말라",emoji:"🇬🇹",continent:"americas"},
 ];
 const CITIES=[
   {code:'JP_TYO',name:'도쿄',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
@@ -759,6 +774,123 @@ const CITIES=[
   {code:'MA_FEZ',name:'페스',emoji:'📍',parentCode:'MA',parentEmoji:'🇲🇦',parentName:'모로코',type:'city',continent:'africa'},
   {code:'MX_MEX',name:'멕시코시티',emoji:'📍',parentCode:'MX',parentEmoji:'🇲🇽',parentName:'멕시코',type:'city',continent:'americas'},
   {code:'MX_CUN',name:'칸쿤',emoji:'📍',parentCode:'MX',parentEmoji:'🇲🇽',parentName:'멕시코',type:'city',continent:'americas'},
+  // 중국
+  {code:'CN_SHA',name:'상하이',emoji:'📍',parentCode:'CN',parentEmoji:'🇨🇳',parentName:'중국',type:'city',continent:'asia'},
+  {code:'CN_BEI',name:'베이징',emoji:'📍',parentCode:'CN',parentEmoji:'🇨🇳',parentName:'중국',type:'city',continent:'asia'},
+  {code:'CN_CTU',name:'청두',emoji:'📍',parentCode:'CN',parentEmoji:'🇨🇳',parentName:'중국',type:'city',continent:'asia'},
+  {code:'CN_SZX',name:'선전',emoji:'📍',parentCode:'CN',parentEmoji:'🇨🇳',parentName:'중국',type:'city',continent:'asia'},
+  {code:'CN_XIY',name:'시안',emoji:'📍',parentCode:'CN',parentEmoji:'🇨🇳',parentName:'중국',type:'city',continent:'asia'},
+  {code:'CN_KMG',name:'쿤밍',emoji:'📍',parentCode:'CN',parentEmoji:'🇨🇳',parentName:'중국',type:'city',continent:'asia'},
+  {code:'CN_GUL',name:'구이린',emoji:'📍',parentCode:'CN',parentEmoji:'🇨🇳',parentName:'중국',type:'city',continent:'asia'},
+  // 일본 추가
+  {code:'JP_OKN',name:'오키나와',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_KAG',name:'가고시마',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_NGO',name:'나고야',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_KAN',name:'가나자와',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_NIK',name:'닛코',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_HAG',name:'하기',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_AKI',name:'아키타',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  {code:'JP_SEN',name:'센다이',emoji:'📍',parentCode:'JP',parentEmoji:'🇯🇵',parentName:'일본',type:'city',continent:'asia'},
+  // 이탈리아 추가
+  {code:'IT_SIC',name:'시칠리아',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_PAL',name:'팔레르모',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_CAT',name:'카타니아',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_TUR',name:'토리노',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_BOL',name:'볼로냐',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_BRI',name:'바리',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_CIN',name:'친퀘테레',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_PIS',name:'피사',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  {code:'IT_ASS',name:'아시시',emoji:'📍',parentCode:'IT',parentEmoji:'🇮🇹',parentName:'이탈리아',type:'city',continent:'europe'},
+  // 스페인 추가
+  {code:'ES_VAL',name:'발렌시아',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  {code:'ES_BIL',name:'빌바오',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  {code:'ES_MAL',name:'말라가',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  {code:'ES_TEN',name:'테네리페',emoji:'📍',parentCode:'ES',parentEmoji:'🇪🇸',parentName:'스페인',type:'city',continent:'europe'},
+  // 프랑스 추가
+  {code:'FR_MRS',name:'마르세유',emoji:'📍',parentCode:'FR',parentEmoji:'🇫🇷',parentName:'프랑스',type:'city',continent:'europe'},
+  {code:'FR_BOR',name:'보르도',emoji:'📍',parentCode:'FR',parentEmoji:'🇫🇷',parentName:'프랑스',type:'city',continent:'europe'},
+  {code:'FR_STR',name:'스트라스부르',emoji:'📍',parentCode:'FR',parentEmoji:'🇫🇷',parentName:'프랑스',type:'city',continent:'europe'},
+  {code:'FR_MON',name:'몽생미셸',emoji:'📍',parentCode:'FR',parentEmoji:'🇫🇷',parentName:'프랑스',type:'city',continent:'europe'},
+  // 독일 추가
+  {code:'DE_HAM',name:'함부르크',emoji:'📍',parentCode:'DE',parentEmoji:'🇩🇪',parentName:'독일',type:'city',continent:'europe'},
+  {code:'DE_FRA',name:'프랑크푸르트',emoji:'📍',parentCode:'DE',parentEmoji:'🇩🇪',parentName:'독일',type:'city',continent:'europe'},
+  {code:'DE_COL',name:'쾰른',emoji:'📍',parentCode:'DE',parentEmoji:'🇩🇪',parentName:'독일',type:'city',continent:'europe'},
+  {code:'DE_DRE',name:'드레스덴',emoji:'📍',parentCode:'DE',parentEmoji:'🇩🇪',parentName:'독일',type:'city',continent:'europe'},
+  {code:'DE_ROT',name:'로텐부르크',emoji:'📍',parentCode:'DE',parentEmoji:'🇩🇪',parentName:'독일',type:'city',continent:'europe'},
+  // 영국 추가
+  {code:'GB_MAN',name:'맨체스터',emoji:'📍',parentCode:'GB',parentEmoji:'🇬🇧',parentName:'영국',type:'city',continent:'europe'},
+  {code:'GB_LIV',name:'리버풀',emoji:'📍',parentCode:'GB',parentEmoji:'🇬🇧',parentName:'영국',type:'city',continent:'europe'},
+  {code:'GB_BRI',name:'브라이튼',emoji:'📍',parentCode:'GB',parentEmoji:'🇬🇧',parentName:'영국',type:'city',continent:'europe'},
+  // 유럽 기타
+  {code:'NL_AMS',name:'암스테르담',emoji:'📍',parentCode:'NL',parentEmoji:'🇳🇱',parentName:'네덜란드',type:'city',continent:'europe'},
+  {code:'CH_ZRH',name:'취리히',emoji:'📍',parentCode:'CH',parentEmoji:'🇨🇭',parentName:'스위스',type:'city',continent:'europe'},
+  {code:'CH_GVA',name:'제네바',emoji:'📍',parentCode:'CH',parentEmoji:'🇨🇭',parentName:'스위스',type:'city',continent:'europe'},
+  {code:'CH_INT',name:'인터라켄',emoji:'📍',parentCode:'CH',parentEmoji:'🇨🇭',parentName:'스위스',type:'city',continent:'europe'},
+  {code:'AT_VIE',name:'빈',emoji:'📍',parentCode:'AT',parentEmoji:'🇦🇹',parentName:'오스트리아',type:'city',continent:'europe'},
+  {code:'AT_SAL',name:'잘츠부르크',emoji:'📍',parentCode:'AT',parentEmoji:'🇦🇹',parentName:'오스트리아',type:'city',continent:'europe'},
+  {code:'HR_DUB',name:'두브로브니크',emoji:'📍',parentCode:'HR',parentEmoji:'🇭🇷',parentName:'크로아티아',type:'city',continent:'europe'},
+  {code:'HR_SPL',name:'스플리트',emoji:'📍',parentCode:'HR',parentEmoji:'🇭🇷',parentName:'크로아티아',type:'city',continent:'europe'},
+  {code:'IS_REY',name:'레이캬비크',emoji:'📍',parentCode:'IS',parentEmoji:'🇮🇸',parentName:'아이슬란드',type:'city',continent:'europe'},
+  {code:'NO_OSL',name:'오슬로',emoji:'📍',parentCode:'NO',parentEmoji:'🇳🇴',parentName:'노르웨이',type:'city',continent:'europe'},
+  {code:'NO_FLM',name:'플롬',emoji:'📍',parentCode:'NO',parentEmoji:'🇳🇴',parentName:'노르웨이',type:'city',continent:'europe'},
+  {code:'PL_WAW',name:'바르샤바',emoji:'📍',parentCode:'PL',parentEmoji:'🇵🇱',parentName:'폴란드',type:'city',continent:'europe'},
+  {code:'PL_KRK',name:'크라쿠프',emoji:'📍',parentCode:'PL',parentEmoji:'🇵🇱',parentName:'폴란드',type:'city',continent:'europe'},
+  {code:'TR_IST',name:'이스탄불',emoji:'📍',parentCode:'TR',parentEmoji:'🇹🇷',parentName:'튀르키예',type:'city',continent:'asia'},
+  {code:'TR_CAP',name:'카파도키아',emoji:'📍',parentCode:'TR',parentEmoji:'🇹🇷',parentName:'튀르키예',type:'city',continent:'asia'},
+  {code:'TR_ANT',name:'안탈리아',emoji:'📍',parentCode:'TR',parentEmoji:'🇹🇷',parentName:'튀르키예',type:'city',continent:'asia'},
+  // 동남아 추가
+  {code:'ID_BAL',name:'발리',emoji:'📍',parentCode:'ID',parentEmoji:'🇮🇩',parentName:'인도네시아',type:'city',continent:'asia'},
+  {code:'ID_JKT',name:'자카르타',emoji:'📍',parentCode:'ID',parentEmoji:'🇮🇩',parentName:'인도네시아',type:'city',continent:'asia'},
+  {code:'ID_YOG',name:'족자카르타',emoji:'📍',parentCode:'ID',parentEmoji:'🇮🇩',parentName:'인도네시아',type:'city',continent:'asia'},
+  {code:'ID_LOM',name:'롬복',emoji:'📍',parentCode:'ID',parentEmoji:'🇮🇩',parentName:'인도네시아',type:'city',continent:'asia'},
+  {code:'PH_MNL',name:'마닐라',emoji:'📍',parentCode:'PH',parentEmoji:'🇵🇭',parentName:'필리핀',type:'city',continent:'asia'},
+  {code:'PH_CEB',name:'세부',emoji:'📍',parentCode:'PH',parentEmoji:'🇵🇭',parentName:'필리핀',type:'city',continent:'asia'},
+  {code:'PH_BOH',name:'보라카이',emoji:'📍',parentCode:'PH',parentEmoji:'🇵🇭',parentName:'필리핀',type:'city',continent:'asia'},
+  {code:'PH_PAL',name:'팔라완',emoji:'📍',parentCode:'PH',parentEmoji:'🇵🇭',parentName:'필리핀',type:'city',continent:'asia'},
+  {code:'MY_KUL',name:'쿠알라룸푸르',emoji:'📍',parentCode:'MY',parentEmoji:'🇲🇾',parentName:'말레이시아',type:'city',continent:'asia'},
+  {code:'MY_PEN',name:'페낭',emoji:'📍',parentCode:'MY',parentEmoji:'🇲🇾',parentName:'말레이시아',type:'city',continent:'asia'},
+  {code:'MY_LGK',name:'랑카위',emoji:'📍',parentCode:'MY',parentEmoji:'🇲🇾',parentName:'말레이시아',type:'city',continent:'asia'},
+  {code:'VN_PQC',name:'푸꾸옥',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  {code:'VN_HUE',name:'후에',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  {code:'VN_NHA',name:'나트랑',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  {code:'VN_SAP',name:'사파',emoji:'📍',parentCode:'VN',parentEmoji:'🇻🇳',parentName:'베트남',type:'city',continent:'asia'},
+  // 인도
+  {code:'IN_DEL',name:'델리',emoji:'📍',parentCode:'IN',parentEmoji:'🇮🇳',parentName:'인도',type:'city',continent:'asia'},
+  {code:'IN_BOM',name:'뭄바이',emoji:'📍',parentCode:'IN',parentEmoji:'🇮🇳',parentName:'인도',type:'city',continent:'asia'},
+  {code:'IN_AGR',name:'아그라',emoji:'📍',parentCode:'IN',parentEmoji:'🇮🇳',parentName:'인도',type:'city',continent:'asia'},
+  {code:'IN_JAI',name:'자이푸르',emoji:'📍',parentCode:'IN',parentEmoji:'🇮🇳',parentName:'인도',type:'city',continent:'asia'},
+  {code:'IN_GOA',name:'고아',emoji:'📍',parentCode:'IN',parentEmoji:'🇮🇳',parentName:'인도',type:'city',continent:'asia'},
+  // 중동/아프리카 추가
+  {code:'AE_DXB',name:'두바이',emoji:'📍',parentCode:'AE',parentEmoji:'🇦🇪',parentName:'아랍에미리트',type:'city',continent:'asia'},
+  {code:'AE_AUH',name:'아부다비',emoji:'📍',parentCode:'AE',parentEmoji:'🇦🇪',parentName:'아랍에미리트',type:'city',continent:'asia'},
+  {code:'EG_CAI',name:'카이로',emoji:'📍',parentCode:'EG',parentEmoji:'🇪🇬',parentName:'이집트',type:'city',continent:'africa'},
+  {code:'EG_LUX',name:'룩소르',emoji:'📍',parentCode:'EG',parentEmoji:'🇪🇬',parentName:'이집트',type:'city',continent:'africa'},
+  {code:'TZ_ZNZ',name:'잔지바르',emoji:'📍',parentCode:'TZ',parentEmoji:'🇹🇿',parentName:'탄자니아',type:'city',continent:'africa'},
+  {code:'ZA_CPT',name:'케이프타운',emoji:'📍',parentCode:'ZA',parentEmoji:'🇿🇦',parentName:'남아프리카공화국',type:'city',continent:'africa'},
+  {code:'ZA_JNB',name:'요하네스버그',emoji:'📍',parentCode:'ZA',parentEmoji:'🇿🇦',parentName:'남아프리카공화국',type:'city',continent:'africa'},
+  // 미주 추가
+  {code:'US_CHI',name:'시카고',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_MIA',name:'마이애미',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_SEA',name:'시애틀',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_BOS',name:'보스턴',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_WDC',name:'워싱턴DC',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'US_GCN',name:'그랜드캐니언',emoji:'📍',parentCode:'US',parentEmoji:'🇺🇸',parentName:'미국',type:'city',continent:'americas'},
+  {code:'CA_YVR',name:'밴쿠버',emoji:'📍',parentCode:'CA',parentEmoji:'🇨🇦',parentName:'캐나다',type:'city',continent:'americas'},
+  {code:'CA_YTO',name:'토론토',emoji:'📍',parentCode:'CA',parentEmoji:'🇨🇦',parentName:'캐나다',type:'city',continent:'americas'},
+  {code:'CA_YMQ',name:'몬트리올',emoji:'📍',parentCode:'CA',parentEmoji:'🇨🇦',parentName:'캐나다',type:'city',continent:'americas'},
+  {code:'AR_BUE',name:'부에노스아이레스',emoji:'📍',parentCode:'AR',parentEmoji:'🇦🇷',parentName:'아르헨티나',type:'city',continent:'americas'},
+  {code:'AR_PAT',name:'파타고니아',emoji:'📍',parentCode:'AR',parentEmoji:'🇦🇷',parentName:'아르헨티나',type:'city',continent:'americas'},
+  {code:'BR_RIO',name:'리우데자네이루',emoji:'📍',parentCode:'BR',parentEmoji:'🇧🇷',parentName:'브라질',type:'city',continent:'americas'},
+  {code:'BR_SAO',name:'상파울루',emoji:'📍',parentCode:'BR',parentEmoji:'🇧🇷',parentName:'브라질',type:'city',continent:'americas'},
+  {code:'CL_SCL',name:'산티아고',emoji:'📍',parentCode:'CL',parentEmoji:'🇨🇱',parentName:'칠레',type:'city',continent:'americas'},
+  {code:'BO_LPB',name:'라파스',emoji:'📍',parentCode:'BO',parentEmoji:'🇧🇴',parentName:'볼리비아',type:'city',continent:'americas'},
+  {code:'BO_UYU',name:'우유니',emoji:'📍',parentCode:'BO',parentEmoji:'🇧🇴',parentName:'볼리비아',type:'city',continent:'americas'},
+  // 오세아니아 추가
+  {code:'NZ_AKL',name:'오클랜드',emoji:'📍',parentCode:'NZ',parentEmoji:'🇳🇿',parentName:'뉴질랜드',type:'city',continent:'oceania'},
+  {code:'NZ_QTN',name:'퀸스타운',emoji:'📍',parentCode:'NZ',parentEmoji:'🇳🇿',parentName:'뉴질랜드',type:'city',continent:'oceania'},
+  {code:'AU_CBR',name:'캔버라',emoji:'📍',parentCode:'AU',parentEmoji:'🇦🇺',parentName:'호주',type:'city',continent:'oceania'},
+  {code:'AU_PER',name:'퍼스',emoji:'📍',parentCode:'AU',parentEmoji:'🇦🇺',parentName:'호주',type:'city',continent:'oceania'},
+  {code:'AU_CNS',name:'케언스',emoji:'📍',parentCode:'AU',parentEmoji:'🇦🇺',parentName:'호주',type:'city',continent:'oceania'},
 ];
 function migrateTrip(trip){
   if(trip.tripDays)return trip;
@@ -1682,6 +1814,12 @@ function goToTimeline(){
       const prev=existingDays[i]||{};
       formData.tripDays.push({dayNum:i+1,date:d.toISOString().slice(0,10),locationCode:prev.locationCode||'',locationName:prev.locationName||'',locationEmoji:prev.locationEmoji||'',locationType:prev.locationType||'country',parentCode:prev.parentCode||null,parentName:prev.parentName||null,parentEmoji:prev.parentEmoji||null,memo:prev.memo||'',moods:prev.moods||[],score:prev.score||null,photos:prev.photos||[]});
     }
+  }
+  // 제목에서 도시/나라 추론 → 장소 미설정 날짜에 자동 적용
+  const _title=formData.title||'';
+  const _inferred=CITIES.find(c=>_title.includes(c.name))||COUNTRIES.find(c=>_title.includes(c.name))||null;
+  if(_inferred){
+    formData.tripDays.forEach(d=>{if(!d.locationCode){d.locationCode=_inferred.code;d.locationName=_inferred.name;d.locationEmoji=_inferred.emoji||'📍';d.locationType=_inferred.type||'country';d.parentCode=_inferred.parentCode||null;d.parentName=_inferred.parentName||null;d.parentEmoji=_inferred.parentEmoji||null;}});
   }
   formStep=2;activeDayIdx=0;renderForm();
 }
