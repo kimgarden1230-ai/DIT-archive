@@ -1059,11 +1059,13 @@ function updateMapMarkers(){
       if(!byCode[code])byCode[code]={country,trips:[]};byCode[code].trips.push(t);
     });
   });
+  const today=new Date().toISOString().slice(0,10);
   Object.entries(byCode).forEach(([code,{country,trips:ct}])=>{
     const coords=COUNTRY_COORDS[code];if(!coords)return;
-    const borderColor=CC[country.continent]||DS.gray;
+    const allFuture=ct.every(t=>t.startDate&&t.startDate>today);
+    const borderColor=allFuture?"#B0B0B5":CC[country.continent]||DS.gray;
     const bgColor="#fff";
-    const shadow="rgba(0,0,0,.18)";
+    const shadow=allFuture?"rgba(0,0,0,.10)":"rgba(0,0,0,.18)";
     const colStr=CC[country.continent]||DS.gray;
     const icon=L.divIcon({className:"",html:makePin(code,borderColor,bgColor,shadow),iconSize:[40,50],iconAnchor:[20,50]});
     const mk=L.marker(coords,{icon}).addTo(_map);
@@ -1850,7 +1852,7 @@ function renderStep2(){
         ${usedChips?`<div class="loc-suggest">${usedChips}</div>`:''}
         <span class="wiz-label" style="margin-top:.75rem">기분</span>
         <div class="mood-grid" style="margin-bottom:.75rem">${moodChips}</div>
-        <span class="wiz-label">충족도 <span style="font-weight:400;color:var(--ink-muted)">${d.score||'-'}/10</span></span>
+        <span class="wiz-label">별점 <span style="font-weight:400;color:var(--ink-muted)">${d.score||'-'}/10</span></span>
         <div class="star-row" style="margin-bottom:.75rem">${Array.from({length:5},(_,si)=>`<button class="star-btn${(d.score||0)>si*2?' filled':''}" onmouseenter="this.parentNode.querySelectorAll('.star-btn').forEach((b,bi)=>b.classList.toggle('hovered',bi<=${si}))" onmouseleave="this.parentNode.querySelectorAll('.star-btn').forEach(b=>b.classList.remove('hovered'))" onclick="event.stopPropagation();formData.tripDays[${i}].score=${(si+1)*2};renderForm()">★</button>`).join('')}</div>
         <span class="wiz-label">메모</span>
         <textarea class="day-textarea" placeholder="그날의 기억..." oninput="formData.tripDays[${i}].memo=this.value" style="margin-bottom:.75rem">${esc(d.memo||'')}</textarea>
