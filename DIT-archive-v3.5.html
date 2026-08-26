@@ -1425,7 +1425,7 @@ function switchMT(id,tab){curModalTab=tab;const raw=trips.find(x=>x.id===id);if(
 function buildTimelineTab(t){
   const trip=migrateTrip(t);
   const days=(trip.tripDays||[]).filter(d=>d.memo||d.moods?.length||d.photos?.length||d.locationCode);
-  if(!days.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">기록이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">편집해서 날짜별 기억을 남겨봐요</span></div>`;
+  if(!days.length)return`<div style="padding:3rem 1rem;text-align:center;color:var(--ink-muted);font-size:var(--fs-sm)">기록이 없어요<br><span style="font-size:var(--fs-xs);opacity:.6">편집해서 날짜별 기억을 남겨봐요</span><br><button class="es-cta" style="margin-top:1.25rem" onclick="closeModal();openForm('${trip.id}')">일정 추가</button></div>`;
   const total=days.length;
   const cards=days.map(d=>{
     const locLabel=d.locationCode?(d.locationType==='city'&&d.parentEmoji?`${d.parentEmoji} ${d.locationName}`:`${d.locationEmoji||'📍'} ${d.locationName}`):`${d.dayNum}일차`;
@@ -1650,12 +1650,12 @@ function renderStep1(){
     <div class="wiz-sub">기간과 이름을 입력하면 날짜별 기록을 만들어드려요.</div>
     <span class="wiz-label">여행 기간</span>
     <div class="date-row">
-      <input type="date" value="${formData.startDate}" onchange="formData.startDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
-      <input type="date" value="${formData.endDate}" onchange="if(formData.startDate&&this.value<formData.startDate){showToast('종료일이 시작일보다 빠를 수 없어요.');this.value=formData.endDate;return;}formData.endDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
+      <input type="date" id="f-start-date" value="${formData.startDate}" onchange="formData.startDate=this.value;const ed=document.getElementById('f-end-date');if(ed){ed.min=this.value;if(formData.endDate<this.value){formData.endDate=this.value;ed.value=this.value;}}calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
+      <input type="date" id="f-end-date" value="${formData.endDate}" min="${formData.startDate}" onchange="formData.endDate=this.value;calcDays();const d=document.querySelector('.days-badge');if(d)d.textContent=formData.totalDays?'총 '+formData.totalDays+'일':'';">
     </div>
     ${daysBadge}
     <span class="wiz-label">여행 이름</span>
-    <input class="wiz-inp" value="${esc(formData.title)}" placeholder="예: 남미 21일 여행" oninput="formData.title=this.value">
+    <input class="wiz-inp" value="${esc(formData.title)}" placeholder="예: 할로윈 도쿄여행"oninput="formData.title=this.value">
     <span class="wiz-label">커버 이모지</span>
     <div class="emoji-grid" style="margin-bottom:1rem">${emojiGrid}</div>
     <div class="wiz-sticky-footer">
