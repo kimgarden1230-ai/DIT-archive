@@ -1042,7 +1042,7 @@ function makePin(code,borderColor,bgColor,shadow){
 function initMap(){
   if(_map)return;
   _map=L.map("leaflet-map",{zoomControl:true,scrollWheelZoom:true,minZoom:2,maxBounds:[[-85,-180],[85,180]],maxBoundsViscosity:1.0}).setView([20,10],2);
-  L.tileLayer("https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",{attribution:"© Stadia Maps © OpenMapTiles © OpenStreetMap",maxZoom:20,noWrap:true}).addTo(_map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"© OpenStreetMap contributors",maxZoom:20,noWrap:true}).addTo(_map);
   updateMapMarkers();
   flyToNearest();
 }
