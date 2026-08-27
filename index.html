@@ -1849,8 +1849,12 @@ function goToTimeline(){
 }
 function renderStep2(){
   const days=formData.tripDays||[];
+  const _hideEmpty=window._tlHideEmpty||false;
   const usedLocs=[...new Map(days.filter(d=>d.locationCode).map(d=>[d.locationCode,d])).values()].slice(0,5);
-  const dayRows=days.map((d,i)=>{
+  const _isEmpty=d=>!d.locationCode&&!(d.moods?.length)&&!(d.photos?.length)&&!d.memo;
+  const visibleDays=_hideEmpty?days.filter(d=>!_isEmpty(d)):days;
+  const dayRows=visibleDays.map((d,_vi)=>{
+    const i=days.indexOf(d);
     const isActive=i===activeDayIdx;
     const locLabel=d.locationCode?(d.locationType==='city'&&d.parentEmoji?`${d.parentEmoji} ${d.locationName}`:`${d.locationEmoji} ${d.locationName}`):`${d.dayNum}일차`;
     const locClass=d.locationCode?'':'empty';
@@ -1893,8 +1897,12 @@ function renderStep2(){
     </div>`;
   }).join('');
   const delBtn=editingId?`<button class="wiz-delete" onclick="deleteTrip('${editingId}')">이 여행 기록 삭제</button>`:'';
+  const _emptyCount=days.filter(_isEmpty).length;
   return `<div class="wiz-wrap">
-    <div class="wiz-headline" style="font-size:var(--fs-xl)">날짜별 기록</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.25rem">
+      <div class="wiz-headline" style="font-size:var(--fs-xl);margin-bottom:0">날짜별 기록</div>
+      ${_emptyCount>0?`<button style="background:none;border:none;font-size:var(--fs-xs);color:var(--ink-muted);cursor:pointer;padding:4px 8px;border-radius:var(--r-pill);border:1px solid var(--hairline)" onclick="window._tlHideEmpty=!window._tlHideEmpty;renderForm()">${_hideEmpty?`전체 보기 (${_emptyCount}일 포함)`:`빈 날 숨기기 (${_emptyCount}일)`}</button>`:''}
+    </div>
     <div class="wiz-sub" style="margin-bottom:1rem">${formData.tripDays.length}일 · 날짜별 기록을 남겨보세요</div>
     <div class="tl-form-list">${dayRows}</div>
     <div class="wiz-sticky-footer">
@@ -1966,7 +1974,8 @@ async function saveTrip(){
   }
   calcDays();
   const id=editingId||Date.now()+'_'+Math.random().toString(36).slice(2,5);
-  const trip={id,status:formData.status,title:formData.title.trim(),coverEmoji:formData.coverEmoji,startDate:formData.startDate,endDate:formData.endDate,totalDays:formData.totalDays||0,tripDays:formData.tripDays,
+  const _autoPhoto=formData.tripDays.flatMap(d=>d.photos||[]).find(Boolean)||null;
+  const trip={id,status:formData.status,title:formData.title.trim(),coverEmoji:formData.coverEmoji,coverPhoto:_autoPhoto,startDate:formData.startDate,endDate:formData.endDate,totalDays:formData.totalDays||0,tripDays:formData.tripDays,
     createdAt:editingId?(trips.find(t=>t.id===id)?.createdAt||new Date().toISOString()):new Date().toISOString(),
     updatedAt:new Date().toISOString()};
   trips=editingId?trips.map(t=>t.id===id?trip:t):[trip,...trips];
